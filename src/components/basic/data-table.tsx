@@ -3,6 +3,7 @@
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
@@ -90,8 +91,8 @@ export function DataTable<TData, TValue>({
   })
 
   const [filters, setFilters] = useState<ColumnFiltersState>([])
-
   const [sorting, setSorting] = useState<SortingState>([])
+  const [globalFilter, setGlobalFilter] = useState<any>([])
 
   const table = useReactTable({
     data,
@@ -100,11 +101,14 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onPaginationChange: setPagination,
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
       pagination,
       sorting,
       columnFilters: filters,
+      globalFilter
     },
+    onGlobalFilterChange: setGlobalFilter,
     onSortingChange: setSorting,
     onColumnFiltersChange: setFilters,
   })
@@ -116,8 +120,8 @@ export function DataTable<TData, TValue>({
       {columnName ? (
         <Input
           type="text"
-          placeholder={'Search by name...'}
-          onChange={(e) => columnName.setFilterValue(e.target.value)}
+          placeholder={'Search...'}
+          onChange={(e) => table.setGlobalFilter(String(e.target.value))}
           className="filter-input mb-3 w-64"
         />
       ) : null}
