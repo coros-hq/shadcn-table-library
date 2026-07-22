@@ -2,14 +2,21 @@
 
 Building a Heavy Data table UI, with different examples and ways to handle complex display 
 
-### Stack
+### Phase 1
 
-- React Transtack start framework
-- ShadCn UI
-- Zod for type check and form validation
-- transtack table
+Building basic table with:
 
-  ### Phase 1
+- Rows Display
+- Pagination
+- Rows selection
+- text filter
+- columns filter
 
-  Building
+After that we move to SSR example with the same elements
+
+### Phase 2
+
+- Customizable filters exmple
+- Virtualized Table example
+- Nested data display example
   

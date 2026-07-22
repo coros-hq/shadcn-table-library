@@ -28,6 +28,7 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  X,
 } from 'lucide-react'
 import {
   Select,
@@ -38,6 +39,7 @@ import {
   SelectValue,
 } from '../ui/select'
 import { Input } from '../ui/input'
+import { DataTableFilter } from '../DataTableFilter'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -81,6 +83,36 @@ const PAGES_SIZE = [
   },
 ]
 
+const roles = [
+  {
+    label: 'Admin',
+    value: 'admin',
+  },
+  {
+    label: 'Viewer',
+    value: 'viewer',
+  },
+  {
+    label: 'Editor',
+    value: 'editor',
+  },
+]
+
+const status = [
+  {
+    label: 'Active',
+    value: 'active',
+  },
+  {
+    label: 'Inactive',
+    value: 'inactive',
+  },
+  {
+    label: 'Pending',
+    value: 'pending',
+  },
+]
+
 export function DataTable<TData, TValue>({
   columns,
   data,
@@ -91,40 +123,65 @@ export function DataTable<TData, TValue>({
   })
 
   const [filters, setFilters] = useState<ColumnFiltersState>([])
+  const [globalFilter, setGlobalFilter] = useState<string>('')
   const [sorting, setSorting] = useState<SortingState>([])
-  const [globalFilter, setGlobalFilter] = useState<any>([])
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onPaginationChange: setPagination,
-    getFilteredRowModel: getFilteredRowModel(),
     state: {
       pagination,
       sorting,
+      globalFilter,
       columnFilters: filters,
-      globalFilter
     },
-    onGlobalFilterChange: setGlobalFilter,
     onSortingChange: setSorting,
     onColumnFiltersChange: setFilters,
+    onGlobalFilterChange: setGlobalFilter,
   })
 
-  const columnName = table.getColumn('email')
+  const columnRole = table.getColumn('role')
+  const columnStatus = table.getColumn('status')
 
   return (
     <div>
-      {columnName ? (
+      <div className="flex mb-3 flex-row justify-between items-center">
         <Input
           type="text"
           placeholder={'Search...'}
-          onChange={(e) => table.setGlobalFilter(String(e.target.value))}
-          className="filter-input mb-3 w-64"
+          onChange={(e) => table.setGlobalFilter(e.target.value)}
+          className="filter-input  w-64"
         />
-      ) : null}
+        <div className="flex flex-row items-center gap-4">
+          {table.getState().columnFilters.length > 0 ? (
+            <Button
+              variant="link"
+              className="underline"
+              onClick={() => {
+                table.resetColumnFilters()
+              }}
+            >
+              Clear Filters <X className="h-3 w-3" />
+            </Button>
+          ) : null}
+          <DataTableFilter
+            column={table.getColumn('status')}
+            options={status}
+            title="Select status"
+          />
+          <DataTableFilter
+            column={table.getColumn('role')}
+            options={roles}
+            title="Select role"
+          />
+        </div>
+      </div>
+
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>
@@ -218,7 +275,10 @@ export function DataTable<TData, TValue>({
         >
           <ChevronsRight className="h-3  w-3" />
         </Button>
-        <Select items={PAGES_SIZE}>
+        <Select
+          value={pagination.pageSize.toString()}
+          onValueChange={(val) => table.setPageSize(Number(val))}
+        >
           <SelectTrigger className="h-1/3">
             <SelectValue placeholder={PAGES_SIZE[0].label} />
           </SelectTrigger>
