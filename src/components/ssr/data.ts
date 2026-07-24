@@ -1,21 +1,7 @@
-import { columns } from './columns'
-import { DataTable } from './data-table'
-import { DataTableFilter } from '../DataTableFilter'
-import type { User } from '#/components/basic/columns'
+import { createServerFn } from '@tanstack/react-start'
+import type { User } from './pagination-example/columns'
 
-const roleOptions = [
-  { label: 'Admin', value: 'admin' },
-  { label: 'Viewer', value: 'viewer' },
-  { label: 'Editor', value: 'editor' },
-]
-
-const statusOptions = [
-  { label: 'Active', value: 'active' },
-  { label: 'Inactive', value: 'inactive' },
-  { label: 'Pending', value: 'pending' },
-]
-
-const data: User[] = [
+const Users: User[] = [
   {
     id: 1,
     name: 'Ava Thompson',
@@ -193,25 +179,14 @@ const data: User[] = [
   },
 ]
 
-export function BasicTableUsage() {
-  return (
-    <DataTable
-      columns={columns}
-      data={data}
-      filters={(table) => (
-        <>
-          <DataTableFilter
-            column={table.getColumn('status')}
-            options={statusOptions}
-            title="Select status"
-          />
-          <DataTableFilter
-            column={table.getColumn('role')}
-            options={roleOptions}
-            title="Select role"
-          />
-        </>
-      )}
-    />
-  )
-}
+export const getUsersPage = createServerFn({ method: 'GET' })
+  .validator((input: { page: number; pageSize: number }) => input)
+  .handler(async ({ data }) => {
+    await new Promise((resolve) => setTimeout(resolve, 400))
+
+    const start = data.page * data.pageSize
+    return {
+      rows: Users.slice(start, start + data.pageSize),
+      pageCount: Math.ceil(Users.length / data.pageSize),
+    }
+  })

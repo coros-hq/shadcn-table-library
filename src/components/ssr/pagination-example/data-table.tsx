@@ -3,18 +3,12 @@
 import {
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
 
-import type {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  Table as ReactTable,
-} from '@tanstack/react-table'
+import type { ColumnDef, SortingState } from '@tanstack/react-table'
+import { useRouterState } from '@tanstack/react-router'
 
 import {
   Table,
@@ -23,9 +17,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../ui/table'
+} from '#/components/ui/table'
 import { useState } from 'react'
-import { Button } from '../ui/button'
+import { Button } from '#/components/ui/button'
 import {
   ArrowDown,
   ArrowUp,
@@ -34,7 +28,6 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-  X,
 } from 'lucide-react'
 import {
   Select,
@@ -43,97 +36,66 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select'
-import { Input } from '../ui/input'
+} from '#/components/ui/select'
+import { cn } from '#/lib/utils.ts'
+import { Route } from '#/routes/server-table'
+import type { User } from './columns'
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-  filters?: (table: ReactTable<TData>) => React.ReactNode
+interface DataTableProps {
+  columns: ColumnDef<User>[]
 }
 
 const PAGES_SIZE = [
-  {
-    label: '10',
-    value: '10',
-  },
-  {
-    label: '20',
-    value: '20',
-  },
-  {
-    label: '30',
-    value: '30',
-  },
-  {
-    label: '40',
-    value: '40',
-  },
-  {
-    label: '50',
-    value: '50',
-  },
+  { label: '10', value: '10' },
+  { label: '20', value: '20' },
+  { label: '30', value: '30' },
+  { label: '40', value: '40' },
+  { label: '50', value: '50' },
 ]
 
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-  filters,
-}: DataTableProps<TData, TValue>) {
-  const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 10,
-  })
+export function DataTable({ columns }: DataTableProps) {
+  const { page, pageSize } = Route.useSearch()
+  const { rows, pageCount } = Route.useLoaderData()
+  const navigate = Route.useNavigate()
+  const isPending = useRouterState({ select: (s) => s.isLoading })
 
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-  const [globalFilter, setGlobalFilter] = useState<string>('')
   const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
-    data,
+    data: rows,
     columns,
+    pageCount,
+    manualPagination: true,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    onPaginationChange: setPagination,
     state: {
-      pagination,
       sorting,
-      globalFilter,
-      columnFilters,
+      pagination: { pageIndex: page, pageSize },
+    },
+    onPaginationChange: (updater) => {
+      const next =
+        typeof updater === 'function'
+          ? updater({ pageIndex: page, pageSize })
+          : updater
+      navigate({
+        search: (prev) => ({
+          ...prev,
+          page: next.pageIndex,
+          pageSize: next.pageSize,
+        }),
+      })
     },
     onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onGlobalFilterChange: setGlobalFilter,
   })
 
   return (
     <div>
-      <div className="flex mb-3 flex-row justify-between items-center">
-        <Input
-          type="text"
-          placeholder={'Search...'}
-          onChange={(e) => table.setGlobalFilter(e.target.value)}
-          className="filter-input  w-64"
-        />
-        <div className="flex flex-row items-center gap-4">
-          {table.getState().columnFilters.length > 0 ? (
-            <Button
-              variant="link"
-              className="underline"
-              onClick={() => {
-                table.resetColumnFilters()
-              }}
-            >
-              Clear Filters <X className="h-3 w-3" />
-            </Button>
-          ) : null}
-          {filters?.(table)}
-        </div>
-      </div>
-
-      <div className="overflow-hidden rounded-md border">
+      <div
+        className={cn(
+          'overflow-hidden rounded-md border transition-opacity',
+          isPending && 'opacity-50',
+        )}
+      >
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -212,7 +174,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex gap-1 justify-end  mt-5">
+      <div className="flex gap-1 justify-end mt-5">
         <Button
           onClick={() => table.firstPage()}
           disabled={!table.getCanPreviousPage()}
@@ -239,10 +201,10 @@ export function DataTable<TData, TValue>({
           disabled={!table.getCanNextPage()}
           variant={'outline'}
         >
-          <ChevronsRight className="h-3  w-3" />
+          <ChevronsRight className="h-3 w-3" />
         </Button>
         <Select
-          value={pagination.pageSize.toString()}
+          value={pageSize.toString()}
           onValueChange={(val) => table.setPageSize(Number(val))}
         >
           <SelectTrigger className="h-1/3">

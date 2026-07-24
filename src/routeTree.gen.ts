@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServerFilterRouteImport } from './routes/server-filter'
+import { Route as ServerTableRouteImport } from './routes/server-table'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServerFilterRoute = ServerFilterRouteImport.update({
+  id: '/server-filter',
+  path: '/server-filter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServerTableRoute = ServerTableRouteImport.update({
+  id: '/server-table',
+  path: '/server-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/server-filter': typeof ServerFilterRoute
+  '/server-table': typeof ServerTableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/server-filter': typeof ServerFilterRoute
+  '/server-table': typeof ServerTableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/server-filter': typeof ServerFilterRoute
+  '/server-table': typeof ServerTableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/server-filter' | '/server-table'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/server-filter' | '/server-table'
+  id: '__root__' | '/' | '/server-filter' | '/server-table'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ServerFilterRoute: typeof ServerFilterRoute
+  ServerTableRoute: typeof ServerTableRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/server-filter': {
+      id: '/server-filter'
+      path: '/server-filter'
+      fullPath: '/server-filter'
+      preLoaderRoute: typeof ServerFilterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/server-table': {
+      id: '/server-table'
+      path: '/server-table'
+      fullPath: '/server-table'
+      preLoaderRoute: typeof ServerTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ServerFilterRoute: ServerFilterRoute,
+  ServerTableRoute: ServerTableRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
