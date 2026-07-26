@@ -110,14 +110,14 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex mb-3 flex-row justify-between items-center">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <Input
           type="text"
           placeholder={'Search...'}
           onChange={(e) => table.setGlobalFilter(e.target.value)}
-          className="filter-input  w-64"
+          className="filter-input w-full sm:w-64"
         />
-        <div className="flex flex-row items-center gap-4">
+        <div className="flex flex-wrap items-center gap-2">
           {table.getState().columnFilters.length > 0 ? (
             <Button
               variant="link"

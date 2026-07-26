@@ -1,14 +1,22 @@
 import type * as React from 'react'
+import { useState } from 'react'
 import { Link, useRouterState } from '@tanstack/react-router'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Menu } from 'lucide-react'
 
 import { ThemeToggle } from '#/components/docs/theme-toggle.tsx'
 import { cn } from '#/lib/utils.ts'
+import { Button } from '#/components/ui/button.tsx'
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '#/components/ui/collapsible.tsx'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '#/components/ui/sheet.tsx'
 import {
   Sidebar,
   SidebarContent,
@@ -74,26 +82,132 @@ const navGroups: NavGroup[] = [
   },
 ]
 
+function NavContent({
+  pathname,
+  onNavigate,
+}: {
+  pathname: string
+  onNavigate?: () => void
+}) {
+  return (
+    <SidebarProvider
+      className="min-h-0 w-auto items-start"
+      style={{ '--sidebar-width': '16rem' } as React.CSSProperties}
+    >
+      <Sidebar collapsible="none" className="bg-transparent">
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {topLevelLinks.map((link) => (
+                  <SidebarMenuItem key={link.to}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === link.to}
+                      className="w-full rounded-lg font-medium data-[active=true]:shadow-sm"
+                    >
+                      <Link to={link.to} onClick={onNavigate}>
+                        {link.title}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          {navGroups.map((group) => (
+            <Collapsible
+              key={group.title}
+              defaultOpen
+              className="group/collapsible"
+            >
+              <SidebarGroup>
+                <SidebarGroupLabel asChild>
+                  <CollapsibleTrigger className="flex w-full items-center rounded-md text-[11px] font-semibold tracking-wider text-muted-foreground/80 uppercase hover:text-foreground">
+                    {group.title}
+                    <ChevronRight className="ml-auto size-3.5 transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                  </CollapsibleTrigger>
+                </SidebarGroupLabel>
+                <CollapsibleContent>
+                  <SidebarGroupContent>
+                    <SidebarMenu className="mt-1 ml-3.5 gap-0.5 border-l border-sidebar-border pl-3">
+                      {group.items.map((link) => {
+                        const isActive = pathname === link.to
+                        return (
+                          <SidebarMenuItem key={link.to}>
+                            <SidebarMenuButton
+                              asChild
+                              isActive={isActive}
+                              className={cn(
+                                'relative w-full rounded-md before:absolute before:top-1/2 before:-left-[13px] before:h-4 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-transparent before:transition-colors before:content-[""]',
+                                isActive && 'before:bg-primary',
+                              )}
+                            >
+                              <Link to={link.to} onClick={onNavigate}>
+                                {link.title}
+                              </Link>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        )
+                      })}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </CollapsibleContent>
+              </SidebarGroup>
+            </Collapsible>
+          ))}
+        </SidebarContent>
+      </Sidebar>
+    </SidebarProvider>
+  )
+}
+
 interface DocsLayoutProps {
   children: React.ReactNode
 }
 
 export function DocsLayout({ children }: DocsLayoutProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
     <div className="min-h-svh">
       <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur-md supports-backdrop-filter:bg-background/60">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-          <span className="flex items-center gap-2">
-            <img src="/logo.svg" alt="" className="size-6 rounded-md" />
-            <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-sm font-semibold tracking-tight text-transparent">
-              ShadTable
+          <div className="flex items-center gap-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="mr-1 md:hidden"
+              aria-label="Open navigation"
+              onClick={() => setMobileNavOpen(true)}
+            >
+              <Menu className="size-5" />
+            </Button>
+            <span className="flex items-center gap-2">
+              <img src="/logo.svg" alt="" className="size-6 rounded-md" />
+              <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-sm font-semibold tracking-tight text-transparent">
+                ShadTable
+              </span>
             </span>
-          </span>
+          </div>
           <ThemeToggle />
         </div>
       </header>
+
+      <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+        <SheetContent side="left" className="w-72 overflow-y-auto p-4">
+          <SheetHeader className="sr-only">
+            <SheetTitle>Navigation</SheetTitle>
+          </SheetHeader>
+          <NavContent
+            pathname={pathname}
+            onNavigate={() => setMobileNavOpen(false)}
+          />
+        </SheetContent>
+      </Sheet>
 
       <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-10 max-w-2xl">
@@ -110,72 +224,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
         <div className="flex gap-12">
           <aside className="hidden shrink-0 md:block">
             <div className="sticky top-20 max-h-[calc(100svh-6rem)] overflow-y-auto pr-2 pb-6">
-              <SidebarProvider
-                className="min-h-0 w-auto items-start"
-                style={{ '--sidebar-width': '16rem' } as React.CSSProperties}
-              >
-                <Sidebar collapsible="none" className="bg-transparent">
-                  <SidebarContent>
-                    <SidebarGroup>
-                      <SidebarGroupContent>
-                        <SidebarMenu>
-                          {topLevelLinks.map((link) => (
-                            <SidebarMenuItem key={link.to}>
-                              <SidebarMenuButton
-                                asChild
-                                isActive={pathname === link.to}
-                                className="w-full rounded-lg font-medium data-[active=true]:shadow-sm"
-                              >
-                                <Link to={link.to}>{link.title}</Link>
-                              </SidebarMenuButton>
-                            </SidebarMenuItem>
-                          ))}
-                        </SidebarMenu>
-                      </SidebarGroupContent>
-                    </SidebarGroup>
-
-                    {navGroups.map((group) => (
-                      <Collapsible
-                        key={group.title}
-                        defaultOpen
-                        className="group/collapsible"
-                      >
-                        <SidebarGroup>
-                          <SidebarGroupLabel asChild>
-                            <CollapsibleTrigger className="flex w-full items-center rounded-md text-[11px] font-semibold tracking-wider text-muted-foreground/80 uppercase hover:text-foreground">
-                              {group.title}
-                              <ChevronRight className="ml-auto size-3.5 transition-transform group-data-[state=open]/collapsible:rotate-90" />
-                            </CollapsibleTrigger>
-                          </SidebarGroupLabel>
-                          <CollapsibleContent>
-                            <SidebarGroupContent>
-                              <SidebarMenu className="mt-1 ml-3.5 gap-0.5 border-l border-sidebar-border pl-3">
-                                {group.items.map((link) => {
-                                  const isActive = pathname === link.to
-                                  return (
-                                    <SidebarMenuItem key={link.to}>
-                                      <SidebarMenuButton
-                                        asChild
-                                        isActive={isActive}
-                                        className={cn(
-                                          'relative w-full rounded-md before:absolute before:top-1/2 before:-left-[13px] before:h-4 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-transparent before:transition-colors before:content-[""]',
-                                          isActive && 'before:bg-primary',
-                                        )}
-                                      >
-                                        <Link to={link.to}>{link.title}</Link>
-                                      </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                  )
-                                })}
-                              </SidebarMenu>
-                            </SidebarGroupContent>
-                          </CollapsibleContent>
-                        </SidebarGroup>
-                      </Collapsible>
-                    ))}
-                  </SidebarContent>
-                </Sidebar>
-              </SidebarProvider>
+              <NavContent pathname={pathname} />
             </div>
           </aside>
 

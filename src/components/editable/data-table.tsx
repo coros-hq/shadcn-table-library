@@ -208,7 +208,7 @@ export function EditableTable({ data, onDataChange }: EditableTableProps) {
 
   return (
     <div>
-      <div className="mb-3 flex items-center justify-between">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm text-muted-foreground">
           Click a Name, Price, or Stock cell to edit it.
         </p>
