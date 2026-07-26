@@ -190,3 +190,21 @@ export const getUsersPage = createServerFn({ method: 'GET' })
       pageCount: Math.ceil(Users.length / data.pageSize),
     }
   })
+
+export const getUserPageWithFilter = createServerFn({ method: "GET" })
+  .validator((input: { page: number; pageSize: number; role?: string; status?: string }) => input)
+  .handler(async ({ data }) => {
+    await new Promise((resolve => setTimeout(resolve, 400)))
+
+    const filtered = Users.filter((u) => {
+      if (data.role && u.role !== data.role) return false
+      if (data.status && u.status !== data.status) return false
+      return true
+    })
+
+    const start = data.page * data.pageSize
+    return {
+      rows: filtered.slice(start, start + data.pageSize),
+      pageCount: Math.ceil(filtered.length / data.pageSize),
+    }
+  })

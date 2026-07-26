@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "heatmap-table",
+  "title": "Heatmap Table",
+  "description": "Matrix data with cell background intensity mapped to value, normalized globally across the whole table.",
+  "dependencies": [
+    "@tanstack/react-table"
+  ],
+  "registryDependencies": [
+    "table"
+  ],
+  "files": [
+    {
+      "path": "src/components/heatmap/heatmap.ts",
+      "content": "export type HeatmapRow = {\n  label: string\n  values: Record<string, number>\n}\n\nconst HEAT_RGB = '37, 99, 235' // Tailwind blue-600\nconst MIN_ALPHA = 0.08\nconst MAX_ALPHA = 0.8\nconst DARK_TEXT_THRESHOLD = 0.5\n\nexport function getHeatmapRange(rows: HeatmapRow[], columns: string[]) {\n  let min = Infinity\n  let max = -Infinity\n  for (const row of rows) {\n    for (const col of columns) {\n      const value = row.values[col]\n      if (value < min) min = value\n      if (value > max) max = value\n    }\n  }\n  return { min, max }\n}\n\nexport function getHeatColor(value: number, min: number, max: number) {\n  const range = max - min || 1\n  const alpha = MIN_ALPHA + ((value - min) / range) * (MAX_ALPHA - MIN_ALPHA)\n  return {\n    backgroundColor: `rgba(${HEAT_RGB}, ${alpha.toFixed(2)})`,\n    isDark: alpha > DARK_TEXT_THRESHOLD,\n  }\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/components/heatmap/data.ts",
+      "content": "import type { HeatmapRow } from './heatmap'\n\nexport const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']\n\nexport const revenueByRegion: HeatmapRow[] = [\n  { label: 'North', values: { Jan: 42, Feb: 45, Mar: 40, Apr: 51, May: 58, Jun: 63 } },\n  { label: 'South', values: { Jan: 31, Feb: 33, Mar: 29, Apr: 38, May: 41, Jun: 44 } },\n  { label: 'East', values: { Jan: 55, Feb: 59, Mar: 52, Apr: 67, May: 74, Jun: 81 } },\n  { label: 'West', values: { Jan: 38, Feb: 41, Mar: 36, Apr: 46, May: 50, Jun: 55 } },\n]\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/components/heatmap/data-table.tsx",
+      "content": "'use client'\n\nimport { useMemo } from 'react'\nimport {\n  flexRender,\n  getCoreRowModel,\n  useReactTable,\n} from '@tanstack/react-table'\nimport type { ColumnDef } from '@tanstack/react-table'\n\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from '#/components/ui/table'\nimport { cn } from '#/lib/utils.ts'\nimport type { HeatmapRow } from './heatmap'\nimport { getHeatColor, getHeatmapRange } from './heatmap'\n\ninterface HeatmapTableProps {\n  columns: string[]\n  data: HeatmapRow[]\n  formatValue?: (value: number) => string\n}\n\nexport function HeatmapTable({\n  columns,\n  data,\n  formatValue = (value) => String(value),\n}: HeatmapTableProps) {\n  const { min, max } = useMemo(\n    () => getHeatmapRange(data, columns),\n    [data, columns],\n  )\n\n  const tableColumns = useMemo<ColumnDef<HeatmapRow>[]>(\n    () => [\n      {\n        id: 'label',\n        header: '',\n        accessorKey: 'label',\n        cell: ({ getValue }) => (\n          <span className=\"font-medium\">{getValue() as string}</span>\n        ),\n      },\n      ...columns.map(\n        (col): ColumnDef<HeatmapRow> => ({\n          id: col,\n          header: col,\n          accessorFn: (row) => row.values[col],\n          cell: ({ getValue }) => {\n            const value = getValue() as number\n            const { backgroundColor, isDark } = getHeatColor(value, min, max)\n            return (\n              <div\n                style={{ backgroundColor }}\n                className={cn(\n                  'flex h-full w-full items-center justify-center px-3 py-2.5 text-sm tabular-nums',\n                  isDark ? 'text-white' : 'text-foreground',\n                )}\n              >\n                {formatValue(value)}\n              </div>\n            )\n          },\n        }),\n      ),\n    ],\n    [columns, min, max, formatValue],\n  )\n\n  const table = useReactTable({\n    data,\n    columns: tableColumns,\n    getCoreRowModel: getCoreRowModel(),\n  })\n\n  const legendLow = getHeatColor(min, min, max).backgroundColor\n  const legendHigh = getHeatColor(max, min, max).backgroundColor\n\n  return (\n    <div>\n      <div className=\"overflow-hidden rounded-md border\">\n        <Table>\n          <TableHeader>\n            {table.getHeaderGroups().map((headerGroup) => (\n              <TableRow key={headerGroup.id}>\n                {headerGroup.headers.map((header) => (\n                  <TableHead key={header.id} className=\"text-center\">\n                    {header.isPlaceholder\n                      ? null\n                      : flexRender(\n                          header.column.columnDef.header,\n                          header.getContext(),\n                        )}\n                  </TableHead>\n                ))}\n              </TableRow>\n            ))}\n          </TableHeader>\n          <TableBody>\n            {table.getRowModel().rows.map((row) => (\n              <TableRow key={row.id}>\n                {row.getVisibleCells().map((cell) => (\n                  <TableCell\n                    key={cell.id}\n                    className={cn(\n                      cell.column.id === 'label' ? undefined : 'p-0 text-center',\n                    )}\n                  >\n                    {flexRender(\n                      cell.column.columnDef.cell,\n                      cell.getContext(),\n                    )}\n                  </TableCell>\n                ))}\n              </TableRow>\n            ))}\n          </TableBody>\n        </Table>\n      </div>\n      <div className=\"mt-3 flex items-center gap-2 text-xs text-muted-foreground\">\n        <span>{formatValue(min)}</span>\n        <div\n          className=\"h-2 flex-1 rounded-full\"\n          style={{\n            background: `linear-gradient(to right, ${legendLow}, ${legendHigh})`,\n          }}\n        />\n        <span>{formatValue(max)}</span>\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/components/heatmap/index.tsx",
+      "content": "import { months, revenueByRegion } from './data'\nimport { HeatmapTable } from './data-table'\n\nexport function HeatmapTableDemo() {\n  return (\n    <HeatmapTable\n      columns={months}\n      data={revenueByRegion}\n      formatValue={(value) => `$${value}k`}\n    />\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

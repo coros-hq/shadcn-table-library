@@ -5,7 +5,7 @@ import routeSource from '#/routes/server-table.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import columnsSource from './columns.tsx?raw'
 import demoSource from './index.tsx?raw'
-import { ServerPaginationDemo } from './index'
+import { ServerFilterDemo, ServerPaginationDemo } from './index'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -73,6 +73,8 @@ export function ServerTablePage() {
         </div>
 
         <ComponentPreview preview={<ServerPaginationDemo />} files={files} />
+        <ComponentPreview preview={<ServerFilterDemo />} files={files} />
+
       </section>
     </DocsLayout>
   )

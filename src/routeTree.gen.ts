@@ -10,12 +10,70 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
+import { Route as EditableTableRouteImport } from './routes/editable-table'
+import { Route as GroupedTableRouteImport } from './routes/grouped-table'
+import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
+import { Route as KpiTableRouteImport } from './routes/kpi-table'
+import { Route as MasterDetailRouteImport } from './routes/master-detail'
+import { Route as PivotTableRouteImport } from './routes/pivot-table'
+import { Route as ReorderTableRouteImport } from './routes/reorder-table'
+import { Route as ResizableTableRouteImport } from './routes/resizable-table'
 import { Route as ServerFilterRouteImport } from './routes/server-filter'
 import { Route as ServerTableRouteImport } from './routes/server-table'
+import { Route as TreeReorderRouteImport } from './routes/tree-reorder'
+import { Route as TreeSelectRouteImport } from './routes/tree-select'
+import { Route as TreeTableRouteImport } from './routes/tree-table'
+import { Route as UtilityTableRouteImport } from './routes/utility-table'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComparisonTableRoute = ComparisonTableRouteImport.update({
+  id: '/comparison-table',
+  path: '/comparison-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditableTableRoute = EditableTableRouteImport.update({
+  id: '/editable-table',
+  path: '/editable-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GroupedTableRoute = GroupedTableRouteImport.update({
+  id: '/grouped-table',
+  path: '/grouped-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HeatmapTableRoute = HeatmapTableRouteImport.update({
+  id: '/heatmap-table',
+  path: '/heatmap-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KpiTableRoute = KpiTableRouteImport.update({
+  id: '/kpi-table',
+  path: '/kpi-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MasterDetailRoute = MasterDetailRouteImport.update({
+  id: '/master-detail',
+  path: '/master-detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PivotTableRoute = PivotTableRouteImport.update({
+  id: '/pivot-table',
+  path: '/pivot-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReorderTableRoute = ReorderTableRouteImport.update({
+  id: '/reorder-table',
+  path: '/reorder-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResizableTableRoute = ResizableTableRouteImport.update({
+  id: '/resizable-table',
+  path: '/resizable-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServerFilterRoute = ServerFilterRouteImport.update({
@@ -28,35 +86,156 @@ const ServerTableRoute = ServerTableRouteImport.update({
   path: '/server-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TreeReorderRoute = TreeReorderRouteImport.update({
+  id: '/tree-reorder',
+  path: '/tree-reorder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TreeSelectRoute = TreeSelectRouteImport.update({
+  id: '/tree-select',
+  path: '/tree-select',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TreeTableRoute = TreeTableRouteImport.update({
+  id: '/tree-table',
+  path: '/tree-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UtilityTableRoute = UtilityTableRouteImport.update({
+  id: '/utility-table',
+  path: '/utility-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/comparison-table': typeof ComparisonTableRoute
+  '/editable-table': typeof EditableTableRoute
+  '/grouped-table': typeof GroupedTableRoute
+  '/heatmap-table': typeof HeatmapTableRoute
+  '/kpi-table': typeof KpiTableRoute
+  '/master-detail': typeof MasterDetailRoute
+  '/pivot-table': typeof PivotTableRoute
+  '/reorder-table': typeof ReorderTableRoute
+  '/resizable-table': typeof ResizableTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/tree-reorder': typeof TreeReorderRoute
+  '/tree-select': typeof TreeSelectRoute
+  '/tree-table': typeof TreeTableRoute
+  '/utility-table': typeof UtilityTableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/comparison-table': typeof ComparisonTableRoute
+  '/editable-table': typeof EditableTableRoute
+  '/grouped-table': typeof GroupedTableRoute
+  '/heatmap-table': typeof HeatmapTableRoute
+  '/kpi-table': typeof KpiTableRoute
+  '/master-detail': typeof MasterDetailRoute
+  '/pivot-table': typeof PivotTableRoute
+  '/reorder-table': typeof ReorderTableRoute
+  '/resizable-table': typeof ResizableTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/tree-reorder': typeof TreeReorderRoute
+  '/tree-select': typeof TreeSelectRoute
+  '/tree-table': typeof TreeTableRoute
+  '/utility-table': typeof UtilityTableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/comparison-table': typeof ComparisonTableRoute
+  '/editable-table': typeof EditableTableRoute
+  '/grouped-table': typeof GroupedTableRoute
+  '/heatmap-table': typeof HeatmapTableRoute
+  '/kpi-table': typeof KpiTableRoute
+  '/master-detail': typeof MasterDetailRoute
+  '/pivot-table': typeof PivotTableRoute
+  '/reorder-table': typeof ReorderTableRoute
+  '/resizable-table': typeof ResizableTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/tree-reorder': typeof TreeReorderRoute
+  '/tree-select': typeof TreeSelectRoute
+  '/tree-table': typeof TreeTableRoute
+  '/utility-table': typeof UtilityTableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/server-filter' | '/server-table'
+  fullPaths:
+    | '/'
+    | '/comparison-table'
+    | '/editable-table'
+    | '/grouped-table'
+    | '/heatmap-table'
+    | '/kpi-table'
+    | '/master-detail'
+    | '/pivot-table'
+    | '/reorder-table'
+    | '/resizable-table'
+    | '/server-filter'
+    | '/server-table'
+    | '/tree-reorder'
+    | '/tree-select'
+    | '/tree-table'
+    | '/utility-table'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/server-filter' | '/server-table'
-  id: '__root__' | '/' | '/server-filter' | '/server-table'
+  to:
+    | '/'
+    | '/comparison-table'
+    | '/editable-table'
+    | '/grouped-table'
+    | '/heatmap-table'
+    | '/kpi-table'
+    | '/master-detail'
+    | '/pivot-table'
+    | '/reorder-table'
+    | '/resizable-table'
+    | '/server-filter'
+    | '/server-table'
+    | '/tree-reorder'
+    | '/tree-select'
+    | '/tree-table'
+    | '/utility-table'
+  id:
+    | '__root__'
+    | '/'
+    | '/comparison-table'
+    | '/editable-table'
+    | '/grouped-table'
+    | '/heatmap-table'
+    | '/kpi-table'
+    | '/master-detail'
+    | '/pivot-table'
+    | '/reorder-table'
+    | '/resizable-table'
+    | '/server-filter'
+    | '/server-table'
+    | '/tree-reorder'
+    | '/tree-select'
+    | '/tree-table'
+    | '/utility-table'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComparisonTableRoute: typeof ComparisonTableRoute
+  EditableTableRoute: typeof EditableTableRoute
+  GroupedTableRoute: typeof GroupedTableRoute
+  HeatmapTableRoute: typeof HeatmapTableRoute
+  KpiTableRoute: typeof KpiTableRoute
+  MasterDetailRoute: typeof MasterDetailRoute
+  PivotTableRoute: typeof PivotTableRoute
+  ReorderTableRoute: typeof ReorderTableRoute
+  ResizableTableRoute: typeof ResizableTableRoute
   ServerFilterRoute: typeof ServerFilterRoute
   ServerTableRoute: typeof ServerTableRoute
+  TreeReorderRoute: typeof TreeReorderRoute
+  TreeSelectRoute: typeof TreeSelectRoute
+  TreeTableRoute: typeof TreeTableRoute
+  UtilityTableRoute: typeof UtilityTableRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +245,69 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comparison-table': {
+      id: '/comparison-table'
+      path: '/comparison-table'
+      fullPath: '/comparison-table'
+      preLoaderRoute: typeof ComparisonTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editable-table': {
+      id: '/editable-table'
+      path: '/editable-table'
+      fullPath: '/editable-table'
+      preLoaderRoute: typeof EditableTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grouped-table': {
+      id: '/grouped-table'
+      path: '/grouped-table'
+      fullPath: '/grouped-table'
+      preLoaderRoute: typeof GroupedTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/heatmap-table': {
+      id: '/heatmap-table'
+      path: '/heatmap-table'
+      fullPath: '/heatmap-table'
+      preLoaderRoute: typeof HeatmapTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kpi-table': {
+      id: '/kpi-table'
+      path: '/kpi-table'
+      fullPath: '/kpi-table'
+      preLoaderRoute: typeof KpiTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/master-detail': {
+      id: '/master-detail'
+      path: '/master-detail'
+      fullPath: '/master-detail'
+      preLoaderRoute: typeof MasterDetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pivot-table': {
+      id: '/pivot-table'
+      path: '/pivot-table'
+      fullPath: '/pivot-table'
+      preLoaderRoute: typeof PivotTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reorder-table': {
+      id: '/reorder-table'
+      path: '/reorder-table'
+      fullPath: '/reorder-table'
+      preLoaderRoute: typeof ReorderTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resizable-table': {
+      id: '/resizable-table'
+      path: '/resizable-table'
+      fullPath: '/resizable-table'
+      preLoaderRoute: typeof ResizableTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/server-filter': {
@@ -82,13 +324,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServerTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tree-reorder': {
+      id: '/tree-reorder'
+      path: '/tree-reorder'
+      fullPath: '/tree-reorder'
+      preLoaderRoute: typeof TreeReorderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tree-select': {
+      id: '/tree-select'
+      path: '/tree-select'
+      fullPath: '/tree-select'
+      preLoaderRoute: typeof TreeSelectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tree-table': {
+      id: '/tree-table'
+      path: '/tree-table'
+      fullPath: '/tree-table'
+      preLoaderRoute: typeof TreeTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utility-table': {
+      id: '/utility-table'
+      path: '/utility-table'
+      fullPath: '/utility-table'
+      preLoaderRoute: typeof UtilityTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComparisonTableRoute: ComparisonTableRoute,
+  EditableTableRoute: EditableTableRoute,
+  GroupedTableRoute: GroupedTableRoute,
+  HeatmapTableRoute: HeatmapTableRoute,
+  KpiTableRoute: KpiTableRoute,
+  MasterDetailRoute: MasterDetailRoute,
+  PivotTableRoute: PivotTableRoute,
+  ReorderTableRoute: ReorderTableRoute,
+  ResizableTableRoute: ResizableTableRoute,
   ServerFilterRoute: ServerFilterRoute,
   ServerTableRoute: ServerTableRoute,
+  TreeReorderRoute: TreeReorderRoute,
+  TreeSelectRoute: TreeSelectRoute,
+  TreeTableRoute: TreeTableRoute,
+  UtilityTableRoute: UtilityTableRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

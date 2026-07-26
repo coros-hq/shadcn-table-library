@@ -38,8 +38,8 @@ import {
   SelectValue,
 } from '#/components/ui/select'
 import { cn } from '#/lib/utils.ts'
-import { Route } from '#/routes/server-table'
 import type { User } from './columns'
+import { Route } from '#/routes/server-filter'
 
 interface DataTableProps {
   columns: ColumnDef<User>[]
@@ -54,7 +54,7 @@ const PAGES_SIZE = [
 ]
 
 export function DataTable({ columns }: DataTableProps) {
-  const { page, pageSize } = Route.useSearch()
+  const { page, pageSize, role } = Route.useSearch()
   const { rows, pageCount } = Route.useLoaderData()
   const navigate = Route.useNavigate()
   const isPending = useRouterState({ select: (s) => s.isLoading })
@@ -90,12 +90,34 @@ export function DataTable({ columns }: DataTableProps) {
 
   return (
     <div>
+      <Select
+
+        value={role || 'all'}
+        onValueChange={(val) =>
+          navigate({
+            search: (prev) => ({
+              ...prev,
+              role: val === 'all' ? '' : val,
+              page: 0, // reset to page 0 — the result set size changed
+            }),
+          })
+        }
+      >
+        <SelectTrigger className='mb-4 w-32'><SelectValue placeholder="Role" /></SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">All roles</SelectItem>
+          <SelectItem value="Admin">Admin</SelectItem>
+          <SelectItem value="Editor">Editor</SelectItem>
+          <SelectItem value="Viewer">Viewer</SelectItem>
+        </SelectContent>
+      </Select>
       <div
         className={cn(
           'overflow-hidden rounded-md border transition-opacity',
           isPending && 'opacity-50',
         )}
       >
+
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
