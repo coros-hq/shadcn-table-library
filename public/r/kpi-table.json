@@ -13,27 +13,32 @@
     {
       "path": "src/components/kpi/kpi.ts",
       "content": "export type KpiUnit = 'currency' | 'percent' | 'number'\n\nexport type Kpi = {\n  id: string\n  label: string\n  value: number\n  unit: KpiUnit\n  change: number\n  trend: number[]\n}\n\nexport function formatKpiValue(value: number, unit: KpiUnit): string {\n  if (unit === 'currency') {\n    return value.toLocaleString('en-US', {\n      style: 'currency',\n      currency: 'USD',\n      maximumFractionDigits: 0,\n    })\n  }\n  if (unit === 'percent') {\n    return `${value.toFixed(1)}%`\n  }\n  return value.toLocaleString('en-US')\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "@components/tables/kpi-table/kpi.ts"
     },
     {
       "path": "src/components/kpi/sparkline.tsx",
       "content": "interface SparklineProps {\n  data: number[]\n  width?: number\n  height?: number\n  className?: string\n}\n\nexport function Sparkline({\n  data,\n  width = 96,\n  height = 28,\n  className,\n}: SparklineProps) {\n  if (data.length < 2) return null\n\n  const min = Math.min(...data)\n  const max = Math.max(...data)\n  const range = max - min || 1\n  const stepX = width / (data.length - 1)\n\n  const points = data\n    .map((value, i) => {\n      const x = i * stepX\n      const y = height - ((value - min) / range) * height\n      return `${x.toFixed(1)},${y.toFixed(1)}`\n    })\n    .join(' ')\n\n  return (\n    <svg\n      width={width}\n      height={height}\n      viewBox={`0 0 ${width} ${height}`}\n      className={className}\n      aria-hidden=\"true\"\n    >\n      <polyline\n        points={points}\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth={1.5}\n        strokeLinecap=\"round\"\n        strokeLinejoin=\"round\"\n      />\n    </svg>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "@components/tables/kpi-table/sparkline.tsx"
     },
     {
       "path": "src/components/kpi/columns.tsx",
       "content": "'use client'\n\nimport type { ColumnDef } from '@tanstack/react-table'\nimport { Minus, TrendingDown, TrendingUp } from 'lucide-react'\n\nimport { cn } from '#/lib/utils.ts'\nimport type { Kpi } from './kpi'\nimport { formatKpiValue } from './kpi'\nimport { Sparkline } from './sparkline'\n\nexport const columns: ColumnDef<Kpi>[] = [\n  {\n    accessorKey: 'label',\n    header: 'Metric',\n    cell: ({ getValue }) => (\n      <span className=\"font-medium\">{getValue() as string}</span>\n    ),\n  },\n  {\n    accessorKey: 'value',\n    header: 'Value',\n    cell: ({ row }) => formatKpiValue(row.original.value, row.original.unit),\n  },\n  {\n    accessorKey: 'change',\n    header: 'Change',\n    cell: ({ getValue }) => {\n      const change = getValue() as number\n      const isFlat = change === 0\n      const isUp = change > 0\n      const Icon = isFlat ? Minus : isUp ? TrendingUp : TrendingDown\n\n      return (\n        <span\n          className={cn(\n            'inline-flex items-center gap-1 text-sm font-medium',\n            isFlat\n              ? 'text-muted-foreground'\n              : isUp\n                ? 'text-emerald-600 dark:text-emerald-500'\n                : 'text-rose-600 dark:text-rose-500',\n          )}\n        >\n          <Icon className=\"h-3.5 w-3.5\" />\n          {isUp ? '+' : ''}\n          {change.toFixed(1)}%\n        </span>\n      )\n    },\n  },\n  {\n    id: 'trend',\n    header: 'Trend',\n    cell: ({ row }) => (\n      <Sparkline\n        data={row.original.trend}\n        className={cn(\n          'h-7 w-24',\n          row.original.change >= 0\n            ? 'text-emerald-600 dark:text-emerald-500'\n            : 'text-rose-600 dark:text-rose-500',\n        )}\n      />\n    ),\n  },\n]\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "@components/tables/kpi-table/columns.tsx"
     },
     {
       "path": "src/components/kpi/data-table.tsx",
       "content": "'use client'\n\nimport {\n  flexRender,\n  getCoreRowModel,\n  useReactTable,\n} from '@tanstack/react-table'\nimport type { ColumnDef } from '@tanstack/react-table'\n\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from '#/components/ui/table'\nimport type { Kpi } from './kpi'\n\ninterface KpiTableProps {\n  columns: ColumnDef<Kpi, any>[]\n  data: Kpi[]\n}\n\nexport function KpiTable({ columns, data }: KpiTableProps) {\n  const table = useReactTable({\n    data,\n    columns,\n    getCoreRowModel: getCoreRowModel(),\n  })\n\n  return (\n    <div className=\"overflow-hidden rounded-md border\">\n      <Table>\n        <TableHeader>\n          {table.getHeaderGroups().map((headerGroup) => (\n            <TableRow key={headerGroup.id}>\n              {headerGroup.headers.map((header) => (\n                <TableHead key={header.id} className=\"h-8 text-xs\">\n                  {header.isPlaceholder\n                    ? null\n                    : flexRender(\n                        header.column.columnDef.header,\n                        header.getContext(),\n                      )}\n                </TableHead>\n              ))}\n            </TableRow>\n          ))}\n        </TableHeader>\n        <TableBody>\n          {table.getRowModel().rows.map((row) => (\n            <TableRow key={row.id}>\n              {row.getVisibleCells().map((cell) => (\n                <TableCell key={cell.id} className=\"py-2\">\n                  {flexRender(cell.column.columnDef.cell, cell.getContext())}\n                </TableCell>\n              ))}\n            </TableRow>\n          ))}\n        </TableBody>\n      </Table>\n    </div>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "@components/tables/kpi-table/data-table.tsx"
     },
     {
       "path": "src/components/kpi/index.tsx",
       "content": "import { columns } from './columns'\nimport type { Kpi } from './kpi'\nimport { KpiTable } from './data-table'\n\nconst data: Kpi[] = [\n  {\n    id: 'revenue',\n    label: 'Revenue',\n    value: 128400,\n    unit: 'currency',\n    change: 8.2,\n    trend: [92000, 95500, 101000, 98200, 110500, 115000, 120800, 128400],\n  },\n  {\n    id: 'new-customers',\n    label: 'New Customers',\n    value: 482,\n    unit: 'number',\n    change: -3.4,\n    trend: [520, 505, 512, 498, 510, 495, 470, 482],\n  },\n  {\n    id: 'churn-rate',\n    label: 'Churn Rate',\n    value: 3.1,\n    unit: 'percent',\n    change: -0.4,\n    trend: [4.1, 3.9, 3.8, 3.9, 3.6, 3.4, 3.3, 3.1],\n  },\n  {\n    id: 'conversion-rate',\n    label: 'Conversion Rate',\n    value: 4.6,\n    unit: 'percent',\n    change: 0.3,\n    trend: [3.9, 4.0, 4.1, 4.0, 4.3, 4.2, 4.4, 4.6],\n  },\n  {\n    id: 'avg-order-value',\n    label: 'Avg Order Value',\n    value: 64.2,\n    unit: 'currency',\n    change: 1.1,\n    trend: [59.5, 60.1, 61.0, 60.4, 62.2, 61.8, 63.0, 64.2],\n  },\n]\n\nexport function KpiTableDemo() {\n  return <KpiTable columns={columns} data={data} />\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "@components/tables/kpi-table/index.tsx"
     }
   ],
   "type": "registry:block"

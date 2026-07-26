@@ -9,10 +9,10 @@
       "title": "Data Table",
       "description": "Sortable, filterable, paginated client-side table with a composable filter toolbar.",
       "files": [
-        { "path": "src/components/basic/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/basic/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/basic/index.tsx", "type": "registry:component" },
-        { "path": "src/components/DataTableFilter.tsx", "type": "registry:component" }
+        { "path": "src/components/basic/columns.tsx", "type": "registry:component", "target": "@components/tables/data-table/columns.tsx" },
+        { "path": "src/components/basic/data-table.tsx", "type": "registry:component", "target": "@components/tables/data-table/data-table.tsx" },
+        { "path": "src/components/basic/index.tsx", "type": "registry:component", "target": "@components/tables/data-table/index.tsx" },
+        { "path": "src/components/DataTableFilter.tsx", "type": "registry:component", "target": "@components/tables/data-table/data-table-filter.tsx" }
       ],
       "registryDependencies": ["table", "button", "select", "input"],
       "dependencies": ["@tanstack/react-table"]
@@ -23,11 +23,11 @@
       "title": "SSR Pagination Table",
       "description": "Only the current page's rows are sent to the browser; the URL is the source of truth and a route loader resolves the page server-side.",
       "files": [
-        { "path": "src/components/ssr/data.ts", "type": "registry:component" },
-        { "path": "src/components/ssr/pagination-example/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/ssr/pagination-example/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/ssr/pagination-example/index.tsx", "type": "registry:component" },
-        { "path": "src/routes/server-table.ts", "type": "registry:component" }
+        { "path": "src/components/ssr/data.ts", "type": "registry:component", "target": "@components/tables/server-pagination-table/data.ts" },
+        { "path": "src/components/ssr/pagination-example/columns.tsx", "type": "registry:component", "target": "@components/tables/server-pagination-table/columns.tsx" },
+        { "path": "src/components/ssr/pagination-example/data-table.tsx", "type": "registry:component", "target": "@components/tables/server-pagination-table/data-table.tsx" },
+        { "path": "src/components/ssr/pagination-example/index.tsx", "type": "registry:component", "target": "@components/tables/server-pagination-table/index.tsx" },
+        { "path": "src/routes/server-table.ts", "type": "registry:component", "target": "src/routes/server-table.ts" }
       ],
       "registryDependencies": ["table", "button", "select"],
       "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
@@ -38,11 +38,11 @@
       "title": "SSR Filter Table",
       "description": "Column filtering resolved on the server the same way SSR pagination resolves pages, with manualFiltering and a URL-driven filter state.",
       "files": [
-        { "path": "src/components/ssr/data.ts", "type": "registry:component" },
-        { "path": "src/components/ssr/filter-example/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/ssr/filter-example/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/ssr/filter-example/index.tsx", "type": "registry:component" },
-        { "path": "src/routes/server-filter.ts", "type": "registry:component" }
+        { "path": "src/components/ssr/data.ts", "type": "registry:component", "target": "@components/tables/server-filter-table/data.ts" },
+        { "path": "src/components/ssr/filter-example/columns.tsx", "type": "registry:component", "target": "@components/tables/server-filter-table/columns.tsx" },
+        { "path": "src/components/ssr/filter-example/data-table.tsx", "type": "registry:component", "target": "@components/tables/server-filter-table/data-table.tsx" },
+        { "path": "src/components/ssr/filter-example/index.tsx", "type": "registry:component", "target": "@components/tables/server-filter-table/index.tsx" },
+        { "path": "src/routes/server-filter.ts", "type": "registry:component", "target": "src/routes/server-filter.ts" }
       ],
       "registryDependencies": ["table", "button", "select"],
       "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
@@ -53,9 +53,9 @@
       "title": "Tree Table",
       "description": "Hierarchical rows with expand/collapse, sorting, and search that keeps a matching row's ancestors visible.",
       "files": [
-        { "path": "src/components/tree/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/tree/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/tree/index.tsx", "type": "registry:component" }
+        { "path": "src/components/tree/columns.tsx", "type": "registry:component", "target": "@components/tables/tree-table/columns.tsx" },
+        { "path": "src/components/tree/data-table.tsx", "type": "registry:component", "target": "@components/tables/tree-table/data-table.tsx" },
+        { "path": "src/components/tree/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table/index.tsx" }
       ],
       "registryDependencies": ["table", "input"],
       "dependencies": ["@tanstack/react-table"]
@@ -66,9 +66,9 @@
       "title": "Tree Table — Selection",
       "description": "Tree table with cascading checkbox selection and indeterminate state for partially-selected branches.",
       "files": [
-        { "path": "src/components/tree-select/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/tree-select/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/tree-select/index.tsx", "type": "registry:component" }
+        { "path": "src/components/tree-select/columns.tsx", "type": "registry:component", "target": "@components/tables/tree-table-selection/columns.tsx" },
+        { "path": "src/components/tree-select/data-table.tsx", "type": "registry:component", "target": "@components/tables/tree-table-selection/data-table.tsx" },
+        { "path": "src/components/tree-select/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table-selection/index.tsx" }
       ],
       "registryDependencies": ["table", "checkbox"],
       "dependencies": ["@tanstack/react-table"]
@@ -79,9 +79,9 @@
       "title": "Tree Table — Reorder",
       "description": "Drag-handle row reordering scoped to siblings within the same parent, built on @dnd-kit/sortable.",
       "files": [
-        { "path": "src/components/tree-reorder/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/tree-reorder/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/tree-reorder/index.tsx", "type": "registry:component" }
+        { "path": "src/components/tree-reorder/columns.tsx", "type": "registry:component", "target": "@components/tables/tree-table-reorder/columns.tsx" },
+        { "path": "src/components/tree-reorder/data-table.tsx", "type": "registry:component", "target": "@components/tables/tree-table-reorder/data-table.tsx" },
+        { "path": "src/components/tree-reorder/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table-reorder/index.tsx" }
       ],
       "registryDependencies": ["table"],
       "dependencies": [
@@ -98,9 +98,9 @@
       "title": "Reorderable Table",
       "description": "Drag rows to reorder them and drag column headers to reorder columns, both built on @dnd-kit/sortable.",
       "files": [
-        { "path": "src/components/reorder/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/reorder/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/reorder/index.tsx", "type": "registry:component" }
+        { "path": "src/components/reorder/columns.tsx", "type": "registry:component", "target": "@components/tables/reorderable-table/columns.tsx" },
+        { "path": "src/components/reorder/data-table.tsx", "type": "registry:component", "target": "@components/tables/reorderable-table/data-table.tsx" },
+        { "path": "src/components/reorder/index.tsx", "type": "registry:component", "target": "@components/tables/reorderable-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
       "dependencies": [
@@ -117,9 +117,9 @@
       "title": "Resizable / Reorderable Columns",
       "description": "Drag a header's grip to reorder columns, drag its edge to resize, with the resulting layout persisted to localStorage.",
       "files": [
-        { "path": "src/components/resizable-reorder/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/resizable-reorder/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/resizable-reorder/index.tsx", "type": "registry:component" }
+        { "path": "src/components/resizable-reorder/columns.tsx", "type": "registry:component", "target": "@components/tables/resizable-reorderable-columns-table/columns.tsx" },
+        { "path": "src/components/resizable-reorder/data-table.tsx", "type": "registry:component", "target": "@components/tables/resizable-reorderable-columns-table/data-table.tsx" },
+        { "path": "src/components/resizable-reorder/index.tsx", "type": "registry:component", "target": "@components/tables/resizable-reorderable-columns-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button"],
       "dependencies": [
@@ -136,9 +136,9 @@
       "title": "Grouped Table",
       "description": "Rows grouped by a column value with collapsible group headers and live subtotals via aggregationFn.",
       "files": [
-        { "path": "src/components/grouped/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/grouped/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/grouped/index.tsx", "type": "registry:component" }
+        { "path": "src/components/grouped/columns.tsx", "type": "registry:component", "target": "@components/tables/grouped-table/columns.tsx" },
+        { "path": "src/components/grouped/data-table.tsx", "type": "registry:component", "target": "@components/tables/grouped-table/data-table.tsx" },
+        { "path": "src/components/grouped/index.tsx", "type": "registry:component", "target": "@components/tables/grouped-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
       "dependencies": ["@tanstack/react-table"]
@@ -149,10 +149,10 @@
       "title": "Pivot Table",
       "description": "Dashboard-style analytics: pick which dimension becomes rows, which becomes columns, and how to aggregate (sum, average, count).",
       "files": [
-        { "path": "src/components/pivot/pivot.ts", "type": "registry:component" },
-        { "path": "src/components/pivot/data.ts", "type": "registry:component" },
-        { "path": "src/components/pivot/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/pivot/index.tsx", "type": "registry:component" }
+        { "path": "src/components/pivot/pivot.ts", "type": "registry:component", "target": "@components/tables/pivot-table/pivot.ts" },
+        { "path": "src/components/pivot/data.ts", "type": "registry:component", "target": "@components/tables/pivot-table/data.ts" },
+        { "path": "src/components/pivot/data-table.tsx", "type": "registry:component", "target": "@components/tables/pivot-table/data-table.tsx" },
+        { "path": "src/components/pivot/index.tsx", "type": "registry:component", "target": "@components/tables/pivot-table/index.tsx" }
       ],
       "registryDependencies": ["table", "select"],
       "dependencies": ["@tanstack/react-table"]
@@ -163,10 +163,10 @@
       "title": "Master-Detail Table",
       "description": "Expand a row to reveal a nested sub-table detail panel, rendered as a full-width row beneath the row that owns it.",
       "files": [
-        { "path": "src/components/master-detail/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/master-detail/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/master-detail/order-detail.tsx", "type": "registry:component" },
-        { "path": "src/components/master-detail/index.tsx", "type": "registry:component" }
+        { "path": "src/components/master-detail/columns.tsx", "type": "registry:component", "target": "@components/tables/master-detail-table/columns.tsx" },
+        { "path": "src/components/master-detail/data-table.tsx", "type": "registry:component", "target": "@components/tables/master-detail-table/data-table.tsx" },
+        { "path": "src/components/master-detail/order-detail.tsx", "type": "registry:component", "target": "@components/tables/master-detail-table/order-detail.tsx" },
+        { "path": "src/components/master-detail/index.tsx", "type": "registry:component", "target": "@components/tables/master-detail-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
       "dependencies": ["@tanstack/react-table"]
@@ -177,9 +177,9 @@
       "title": "Editable Table",
       "description": "Inline cell editing with per-cell validation, optimistic updates against a simulated save, and single-step undo.",
       "files": [
-        { "path": "src/components/editable/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/editable/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/editable/index.tsx", "type": "registry:component" }
+        { "path": "src/components/editable/columns.tsx", "type": "registry:component", "target": "@components/tables/editable-table/columns.tsx" },
+        { "path": "src/components/editable/data-table.tsx", "type": "registry:component", "target": "@components/tables/editable-table/data-table.tsx" },
+        { "path": "src/components/editable/index.tsx", "type": "registry:component", "target": "@components/tables/editable-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "input"],
       "dependencies": ["@tanstack/react-table"]
@@ -190,11 +190,11 @@
       "title": "Summary / KPI Table",
       "description": "Compact metrics table with period-over-period change and a hand-rolled SVG sparkline per row.",
       "files": [
-        { "path": "src/components/kpi/kpi.ts", "type": "registry:component" },
-        { "path": "src/components/kpi/sparkline.tsx", "type": "registry:component" },
-        { "path": "src/components/kpi/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/kpi/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/kpi/index.tsx", "type": "registry:component" }
+        { "path": "src/components/kpi/kpi.ts", "type": "registry:component", "target": "@components/tables/kpi-table/kpi.ts" },
+        { "path": "src/components/kpi/sparkline.tsx", "type": "registry:component", "target": "@components/tables/kpi-table/sparkline.tsx" },
+        { "path": "src/components/kpi/columns.tsx", "type": "registry:component", "target": "@components/tables/kpi-table/columns.tsx" },
+        { "path": "src/components/kpi/data-table.tsx", "type": "registry:component", "target": "@components/tables/kpi-table/data-table.tsx" },
+        { "path": "src/components/kpi/index.tsx", "type": "registry:component", "target": "@components/tables/kpi-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
       "dependencies": ["@tanstack/react-table"]
@@ -205,10 +205,10 @@
       "title": "Comparison Table",
       "description": "Pricing plans as columns in an ordinary bordered table, with dynamically generated columns and the recommended plan tinted.",
       "files": [
-        { "path": "src/components/comparison/comparison.ts", "type": "registry:component" },
-        { "path": "src/components/comparison/data.ts", "type": "registry:component" },
-        { "path": "src/components/comparison/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/comparison/index.tsx", "type": "registry:component" }
+        { "path": "src/components/comparison/comparison.ts", "type": "registry:component", "target": "@components/tables/comparison-table/comparison.ts" },
+        { "path": "src/components/comparison/data.ts", "type": "registry:component", "target": "@components/tables/comparison-table/data.ts" },
+        { "path": "src/components/comparison/data-table.tsx", "type": "registry:component", "target": "@components/tables/comparison-table/data-table.tsx" },
+        { "path": "src/components/comparison/index.tsx", "type": "registry:component", "target": "@components/tables/comparison-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button"],
       "dependencies": ["@tanstack/react-table"]
@@ -219,10 +219,10 @@
       "title": "Heatmap Table",
       "description": "Matrix data with cell background intensity mapped to value, normalized globally across the whole table.",
       "files": [
-        { "path": "src/components/heatmap/heatmap.ts", "type": "registry:component" },
-        { "path": "src/components/heatmap/data.ts", "type": "registry:component" },
-        { "path": "src/components/heatmap/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/heatmap/index.tsx", "type": "registry:component" }
+        { "path": "src/components/heatmap/heatmap.ts", "type": "registry:component", "target": "@components/tables/heatmap-table/heatmap.ts" },
+        { "path": "src/components/heatmap/data.ts", "type": "registry:component", "target": "@components/tables/heatmap-table/data.ts" },
+        { "path": "src/components/heatmap/data-table.tsx", "type": "registry:component", "target": "@components/tables/heatmap-table/data-table.tsx" },
+        { "path": "src/components/heatmap/index.tsx", "type": "registry:component", "target": "@components/tables/heatmap-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
       "dependencies": ["@tanstack/react-table"]
@@ -233,10 +233,10 @@
       "title": "Density & Export",
       "description": "Compact/comfortable/spacious density toggle, CSV/Excel export, and a print-optimized PDF view via window.print().",
       "files": [
-        { "path": "src/components/utility/columns.tsx", "type": "registry:component" },
-        { "path": "src/components/utility/export.ts", "type": "registry:component" },
-        { "path": "src/components/utility/data-table.tsx", "type": "registry:component" },
-        { "path": "src/components/utility/index.tsx", "type": "registry:component" }
+        { "path": "src/components/utility/columns.tsx", "type": "registry:component", "target": "@components/tables/density-export-table/columns.tsx" },
+        { "path": "src/components/utility/export.ts", "type": "registry:component", "target": "@components/tables/density-export-table/export.ts" },
+        { "path": "src/components/utility/data-table.tsx", "type": "registry:component", "target": "@components/tables/density-export-table/data-table.tsx" },
+        { "path": "src/components/utility/index.tsx", "type": "registry:component", "target": "@components/tables/density-export-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "select"],
       "dependencies": ["@tanstack/react-table"]
