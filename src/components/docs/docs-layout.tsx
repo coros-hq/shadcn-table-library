@@ -2,7 +2,8 @@ import type * as React from 'react'
 import { useState } from 'react'
 import { Link, useRouterState } from '@tanstack/react-router'
 import { ChevronRight, Menu } from 'lucide-react'
-
+import DiscordIcon from '#/../public/icons/discord-logo.svg'
+import  GithubIcon from '#/../public/icons/github-logo.svg'
 import { ThemeToggle } from '#/components/docs/theme-toggle.tsx'
 import { cn } from '#/lib/utils.ts'
 import { Button } from '#/components/ui/button.tsx'
@@ -193,7 +194,27 @@ export function DocsLayout({ children }: DocsLayoutProps) {
               </span>
             </span>
           </div>
-          <ThemeToggle />
+          <div className="flex flex-row items-center gap-3">
+            <ThemeToggle />
+            <a
+              href="https://discord.gg/4J6MVnnRY"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Join Discord"
+            >
+              <img src={DiscordIcon} alt="Discord" className="size-5 dark:invert" />
+            </a>
+            <a
+              href="https://github.com/coros-hq/shadcn-table-library"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="GitHub Repository"
+            >
+              <img src={GithubIcon} alt="GitHub" className="size-5 dark:invert" />
+            </a>
+          </div>
         </div>
       </header>
 
