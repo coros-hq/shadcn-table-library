@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "shadcn-table-library",
-  "homepage": "https://your-deployed-url.com",
+  "homepage": "https://shadcn-table-library.vercel.app/",
   "items": [
     {
       "name": "data-table",
