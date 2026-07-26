@@ -5,7 +5,7 @@ import { Check, Copy } from 'lucide-react'
 
 import { Button } from '#/components/ui/button.tsx'
 
-const REGISTRY_BASE_URL = 'https://shadcn-table-library.vercel.app//r'
+const REGISTRY_BASE_URL = 'https://shadcn-table-library.vercel.app/r'
 
 interface InstallCommandProps {
   name: string
