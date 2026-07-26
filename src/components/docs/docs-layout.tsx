@@ -85,8 +85,11 @@ export function DocsLayout({ children }: DocsLayoutProps) {
     <div className="min-h-svh">
       <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur-md supports-backdrop-filter:bg-background/60">
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-          <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-sm font-semibold tracking-tight text-transparent">
-            ShadTable
+          <span className="flex items-center gap-2">
+            <img src="/logo.svg" alt="" className="size-6 rounded-md" />
+            <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-sm font-semibold tracking-tight text-transparent">
+              ShadTable
+            </span>
           </span>
           <ThemeToggle />
         </div>
@@ -94,7 +97,10 @@ export function DocsLayout({ children }: DocsLayoutProps) {
 
       <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-10 max-w-2xl">
-          <h1 className="text-3xl font-bold tracking-tight">ShadTable</h1>
+          <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight">
+            <img src="/logo.svg" alt="" className="size-9 rounded-lg" />
+            ShadTable
+          </h1>
           <p className="mt-2 text-muted-foreground">
             A collection of composable table components built on shadcn/ui
             and TanStack Table.
