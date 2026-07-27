@@ -31,7 +31,7 @@ export const Route = createFileRoute('/pivot-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/pivot-table',
+        href: 'https://shad-table.dev/pivot-table',
       },
     ],
   }),

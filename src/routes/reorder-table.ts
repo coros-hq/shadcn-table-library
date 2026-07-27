@@ -31,7 +31,7 @@ export const Route = createFileRoute('/reorder-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/reorder-table',
+        href: 'https://shad-table.dev/reorder-table',
       },
     ],
   }),

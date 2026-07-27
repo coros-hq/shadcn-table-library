@@ -34,7 +34,7 @@ export const Route = createFileRoute('/resizable-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/resizable-table',
+        href: 'https://shad-table.dev/resizable-table',
       },
     ],
   }),

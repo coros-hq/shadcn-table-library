@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shadcn-table-library.vercel.app/</loc>
+    <loc>https://shad-table.dev/</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/comparison-table</loc>
+    <loc>https://shad-table.dev/comparison-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/editable-table</loc>
+    <loc>https://shad-table.dev/editable-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/grouped-table</loc>
+    <loc>https://shad-table.dev/grouped-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/heatmap-table</loc>
+    <loc>https://shad-table.dev/heatmap-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/kpi-table</loc>
+    <loc>https://shad-table.dev/kpi-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/master-detail</loc>
+    <loc>https://shad-table.dev/master-detail</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/pivot-table</loc>
+    <loc>https://shad-table.dev/pivot-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/reorder-table</loc>
+    <loc>https://shad-table.dev/reorder-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/resizable-table</loc>
+    <loc>https://shad-table.dev/resizable-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/server-filter</loc>
+    <loc>https://shad-table.dev/server-filter</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/server-table</loc>
+    <loc>https://shad-table.dev/server-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/tree-reorder</loc>
+    <loc>https://shad-table.dev/tree-reorder</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/tree-select</loc>
+    <loc>https://shad-table.dev/tree-select</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/tree-table</loc>
+    <loc>https://shad-table.dev/tree-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shadcn-table-library.vercel.app/utility-table</loc>
+    <loc>https://shad-table.dev/utility-table</loc>
     <lastmod>2026-07-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

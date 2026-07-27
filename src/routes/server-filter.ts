@@ -32,7 +32,7 @@ export const Route = createFileRoute('/server-filter')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/server-filter',
+        href: 'https://shad-table.dev/server-filter',
       },
     ],
   }),

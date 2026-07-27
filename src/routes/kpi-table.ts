@@ -31,7 +31,7 @@ export const Route = createFileRoute('/kpi-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/kpi-table',
+        href: 'https://shad-table.dev/kpi-table',
       },
     ],
   }),

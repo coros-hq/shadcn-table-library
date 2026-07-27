@@ -31,7 +31,7 @@ export const Route = createFileRoute('/grouped-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/grouped-table',
+        href: 'https://shad-table.dev/grouped-table',
       },
     ],
   }),

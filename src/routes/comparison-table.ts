@@ -31,7 +31,7 @@ export const Route = createFileRoute('/comparison-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/comparison-table',
+        href: 'https://shad-table.dev/comparison-table',
       },
     ],
   }),

@@ -31,7 +31,7 @@ export const Route = createFileRoute('/heatmap-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/heatmap-table',
+        href: 'https://shad-table.dev/heatmap-table',
       },
     ],
   }),

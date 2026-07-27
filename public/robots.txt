@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://shadcn-table-library.vercel.app/sitemap.xml
+Sitemap: https://shad-table.dev/sitemap.xml

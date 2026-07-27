@@ -32,7 +32,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:image',
-        content: 'https://shadcn-table-library.vercel.app/logo512.png',
+        content: 'https://shad-table.dev/logo512.png',
       },
       {
         name: 'twitter:card',
@@ -40,14 +40,14 @@ export const Route = createRootRoute({
       },
       {
         name: 'twitter:image',
-        content: 'https://shadcn-table-library.vercel.app/logo512.png',
+        content: 'https://shad-table.dev/logo512.png',
       },
       {
         'script:ld+json': {
           '@context': 'https://schema.org',
           '@type': 'WebSite',
           name: 'ShadTable',
-          url: 'https://shadcn-table-library.vercel.app',
+          url: 'https://shad-table.dev',
           description:
             'A collection of composable table components built on shadcn/ui and TanStack Table.',
         },

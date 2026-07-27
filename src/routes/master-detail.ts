@@ -31,7 +31,7 @@ export const Route = createFileRoute('/master-detail')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/master-detail',
+        href: 'https://shad-table.dev/master-detail',
       },
     ],
   }),

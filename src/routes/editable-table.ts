@@ -31,7 +31,7 @@ export const Route = createFileRoute('/editable-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shadcn-table-library.vercel.app/editable-table',
+        href: 'https://shad-table.dev/editable-table',
       },
     ],
   }),
