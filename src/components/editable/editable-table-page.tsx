@@ -83,9 +83,9 @@ export function EditableTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Editable Table
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Click a cell to edit it inline. Edits validate on commit, apply
             optimistically before a simulated save resolves, roll back on a

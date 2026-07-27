@@ -79,9 +79,9 @@ export function UtilityTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Density &amp; Export
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             One table, three modes: a compact/comfortable/spacious density
             toggle, CSV/Excel/PDF export built from whatever the table is

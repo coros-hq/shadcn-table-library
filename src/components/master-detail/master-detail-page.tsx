@@ -91,9 +91,9 @@ export function MasterDetailPage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Master-Detail Table
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Expand an order to reveal its shipping address and a nested
             sub-table of line items — a full-width detail row rendered

@@ -79,7 +79,7 @@ export function TreeTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">Tree Table</h2>
+          <h1 className="text-xl font-semibold tracking-tight">Tree Table</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             A hierarchical table for nested data — departments, teams, and
             employees — with expand/collapse, sorting, and a search box that

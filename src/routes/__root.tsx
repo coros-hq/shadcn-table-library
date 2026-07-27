@@ -15,7 +15,42 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'ShadTable',
+        title: 'ShadTable — Composable table components for shadcn/ui',
+      },
+      {
+        name: 'description',
+        content:
+          'A collection of composable table components built on shadcn/ui and TanStack Table — data tables, tree tables, pivot tables, and more, installable via npx shadcn add.',
+      },
+      {
+        property: 'og:site_name',
+        content: 'ShadTable',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:image',
+        content: 'https://shadcn-table-library.vercel.app/logo512.png',
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary',
+      },
+      {
+        name: 'twitter:image',
+        content: 'https://shadcn-table-library.vercel.app/logo512.png',
+      },
+      {
+        'script:ld+json': {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'ShadTable',
+          url: 'https://shadcn-table-library.vercel.app',
+          description:
+            'A collection of composable table components built on shadcn/ui and TanStack Table.',
+        },
       },
     ],
     links: [

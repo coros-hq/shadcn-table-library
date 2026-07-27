@@ -10,7 +10,39 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 
-export const Route = createFileRoute('/')({ component: Home })
+export const Route = createFileRoute('/')({
+  head: () => ({
+    meta: [
+      { title: 'Data Table — ShadTable' },
+      {
+        name: 'description',
+        content:
+          'A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.',
+      },
+      { property: 'og:title', content: 'Data Table — ShadTable' },
+      {
+        property: 'og:description',
+        content:
+          'A sortable, filterable, paginated table with a composable toolbar for column-specific filters, built on shadcn/ui and TanStack Table.',
+      },
+      {
+        'script:ld+json': {
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareSourceCode',
+          name: 'Data Table',
+          description:
+            'A sortable, filterable, paginated table with a composable toolbar for column-specific filters, built on shadcn/ui and TanStack Table.',
+          codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
+          programmingLanguage: 'TypeScript',
+        },
+      },
+    ],
+    links: [
+      { rel: 'canonical', href: 'https://shadcn-table-library.vercel.app/' },
+    ],
+  }),
+  component: Home,
+})
 
 const files = [
   { path: 'src/components/basic/index.tsx', code: basicIndexSource },
@@ -93,7 +125,7 @@ function Home() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">Data Table</h2>
+          <h1 className="text-xl font-semibold tracking-tight">Data Table</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             A sortable, filterable, paginated table with a composable toolbar
             for column-specific filters. Sorting, filtering, and pagination

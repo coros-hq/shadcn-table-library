@@ -86,9 +86,9 @@ export function GroupedTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Grouped Table
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Orders grouped by category, with collapsible group headers and a
             live subtotal of each group's order amounts.

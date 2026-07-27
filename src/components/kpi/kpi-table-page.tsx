@@ -96,9 +96,9 @@ export function KpiTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Summary / KPI Table
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             A compact metrics table — current value, period-over-period
             change, and a per-row sparkline — for the kind of dashboard

@@ -106,7 +106,7 @@ export function ServerFilterPage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">SSR Filter</h2>
+          <h1 className="text-xl font-semibold tracking-tight">SSR Filter</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Filtering by column, resolved on the server the same way SSR
             Pagination resolves pages.

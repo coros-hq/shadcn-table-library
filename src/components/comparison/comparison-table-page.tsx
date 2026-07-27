@@ -100,9 +100,9 @@ export function ComparisonTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Comparison Table
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Pricing plans as columns in an ordinary bordered table — feature
             rows compare booleans and values across every plan at once, with

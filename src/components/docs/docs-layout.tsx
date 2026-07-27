@@ -232,10 +232,10 @@ export function DocsLayout({ children }: DocsLayoutProps) {
 
       <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-10 max-w-2xl">
-          <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight">
+          <div className="flex items-center gap-3 text-3xl font-bold tracking-tight">
             <img src="/logo.svg" alt="" className="size-9 rounded-lg" />
             ShadTable
-          </h1>
+          </div>
           <p className="mt-2 text-muted-foreground">
             A collection of composable table components built on shadcn/ui
             and TanStack Table.

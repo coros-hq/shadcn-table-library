@@ -81,9 +81,9 @@ export function TreeSelectPage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Tree Table — Checkbox Selection
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             The same department/team/employee tree, with a checkbox column
             that cascades selection from a parent down to every descendant

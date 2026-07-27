@@ -87,9 +87,9 @@ export function HeatmapTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-xl font-semibold tracking-tight">
             Heatmap Table
-          </h2>
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Revenue by region and month, with each cell's background
             intensity mapped to its value — good for spotting patterns
