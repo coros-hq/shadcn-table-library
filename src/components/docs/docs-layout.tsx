@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Link, useRouterState } from '@tanstack/react-router'
 import { ChevronRight, Menu } from 'lucide-react'
 import DiscordIcon from '#/../public/icons/discord-logo.svg'
-import  GithubIcon from '#/../public/icons/github-logo.svg'
 import { ThemeToggle } from '#/components/docs/theme-toggle.tsx'
+import { GithubStars } from '#/components/docs/github-stars.tsx'
 import { cn } from '#/lib/utils.ts'
 import { Button } from '#/components/ui/button.tsx'
 import {
@@ -205,15 +205,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
             >
               <img src={DiscordIcon} alt="Discord" className="size-5 dark:invert" />
             </a>
-            <a
-              href="https://github.com/coros-hq/shadcn-table-library"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="GitHub Repository"
-            >
-              <img src={GithubIcon} alt="GitHub" className="size-5 dark:invert" />
-            </a>
+            <GithubStars />
           </div>
         </div>
       </header>
