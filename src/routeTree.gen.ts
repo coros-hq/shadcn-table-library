@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
+import { Route as DataTableRouteImport } from './routes/data-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
 import { Route as GroupedTableRouteImport } from './routes/grouped-table'
 import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
@@ -34,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
 const ComparisonTableRoute = ComparisonTableRouteImport.update({
   id: '/comparison-table',
   path: '/comparison-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataTableRoute = DataTableRouteImport.update({
+  id: '/data-table',
+  path: '/data-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditableTableRoute = EditableTableRouteImport.update({
@@ -110,6 +116,7 @@ const UtilityTableRoute = UtilityTableRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/comparison-table': typeof ComparisonTableRoute
+  '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/comparison-table': typeof ComparisonTableRoute
+  '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
@@ -147,6 +155,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/comparison-table': typeof ComparisonTableRoute
+  '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
@@ -167,6 +176,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/comparison-table'
+    | '/data-table'
     | '/editable-table'
     | '/grouped-table'
     | '/heatmap-table'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/comparison-table'
+    | '/data-table'
     | '/editable-table'
     | '/grouped-table'
     | '/heatmap-table'
@@ -203,6 +214,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/comparison-table'
+    | '/data-table'
     | '/editable-table'
     | '/grouped-table'
     | '/heatmap-table'
@@ -222,6 +234,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComparisonTableRoute: typeof ComparisonTableRoute
+  DataTableRoute: typeof DataTableRoute
   EditableTableRoute: typeof EditableTableRoute
   GroupedTableRoute: typeof GroupedTableRoute
   HeatmapTableRoute: typeof HeatmapTableRoute
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       path: '/comparison-table'
       fullPath: '/comparison-table'
       preLoaderRoute: typeof ComparisonTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-table': {
+      id: '/data-table'
+      path: '/data-table'
+      fullPath: '/data-table'
+      preLoaderRoute: typeof DataTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/editable-table': {
@@ -358,6 +378,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComparisonTableRoute: ComparisonTableRoute,
+  DataTableRoute: DataTableRoute,
   EditableTableRoute: EditableTableRoute,
   GroupedTableRoute: GroupedTableRoute,
   HeatmapTableRoute: HeatmapTableRoute,
