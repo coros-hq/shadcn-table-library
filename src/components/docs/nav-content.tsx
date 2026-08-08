@@ -43,6 +43,14 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
+    title: 'Advanced Filters',
+    items: [
+      { title: 'Toolbar Filter Table', to: '/toolbar-filter-table' },
+      { title: 'Filter State Shape', to: '/filter-state-shape-table' },
+      { title: 'Filter Toolbar', to: '/filter-toolbar-table' },
+    ],
+  },
+  {
     title: 'Structure / Hierarchy',
     items: [
       { title: 'Tree Table', to: '/tree-table' },
@@ -59,6 +67,7 @@ export const navGroups: NavGroup[] = [
       { title: 'Reorderable Table', to: '/reorder-table' },
       { title: 'Editable Table', to: '/editable-table' },
       { title: 'Resizable / Reorderable Columns', to: '/resizable-table' },
+      { title: 'Animated Icons Table', to: '/animated-icons-table' },
     ],
   },
   {

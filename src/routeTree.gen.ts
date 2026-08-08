@@ -10,9 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnimatedIconsTableRouteImport } from './routes/animated-icons-table'
 import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
 import { Route as DataTableRouteImport } from './routes/data-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
+import { Route as FilterStateShapeTableRouteImport } from './routes/filter-state-shape-table'
+import { Route as FilterToolbarTableRouteImport } from './routes/filter-toolbar-table'
 import { Route as GroupedTableRouteImport } from './routes/grouped-table'
 import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
@@ -22,6 +25,7 @@ import { Route as ReorderTableRouteImport } from './routes/reorder-table'
 import { Route as ResizableTableRouteImport } from './routes/resizable-table'
 import { Route as ServerFilterRouteImport } from './routes/server-filter'
 import { Route as ServerTableRouteImport } from './routes/server-table'
+import { Route as ToolbarFilterTableRouteImport } from './routes/toolbar-filter-table'
 import { Route as TreeReorderRouteImport } from './routes/tree-reorder'
 import { Route as TreeSelectRouteImport } from './routes/tree-select'
 import { Route as TreeTableRouteImport } from './routes/tree-table'
@@ -30,6 +34,11 @@ import { Route as UtilityTableRouteImport } from './routes/utility-table'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimatedIconsTableRoute = AnimatedIconsTableRouteImport.update({
+  id: '/animated-icons-table',
+  path: '/animated-icons-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComparisonTableRoute = ComparisonTableRouteImport.update({
@@ -45,6 +54,16 @@ const DataTableRoute = DataTableRouteImport.update({
 const EditableTableRoute = EditableTableRouteImport.update({
   id: '/editable-table',
   path: '/editable-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FilterStateShapeTableRoute = FilterStateShapeTableRouteImport.update({
+  id: '/filter-state-shape-table',
+  path: '/filter-state-shape-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FilterToolbarTableRoute = FilterToolbarTableRouteImport.update({
+  id: '/filter-toolbar-table',
+  path: '/filter-toolbar-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GroupedTableRoute = GroupedTableRouteImport.update({
@@ -92,6 +111,11 @@ const ServerTableRoute = ServerTableRouteImport.update({
   path: '/server-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolbarFilterTableRoute = ToolbarFilterTableRouteImport.update({
+  id: '/toolbar-filter-table',
+  path: '/toolbar-filter-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TreeReorderRoute = TreeReorderRouteImport.update({
   id: '/tree-reorder',
   path: '/tree-reorder',
@@ -115,9 +139,12 @@ const UtilityTableRoute = UtilityTableRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/filter-state-shape-table': typeof FilterStateShapeTableRoute
+  '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/kpi-table': typeof KpiTableRoute
@@ -127,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/resizable-table': typeof ResizableTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
@@ -134,9 +162,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/filter-state-shape-table': typeof FilterStateShapeTableRoute
+  '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/kpi-table': typeof KpiTableRoute
@@ -146,6 +177,7 @@ export interface FileRoutesByTo {
   '/resizable-table': typeof ResizableTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
@@ -154,9 +186,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/filter-state-shape-table': typeof FilterStateShapeTableRoute
+  '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/kpi-table': typeof KpiTableRoute
@@ -166,6 +201,7 @@ export interface FileRoutesById {
   '/resizable-table': typeof ResizableTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
@@ -175,9 +211,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/animated-icons-table'
     | '/comparison-table'
     | '/data-table'
     | '/editable-table'
+    | '/filter-state-shape-table'
+    | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
     | '/kpi-table'
@@ -187,6 +226,7 @@ export interface FileRouteTypes {
     | '/resizable-table'
     | '/server-filter'
     | '/server-table'
+    | '/toolbar-filter-table'
     | '/tree-reorder'
     | '/tree-select'
     | '/tree-table'
@@ -194,9 +234,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/animated-icons-table'
     | '/comparison-table'
     | '/data-table'
     | '/editable-table'
+    | '/filter-state-shape-table'
+    | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
     | '/kpi-table'
@@ -206,6 +249,7 @@ export interface FileRouteTypes {
     | '/resizable-table'
     | '/server-filter'
     | '/server-table'
+    | '/toolbar-filter-table'
     | '/tree-reorder'
     | '/tree-select'
     | '/tree-table'
@@ -213,9 +257,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/animated-icons-table'
     | '/comparison-table'
     | '/data-table'
     | '/editable-table'
+    | '/filter-state-shape-table'
+    | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
     | '/kpi-table'
@@ -225,6 +272,7 @@ export interface FileRouteTypes {
     | '/resizable-table'
     | '/server-filter'
     | '/server-table'
+    | '/toolbar-filter-table'
     | '/tree-reorder'
     | '/tree-select'
     | '/tree-table'
@@ -233,9 +281,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnimatedIconsTableRoute: typeof AnimatedIconsTableRoute
   ComparisonTableRoute: typeof ComparisonTableRoute
   DataTableRoute: typeof DataTableRoute
   EditableTableRoute: typeof EditableTableRoute
+  FilterStateShapeTableRoute: typeof FilterStateShapeTableRoute
+  FilterToolbarTableRoute: typeof FilterToolbarTableRoute
   GroupedTableRoute: typeof GroupedTableRoute
   HeatmapTableRoute: typeof HeatmapTableRoute
   KpiTableRoute: typeof KpiTableRoute
@@ -245,6 +296,7 @@ export interface RootRouteChildren {
   ResizableTableRoute: typeof ResizableTableRoute
   ServerFilterRoute: typeof ServerFilterRoute
   ServerTableRoute: typeof ServerTableRoute
+  ToolbarFilterTableRoute: typeof ToolbarFilterTableRoute
   TreeReorderRoute: typeof TreeReorderRoute
   TreeSelectRoute: typeof TreeSelectRoute
   TreeTableRoute: typeof TreeTableRoute
@@ -258,6 +310,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/animated-icons-table': {
+      id: '/animated-icons-table'
+      path: '/animated-icons-table'
+      fullPath: '/animated-icons-table'
+      preLoaderRoute: typeof AnimatedIconsTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/comparison-table': {
@@ -279,6 +338,20 @@ declare module '@tanstack/react-router' {
       path: '/editable-table'
       fullPath: '/editable-table'
       preLoaderRoute: typeof EditableTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/filter-state-shape-table': {
+      id: '/filter-state-shape-table'
+      path: '/filter-state-shape-table'
+      fullPath: '/filter-state-shape-table'
+      preLoaderRoute: typeof FilterStateShapeTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/filter-toolbar-table': {
+      id: '/filter-toolbar-table'
+      path: '/filter-toolbar-table'
+      fullPath: '/filter-toolbar-table'
+      preLoaderRoute: typeof FilterToolbarTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/grouped-table': {
@@ -344,6 +417,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServerTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/toolbar-filter-table': {
+      id: '/toolbar-filter-table'
+      path: '/toolbar-filter-table'
+      fullPath: '/toolbar-filter-table'
+      preLoaderRoute: typeof ToolbarFilterTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tree-reorder': {
       id: '/tree-reorder'
       path: '/tree-reorder'
@@ -377,9 +457,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnimatedIconsTableRoute: AnimatedIconsTableRoute,
   ComparisonTableRoute: ComparisonTableRoute,
   DataTableRoute: DataTableRoute,
   EditableTableRoute: EditableTableRoute,
+  FilterStateShapeTableRoute: FilterStateShapeTableRoute,
+  FilterToolbarTableRoute: FilterToolbarTableRoute,
   GroupedTableRoute: GroupedTableRoute,
   HeatmapTableRoute: HeatmapTableRoute,
   KpiTableRoute: KpiTableRoute,
@@ -389,6 +472,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResizableTableRoute: ResizableTableRoute,
   ServerFilterRoute: ServerFilterRoute,
   ServerTableRoute: ServerTableRoute,
+  ToolbarFilterTableRoute: ToolbarFilterTableRoute,
   TreeReorderRoute: TreeReorderRoute,
   TreeSelectRoute: TreeSelectRoute,
   TreeTableRoute: TreeTableRoute,

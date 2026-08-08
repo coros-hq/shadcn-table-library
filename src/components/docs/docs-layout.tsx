@@ -3,6 +3,12 @@ import { useState } from 'react'
 import { useRouterState } from '@tanstack/react-router'
 import { SiteHeader } from '#/components/docs/site-header.tsx'
 import { NavContent } from '#/components/docs/nav-content.tsx'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '#/components/ui/sheet.tsx'
 
 interface DocsLayoutProps {
   children: React.ReactNode
@@ -19,6 +25,18 @@ export function DocsLayout({ children }: DocsLayoutProps) {
         onMobileNavOpenChange={setMobileNavOpen}
       />
 
+      <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+        <SheetContent side="left" className="w-72 overflow-y-auto p-4">
+          <SheetHeader className="sr-only">
+            <SheetTitle>Navigation</SheetTitle>
+          </SheetHeader>
+          <NavContent
+            pathname={pathname}
+            onNavigate={() => setMobileNavOpen(false)}
+          />
+        </SheetContent>
+      </Sheet>
+
       <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-10 max-w-2xl">
           <div className="flex items-center gap-3 text-3xl font-bold tracking-tight">
@@ -26,8 +44,8 @@ export function DocsLayout({ children }: DocsLayoutProps) {
             ShadTable
           </div>
           <p className="mt-2 text-muted-foreground">
-            A collection of composable table components built on shadcn/ui
-            and TanStack Table.
+            A collection of composable table components built on shadcn/ui and
+            TanStack Table.
           </p>
         </div>
 

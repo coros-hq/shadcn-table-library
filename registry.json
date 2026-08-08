@@ -185,6 +185,25 @@
       "dependencies": ["@tanstack/react-table"]
     },
     {
+      "name": "animated-icons-table",
+      "type": "registry:block",
+      "title": "Animated Icons Table",
+      "description": "Row actions built with Iconimate animated icons (favorite, notify, archive, delete) that animate on hover, focus, and click instead of static glyphs.",
+      "files": [
+        { "path": "src/lib/animated-icon.ts", "type": "registry:lib", "target": "@components/tables/animated-icons-table/lib/animated-icon.ts" },
+        { "path": "src/components/ui/icons/star-icon.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/icons/star-icon.tsx" },
+        { "path": "src/components/ui/icons/bell-ringing-icon.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/icons/bell-ringing-icon.tsx" },
+        { "path": "src/components/ui/icons/archive-icon.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/icons/archive-icon.tsx" },
+        { "path": "src/components/ui/icons/trash-icon.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/icons/trash-icon.tsx" },
+        { "path": "src/components/ui/icons/arrows-clockwise-icon.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/icons/arrows-clockwise-icon.tsx" },
+        { "path": "src/components/animated-icons/columns.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/columns.tsx" },
+        { "path": "src/components/animated-icons/data-table.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/data-table.tsx" },
+        { "path": "src/components/animated-icons/index.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button"],
+      "dependencies": ["@tanstack/react-table", "motion"]
+    },
+    {
       "name": "kpi-table",
       "type": "registry:block",
       "title": "Summary / KPI Table",
