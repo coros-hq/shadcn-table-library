@@ -1,8 +1,9 @@
 import { Link, useRouterState } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
 import DiscordIcon from '#/../public/icons/discord-logo.svg'
-import GithubIcon from '#/../public/icons/github-logo.svg'
 import { ThemeToggle } from '#/components/docs/theme-toggle.tsx'
+import { GlobalSearch } from '#/components/docs/global-search.tsx'
+import { GithubStars } from '#/components/docs/github-stars.tsx'
 import { Button } from '#/components/ui/button.tsx'
 import {
   Sheet,
@@ -49,6 +50,7 @@ export function SiteHeader({
             </Link>
           </div>
           <div className="flex flex-row items-center gap-3">
+            <GlobalSearch />
             <ThemeToggle />
             <a
               href="https://discord.gg/4J6MVnnRY"
@@ -63,19 +65,7 @@ export function SiteHeader({
                 className="size-5 dark:invert"
               />
             </a>
-            <a
-              href="https://github.com/coros-hq/shadcn-table-library"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="GitHub Repository"
-            >
-              <img
-                src={GithubIcon}
-                alt="GitHub"
-                className="size-5 dark:invert"
-              />
-            </a>
+            <GithubStars />
           </div>
         </div>
       </header>

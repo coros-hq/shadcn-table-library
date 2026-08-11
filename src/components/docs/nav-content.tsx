@@ -30,7 +30,6 @@ export interface NavGroup {
 }
 
 export const topLevelLinks: NavLink[] = [
-  { title: 'Home', to: '/' },
   { title: 'Data Table', to: '/data-table' },
 ]
 
@@ -67,7 +66,13 @@ export const navGroups: NavGroup[] = [
       { title: 'Reorderable Table', to: '/reorder-table' },
       { title: 'Editable Table', to: '/editable-table' },
       { title: 'Resizable / Reorderable Columns', to: '/resizable-table' },
+    ],
+  },
+  {
+    title: 'Animated',
+    items: [
       { title: 'Animated Icons Table', to: '/animated-icons-table' },
+      { title: 'Live Status Indicators', to: '/live-status-table' },
     ],
   },
   {

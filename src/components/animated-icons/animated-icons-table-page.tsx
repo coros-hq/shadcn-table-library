@@ -82,6 +82,14 @@ function handleReset() {
   },
 ]
 
+const iconInstalls = [
+  { label: 'Star', slug: 'star' },
+  { label: 'Bell Ringing', slug: 'bell-ringing' },
+  { label: 'Archive', slug: 'archive' },
+  { label: 'Trash', slug: 'trash' },
+  { label: 'Arrows Clockwise', slug: 'arrows-clockwise' },
+]
+
 export function AnimatedIconsTablePage() {
   return (
     <DocsLayout>
@@ -108,6 +116,38 @@ export function AnimatedIconsTablePage() {
         <InstallCommand name="animated-icons-table" />
 
         <ComponentPreview preview={<AnimatedIconsTableDemo />} files={files} />
+
+        <div className="space-y-2">
+          <p className="text-sm font-medium">Installing the icons individually</p>
+          <p className="text-sm text-muted-foreground">
+            The icons themselves are published on{' '}
+            <a
+              href="https://iconimate.app"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-2 hover:text-foreground"
+            >
+              Iconimate
+            </a>
+            's own registry, not this one — installing{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-xs">
+              animated-icons-table
+            </code>{' '}
+            above already pulls all five in, but you can add any of them to
+            another project on their own:
+          </p>
+          <div className="space-y-2">
+            {iconInstalls.map((icon) => (
+              <div key={icon.slug} className="space-y-1">
+                <p className="text-xs text-muted-foreground">{icon.label}</p>
+                <InstallCommand
+                  name={icon.slug}
+                  command={`npx shadcn add https://iconimate.app/r/${icon.slug}.json`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

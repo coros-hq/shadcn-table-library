@@ -9,11 +9,13 @@ const REGISTRY_BASE_URL = 'https://shad-table.dev/r'
 
 interface InstallCommandProps {
   name: string
+  /** Full override for the command text — for registry items that don't live at REGISTRY_BASE_URL (e.g. a third-party registry). When set, `name` is ignored. */
+  command?: string
 }
 
-export function InstallCommand({ name }: InstallCommandProps) {
+export function InstallCommand({ name, command: commandOverride }: InstallCommandProps) {
   const [copied, setCopied] = useState(false)
-  const command = `npx shadcn add ${REGISTRY_BASE_URL}/${name}.json`
+  const command = commandOverride ?? `npx shadcn add ${REGISTRY_BASE_URL}/${name}.json`
 
   async function handleCopy() {
     await navigator.clipboard.writeText(command)

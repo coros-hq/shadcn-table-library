@@ -204,6 +204,20 @@
       "dependencies": ["@tanstack/react-table", "motion"]
     },
     {
+      "name": "live-status-table",
+      "type": "registry:block",
+      "title": "Live Status Indicators",
+      "description": "A service-health table whose status and latency columns update on their own on a timer, with a pulsing indicator for actively-monitored states and a Live/Paused toggle.",
+      "files": [
+        { "path": "src/components/live-status/status-indicator.tsx", "type": "registry:component", "target": "@components/tables/live-status-table/status-indicator.tsx" },
+        { "path": "src/components/live-status/columns.tsx", "type": "registry:component", "target": "@components/tables/live-status-table/columns.tsx" },
+        { "path": "src/components/live-status/data-table.tsx", "type": "registry:component", "target": "@components/tables/live-status-table/data-table.tsx" },
+        { "path": "src/components/live-status/index.tsx", "type": "registry:component", "target": "@components/tables/live-status-table/index.tsx" }
+      ],
+      "registryDependencies": ["table"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
       "name": "kpi-table",
       "type": "registry:block",
       "title": "Summary / KPI Table",

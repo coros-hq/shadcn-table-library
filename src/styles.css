@@ -84,8 +84,29 @@
   }
 }
 
+@keyframes grid-drift {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    /* one full 22px dot-grid tile — the loop is seamless since the pattern repeats every 22px */
+    background-position: 22px 22px;
+  }
+}
+
+.animate-grid-drift {
+  animation: grid-drift 14s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-grid-drift {
+    animation: none;
+  }
+}
+
 @theme inline {
   --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

@@ -19,6 +19,7 @@ import { Route as FilterToolbarTableRouteImport } from './routes/filter-toolbar-
 import { Route as GroupedTableRouteImport } from './routes/grouped-table'
 import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
+import { Route as LiveStatusTableRouteImport } from './routes/live-status-table'
 import { Route as MasterDetailRouteImport } from './routes/master-detail'
 import { Route as PivotTableRouteImport } from './routes/pivot-table'
 import { Route as ReorderTableRouteImport } from './routes/reorder-table'
@@ -79,6 +80,11 @@ const HeatmapTableRoute = HeatmapTableRouteImport.update({
 const KpiTableRoute = KpiTableRouteImport.update({
   id: '/kpi-table',
   path: '/kpi-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveStatusTableRoute = LiveStatusTableRouteImport.update({
+  id: '/live-status-table',
+  path: '/live-status-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MasterDetailRoute = MasterDetailRouteImport.update({
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/kpi-table': typeof KpiTableRoute
+  '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/pivot-table': typeof PivotTableRoute
   '/reorder-table': typeof ReorderTableRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/kpi-table': typeof KpiTableRoute
+  '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/pivot-table': typeof PivotTableRoute
   '/reorder-table': typeof ReorderTableRoute
@@ -195,6 +203,7 @@ export interface FileRoutesById {
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/kpi-table': typeof KpiTableRoute
+  '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/pivot-table': typeof PivotTableRoute
   '/reorder-table': typeof ReorderTableRoute
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/grouped-table'
     | '/heatmap-table'
     | '/kpi-table'
+    | '/live-status-table'
     | '/master-detail'
     | '/pivot-table'
     | '/reorder-table'
@@ -243,6 +253,7 @@ export interface FileRouteTypes {
     | '/grouped-table'
     | '/heatmap-table'
     | '/kpi-table'
+    | '/live-status-table'
     | '/master-detail'
     | '/pivot-table'
     | '/reorder-table'
@@ -266,6 +277,7 @@ export interface FileRouteTypes {
     | '/grouped-table'
     | '/heatmap-table'
     | '/kpi-table'
+    | '/live-status-table'
     | '/master-detail'
     | '/pivot-table'
     | '/reorder-table'
@@ -290,6 +302,7 @@ export interface RootRouteChildren {
   GroupedTableRoute: typeof GroupedTableRoute
   HeatmapTableRoute: typeof HeatmapTableRoute
   KpiTableRoute: typeof KpiTableRoute
+  LiveStatusTableRoute: typeof LiveStatusTableRoute
   MasterDetailRoute: typeof MasterDetailRoute
   PivotTableRoute: typeof PivotTableRoute
   ReorderTableRoute: typeof ReorderTableRoute
@@ -373,6 +386,13 @@ declare module '@tanstack/react-router' {
       path: '/kpi-table'
       fullPath: '/kpi-table'
       preLoaderRoute: typeof KpiTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live-status-table': {
+      id: '/live-status-table'
+      path: '/live-status-table'
+      fullPath: '/live-status-table'
+      preLoaderRoute: typeof LiveStatusTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/master-detail': {
@@ -466,6 +486,7 @@ const rootRouteChildren: RootRouteChildren = {
   GroupedTableRoute: GroupedTableRoute,
   HeatmapTableRoute: HeatmapTableRoute,
   KpiTableRoute: KpiTableRoute,
+  LiveStatusTableRoute: LiveStatusTableRoute,
   MasterDetailRoute: MasterDetailRoute,
   PivotTableRoute: PivotTableRoute,
   ReorderTableRoute: ReorderTableRoute,

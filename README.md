@@ -24,6 +24,7 @@ Full list of installable names is in [`registry.json`](./registry.json).
 - **Interaction-heavy** — Tree Table Selection, Tree Table Reorder, Reorderable Table, Editable Table, Resizable/Reorderable Columns
 - **Dashboard / Analytics-specific** — Summary/KPI Table, Comparison Table, Heatmap Table
 - **Export / Density Variants** — Density & Export (compact/comfortable/spacious, CSV/Excel/PDF export)
+- **Animated Icons Table** — row actions built with [Iconimate](https://iconimate.app)'s motion-driven icons instead of static glyphs
 
 ## Local development
 
@@ -61,3 +62,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to add a new table example.
 - [TanStack Table](https://tanstack.com/table)
 - [shadcn/ui](https://ui.shadcn.com) (`new-york` style) on [Tailwind CSS v4](https://tailwindcss.com)
 - [@dnd-kit](https://dndkit.com) for drag-and-drop examples (row/column reordering, resizing)
+- [Iconimate](https://iconimate.app) ([source](https://github.com/smammar100/Iconimate)) for the animated icon set, installed via its own `shadcn` registry

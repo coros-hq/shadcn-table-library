@@ -6,6 +6,8 @@ import { BasicTableUsage } from '#/components/basic'
 import { SiteHeader } from '#/components/docs/site-header.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import { Reveal } from '#/components/docs/reveal.tsx'
+import { LiveStatusLabel } from '#/components/docs/live-status-label.tsx'
 import { Button } from '#/components/ui/button.tsx'
 import DiscordIcon from '#/../public/icons/discord-logo.svg'
 import GithubIcon from '#/../public/icons/github-logo.svg'
@@ -143,13 +145,26 @@ function Home() {
 
       <main>
         {/* Hero */}
-        <section className="border-b">
-          <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <section className="relative isolate overflow-hidden border-b">
+          <div
+            aria-hidden
+            className="animate-grid-drift pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_65%_55%_at_50%_0%,black,transparent)]"
+            style={{
+              backgroundImage:
+                'radial-gradient(color-mix(in oklch, var(--foreground) 16%, transparent) 1px, transparent 1px)',
+              backgroundSize: '22px 22px',
+            }}
+          />
+          <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20">
             <div className="max-w-2xl animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both">
-              <p className="font-mono text-xs text-muted-foreground">
+              <p className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                <span className="relative flex size-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+                  <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
+                </span>
                 shadcn/ui + TanStack Table
               </p>
-              <h1 className="mt-3 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+              <h1 className="mt-3 font-serif text-4xl font-medium tracking-tight text-balance sm:text-5xl">
                 Table components for the parts of your app that a design system
                 doesn&apos;t cover.
               </h1>
@@ -205,14 +220,12 @@ function Home() {
 
             {/* Live table preview */}
             <div className="mt-12 animate-in fade-in slide-in-from-bottom-2 duration-700 fill-mode-both">
-              <div className="rounded-xl border bg-card p-4 shadow-sm sm:p-6">
+              <div className="rounded-xl border bg-card p-4 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-6">
                 <div className="mb-3 flex items-center justify-between">
                   <p className="font-mono text-xs text-muted-foreground">
                     src/components/basic/index.tsx
                   </p>
-                  <p className="font-mono text-xs text-muted-foreground">
-                    live
-                  </p>
+                  <LiveStatusLabel />
                 </div>
                 <BasicTableUsage />
               </div>
@@ -223,8 +236,8 @@ function Home() {
         {/* Category overview */}
         <section id="components" className="border-b scroll-mt-14">
           <div className="mx-auto max-w-6xl px-6 py-16">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-tight">
+            <Reveal className="max-w-2xl">
+              <h2 className="font-serif text-2xl font-medium tracking-tight">
                 Components
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -232,32 +245,31 @@ function Home() {
                 category that matches the shape of your data, not a generic
                 feature list.
               </p>
-            </div>
+            </Reveal>
 
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map((category) => (
-                <div
-                  key={category.title}
-                  className="flex flex-col rounded-xl border bg-card p-5"
-                >
-                  <h3 className="text-sm font-semibold">{category.title}</h3>
-                  <p className="mt-1.5 text-sm text-muted-foreground">
-                    {category.description}
-                  </p>
-                  <ul className="mt-4 flex flex-1 flex-col gap-1.5 border-t pt-4">
-                    {category.links.map((link) => (
-                      <li key={link.to}>
-                        <Link
-                          to={link.to}
-                          className="inline-flex items-center gap-1 rounded-sm text-sm text-foreground underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                        >
-                          {link.title}
-                          <ArrowUpRight className="size-3 text-muted-foreground" />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {categories.map((category, i) => (
+                <Reveal key={category.title} delay={i * 60}>
+                  <div className="group flex h-full flex-col rounded-xl border bg-card p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md">
+                    <h3 className="text-sm font-semibold">{category.title}</h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground">
+                      {category.description}
+                    </p>
+                    <ul className="mt-4 flex flex-1 flex-col gap-1.5 border-t pt-4">
+                      {category.links.map((link) => (
+                        <li key={link.to}>
+                          <Link
+                            to={link.to}
+                            className="group/link inline-flex items-center gap-1 rounded-sm text-sm text-foreground underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                          >
+                            {link.title}
+                            <ArrowUpRight className="size-3 text-muted-foreground transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -266,14 +278,17 @@ function Home() {
         {/* Why ShadTable */}
         <section className="border-b">
           <div className="mx-auto max-w-6xl px-6 py-16">
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Why ShadTable
-            </h2>
+            <Reveal>
+              <h2 className="font-serif text-2xl font-medium tracking-tight">
+                Why ShadTable
+              </h2>
+            </Reveal>
             <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
               {differentiators.map((item, i) => (
-                <div key={item.title} className="flex gap-4">
-                  <span className="font-mono text-sm text-muted-foreground">
-                    {String(i + 1).padStart(2, '0')}
+                <Reveal key={item.title} delay={i * 60} className="flex gap-4">
+                  <span className="rounded border bg-muted/50 px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
+                    {String.fromCharCode(65 + (i % 2))}
+                    {Math.floor(i / 2) + 1}
                   </span>
                   <div>
                     <h3 className="text-sm font-semibold">{item.title}</h3>
@@ -281,7 +296,7 @@ function Home() {
                       {item.description}
                     </p>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -290,22 +305,27 @@ function Home() {
         {/* Quickstart */}
         <section className="border-b">
           <div className="mx-auto max-w-6xl px-6 py-16">
-            <div className="max-w-2xl">
-              <h2 className="text-2xl font-semibold tracking-tight">Install</h2>
+            <Reveal className="max-w-2xl">
+              <h2 className="font-serif text-2xl font-medium tracking-tight">
+                Install
+              </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 Run the CLI command inside a project that already has shadcn/ui
                 set up. It adds the table component and its dependencies as
                 source files under your components directory.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="mt-6 grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
+            <Reveal
+              delay={80}
+              className="mt-6 grid grid-cols-1 items-start gap-4 lg:grid-cols-2"
+            >
               <InstallCommand name="data-table" />
               <CodeBlock
                 filename="app/users/users-table.tsx"
                 code={usageSnippet}
               />
-            </div>
+            </Reveal>
           </div>
         </section>
       </main>
