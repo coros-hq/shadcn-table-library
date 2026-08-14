@@ -10,14 +10,10 @@ import {
   useSensors,
 } from '@dnd-kit/core'
 import type { DragEndEvent } from '@dnd-kit/core'
-import {
-  restrictToHorizontalAxis,
-  restrictToVerticalAxis,
-} from '@dnd-kit/modifiers'
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import {
   SortableContext,
   arrayMove,
-  horizontalListSortingStrategy,
   sortableKeyboardCoordinates,
   useSortable,
   verticalListSortingStrategy,
@@ -29,13 +25,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import type {
-  Cell,
-  ColumnDef,
-  Header,
-  Row,
-  SortingState,
-} from '@tanstack/react-table'
+import type { Cell, ColumnDef, Row, SortingState } from '@tanstack/react-table'
 import { ArrowDown, ArrowUp, ArrowUpDown, GripVertical } from 'lucide-react'
 
 import {
@@ -51,60 +41,6 @@ interface ReorderableTableProps<TData extends { id: string }> {
   columns: ColumnDef<TData, any>[]
   data: TData[]
   onDataChange: (data: TData[]) => void
-}
-
-function DraggableTableHeader<TData>({
-  header,
-}: {
-  header: Header<TData, unknown>
-}) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: header.column.id })
-  const canSort = header.column.getCanSort()
-
-  return (
-    <TableHead
-      ref={setNodeRef}
-      style={{
-        transform: CSS.Translate.toString(transform),
-        transition,
-        opacity: isDragging ? 0.6 : 1,
-      }}
-    >
-      <div className="flex items-center gap-2">
-        <button
-          type="button"
-          {...attributes}
-          {...listeners}
-          className="cursor-grab text-muted-foreground active:cursor-grabbing"
-          aria-label="Reorder column"
-        >
-          <GripVertical className="h-3.5 w-3.5" />
-        </button>
-        <span
-          onClick={header.column.getToggleSortingHandler()}
-          className={
-            canSort
-              ? 'flex cursor-pointer select-none items-center gap-2'
-              : 'flex items-center gap-2'
-          }
-        >
-          {header.isPlaceholder
-            ? null
-            : flexRender(header.column.columnDef.header, header.getContext())}
-          {canSort ? (
-            header.column.getIsSorted() === 'asc' ? (
-              <ArrowUp className="h-3 w-3" />
-            ) : header.column.getIsSorted() === 'desc' ? (
-              <ArrowDown className="h-3 w-3" />
-            ) : (
-              <ArrowUpDown className="h-3 w-3 opacity-50" />
-            )
-          ) : null}
-        </span>
-      </div>
-    </TableHead>
-  )
 }
 
 function DraggableRow<TData extends { id: string }>({
@@ -152,9 +88,6 @@ export function ReorderableTable<TData extends { id: string }>({
   onDataChange,
 }: ReorderableTableProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([])
-  const [columnOrder, setColumnOrder] = useState<string[]>(() =>
-    columns.map((c) => c.id as string),
-  )
 
   const dataIds = useMemo(() => data.map((row) => row.id), [data])
 
@@ -165,8 +98,7 @@ export function ReorderableTable<TData extends { id: string }>({
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
-    onColumnOrderChange: setColumnOrder,
-    state: { sorting, columnOrder },
+    state: { sorting },
   })
 
   const sensors = useSensors(
@@ -175,16 +107,6 @@ export function ReorderableTable<TData extends { id: string }>({
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   )
-
-  function handleColumnDragEnd(event: DragEndEvent) {
-    const { active, over } = event
-    if (!over || active.id === over.id) return
-    setColumnOrder((prev) => {
-      const oldIndex = prev.indexOf(active.id as string)
-      const newIndex = prev.indexOf(over.id as string)
-      return arrayMove(prev, oldIndex, newIndex)
-    })
-  }
 
   function handleRowDragEnd(event: DragEndEvent) {
     const { active, over } = event
@@ -199,54 +121,70 @@ export function ReorderableTable<TData extends { id: string }>({
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
-        modifiers={[restrictToHorizontalAxis]}
-        onDragEnd={handleColumnDragEnd}
+        modifiers={[restrictToVerticalAxis]}
+        onDragEnd={handleRowDragEnd}
       >
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          modifiers={[restrictToVerticalAxis]}
-          onDragEnd={handleRowDragEnd}
-        >
-          <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  <TableHead className="w-8" />
-                  <SortableContext
-                    items={columnOrder}
-                    strategy={horizontalListSortingStrategy}
-                  >
-                    {headerGroup.headers.map((header) => (
-                      <DraggableTableHeader key={header.id} header={header} />
-                    ))}
-                  </SortableContext>
-                </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows.length ? (
-                <SortableContext
-                  items={dataIds}
-                  strategy={verticalListSortingStrategy}
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                <TableHead className="w-8" />
+                {headerGroup.headers.map((header) => {
+                  const canSort = header.column.getCanSort()
+                  return (
+                    <TableHead key={header.id}>
+                      <span
+                        onClick={header.column.getToggleSortingHandler()}
+                        className={
+                          canSort
+                            ? 'flex cursor-pointer select-none items-center gap-2'
+                            : 'flex items-center gap-2'
+                        }
+                      >
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                        {canSort ? (
+                          header.column.getIsSorted() === 'asc' ? (
+                            <ArrowUp className="h-3 w-3" />
+                          ) : header.column.getIsSorted() === 'desc' ? (
+                            <ArrowDown className="h-3 w-3" />
+                          ) : (
+                            <ArrowUpDown className="h-3 w-3 opacity-50" />
+                          )
+                        ) : null}
+                      </span>
+                    </TableHead>
+                  )
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows.length ? (
+              <SortableContext
+                items={dataIds}
+                strategy={verticalListSortingStrategy}
+              >
+                {table.getRowModel().rows.map((row) => (
+                  <DraggableRow key={row.id} row={row} />
+                ))}
+              </SortableContext>
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length + 1}
+                  className="h-24 text-center"
                 >
-                  {table.getRowModel().rows.map((row) => (
-                    <DraggableRow key={row.id} row={row} />
-                  ))}
-                </SortableContext>
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length + 1}
-                    className="h-24 text-center"
-                  >
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </DndContext>
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </DndContext>
     </div>
   )

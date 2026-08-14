@@ -208,3 +208,45 @@ export const getUserPageWithFilter = createServerFn({ method: "GET" })
       pageCount: Math.ceil(filtered.length / data.pageSize),
     }
   })
+
+export const getUsersPageCombined = createServerFn({ method: 'GET' })
+  .validator(
+    (input: {
+      page: number
+      pageSize: number
+      role?: string
+      status?: string
+      sortBy?: string
+      sortDir?: 'asc' | 'desc'
+    }) => input,
+  )
+  .handler(async ({ data }) => {
+    await new Promise((resolve) => setTimeout(resolve, 400))
+
+    // 1. Filter — same as getUserPageWithFilter, resolved server-side first.
+    const filtered = Users.filter((u) => {
+      if (data.role && u.role !== data.role) return false
+      if (data.status && u.status !== data.status) return false
+      return true
+    })
+
+    // 2. Sort — runs against the already-filtered set, never the full table.
+    const sorted = data.sortBy
+      ? [...filtered].sort((a, b) => {
+          const key = data.sortBy as keyof User
+          const aVal = a[key]
+          const bVal = b[key]
+          const dir = data.sortDir === 'desc' ? -1 : 1
+          if (aVal < bVal) return -1 * dir
+          if (aVal > bVal) return 1 * dir
+          return 0
+        })
+      : filtered
+
+    // 3. Paginate — the last step, so page counts reflect filtered+sorted rows.
+    const start = data.page * data.pageSize
+    return {
+      rows: sorted.slice(start, start + data.pageSize),
+      pageCount: Math.ceil(sorted.length / data.pageSize),
+    }
+  })

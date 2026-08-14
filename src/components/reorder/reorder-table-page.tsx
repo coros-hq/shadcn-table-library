@@ -15,19 +15,16 @@ const files = [
 
 const steps = [
   {
-    title: 'Rows and columns are both just sortable lists',
+    title: 'Row order is just a sortable list of ids',
     description:
-      "@dnd-kit/sortable doesn't know anything about tables — it only knows about an ordered array of ids and a strategy for laying them out (vertical for rows, horizontal for column headers). Row order lives in the data array itself; column order lives in a separate columnOrder array TanStack Table reads through its own state.",
+      "@dnd-kit/sortable doesn't know anything about tables — it only knows about an ordered array of ids and a strategy for laying them out (vertical, in this case). Row order lives directly in the data array itself; dataIds is just that array's ids, recomputed whenever data changes.",
     file: 'src/components/reorder/data-table.tsx',
-    code: `const [columnOrder, setColumnOrder] = useState<string[]>(() =>
-  columns.map((c) => c.id as string),
-)
-const dataIds = useMemo(() => data.map((row) => row.id), [data])`,
+    code: `const dataIds = useMemo(() => data.map((row) => row.id), [data])`,
   },
   {
-    title: 'A drag handle, not the whole cell, starts the drag',
+    title: 'A drag handle, not the whole row, starts the drag',
     description:
-      "useSortable gives back attributes/listeners that must land on the actual draggable element. Spreading them only onto the GripVertical button (not the row or header) keeps clicking a column header to sort, or clicking a cell's text, working normally — only the handle initiates a drag.",
+      "useSortable gives back attributes/listeners that must land on the actual draggable element. Spreading them only onto the GripVertical button — not the row itself — keeps clicking a cell's text or a header's sort control working normally; only the handle initiates a drag.",
     file: 'src/components/reorder/data-table.tsx',
     code: `<button
   type="button"
@@ -41,7 +38,7 @@ const dataIds = useMemo(() => data.map((row) => row.id), [data])`,
   {
     title: 'Dragging updates real state, not just visual position',
     description:
-      "onDragEnd computes the old and new index from the dragged id and calls arrayMove — the same helper dnd-kit ships for this exact case. Rows call the parent's onDataChange (so reordering is visible to whoever owns the data); columns call the table's own onColumnOrderChange.",
+      "onDragEnd computes the old and new index from the dragged id and calls arrayMove — the same helper dnd-kit ships for this exact case — then calls the parent's onDataChange so the reorder is visible to whoever owns the data, not just the table.",
     file: 'src/components/reorder/data-table.tsx',
     code: `function handleRowDragEnd(event: DragEndEvent) {
   const { active, over } = event
@@ -52,17 +49,15 @@ const dataIds = useMemo(() => data.map((row) => row.id), [data])`,
 }`,
   },
   {
-    title: 'Two independent DndContexts, one per axis',
+    title: 'DndContext wraps the whole Table, not its header or body',
     description:
-      "Rows drag vertically and columns drag horizontally, so each gets its own DndContext with a restrictToVerticalAxis or restrictToHorizontalAxis modifier — dragging a row handle can never accidentally get picked up as a column reorder, and vice versa. Both wrap the whole Table from outside, not its header or body individually — DndContext renders its own hidden accessibility nodes, and a <table> can only contain <thead>/<tbody>, so nesting a DndContext directly inside one breaks the HTML.",
+      'restrictToVerticalAxis keeps drags from drifting sideways. DndContext has to wrap the entire Table from outside — it renders its own hidden accessibility nodes, and a <table> can only contain <thead>/<tbody>, so nesting a DndContext directly inside one breaks the HTML.',
     file: 'src/components/reorder/data-table.tsx',
-    code: `<DndContext modifiers={[restrictToHorizontalAxis]} onDragEnd={handleColumnDragEnd}>
-  <DndContext modifiers={[restrictToVerticalAxis]} onDragEnd={handleRowDragEnd}>
-    <Table>
-      <TableHeader>{/* ... */}</TableHeader>
-      <TableBody>{/* ... */}</TableBody>
-    </Table>
-  </DndContext>
+    code: `<DndContext modifiers={[restrictToVerticalAxis]} onDragEnd={handleRowDragEnd}>
+  <Table>
+    <TableHeader>{/* plain, non-draggable headers */}</TableHeader>
+    <TableBody>{/* draggable rows */}</TableBody>
+  </Table>
 </DndContext>`,
   },
   {
@@ -88,9 +83,9 @@ export function ReorderableTablePage() {
             Reorderable Table
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Drag rows to reorder them, and drag column headers to reorder
-            columns, both built on @dnd-kit/sortable rather than any
-            table-specific drag logic.
+            Drag rows to reorder them, built on @dnd-kit/sortable rather than
+            any table-specific drag logic. Column headers stay put — for
+            drag-to-reorder columns, see Resizable / Reorderable Columns.
           </p>
         </div>
 

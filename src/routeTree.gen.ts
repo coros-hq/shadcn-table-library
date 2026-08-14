@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimatedIconsTableRouteImport } from './routes/animated-icons-table'
+import { Route as ColumnPinningTableRouteImport } from './routes/column-pinning-table'
 import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
+import { Route as ConditionalFormattingTableRouteImport } from './routes/conditional-formatting-table'
 import { Route as DataTableRouteImport } from './routes/data-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
 import { Route as FilterStateShapeTableRouteImport } from './routes/filter-state-shape-table'
@@ -21,9 +23,13 @@ import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
 import { Route as LiveStatusTableRouteImport } from './routes/live-status-table'
 import { Route as MasterDetailRouteImport } from './routes/master-detail'
+import { Route as MobileCardsTableRouteImport } from './routes/mobile-cards-table'
+import { Route as ParamsFilterTableRouteImport } from './routes/params-filter-table'
 import { Route as PivotTableRouteImport } from './routes/pivot-table'
+import { Route as ProductionDashboardTableRouteImport } from './routes/production-dashboard-table'
 import { Route as ReorderTableRouteImport } from './routes/reorder-table'
 import { Route as ResizableTableRouteImport } from './routes/resizable-table'
+import { Route as ServerCombinedTableRouteImport } from './routes/server-combined-table'
 import { Route as ServerFilterRouteImport } from './routes/server-filter'
 import { Route as ServerTableRouteImport } from './routes/server-table'
 import { Route as ToolbarFilterTableRouteImport } from './routes/toolbar-filter-table'
@@ -42,11 +48,22 @@ const AnimatedIconsTableRoute = AnimatedIconsTableRouteImport.update({
   path: '/animated-icons-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ColumnPinningTableRoute = ColumnPinningTableRouteImport.update({
+  id: '/column-pinning-table',
+  path: '/column-pinning-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComparisonTableRoute = ComparisonTableRouteImport.update({
   id: '/comparison-table',
   path: '/comparison-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConditionalFormattingTableRoute =
+  ConditionalFormattingTableRouteImport.update({
+    id: '/conditional-formatting-table',
+    path: '/conditional-formatting-table',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DataTableRoute = DataTableRouteImport.update({
   id: '/data-table',
   path: '/data-table',
@@ -92,11 +109,27 @@ const MasterDetailRoute = MasterDetailRouteImport.update({
   path: '/master-detail',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MobileCardsTableRoute = MobileCardsTableRouteImport.update({
+  id: '/mobile-cards-table',
+  path: '/mobile-cards-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParamsFilterTableRoute = ParamsFilterTableRouteImport.update({
+  id: '/params-filter-table',
+  path: '/params-filter-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PivotTableRoute = PivotTableRouteImport.update({
   id: '/pivot-table',
   path: '/pivot-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductionDashboardTableRoute =
+  ProductionDashboardTableRouteImport.update({
+    id: '/production-dashboard-table',
+    path: '/production-dashboard-table',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ReorderTableRoute = ReorderTableRouteImport.update({
   id: '/reorder-table',
   path: '/reorder-table',
@@ -105,6 +138,11 @@ const ReorderTableRoute = ReorderTableRouteImport.update({
 const ResizableTableRoute = ResizableTableRouteImport.update({
   id: '/resizable-table',
   path: '/resizable-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServerCombinedTableRoute = ServerCombinedTableRouteImport.update({
+  id: '/server-combined-table',
+  path: '/server-combined-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServerFilterRoute = ServerFilterRouteImport.update({
@@ -146,7 +184,9 @@ const UtilityTableRoute = UtilityTableRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
+  '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
@@ -156,9 +196,13 @@ export interface FileRoutesByFullPath {
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
+  '/mobile-cards-table': typeof MobileCardsTableRoute
+  '/params-filter-table': typeof ParamsFilterTableRoute
   '/pivot-table': typeof PivotTableRoute
+  '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
   '/resizable-table': typeof ResizableTableRoute
+  '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
@@ -170,7 +214,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
+  '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
@@ -180,9 +226,13 @@ export interface FileRoutesByTo {
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
+  '/mobile-cards-table': typeof MobileCardsTableRoute
+  '/params-filter-table': typeof ParamsFilterTableRoute
   '/pivot-table': typeof PivotTableRoute
+  '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
   '/resizable-table': typeof ResizableTableRoute
+  '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
@@ -195,7 +245,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
+  '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/data-table': typeof DataTableRoute
   '/editable-table': typeof EditableTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
@@ -205,9 +257,13 @@ export interface FileRoutesById {
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
+  '/mobile-cards-table': typeof MobileCardsTableRoute
+  '/params-filter-table': typeof ParamsFilterTableRoute
   '/pivot-table': typeof PivotTableRoute
+  '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
   '/resizable-table': typeof ResizableTableRoute
+  '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
@@ -221,7 +277,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/animated-icons-table'
+    | '/column-pinning-table'
     | '/comparison-table'
+    | '/conditional-formatting-table'
     | '/data-table'
     | '/editable-table'
     | '/filter-state-shape-table'
@@ -231,9 +289,13 @@ export interface FileRouteTypes {
     | '/kpi-table'
     | '/live-status-table'
     | '/master-detail'
+    | '/mobile-cards-table'
+    | '/params-filter-table'
     | '/pivot-table'
+    | '/production-dashboard-table'
     | '/reorder-table'
     | '/resizable-table'
+    | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
     | '/toolbar-filter-table'
@@ -245,7 +307,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/animated-icons-table'
+    | '/column-pinning-table'
     | '/comparison-table'
+    | '/conditional-formatting-table'
     | '/data-table'
     | '/editable-table'
     | '/filter-state-shape-table'
@@ -255,9 +319,13 @@ export interface FileRouteTypes {
     | '/kpi-table'
     | '/live-status-table'
     | '/master-detail'
+    | '/mobile-cards-table'
+    | '/params-filter-table'
     | '/pivot-table'
+    | '/production-dashboard-table'
     | '/reorder-table'
     | '/resizable-table'
+    | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
     | '/toolbar-filter-table'
@@ -269,7 +337,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/animated-icons-table'
+    | '/column-pinning-table'
     | '/comparison-table'
+    | '/conditional-formatting-table'
     | '/data-table'
     | '/editable-table'
     | '/filter-state-shape-table'
@@ -279,9 +349,13 @@ export interface FileRouteTypes {
     | '/kpi-table'
     | '/live-status-table'
     | '/master-detail'
+    | '/mobile-cards-table'
+    | '/params-filter-table'
     | '/pivot-table'
+    | '/production-dashboard-table'
     | '/reorder-table'
     | '/resizable-table'
+    | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
     | '/toolbar-filter-table'
@@ -294,7 +368,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimatedIconsTableRoute: typeof AnimatedIconsTableRoute
+  ColumnPinningTableRoute: typeof ColumnPinningTableRoute
   ComparisonTableRoute: typeof ComparisonTableRoute
+  ConditionalFormattingTableRoute: typeof ConditionalFormattingTableRoute
   DataTableRoute: typeof DataTableRoute
   EditableTableRoute: typeof EditableTableRoute
   FilterStateShapeTableRoute: typeof FilterStateShapeTableRoute
@@ -304,9 +380,13 @@ export interface RootRouteChildren {
   KpiTableRoute: typeof KpiTableRoute
   LiveStatusTableRoute: typeof LiveStatusTableRoute
   MasterDetailRoute: typeof MasterDetailRoute
+  MobileCardsTableRoute: typeof MobileCardsTableRoute
+  ParamsFilterTableRoute: typeof ParamsFilterTableRoute
   PivotTableRoute: typeof PivotTableRoute
+  ProductionDashboardTableRoute: typeof ProductionDashboardTableRoute
   ReorderTableRoute: typeof ReorderTableRoute
   ResizableTableRoute: typeof ResizableTableRoute
+  ServerCombinedTableRoute: typeof ServerCombinedTableRoute
   ServerFilterRoute: typeof ServerFilterRoute
   ServerTableRoute: typeof ServerTableRoute
   ToolbarFilterTableRoute: typeof ToolbarFilterTableRoute
@@ -332,11 +412,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimatedIconsTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/column-pinning-table': {
+      id: '/column-pinning-table'
+      path: '/column-pinning-table'
+      fullPath: '/column-pinning-table'
+      preLoaderRoute: typeof ColumnPinningTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/comparison-table': {
       id: '/comparison-table'
       path: '/comparison-table'
       fullPath: '/comparison-table'
       preLoaderRoute: typeof ComparisonTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conditional-formatting-table': {
+      id: '/conditional-formatting-table'
+      path: '/conditional-formatting-table'
+      fullPath: '/conditional-formatting-table'
+      preLoaderRoute: typeof ConditionalFormattingTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/data-table': {
@@ -402,11 +496,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MasterDetailRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mobile-cards-table': {
+      id: '/mobile-cards-table'
+      path: '/mobile-cards-table'
+      fullPath: '/mobile-cards-table'
+      preLoaderRoute: typeof MobileCardsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/params-filter-table': {
+      id: '/params-filter-table'
+      path: '/params-filter-table'
+      fullPath: '/params-filter-table'
+      preLoaderRoute: typeof ParamsFilterTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pivot-table': {
       id: '/pivot-table'
       path: '/pivot-table'
       fullPath: '/pivot-table'
       preLoaderRoute: typeof PivotTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/production-dashboard-table': {
+      id: '/production-dashboard-table'
+      path: '/production-dashboard-table'
+      fullPath: '/production-dashboard-table'
+      preLoaderRoute: typeof ProductionDashboardTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reorder-table': {
@@ -421,6 +536,13 @@ declare module '@tanstack/react-router' {
       path: '/resizable-table'
       fullPath: '/resizable-table'
       preLoaderRoute: typeof ResizableTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/server-combined-table': {
+      id: '/server-combined-table'
+      path: '/server-combined-table'
+      fullPath: '/server-combined-table'
+      preLoaderRoute: typeof ServerCombinedTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/server-filter': {
@@ -478,7 +600,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimatedIconsTableRoute: AnimatedIconsTableRoute,
+  ColumnPinningTableRoute: ColumnPinningTableRoute,
   ComparisonTableRoute: ComparisonTableRoute,
+  ConditionalFormattingTableRoute: ConditionalFormattingTableRoute,
   DataTableRoute: DataTableRoute,
   EditableTableRoute: EditableTableRoute,
   FilterStateShapeTableRoute: FilterStateShapeTableRoute,
@@ -488,9 +612,13 @@ const rootRouteChildren: RootRouteChildren = {
   KpiTableRoute: KpiTableRoute,
   LiveStatusTableRoute: LiveStatusTableRoute,
   MasterDetailRoute: MasterDetailRoute,
+  MobileCardsTableRoute: MobileCardsTableRoute,
+  ParamsFilterTableRoute: ParamsFilterTableRoute,
   PivotTableRoute: PivotTableRoute,
+  ProductionDashboardTableRoute: ProductionDashboardTableRoute,
   ReorderTableRoute: ReorderTableRoute,
   ResizableTableRoute: ResizableTableRoute,
+  ServerCombinedTableRoute: ServerCombinedTableRoute,
   ServerFilterRoute: ServerFilterRoute,
   ServerTableRoute: ServerTableRoute,
   ToolbarFilterTableRoute: ToolbarFilterTableRoute,

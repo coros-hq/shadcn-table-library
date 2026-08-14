@@ -40,6 +40,7 @@
     "lucide-react": "^0.577.0",
     "motion": "^13.0.0",
     "nitro": "^3.0.260610-beta",
+    "nuqs": "^2.9.5",
     "prism-react-renderer": "^2.4.1",
     "radix-ui": "^1.6.4",
     "react": "^19.2.0",

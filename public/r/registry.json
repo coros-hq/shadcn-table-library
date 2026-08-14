@@ -48,6 +48,21 @@
       "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
     },
     {
+      "name": "server-combined-table",
+      "type": "registry:block",
+      "title": "SSR Sort + Filter + Pagination",
+      "description": "Sorting, filtering, and pagination all resolved together on the server from one URL and one request, in that order — the way real dashboards actually work.",
+      "files": [
+        { "path": "src/components/ssr/data.ts", "type": "registry:component", "target": "@components/tables/server-combined-table/data.ts" },
+        { "path": "src/components/ssr/combined-example/columns.tsx", "type": "registry:component", "target": "@components/tables/server-combined-table/columns.tsx" },
+        { "path": "src/components/ssr/combined-example/data-table.tsx", "type": "registry:component", "target": "@components/tables/server-combined-table/data-table.tsx" },
+        { "path": "src/components/ssr/combined-example/index.tsx", "type": "registry:component", "target": "@components/tables/server-combined-table/index.tsx" },
+        { "path": "src/routes/server-combined-table.ts", "type": "registry:component", "target": "src/routes/server-combined-table.ts" }
+      ],
+      "registryDependencies": ["table", "button", "select"],
+      "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
+    },
+    {
       "name": "tree-table",
       "type": "registry:block",
       "title": "Tree Table",
@@ -96,7 +111,7 @@
       "name": "reorderable-table",
       "type": "registry:block",
       "title": "Reorderable Table",
-      "description": "Drag rows to reorder them and drag column headers to reorder columns, both built on @dnd-kit/sortable.",
+      "description": "Drag rows to reorder them, built on @dnd-kit/sortable.",
       "files": [
         { "path": "src/components/reorder/columns.tsx", "type": "registry:component", "target": "@components/tables/reorderable-table/columns.tsx" },
         { "path": "src/components/reorder/data-table.tsx", "type": "registry:component", "target": "@components/tables/reorderable-table/data-table.tsx" },
@@ -129,6 +144,19 @@
         "@dnd-kit/utilities",
         "@dnd-kit/modifiers"
       ]
+    },
+    {
+      "name": "column-pinning-table",
+      "type": "registry:block",
+      "title": "Column Pinning Table",
+      "description": "Excel/AG Grid-style column pinning — freeze columns to the left or right edge from a hover control in the header while the rest of the table scrolls underneath.",
+      "files": [
+        { "path": "src/components/column-pinning/columns.tsx", "type": "registry:component", "target": "@components/tables/column-pinning-table/columns.tsx" },
+        { "path": "src/components/column-pinning/data-table.tsx", "type": "registry:component", "target": "@components/tables/column-pinning-table/data-table.tsx" },
+        { "path": "src/components/column-pinning/index.tsx", "type": "registry:component", "target": "@components/tables/column-pinning-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "badge"],
+      "dependencies": ["@tanstack/react-table"]
     },
     {
       "name": "grouped-table",
@@ -261,6 +289,36 @@
       "dependencies": ["@tanstack/react-table"]
     },
     {
+      "name": "conditional-formatting-table",
+      "type": "registry:block",
+      "title": "Conditional Formatting Table",
+      "description": "Excel-style conditional formatting — a small rule engine highlights cells, colors text, and re-colors badges based on the whole row, not just one value.",
+      "files": [
+        { "path": "src/components/conditional-formatting/rules.ts", "type": "registry:component", "target": "@components/tables/conditional-formatting-table/rules.ts" },
+        { "path": "src/components/conditional-formatting/columns.tsx", "type": "registry:component", "target": "@components/tables/conditional-formatting-table/columns.tsx" },
+        { "path": "src/components/conditional-formatting/data-table.tsx", "type": "registry:component", "target": "@components/tables/conditional-formatting-table/data-table.tsx" },
+        { "path": "src/components/conditional-formatting/index.tsx", "type": "registry:component", "target": "@components/tables/conditional-formatting-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
+      "name": "production-dashboard-table",
+      "type": "registry:block",
+      "title": "Production Dashboard Table",
+      "description": "A production-line status table combining conditional formatting, output/utilization progress bars, and 7-day trend sparklines on one realistic dataset.",
+      "files": [
+        { "path": "src/components/production-dashboard/rules.ts", "type": "registry:component", "target": "@components/tables/production-dashboard-table/rules.ts" },
+        { "path": "src/components/production-dashboard/progress-bar.tsx", "type": "registry:component", "target": "@components/tables/production-dashboard-table/progress-bar.tsx" },
+        { "path": "src/components/production-dashboard/sparkline.tsx", "type": "registry:component", "target": "@components/tables/production-dashboard-table/sparkline.tsx" },
+        { "path": "src/components/production-dashboard/columns.tsx", "type": "registry:component", "target": "@components/tables/production-dashboard-table/columns.tsx" },
+        { "path": "src/components/production-dashboard/data-table.tsx", "type": "registry:component", "target": "@components/tables/production-dashboard-table/data-table.tsx" },
+        { "path": "src/components/production-dashboard/index.tsx", "type": "registry:component", "target": "@components/tables/production-dashboard-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
       "name": "density-export-table",
       "type": "registry:block",
       "title": "Density & Export",
@@ -272,6 +330,20 @@
         { "path": "src/components/utility/index.tsx", "type": "registry:component", "target": "@components/tables/density-export-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "select"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
+      "name": "mobile-cards-table",
+      "type": "registry:block",
+      "title": "Mobile Cards Table",
+      "description": "Transforms into stacked, labeled cards below a container-query breakpoint using pure CSS display overrides on the same markup — no separate mobile component, no JS media query, no viewport dependency.",
+      "files": [
+        { "path": "src/components/mobile-cards/columns.tsx", "type": "registry:component", "target": "@components/tables/mobile-cards-table/columns.tsx" },
+        { "path": "src/components/mobile-cards/data-table.tsx", "type": "registry:component", "target": "@components/tables/mobile-cards-table/data-table.tsx" },
+        { "path": "src/components/mobile-cards/viewport-toggle.tsx", "type": "registry:component", "target": "@components/tables/mobile-cards-table/viewport-toggle.tsx" },
+        { "path": "src/components/mobile-cards/index.tsx", "type": "registry:component", "target": "@components/tables/mobile-cards-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge"],
       "dependencies": ["@tanstack/react-table"]
     }
   ]

@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { Analytics } from "@vercel/analytics/react"
+import { NuqsAdapter } from 'nuqs/adapters/tanstack-router'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -112,18 +113,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <Analytics/>
       <body>
-        {children}
-        <TanStackDevtools
-          config={{
-            position: 'bottom-right',
-          }}
-          plugins={[
-            {
-              name: 'Tanstack Router',
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
+        <NuqsAdapter>
+          {children}
+          <TanStackDevtools
+            config={{
+              position: 'bottom-right',
+            }}
+            plugins={[
+              {
+                name: 'Tanstack Router',
+                render: <TanStackRouterDevtoolsPanel />,
+              },
+            ]}
+          />
+        </NuqsAdapter>
         <Scripts />
       </body>
     </html>
