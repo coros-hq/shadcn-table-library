@@ -31,7 +31,7 @@ export const Route = createFileRoute('/animated-icons-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/animated-icons-table',
+        href: 'https://www.shad-table.dev/animated-icons-table',
       },
     ],
   }),

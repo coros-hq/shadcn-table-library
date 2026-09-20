@@ -1,98 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shad-table.dev/</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/comparison-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/animated-icons-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/editable-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/column-pinning-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/grouped-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/comparison-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/heatmap-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/conditional-formatting-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/kpi-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/data-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/master-detail</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/editable-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/pivot-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/filter-state-shape-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/reorder-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/filter-toolbar-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/resizable-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/grouped-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/server-filter</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/heatmap-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/server-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/kpi-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/tree-reorder</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/live-status-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/tree-select</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/master-detail</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/tree-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/mobile-cards-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shad-table.dev/utility-table</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://www.shad-table.dev/params-filter-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/pivot-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/production-dashboard-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/reorder-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/resizable-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/server-combined-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/server-filter</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/server-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/toolbar-filter-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/tree-reorder</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/tree-select</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/tree-table</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shad-table.dev/utility-table</loc>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

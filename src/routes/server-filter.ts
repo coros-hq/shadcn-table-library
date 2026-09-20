@@ -32,7 +32,7 @@ export const Route = createFileRoute('/server-filter')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/server-filter',
+        href: 'https://www.shad-table.dev/server-filter',
       },
     ],
   }),

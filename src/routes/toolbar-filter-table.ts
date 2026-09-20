@@ -31,7 +31,7 @@ export const Route = createFileRoute('/toolbar-filter-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/toolbar-filter-table',
+        href: 'https://www.shad-table.dev/toolbar-filter-table',
       },
     ],
   }),

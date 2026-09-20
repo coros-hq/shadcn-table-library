@@ -108,7 +108,7 @@ export const Route = createFileRoute('/production-dashboard-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/production-dashboard-table',
+        href: 'https://www.shad-table.dev/production-dashboard-table',
       },
     ],
   }),

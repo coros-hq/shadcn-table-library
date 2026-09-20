@@ -132,7 +132,7 @@ export const Route = createFileRoute('/mobile-cards-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/mobile-cards-table',
+        href: 'https://www.shad-table.dev/mobile-cards-table',
       },
     ],
   }),

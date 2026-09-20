@@ -116,7 +116,7 @@ export const Route = createFileRoute('/column-pinning-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/column-pinning-table',
+        href: 'https://www.shad-table.dev/column-pinning-table',
       },
     ],
   }),

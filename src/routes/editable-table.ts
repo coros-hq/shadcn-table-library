@@ -31,7 +31,7 @@ export const Route = createFileRoute('/editable-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/editable-table',
+        href: 'https://www.shad-table.dev/editable-table',
       },
     ],
   }),

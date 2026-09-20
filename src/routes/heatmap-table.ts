@@ -31,7 +31,7 @@ export const Route = createFileRoute('/heatmap-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/heatmap-table',
+        href: 'https://www.shad-table.dev/heatmap-table',
       },
     ],
   }),

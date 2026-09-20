@@ -34,7 +34,7 @@ export const Route = createFileRoute('/tree-select')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/tree-select',
+        href: 'https://www.shad-table.dev/tree-select',
       },
     ],
   }),

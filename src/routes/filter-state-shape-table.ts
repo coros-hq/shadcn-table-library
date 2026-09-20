@@ -31,7 +31,7 @@ export const Route = createFileRoute('/filter-state-shape-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/filter-state-shape-table',
+        href: 'https://www.shad-table.dev/filter-state-shape-table',
       },
     ],
   }),

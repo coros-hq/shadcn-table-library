@@ -31,7 +31,7 @@ export const Route = createFileRoute('/grouped-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/grouped-table',
+        href: 'https://www.shad-table.dev/grouped-table',
       },
     ],
   }),

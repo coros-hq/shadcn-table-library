@@ -31,7 +31,7 @@ export const Route = createFileRoute('/')({
           'Copy-paste table components for shadcn/ui and TanStack Table — from sortable data tables to server-side pagination, tree/pivot structures, inline editing, and dashboard-analytics variants.',
       },
     ],
-    links: [{ rel: 'canonical', href: 'https://shad-table.dev/' }],
+    links: [{ rel: 'canonical', href: 'https://www.shad-table.dev/' }],
   }),
   component: Home,
 })

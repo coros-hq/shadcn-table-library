@@ -31,7 +31,7 @@ export const Route = createFileRoute('/kpi-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/kpi-table',
+        href: 'https://www.shad-table.dev/kpi-table',
       },
     ],
   }),

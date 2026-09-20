@@ -113,6 +113,29 @@ export const Route = createFileRoute('/params-filter-table')({
         content:
           'A data table whose filter state is synced to URL search params.',
       },
+      { property: 'og:title', content: 'Params Filter Table — ShadTable' },
+      {
+        property: 'og:description',
+        content:
+          'A data table whose filter state is synced to URL search params, decoupled from the filtering UI via a controlled-props interface, built on shadcn/ui and TanStack Table.',
+      },
+      {
+        'script:ld+json': {
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareSourceCode',
+          name: 'Params Filter Table',
+          description:
+            'A data table whose filter state is synced to URL search params, decoupled from the filtering UI via a controlled-props interface.',
+          codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
+          programmingLanguage: 'TypeScript',
+        },
+      },
+    ],
+    links: [
+      {
+        rel: 'canonical',
+        href: 'https://www.shad-table.dev/params-filter-table',
+      },
     ],
   }),
   component: ParamsFilterTablePage,

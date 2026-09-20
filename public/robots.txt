@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://shad-table.dev/sitemap.xml
+Sitemap: https://www.shad-table.dev/sitemap.xml

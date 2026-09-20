@@ -34,7 +34,7 @@ export const Route = createFileRoute('/resizable-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/resizable-table',
+        href: 'https://www.shad-table.dev/resizable-table',
       },
     ],
   }),

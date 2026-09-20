@@ -31,7 +31,7 @@ export const Route = createFileRoute('/pivot-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/pivot-table',
+        href: 'https://www.shad-table.dev/pivot-table',
       },
     ],
   }),

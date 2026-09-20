@@ -31,7 +31,7 @@ export const Route = createFileRoute('/comparison-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/comparison-table',
+        href: 'https://www.shad-table.dev/comparison-table',
       },
     ],
   }),

@@ -31,7 +31,7 @@ export const Route = createFileRoute('/tree-reorder')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/tree-reorder',
+        href: 'https://www.shad-table.dev/tree-reorder',
       },
     ],
   }),

@@ -31,7 +31,7 @@ export const Route = createFileRoute('/live-status-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/live-status-table',
+        href: 'https://www.shad-table.dev/live-status-table',
       },
     ],
   }),

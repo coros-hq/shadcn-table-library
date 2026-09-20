@@ -115,7 +115,7 @@ export const Route = createFileRoute('/conditional-formatting-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/conditional-formatting-table',
+        href: 'https://www.shad-table.dev/conditional-formatting-table',
       },
     ],
   }),

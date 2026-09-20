@@ -35,7 +35,7 @@ export const Route = createFileRoute('/server-combined-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/server-combined-table',
+        href: 'https://www.shad-table.dev/server-combined-table',
       },
     ],
   }),

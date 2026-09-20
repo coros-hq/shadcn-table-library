@@ -1,0 +1,64 @@
+{
+  "params_filter_table_head_additions": {
+    "_comment": "Add these to src/routes/params-filter-table.tsx head().meta, matching the pattern used by every sibling route file.",
+    "meta_additions": [
+      {
+        "property": "og:title",
+        "content": "Params Filter Table — ShadTable"
+      },
+      {
+        "property": "og:description",
+        "content": "A data table whose filter state is synced to URL search params, decoupled from the filtering UI via a controlled-props interface, built on shadcn/ui and TanStack Table."
+      },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "SoftwareSourceCode",
+          "name": "Params Filter Table",
+          "description": "A data table whose filter state is synced to URL search params, decoupled from the filtering UI via a controlled-props interface.",
+          "codeRepository": "https://github.com/coros-hq/shadcn-table-library",
+          "programmingLanguage": "TypeScript"
+        }
+      }
+    ],
+    "links_addition": [
+      {
+        "rel": "canonical",
+        "href": "https://www.shad-table.dev/params-filter-table"
+      }
+    ]
+  },
+  "homepage_search_action": {
+    "_comment": "Merge into the existing WebSite block in src/routes/__root.tsx. Replace `target` with the real search route — do not ship the placeholder verbatim.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.shad-table.dev/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  "breadcrumb_list_template": {
+    "_comment": "Add one of these per example page (values shown for editable-table as an example), ideally generated once in the shared docs layout from the route's title/path rather than hand-duplicated per file.",
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.shad-table.dev/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Components",
+        "item": "https://www.shad-table.dev/#components"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Editable Table",
+        "item": "https://www.shad-table.dev/editable-table"
+      }
+    ]
+  }
+}

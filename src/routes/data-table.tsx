@@ -38,7 +38,7 @@ export const Route = createFileRoute('/data-table')({
       },
     ],
     links: [
-      { rel: 'canonical', href: 'https://shad-table.dev/data-table' },
+      { rel: 'canonical', href: 'https://www.shad-table.dev/data-table' },
     ],
   }),
   component: Home,

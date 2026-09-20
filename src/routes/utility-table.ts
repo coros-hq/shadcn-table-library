@@ -31,7 +31,7 @@ export const Route = createFileRoute('/utility-table')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/utility-table',
+        href: 'https://www.shad-table.dev/utility-table',
       },
     ],
   }),

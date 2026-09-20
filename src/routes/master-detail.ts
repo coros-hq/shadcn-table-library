@@ -31,7 +31,7 @@ export const Route = createFileRoute('/master-detail')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://shad-table.dev/master-detail',
+        href: 'https://www.shad-table.dev/master-detail',
       },
     ],
   }),
