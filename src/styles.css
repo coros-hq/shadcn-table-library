@@ -85,11 +85,14 @@
 
 @keyframes grid-drift {
   0% {
-    background-position: 0px 0px;
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    /* one full 22px dot-grid tile — the loop is seamless since the pattern repeats every 22px */
-    background-position: 22px 22px;
+    /* one full 22px dot-grid tile — the loop is seamless since the pattern repeats every 22px.
+       Animating transform (not background-position) keeps this on the compositor thread instead
+       of repainting every frame; the element is oversized by 22px on each edge (see index.tsx)
+       so translating never reveals its boundary. */
+    transform: translate3d(-22px, -22px, 0);
   }
 }
 

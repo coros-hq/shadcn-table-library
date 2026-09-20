@@ -37,6 +37,7 @@ export function GlobalSearch() {
       <button
         type="button"
         onClick={() => setOpen(true)}
+        aria-label="Search docs"
         className="flex h-8 items-center gap-2 rounded-md border bg-background px-2.5 text-xs text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground sm:w-48"
       >
         <Search className="size-3.5 shrink-0" />

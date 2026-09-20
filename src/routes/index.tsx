@@ -148,8 +148,12 @@ function Home() {
         <section className="relative isolate overflow-hidden border-b">
           <div
             aria-hidden
-            className="animate-grid-drift pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_65%_55%_at_50%_0%,black,transparent)]"
+            className="animate-grid-drift pointer-events-none absolute opacity-70 [mask-image:radial-gradient(ellipse_65%_55%_at_50%_0%,black,transparent)]"
             style={{
+              top: '-22px',
+              left: '-22px',
+              right: '-22px',
+              bottom: '-22px',
               backgroundImage:
                 'radial-gradient(color-mix(in oklch, var(--foreground) 16%, transparent) 1px, transparent 1px)',
               backgroundSize: '22px 22px',

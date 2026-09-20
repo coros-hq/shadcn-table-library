@@ -36,3 +36,37 @@ The `/editable-table` HTML document is ~107 KB uncompressed, and roughly 57 KB o
 
 ## Recommendation
 The highest-leverage next step, if you want to keep pushing mobile LCP down, is auditing whether the `@tanstack/react-table` shared chunk can be split by *feature* (sorting/filtering/pagination vs. grouping/pivoting/virtualization) rather than by *page*, so pages that never use grouping/pivoting don't pay for that code even in the shared chunk — but that's a deliberate architecture change, not a drop-in fix, and should be scoped separately if you want to pursue it.
+
+---
+
+## Update: Real Production PageSpeed Insights Data (Homepage)
+
+The user supplied a live PSI report (`https://www.shad-table.dev/`, Moto G Power emulation, slow 4G, Lighthouse 13.4.1) against the **currently deployed** (pre-fix) production build. This is real field-adjacent lab data, not sandboxed:
+
+| Metric | Value |
+|---|---|
+| Performance | 85/100 |
+| Accessibility | 95/100 |
+| Best Practices | 100/100 |
+| SEO | 100/100 |
+| FCP | 3.3s |
+| LCP | 3.3s |
+| TBT | 40ms |
+| CLS | 0 |
+| Speed Index | 3.4s |
+
+The homepage scores meaningfully better than the `/editable-table` numbers measured earlier in this doc (65-67/100) — expected, since the homepage doesn't load the Prism syntax highlighter or embed "How it works" code samples the way every example page does. The example pages, not the homepage, are where mobile performance work matters most.
+
+### Confirmed: render-blocking Google Fonts request (790ms estimated savings)
+PSI's own diagnostics show the exact issue already fixed earlier in this doc: the Google Fonts CSS request (`fonts.googleapis.com/css2?family=...`) is render-blocking and takes **750ms** on its own, plus the main stylesheet at 390ms — matching the `@import`-based font-loading waterfall already fixed via `preconnect` + a `<link rel="stylesheet">` in `__root.tsx`. This production data validates that fix with hard numbers; it just hasn't been deployed yet.
+
+### New, fixed: non-composited hero background animation
+PSI flagged 4 non-composited animated elements risking CLS/jank, three one-shot entrance fades (low impact) and one persistent issue: **`.animate-grid-drift`** (the homepage hero's dot-grid background) animates `background-position` in a 14-second `infinite` loop — a property the browser cannot composite on the GPU, meaning it repaints every frame for as long as the homepage stays open. Especially relevant on the exact device class PSI tested against (Moto G Power, a real low/mid-tier Android phone).
+
+**Fix applied**: switched the keyframes to animate `transform: translate3d()` instead of `background-position` (`src/styles.css`), and oversized the drifting element by 22px on every edge (`src/routes/index.tsx`) so translating it never reveals its boundary — the parent section already had `overflow-hidden` clipping the excess. Verified visually via before/during screenshots at 0s and 7s into the loop: no visible seam, pattern is identical. This moves the animation onto the compositor thread, eliminating the continuous repaint cost.
+
+### New, fixed: mobile-only missing accessible name
+PSI's Accessibility audit flagged several buttons with no accessible name. One is mobile-specific and worth calling out on its own: the "Search docs" trigger button's label text (`<span className="hidden sm:inline">Search docs...</span>`) is hidden below the `sm` breakpoint — meaning on phones, that button renders as a bare icon with **no visible text and no `aria-label`**, making it unusable via screen reader for exactly the mobile users this task is about. Fixed by adding `aria-label="Search docs"` directly to the button (`src/components/docs/global-search.tsx`) — works regardless of which text is visually shown at any breakpoint.
+
+Other flagged accessible-name gaps (shadcn `Select` trigger comboboxes, several icon-only buttons in the utility-table demo) are a broader, sitewide component-library pattern rather than a mobile-specific or quick fix, and weren't addressed here — worth a separate accessibility pass if desired.
+
