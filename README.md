@@ -2,14 +2,14 @@
 
 A collection of composable table components built on [shadcn/ui](https://ui.shadcn.com) and [TanStack Table](https://tanstack.com/table), each one demonstrating a different real-world table pattern — SSR pagination, tree/grouped data, drag-and-drop, inline editing, dashboard analytics, and more. Every example is documented with a "How it works" breakdown and installable individually via the `shadcn` CLI.
 
-Live docs: https://shadcn-table-library.vercel.app/
+Live docs: https://www.shad-table.dev/
 
 ## Install a component
 
 Every example is published as a [shadcn registry](https://ui.shadcn.com/docs/registry) item. Copy the install command shown above any example on the docs site, or run it directly:
 
 ```bash
-npx shadcn add https://shadcn-table-library.vercel.app/r/tree-table.json
+npx shadcn add https://www.shad-table.dev/r/tree-table.json
 ```
 
 This drops the component's files into `components/tables/<name>/` in your project (respecting your own `components.json` aliases), installs its npm dependencies, and pulls in any shadcn/ui primitives (`table`, `button`, `select`, ...) it depends on.

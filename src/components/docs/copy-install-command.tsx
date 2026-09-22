@@ -5,7 +5,7 @@ import { Check, Copy } from 'lucide-react'
 
 import { Button } from '#/components/ui/button.tsx'
 
-const REGISTRY_BASE_URL = 'https://shad-table.dev/r'
+const REGISTRY_BASE_URL = 'https://www.shad-table.dev/r'
 
 interface InstallCommandProps {
   name: string

@@ -5,6 +5,12 @@
       "has": [{ "type": "host", "value": "shad-table.dev" }],
       "destination": "https://www.shad-table.dev/$1",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "shadcn-table-library.vercel.app" }],
+      "destination": "https://www.shad-table.dev/$1",
+      "permanent": true
     }
   ],
   "headers": [
