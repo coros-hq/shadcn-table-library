@@ -79,10 +79,10 @@ export function ReorderableTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             Reorderable Table
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Drag rows to reorder them, built on @dnd-kit/sortable rather than
             any table-specific drag logic. Column headers stay put — for
             drag-to-reorder columns, see Resizable / Reorderable Columns.

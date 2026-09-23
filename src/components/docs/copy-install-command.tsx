@@ -13,9 +13,13 @@ interface InstallCommandProps {
   command?: string
 }
 
-export function InstallCommand({ name, command: commandOverride }: InstallCommandProps) {
+export function InstallCommand({
+  name,
+  command: commandOverride,
+}: InstallCommandProps) {
   const [copied, setCopied] = useState(false)
-  const command = commandOverride ?? `npx shadcn add ${REGISTRY_BASE_URL}/${name}.json`
+  const command =
+    commandOverride ?? `npx shadcn add ${REGISTRY_BASE_URL}/${name}.json`
 
   async function handleCopy() {
     await navigator.clipboard.writeText(command)
@@ -24,8 +28,9 @@ export function InstallCommand({ name, command: commandOverride }: InstallComman
   }
 
   return (
-    <div className="flex items-center justify-between gap-3 rounded-lg border bg-muted/40 px-4 py-2.5">
-      <code className="overflow-x-auto font-mono text-sm text-foreground">
+    <div className="flex items-center justify-between gap-3 rounded-lg border px-3 py-1.5">
+      <code className="overflow-x-auto font-mono text-xs whitespace-nowrap text-foreground">
+        <span className="text-muted-foreground select-none">$ </span>
         {command}
       </code>
       <Button
@@ -36,7 +41,11 @@ export function InstallCommand({ name, command: commandOverride }: InstallComman
         onClick={handleCopy}
         className="size-7 shrink-0 text-muted-foreground"
       >
-        {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
+        {copied ? (
+          <Check className="size-3.5" />
+        ) : (
+          <Copy className="size-3.5" />
+        )}
       </Button>
     </div>
   )

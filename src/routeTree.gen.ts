@@ -11,11 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimatedIconsTableRouteImport } from './routes/animated-icons-table'
+import { Route as AsyncActionsTableRouteImport } from './routes/async-actions-table'
 import { Route as ColumnPinningTableRouteImport } from './routes/column-pinning-table'
 import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
 import { Route as ConditionalFormattingTableRouteImport } from './routes/conditional-formatting-table'
 import { Route as DataTableRouteImport } from './routes/data-table'
+import { Route as DeploymentsTableRouteImport } from './routes/deployments-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
+import { Route as ExportConfigTableRouteImport } from './routes/export-config-table'
+import { Route as ExportSelectedTableRouteImport } from './routes/export-selected-table'
 import { Route as FilterStateShapeTableRouteImport } from './routes/filter-state-shape-table'
 import { Route as FilterToolbarTableRouteImport } from './routes/filter-toolbar-table'
 import { Route as GroupedTableRouteImport } from './routes/grouped-table'
@@ -49,6 +53,11 @@ const AnimatedIconsTableRoute = AnimatedIconsTableRouteImport.update({
   path: '/animated-icons-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AsyncActionsTableRoute = AsyncActionsTableRouteImport.update({
+  id: '/async-actions-table',
+  path: '/async-actions-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ColumnPinningTableRoute = ColumnPinningTableRouteImport.update({
   id: '/column-pinning-table',
   path: '/column-pinning-table',
@@ -70,9 +79,24 @@ const DataTableRoute = DataTableRouteImport.update({
   path: '/data-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeploymentsTableRoute = DeploymentsTableRouteImport.update({
+  id: '/deployments-table',
+  path: '/deployments-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EditableTableRoute = EditableTableRouteImport.update({
   id: '/editable-table',
   path: '/editable-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExportConfigTableRoute = ExportConfigTableRouteImport.update({
+  id: '/export-config-table',
+  path: '/export-config-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExportSelectedTableRoute = ExportSelectedTableRouteImport.update({
+  id: '/export-selected-table',
+  path: '/export-selected-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FilterStateShapeTableRoute = FilterStateShapeTableRouteImport.update({
@@ -191,11 +215,15 @@ const UtilityTableRoute = UtilityTableRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/async-actions-table': typeof AsyncActionsTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/data-table': typeof DataTableRoute
+  '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/export-config-table': typeof ExportConfigTableRoute
+  '/export-selected-table': typeof ExportSelectedTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
@@ -222,11 +250,15 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/async-actions-table': typeof AsyncActionsTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/data-table': typeof DataTableRoute
+  '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/export-config-table': typeof ExportConfigTableRoute
+  '/export-selected-table': typeof ExportSelectedTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
@@ -254,11 +286,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/async-actions-table': typeof AsyncActionsTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/data-table': typeof DataTableRoute
+  '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/export-config-table': typeof ExportConfigTableRoute
+  '/export-selected-table': typeof ExportSelectedTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
@@ -287,11 +323,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/animated-icons-table'
+    | '/async-actions-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
     | '/data-table'
+    | '/deployments-table'
     | '/editable-table'
+    | '/export-config-table'
+    | '/export-selected-table'
     | '/filter-state-shape-table'
     | '/filter-toolbar-table'
     | '/grouped-table'
@@ -318,11 +358,15 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/animated-icons-table'
+    | '/async-actions-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
     | '/data-table'
+    | '/deployments-table'
     | '/editable-table'
+    | '/export-config-table'
+    | '/export-selected-table'
     | '/filter-state-shape-table'
     | '/filter-toolbar-table'
     | '/grouped-table'
@@ -349,11 +393,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/animated-icons-table'
+    | '/async-actions-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
     | '/data-table'
+    | '/deployments-table'
     | '/editable-table'
+    | '/export-config-table'
+    | '/export-selected-table'
     | '/filter-state-shape-table'
     | '/filter-toolbar-table'
     | '/grouped-table'
@@ -381,11 +429,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimatedIconsTableRoute: typeof AnimatedIconsTableRoute
+  AsyncActionsTableRoute: typeof AsyncActionsTableRoute
   ColumnPinningTableRoute: typeof ColumnPinningTableRoute
   ComparisonTableRoute: typeof ComparisonTableRoute
   ConditionalFormattingTableRoute: typeof ConditionalFormattingTableRoute
   DataTableRoute: typeof DataTableRoute
+  DeploymentsTableRoute: typeof DeploymentsTableRoute
   EditableTableRoute: typeof EditableTableRoute
+  ExportConfigTableRoute: typeof ExportConfigTableRoute
+  ExportSelectedTableRoute: typeof ExportSelectedTableRoute
   FilterStateShapeTableRoute: typeof FilterStateShapeTableRoute
   FilterToolbarTableRoute: typeof FilterToolbarTableRoute
   GroupedTableRoute: typeof GroupedTableRoute
@@ -426,6 +478,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimatedIconsTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/async-actions-table': {
+      id: '/async-actions-table'
+      path: '/async-actions-table'
+      fullPath: '/async-actions-table'
+      preLoaderRoute: typeof AsyncActionsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/column-pinning-table': {
       id: '/column-pinning-table'
       path: '/column-pinning-table'
@@ -454,11 +513,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/deployments-table': {
+      id: '/deployments-table'
+      path: '/deployments-table'
+      fullPath: '/deployments-table'
+      preLoaderRoute: typeof DeploymentsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/editable-table': {
       id: '/editable-table'
       path: '/editable-table'
       fullPath: '/editable-table'
       preLoaderRoute: typeof EditableTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/export-config-table': {
+      id: '/export-config-table'
+      path: '/export-config-table'
+      fullPath: '/export-config-table'
+      preLoaderRoute: typeof ExportConfigTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/export-selected-table': {
+      id: '/export-selected-table'
+      path: '/export-selected-table'
+      fullPath: '/export-selected-table'
+      preLoaderRoute: typeof ExportSelectedTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/filter-state-shape-table': {
@@ -621,11 +701,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimatedIconsTableRoute: AnimatedIconsTableRoute,
+  AsyncActionsTableRoute: AsyncActionsTableRoute,
   ColumnPinningTableRoute: ColumnPinningTableRoute,
   ComparisonTableRoute: ComparisonTableRoute,
   ConditionalFormattingTableRoute: ConditionalFormattingTableRoute,
   DataTableRoute: DataTableRoute,
+  DeploymentsTableRoute: DeploymentsTableRoute,
   EditableTableRoute: EditableTableRoute,
+  ExportConfigTableRoute: ExportConfigTableRoute,
+  ExportSelectedTableRoute: ExportSelectedTableRoute,
   FilterStateShapeTableRoute: FilterStateShapeTableRoute,
   FilterToolbarTableRoute: FilterToolbarTableRoute,
   GroupedTableRoute: GroupedTableRoute,

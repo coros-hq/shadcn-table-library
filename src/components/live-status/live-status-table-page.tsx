@@ -72,10 +72,10 @@ export function LiveStatusTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             Live Status Indicators
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A service-health table where status and latency update on their
             own on a timer — a pulsing dot for actively-monitored states, a
             still one once a service goes down. Toggle Live/Paused to see the

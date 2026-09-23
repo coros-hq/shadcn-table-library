@@ -146,10 +146,10 @@ function ParamsFilterTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             Params Filter Table
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A data table whose filter state is synced to URL search params.
             The table itself is filter-state agnostic — it takes
             search/role as controlled props, so you can back it with{' '}

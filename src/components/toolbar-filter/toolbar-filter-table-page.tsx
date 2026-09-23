@@ -63,10 +63,10 @@ export function ToolbarFilterTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             Toolbar Filter Table
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A simple filter row above the table — dropdown selects and a search
             input, filters applied immediately. The 80% use case for filtering,
             and the default place to start.

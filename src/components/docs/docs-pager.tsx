@@ -14,8 +14,7 @@ export function DocsPager({ pathname }: { pathname: string }) {
   if (index === -1) return null
 
   const prev = index > 0 ? allLinks[index - 1] : undefined
-  const next =
-    index < allLinks.length - 1 ? allLinks[index + 1] : undefined
+  const next = index < allLinks.length - 1 ? allLinks[index + 1] : undefined
   const group = navGroups.find((g) => g.items.some((l) => l.to === pathname))
   const related = group?.items.filter(
     (l) => l.to !== pathname && l.to !== prev?.to && l.to !== next?.to,
@@ -25,7 +24,9 @@ export function DocsPager({ pathname }: { pathname: string }) {
     <nav aria-label="More tables" className="space-y-6 border-t pt-8">
       {related && related.length > 0 && (
         <div className="space-y-3">
-          <p className="text-sm font-medium">More in {group?.title}</p>
+          <p className="text-sm text-muted-foreground">
+            More in {group?.title}
+          </p>
           <div className="flex flex-wrap gap-2">
             {related.map((link) => (
               <Link

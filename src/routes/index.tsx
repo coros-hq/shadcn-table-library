@@ -1,17 +1,13 @@
 import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
-import { BasicTableUsage } from '#/components/basic'
 import { SiteHeader } from '#/components/docs/site-header.tsx'
-import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
-import { CodeBlock } from '#/components/docs/code-block.tsx'
-import { Reveal } from '#/components/docs/reveal.tsx'
+import { AuroraBackground } from '#/components/docs/aurora-background.tsx'
+import { HeroTable } from '#/components/docs/hero-table.tsx'
 import { navGroups, topLevelLinks } from '#/components/docs/nav-content.tsx'
 import type { NavLink } from '#/components/docs/nav-content.tsx'
-import { LiveStatusLabel } from '#/components/docs/live-status-label.tsx'
 import { Button } from '#/components/ui/button.tsx'
-import DiscordIcon from '#/../public/icons/discord-logo.svg'
 import GithubIcon from '#/../public/icons/github-logo.svg'
 
 export const Route = createFileRoute('/')({
@@ -40,126 +36,50 @@ export const Route = createFileRoute('/')({
 
 interface Category {
   title: string
-  description: string
   links: NavLink[]
 }
 
-const categoryDescriptions: Record<string, string> = {
-  'Data Table':
-    'The base primitive — client-side sorting, filtering, and pagination over an in-memory dataset. Everything else builds on this pattern.',
-  SSR: 'For datasets too large to ship to the client — pagination and filtering trigger real server requests instead of slicing an array in the browser.',
-  'Advanced Filters':
-    'Filter toolbars, typed filter state, and URL-synced params — for tables where finding the right rows is the main job.',
-  'Structure / Hierarchy':
-    'Nested and dimensional data — trees, grouped rows, pivoted aggregates, and parent/child record pairs.',
-  'Interaction-heavy':
-    'Tables where the user reshapes the data directly — selecting tree nodes, reordering rows, editing cells in place, resizing and pinning columns.',
-  Animated:
-    'Motion that carries meaning — animated status icons and live indicators for rows that change while you watch.',
-  'Dashboard / Analytics-specific':
-    'Summary rows, side-by-side comparisons, and heatmap cells for dashboards where the table is the analysis surface, not just a record list.',
-  'Export / Density Variants':
-    'Utilities that sit on top of any table — compact/comfortable row density and CSV export, wired through the same column API.',
-  Responsive:
-    'Layouts that stay usable on small screens — rows collapse into cards instead of forcing a horizontal scroll.',
-}
-
-// Derived from the sidebar so every docs page is reachable from the homepage.
+// Derived from the sidebar so every docs page is linked from the homepage.
 const categories: Category[] = [
   { title: 'Data Table', links: topLevelLinks },
   ...navGroups.map((group) => ({ title: group.title, links: group.items })),
-].map((category) => ({
-  ...category,
-  description: categoryDescriptions[category.title] ?? '',
-}))
-
-const differentiators = [
-  {
-    title: 'You own the code',
-    description:
-      'Installed via the shadcn CLI as source files in your repo, not a package in node_modules. No version to bump, no black box to eject from when a table needs to do something the library didn’t anticipate.',
-  },
-  {
-    title: 'Built on TanStack Table’s headless core',
-    description:
-      'Sorting, filtering, pagination, and row models come from a battle-tested, framework-agnostic engine. ShadTable supplies the shadcn/ui rendering layer on top — it doesn’t reinvent table state management.',
-  },
-  {
-    title: 'Composable primitives, not a monolith',
-    description:
-      'Each table type is its own small set of components. Need a tree table with custom row actions? Extend the tree components directly instead of threading fifteen props through one do-everything <DataTable>.',
-  },
-  {
-    title: 'Real filtering, not fixed dropdowns',
-    description:
-      'Filters read and write the TanStack column API directly — column.getFilterValue() / setFilterValue() — so you can wire up range filters, multi-select, or server-driven facets. It’s not a hardcoded Select bolted onto a header.',
-  },
 ]
 
-const usageSnippet = `import { DataTable } from '@/components/basic/data-table'
-import { columns } from '@/components/basic/columns'
-
-export function UsersTable({ data }: { data: User[] }) {
-  return <DataTable columns={columns} data={data} />
-}`
+const tableCount = categories.reduce((n, c) => n + c.links.length, 0)
 
 function Home() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <div className="min-h-svh">
+    // overflow-clip rather than overflow-hidden so the sticky header still sticks
+    <div className="relative isolate flex min-h-svh flex-col overflow-clip">
+      <AuroraBackground />
       <SiteHeader
         mobileNavOpen={mobileNavOpen}
         onMobileNavOpenChange={setMobileNavOpen}
+        transparent
       />
 
-      <main>
-        {/* Hero */}
-        <section className="relative isolate overflow-hidden border-b">
-          <div
-            aria-hidden
-            className="animate-grid-drift pointer-events-none absolute opacity-70 [mask-image:radial-gradient(ellipse_65%_55%_at_50%_0%,black,transparent)]"
-            style={{
-              top: '-22px',
-              left: '-22px',
-              right: '-22px',
-              bottom: '-22px',
-              backgroundImage:
-                'radial-gradient(color-mix(in oklch, var(--foreground) 16%, transparent) 1px, transparent 1px)',
-              backgroundSize: '22px 22px',
-            }}
-          />
-          <div className="relative mx-auto max-w-6xl px-6 py-16 sm:py-20">
-            <div className="max-w-2xl animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both">
-              <p className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
-                <span className="relative flex size-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
-                  <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
-                </span>
-                shadcn/ui + TanStack Table
-              </p>
-              <h1 className="mt-3 font-serif text-4xl font-medium tracking-tight text-balance sm:text-5xl">
+      <main className="flex flex-1">
+        <section className="relative flex flex-1 items-center">
+          <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both">
+
+              <h1 className="mt-5 text-4xl font-normal tracking-tight text-balance sm:text-5xl">
                 Table components for the parts of your app that a design system
                 doesn&apos;t cover.
               </h1>
-              <p className="mt-4 text-base text-muted-foreground text-balance">
-                ShadTable is a set of composable, copy-paste table
-                components&nbsp;&mdash; sortable data tables, server-side
-                pagination, tree and pivot structures, inline editing,
-                dashboard/analytics variants&nbsp;&mdash; for engineers building
-                data-dense UIs on shadcn/ui and TanStack Table.
+              <p className="mt-6 max-w-xl text-lg font-normal text-muted-foreground text-balance">
+                {tableCount} copy-paste tables, from server-side pagination to
+                pivots, trees, and inline editing.
               </p>
 
-              <div className="mt-6 max-w-xl">
-                <InstallCommand name="data-table" />
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-10 flex flex-wrap items-center gap-3">
                 <Button asChild size="lg">
-                  <a href="/data-table">
+                  <Link to="/data-table">
                     Browse components
                     <ArrowRight className="size-4" />
-                  </a>
+                  </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
                   <a
@@ -175,204 +95,15 @@ function Home() {
                     GitHub
                   </a>
                 </Button>
-                <Button asChild variant="ghost" size="lg">
-                  <a
-                    href="https://discord.gg/4J6MVnnRY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={DiscordIcon}
-                      alt=""
-                      className="size-4 dark:invert"
-                    />
-                    Discord
-                  </a>
-                </Button>
               </div>
             </div>
 
-            {/* Live table preview */}
-            <div className="mt-12 animate-in fade-in slide-in-from-bottom-2 duration-700 fill-mode-both">
-              <div className="rounded-xl border bg-card p-4 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-6">
-                <div className="mb-3 flex items-center justify-between">
-                  <p className="font-mono text-xs text-muted-foreground">
-                    src/components/basic/index.tsx
-                  </p>
-                  <LiveStatusLabel />
-                </div>
-                <BasicTableUsage />
-              </div>
+            <div className="min-w-0 animate-in fade-in slide-in-from-bottom-2 duration-700 fill-mode-both">
+              <HeroTable />
             </div>
-          </div>
-        </section>
-
-        {/* Category overview */}
-        <section id="components" className="border-b scroll-mt-14">
-          <div className="mx-auto max-w-6xl px-6 py-16">
-            <Reveal className="max-w-2xl">
-              <h2 className="font-serif text-2xl font-medium tracking-tight">
-                Components
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Organized the same way as the docs sidebar &mdash; pick the
-                category that matches the shape of your data, not a generic
-                feature list.
-              </p>
-            </Reveal>
-
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map((category, i) => (
-                <Reveal key={category.title} delay={i * 60}>
-                  <div className="group flex h-full flex-col rounded-xl border bg-card p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/25 hover:shadow-md">
-                    <h3 className="text-sm font-semibold">{category.title}</h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">
-                      {category.description}
-                    </p>
-                    <ul className="mt-4 flex flex-1 flex-col gap-1.5 border-t pt-4">
-                      {category.links.map((link) => (
-                        <li key={link.to}>
-                          <Link
-                            to={link.to}
-                            className="group/link inline-flex items-center gap-1 rounded-sm text-sm text-foreground underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                          >
-                            {link.title}
-                            <ArrowUpRight className="size-3 text-muted-foreground transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Why ShadTable */}
-        <section className="border-b">
-          <div className="mx-auto max-w-6xl px-6 py-16">
-            <Reveal>
-              <h2 className="font-serif text-2xl font-medium tracking-tight">
-                Why ShadTable
-              </h2>
-            </Reveal>
-            <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
-              {differentiators.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60} className="flex gap-4">
-                  <span className="rounded border bg-muted/50 px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
-                    {String.fromCharCode(65 + (i % 2))}
-                    {Math.floor(i / 2) + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-sm font-semibold">{item.title}</h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Quickstart */}
-        <section className="border-b">
-          <div className="mx-auto max-w-6xl px-6 py-16">
-            <Reveal className="max-w-2xl">
-              <h2 className="font-serif text-2xl font-medium tracking-tight">
-                Install
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Run the CLI command inside a project that already has shadcn/ui
-                set up. It adds the table component and its dependencies as
-                source files under your components directory.
-              </p>
-            </Reveal>
-
-            <Reveal
-              delay={80}
-              className="mt-6 grid grid-cols-1 items-start gap-4 lg:grid-cols-2"
-            >
-              <InstallCommand name="data-table" />
-              <CodeBlock
-                filename="app/users/users-table.tsx"
-                code={usageSnippet}
-              />
-            </Reveal>
           </div>
         </section>
       </main>
-
-      <footer className="mx-auto max-w-6xl px-6 py-10">
-        <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
-          <div>
-            <div className="flex items-center gap-2">
-              <img src="/logo.svg" alt="" className="size-6 rounded-md" />
-              <span className="text-sm font-semibold tracking-tight">
-                ShadTable
-              </span>
-            </div>
-            <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-              Composable table components for shadcn/ui and TanStack Table.
-            </p>
-            <div className="mt-4 flex items-center gap-3">
-              <a
-                href="https://github.com/coros-hq/shadcn-table-library"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub Repository"
-              >
-                <img
-                  src={GithubIcon}
-                  alt="GitHub"
-                  className="size-5 dark:invert"
-                />
-              </a>
-              <a
-                href="https://discord.gg/4J6MVnnRY"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Join Discord"
-              >
-                <img
-                  src={DiscordIcon}
-                  alt="Discord"
-                  className="size-5 dark:invert"
-                />
-              </a>
-            </div>
-          </div>
-
-          <nav className="grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3">
-            {categories.map((category) => (
-              <div key={category.title}>
-                <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                  {category.title}
-                </p>
-                <ul className="mt-2.5 space-y-2">
-                  {category.links.map((link) => (
-                    <li key={link.to}>
-                      <Link
-                        to={link.to}
-                        className="rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50"
-                      >
-                        {link.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
-        </div>
-
-        <p className="mt-10 border-t pt-6 text-xs text-muted-foreground">
-          Built on shadcn/ui and TanStack Table.
-        </p>
-      </footer>
     </div>
   )
 }

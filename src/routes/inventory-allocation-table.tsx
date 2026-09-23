@@ -144,10 +144,10 @@ function InventoryAllocationTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             Inventory Allocation Table
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A fulfillment-center grid for SKU allocation: edit demand, lead
             time, and safety stock inline, expand a SKU to allocate its
             batches across warehouse locations, and watch reorder points,

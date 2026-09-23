@@ -5,6 +5,7 @@ import { ThemeToggle } from '#/components/docs/theme-toggle.tsx'
 import { GlobalSearch } from '#/components/docs/global-search.tsx'
 import { GithubStars } from '#/components/docs/github-stars.tsx'
 import { Button } from '#/components/ui/button.tsx'
+import { cn } from '#/lib/utils.ts'
 import {
   Sheet,
   SheetContent,
@@ -16,17 +17,27 @@ import { NavContent } from '#/components/docs/nav-content.tsx'
 interface SiteHeaderProps {
   mobileNavOpen: boolean
   onMobileNavOpenChange: (open: boolean) => void
+  /** Let the page background (e.g. the homepage aurora) show through */
+  transparent?: boolean
 }
 
 export function SiteHeader({
   mobileNavOpen,
   onMobileNavOpenChange,
+  transparent = false,
 }: SiteHeaderProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
 
   return (
     <>
-      <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur-md supports-backdrop-filter:bg-background/60">
+      <header
+        className={cn(
+          'sticky top-0 z-10 backdrop-blur-md',
+          transparent
+            ? 'bg-transparent'
+            : 'bg-background/80 supports-backdrop-filter:bg-background/60',
+        )}
+      >
         <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-1">
             <Button

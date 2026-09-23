@@ -113,10 +113,10 @@ export function ServerCombinedTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             SSR Sort + Filter + Pagination
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Sorting, filtering, and pagination resolved together on the
             server, from the same URL, in a single request — the way real
             dashboards actually work, instead of three isolated demos that

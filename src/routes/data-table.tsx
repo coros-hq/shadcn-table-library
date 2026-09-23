@@ -125,8 +125,8 @@ function Home() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">Data Table</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">Data Table</h1>
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A sortable, filterable, paginated table with a composable toolbar
             for column-specific filters. Sorting, filtering, and pagination
             all happen entirely in the browser — the whole dataset is sent to

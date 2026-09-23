@@ -49,6 +49,7 @@ export const navGroups: NavGroup[] = [
       { title: 'Filter State Shape', to: '/filter-state-shape-table' },
       { title: 'Filter Toolbar', to: '/filter-toolbar-table' },
       { title: 'Params Filter Table', to: '/params-filter-table' },
+      { title: 'Deployments', to: '/deployments-table' },
     ],
   },
   {
@@ -77,6 +78,7 @@ export const navGroups: NavGroup[] = [
     items: [
       { title: 'Animated Icons Table', to: '/animated-icons-table' },
       { title: 'Live Status Indicators', to: '/live-status-table' },
+      { title: 'Async Row Actions', to: '/async-actions-table' },
     ],
   },
   {
@@ -91,7 +93,11 @@ export const navGroups: NavGroup[] = [
   },
   {
     title: 'Export / Density Variants',
-    items: [{ title: 'Density & Export', to: '/utility-table' }],
+    items: [
+      { title: 'Density & Export', to: '/utility-table' },
+      { title: 'Export Configuration', to: '/export-config-table' },
+      { title: 'Export Selected Rows', to: '/export-selected-table' },
+    ],
   },
   {
     title: 'Responsive',
@@ -109,7 +115,7 @@ export function NavContent({
   return (
     <SidebarProvider
       className="min-h-0 w-auto items-start"
-      style={{ '--sidebar-width': '18rem' } as React.CSSProperties}
+      style={{ '--sidebar-width': '15rem' } as React.CSSProperties}
     >
       <Sidebar collapsible="none" className="bg-transparent">
         <SidebarContent>
@@ -121,7 +127,7 @@ export function NavContent({
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === link.to}
-                      className="w-full rounded-lg font-medium data-[active=true]:shadow-sm"
+                      className="w-full rounded-md font-normal text-muted-foreground hover:bg-transparent hover:text-foreground data-[active=true]:bg-transparent data-[active=true]:font-normal data-[active=true]:text-foreground"
                     >
                       <Link to={link.to} onClick={onNavigate}>
                         {link.title}
@@ -136,14 +142,17 @@ export function NavContent({
           {navGroups.map((group) => (
             <Collapsible
               key={group.title}
-              defaultOpen
+              defaultOpen={group.items.some((l) => l.to === pathname)}
               className="group/collapsible"
             >
-              <SidebarGroup>
-                <SidebarGroupLabel asChild>
-                  <CollapsibleTrigger className="flex w-full items-center rounded-md text-[11px] font-semibold tracking-wider text-muted-foreground/80 uppercase hover:text-foreground">
+              <SidebarGroup className="py-0.5">
+                <SidebarGroupLabel
+                  asChild
+                  className="flex w-full items-center rounded-md text-sm font-medium text-muted-foreground hover:text-foreground"
+                >
+                  <CollapsibleTrigger>
                     {group.title}
-                    <ChevronRight className="ml-auto size-3.5 transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                    <ChevronRight className="ml-auto size-3.5 text-muted-foreground/60 transition-transform group-data-[state=open]/collapsible:rotate-90" />
                   </CollapsibleTrigger>
                 </SidebarGroupLabel>
                 <CollapsibleContent>
@@ -157,7 +166,7 @@ export function NavContent({
                               asChild
                               isActive={isActive}
                               className={cn(
-                                'relative w-full rounded-md before:absolute before:top-1/2 before:-left-[13px] before:h-4 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-transparent before:transition-colors before:content-[""]',
+                                'relative w-full rounded-md font-normal text-muted-foreground hover:bg-transparent hover:text-foreground data-[active=true]:bg-transparent data-[active=true]:font-normal data-[active=true]:text-foreground before:absolute before:top-1/2 before:-left-[13px] before:h-4 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-transparent before:transition-colors before:content-[""]',
                                 isActive && 'before:bg-primary',
                               )}
                             >

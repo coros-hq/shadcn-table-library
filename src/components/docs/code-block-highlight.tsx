@@ -1,7 +1,7 @@
-import { Highlight, themes } from 'prism-react-renderer'
+import { Highlight } from 'prism-react-renderer'
 
 import { cn } from '#/lib/utils.ts'
-import { useTheme } from '#/hooks/use-theme.ts'
+import { codeTheme } from '#/components/docs/code-theme.ts'
 
 interface CodeBlockHighlightProps {
   code: string
@@ -12,14 +12,8 @@ export default function CodeBlockHighlight({
   code,
   language,
 }: CodeBlockHighlightProps) {
-  const { theme } = useTheme()
-
   return (
-    <Highlight
-      code={code}
-      language={language}
-      theme={theme === 'dark' ? themes.oneDark : themes.oneLight}
-    >
+    <Highlight code={code} language={language} theme={codeTheme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre
           className={cn(className, 'p-4 text-sm leading-relaxed')}

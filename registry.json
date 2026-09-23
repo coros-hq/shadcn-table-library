@@ -63,6 +63,21 @@
       "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
     },
     {
+      "name": "deployments-table",
+      "type": "registry:block",
+      "title": "Deployments Table",
+      "description": "Hosting-platform style deployment history with status and build time, branch and commit, search, and environment, status, branch, and date filters with faceted counts.",
+      "files": [
+        { "path": "src/components/deployments/data.ts", "type": "registry:component", "target": "@components/tables/deployments-table/data.ts" },
+        { "path": "src/components/deployments/columns.tsx", "type": "registry:component", "target": "@components/tables/deployments-table/columns.tsx" },
+        { "path": "src/components/deployments/faceted-filter.tsx", "type": "registry:component", "target": "@components/tables/deployments-table/faceted-filter.tsx" },
+        { "path": "src/components/deployments/data-table.tsx", "type": "registry:component", "target": "@components/tables/deployments-table/data-table.tsx" },
+        { "path": "src/components/deployments/index.tsx", "type": "registry:component", "target": "@components/tables/deployments-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "badge", "input", "select", "popover", "command"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
       "name": "tree-table",
       "type": "registry:block",
       "title": "Tree Table",
@@ -232,6 +247,24 @@
       "dependencies": ["@tanstack/react-table", "motion"]
     },
     {
+      "name": "async-actions-table",
+      "type": "registry:block",
+      "title": "Async Row Actions",
+      "description": "Row actions with animated icons that reflect request state: sync spins while pending and becomes Retry on failure, archive offers Undo, and delete needs a confirming second click.",
+      "files": [
+        { "path": "src/lib/animated-icon.ts", "type": "registry:lib", "target": "@components/tables/async-actions-table/lib/animated-icon.ts" },
+        { "path": "src/components/ui/icons/arrows-clockwise-icon.tsx", "type": "registry:component", "target": "@components/tables/async-actions-table/icons/arrows-clockwise-icon.tsx" },
+        { "path": "src/components/ui/icons/archive-icon.tsx", "type": "registry:component", "target": "@components/tables/async-actions-table/icons/archive-icon.tsx" },
+        { "path": "src/components/ui/icons/trash-icon.tsx", "type": "registry:component", "target": "@components/tables/async-actions-table/icons/trash-icon.tsx" },
+        { "path": "src/components/async-actions/data.ts", "type": "registry:component", "target": "@components/tables/async-actions-table/data.ts" },
+        { "path": "src/components/async-actions/action-buttons.tsx", "type": "registry:component", "target": "@components/tables/async-actions-table/action-buttons.tsx" },
+        { "path": "src/components/async-actions/data-table.tsx", "type": "registry:component", "target": "@components/tables/async-actions-table/data-table.tsx" },
+        { "path": "src/components/async-actions/index.tsx", "type": "registry:component", "target": "@components/tables/async-actions-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button"],
+      "dependencies": ["@tanstack/react-table", "motion"]
+    },
+    {
       "name": "live-status-table",
       "type": "registry:block",
       "title": "Live Status Indicators",
@@ -346,6 +379,38 @@
         { "path": "src/components/utility/index.tsx", "type": "registry:component", "target": "@components/tables/density-export-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "select"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
+      "name": "export-config-table",
+      "type": "registry:block",
+      "title": "Export Configuration",
+      "description": "Export button opens a dialog to filter by status, region, and date, pick columns and CSV or Excel, with a live count of matching rows before download.",
+      "files": [
+        { "path": "src/components/export-config/columns.tsx", "type": "registry:component", "target": "@components/tables/export-config-table/columns.tsx" },
+        { "path": "src/components/export-config/data.ts", "type": "registry:component", "target": "@components/tables/export-config-table/data.ts" },
+        { "path": "src/components/export-config/export.ts", "type": "registry:component", "target": "@components/tables/export-config-table/export.ts" },
+        { "path": "src/components/export-config/export-config.ts", "type": "registry:component", "target": "@components/tables/export-config-table/export-config.ts" },
+        { "path": "src/components/export-config/export-dialog.tsx", "type": "registry:component", "target": "@components/tables/export-config-table/export-dialog.tsx" },
+        { "path": "src/components/export-config/data-table.tsx", "type": "registry:component", "target": "@components/tables/export-config-table/data-table.tsx" },
+        { "path": "src/components/export-config/index.tsx", "type": "registry:component", "target": "@components/tables/export-config-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "dialog", "checkbox", "label", "select", "badge"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
+      "name": "export-selected-table",
+      "type": "registry:block",
+      "title": "Export Selected Rows",
+      "description": "Row checkboxes with selection that persists across pages, a page-level select-all plus a Select all shortcut, and CSV or Excel export of only the selected rows.",
+      "files": [
+        { "path": "src/components/export-selected/columns.tsx", "type": "registry:component", "target": "@components/tables/export-selected-table/columns.tsx" },
+        { "path": "src/components/export-selected/data.ts", "type": "registry:component", "target": "@components/tables/export-selected-table/data.ts" },
+        { "path": "src/components/export-selected/export.ts", "type": "registry:component", "target": "@components/tables/export-selected-table/export.ts" },
+        { "path": "src/components/export-selected/data-table.tsx", "type": "registry:component", "target": "@components/tables/export-selected-table/data-table.tsx" },
+        { "path": "src/components/export-selected/index.tsx", "type": "registry:component", "target": "@components/tables/export-selected-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "checkbox", "badge"],
       "dependencies": ["@tanstack/react-table"]
     },
     {

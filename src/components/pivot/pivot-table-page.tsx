@@ -102,10 +102,10 @@ export function PivotTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             Pivot Table
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Dashboard-style analytics: pick which dimension becomes rows,
             which becomes columns, and how to aggregate (sum, average, or
             count) — the table and its totals recompute from the same flat

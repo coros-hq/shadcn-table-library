@@ -9,11 +9,17 @@ export function ThemeToggle() {
     <button
       type="button"
       className="cursor-pointer"
-      aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+      aria-label={
+        theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+      }
       onClick={toggleTheme}
     >
       <span suppressHydrationWarning>
-        {theme === 'dark' ? <Sun className="size-4" /> : <Moon className="size-4" />}
+        {theme === 'dark' ? (
+          <Sun className="size-4" />
+        ) : (
+          <Moon className="size-4" />
+        )}
       </span>
     </button>
   )

@@ -128,10 +128,10 @@ function ColumnPinningTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             Column Pinning Table
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Freeze columns to the left or right edge — Excel/AG Grid style —
             while the rest of the table scrolls underneath. Hover a header
             to pin it left or right; hover a pinned header to unpin it.

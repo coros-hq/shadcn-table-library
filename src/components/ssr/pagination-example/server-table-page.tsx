@@ -103,10 +103,10 @@ export function ServerTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
             SSR Pagination
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Only the current page's rows are ever sent to the browser —
             changing pages triggers a real server request instead of slicing
             an in-memory array.
