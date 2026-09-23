@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   ".impeccable/hook.cache.json": {
-    "mtime": 1790185954.4245694,
-    "ast_hash": "92ee0a58d6a6c25217059976c3109c95",
+    "mtime": 1790185978.776707,
+    "ast_hash": "0d5d51d1c69888e4a475578578adb150",
     "semantic_hash": ""
   },
   ".inkwell/app.json": {
@@ -375,8 +375,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/nav-content.tsx": {
-    "mtime": 1790184200.5217373,
-    "ast_hash": "fc9c4ecd3f984ae2a504d082adee4400",
+    "mtime": 1790195935.833324,
+    "ast_hash": "c9fa2e439f1c2a005c6b896623bcf2cd",
     "semantic_hash": ""
   },
   "src/components/docs/reveal.tsx": {

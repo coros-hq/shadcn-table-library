@@ -115,10 +115,10 @@ export function NavContent({
   return (
     <SidebarProvider
       className="min-h-0 w-auto items-start"
-      style={{ '--sidebar-width': '15rem' } as React.CSSProperties}
+      style={{ '--sidebar-width': '16rem' } as React.CSSProperties}
     >
       <Sidebar collapsible="none" className="bg-transparent">
-        <SidebarContent>
+        <SidebarContent className="overflow-x-hidden">
           <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
@@ -157,7 +157,7 @@ export function NavContent({
                 </SidebarGroupLabel>
                 <CollapsibleContent>
                   <SidebarGroupContent>
-                    <SidebarMenu className="mt-1 ml-3.5 gap-0.5 border-l border-sidebar-border pl-3">
+                    <SidebarMenu className="mt-1 ml-3.5 w-auto gap-0.5 border-l border-sidebar-border pl-3">
                       {group.items.map((link) => {
                         const isActive = pathname === link.to
                         return (
