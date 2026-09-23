@@ -1,16 +1,16 @@
 # Graph Report - shadcn-table-library  (2026-09-23)
 
 ## Corpus Check
-- 322 files · ~153,387 words
+- 322 files · ~153,485 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1603 nodes · 3168 edges · 124 communities (118 shown, 6 thin omitted)
+- 1603 nodes · 3168 edges · 125 communities (119 shown, 6 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 20 edges (avg confidence: 0.54)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `eb666965`
+- Built from commit: `59befa54`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -86,6 +86,7 @@
 - [[_COMMUNITY_tree-table-reorder.json|tree-table-reorder.json]]
 - [[_COMMUNITY_tree-table-selection.json|tree-table-selection.json]]
 - [[_COMMUNITY_FULL-AUDIT-REPORT|FULL-AUDIT-REPORT.md]]
+- [[_COMMUNITY_code-block-highlight.tsx|code-block-highlight.tsx]]
 - [[_COMMUNITY_index.tsx|index.tsx]]
 - [[_COMMUNITY_data-table.tsx|data-table.tsx]]
 - [[_COMMUNITY_index.tsx|index.tsx]]
@@ -166,15 +167,15 @@
 - 4-file cycle: `src/components/ssr/filter-example/data-table.tsx -> src/routes/server-filter.ts -> src/components/ssr/filter-example/filter-page.tsx -> src/components/ssr/filter-example/index.tsx -> src/components/ssr/filter-example/data-table.tsx`
 - 4-file cycle: `src/components/ssr/combined-example/data-table.tsx -> src/routes/server-combined-table.ts -> src/components/ssr/combined-example/server-combined-table-page.tsx -> src/components/ssr/combined-example/index.tsx -> src/components/ssr/combined-example/data-table.tsx`
 
-## Communities (124 total, 6 thin omitted)
+## Communities (125 total, 6 thin omitted)
 
 ### Community 0 - "routeTree.gen.ts"
 Cohesion: 0.05
 Nodes (44): getRouter(), Register, @tanstack/react-router, AnimatedIconsTableRoute, AsyncActionsTableRoute, ColumnPinningTableRoute, ComparisonTableRoute, ConditionalFormattingTableRoute (+36 more)
 
 ### Community 1 - "sidebar.tsx"
-Cohesion: 0.08
-Nodes (31): react, NavGroup, Sidebar(), SidebarContent(), SidebarContext, SidebarContextProps, SidebarFooter(), SidebarGroup() (+23 more)
+Cohesion: 0.09
+Nodes (29): react, NavGroup, Sidebar(), SidebarContent(), SidebarContext, SidebarContextProps, SidebarFooter(), SidebarGroup() (+21 more)
 
 ### Community 2 - "table.tsx"
 Cohesion: 0.13
@@ -197,8 +198,8 @@ Cohesion: 0.12
 Nodes (24): columns, Order, regions, statuses, statusVariant, usd, customers, orders (+16 more)
 
 ### Community 7 - "cn"
-Cohesion: 0.09
-Nodes (31): CodeBlockHighlight(), CodeBlockHighlightProps, codeTheme, Reveal(), RevealProps, DraggableResizableHeader(), Card(), CardAction() (+23 more)
+Cohesion: 0.13
+Nodes (18): Reveal(), RevealProps, DraggableResizableHeader(), Card(), CardAction(), CardContent(), CardDescription(), CardFooter() (+10 more)
 
 ### Community 8 - "devDependencies"
 Cohesion: 0.07
@@ -273,8 +274,8 @@ Cohesion: 0.21
 Nodes (10): columns, KpiTable(), KpiTableProps, data, KpiTableDemo(), formatKpiValue(), Kpi, KpiUnit (+2 more)
 
 ### Community 26 - "data-table.tsx"
-Cohesion: 0.20
-Nodes (10): FacetedFilter(), CheckboxGroup(), toggle(), Dialog(), DialogContent(), DialogDescription(), DialogFooter(), DialogHeader() (+2 more)
+Cohesion: 0.18
+Nodes (11): FacetedFilter(), CheckboxGroup(), toggle(), Dialog(), DialogContent(), DialogDescription(), DialogFooter(), DialogHeader() (+3 more)
 
 ### Community 27 - "SEO Audit — shad-table.dev"
 Cohesion: 0.15
@@ -452,6 +453,10 @@ Nodes (8): dependencies, description, files, name, registryDependencies, $schema
 Cohesion: 0.22
 Nodes (6): AI Search Readiness (GEO) Findings — shad-table.dev, Gaps, Recommendation Priority: Medium, What Works, Recommendation, Sitemap Findings — shad-table.dev
 
+### Community 71 - "code-block-highlight.tsx"
+Cohesion: 0.50
+Nodes (3): CodeBlockHighlight(), CodeBlockHighlightProps, codeTheme
+
 ### Community 72 - "index.tsx"
 Cohesion: 0.28
 Nodes (5): columns, Task, FilterStateShapeDataTable(), categoryOptions, data
@@ -593,8 +598,8 @@ Cohesion: 0.40
 Nodes (4): files, steps, TreeTablePage(), Route
 
 ### Community 122 - "date-range-picker.tsx"
-Cohesion: 0.43
-Nodes (5): buttonVariants, Calendar(), CalendarDayButton(), DatePickerWithRange(), FieldLabel()
+Cohesion: 0.14
+Nodes (16): buttonVariants, Calendar(), CalendarDayButton(), DatePickerWithRange(), Field(), FieldContent(), FieldDescription(), FieldError() (+8 more)
 
 ### Community 124 - "params-filter-table.tsx"
 Cohesion: 0.33
@@ -636,7 +641,7 @@ Nodes (5): PivotTableDemo(), files, PivotTablePage(), steps, Route
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `cn` to `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `animated-icon.ts`, `filter-condition-editor.tsx`, `index.tsx`, `code-block.tsx`, `docs-layout.tsx`, `columns.tsx`, `data-table.tsx`, `popover.tsx`, `columns.tsx`, `data-table.tsx`, `utils.ts`, `index.tsx`, `data-table.tsx`, `columns.tsx`, `hero-table.tsx`, `data.ts`, `data-table.tsx`, `data-table.tsx`, `index.tsx`, `data-table.tsx`, `button.tsx`, `active-filter-chips.tsx`, `filter-condition-editor.tsx`, `index.tsx`, `pivot-table-page.tsx`, `async-actions-page.tsx`, `live-status-table-page.tsx`, `date-range-picker.tsx`?**
+- **Why does `cn()` connect `cn` to `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `animated-icon.ts`, `filter-condition-editor.tsx`, `index.tsx`, `code-block.tsx`, `docs-layout.tsx`, `columns.tsx`, `data-table.tsx`, `popover.tsx`, `columns.tsx`, `data-table.tsx`, `utils.ts`, `index.tsx`, `data-table.tsx`, `columns.tsx`, `hero-table.tsx`, `data.ts`, `code-block-highlight.tsx`, `data-table.tsx`, `data-table.tsx`, `index.tsx`, `data-table.tsx`, `button.tsx`, `active-filter-chips.tsx`, `filter-condition-editor.tsx`, `index.tsx`, `pivot-table-page.tsx`, `async-actions-page.tsx`, `live-status-table-page.tsx`, `date-range-picker.tsx`?**
   _High betweenness centrality (0.202) - this node is a cross-community bridge._
 - **Why does `react` connect `sidebar.tsx` to `date-range-picker.tsx`, `Button.stories.ts`, `dependencies`?**
   _High betweenness centrality (0.099) - this node is a cross-community bridge._
@@ -647,6 +652,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `routeTree.gen.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0463768115942029 - nodes in this community are weakly interconnected._
 - **Should `sidebar.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08250355618776671 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09269162210338681 - nodes in this community are weakly interconnected._
 - **Should `table.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.1303030303030303 - nodes in this community are weakly interconnected._

@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "geist mono",
+        "createdAt": "2026-09-23T21:44:10.850Z",
+        "reason": "Existing design choice: Geist Mono was introduced as --font-mono in the user's own commit 8352477 (design refactoring); the perf change only moved it from Google Fonts to self-hosted woff2"
+      }
+    ]
+  }
+}

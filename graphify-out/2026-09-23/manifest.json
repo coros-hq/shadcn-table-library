@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   ".impeccable/hook.cache.json": {
-    "mtime": 1790184200.3454185,
-    "ast_hash": "790fd6fa0a903f78c6a921b7ea3a0117",
+    "mtime": 1790185978.776707,
+    "ast_hash": "0d5d51d1c69888e4a475578578adb150",
     "semantic_hash": ""
   },
   ".inkwell/app.json": {
@@ -75,37 +75,37 @@
     "semantic_hash": ""
   },
   "public/r/animated-icons-table.json": {
-    "mtime": 1790184353.413453,
+    "mtime": 1790185965.8498368,
     "ast_hash": "566985278f01e1e975557e6cfa330223",
     "semantic_hash": ""
   },
   "public/r/column-pinning-table.json": {
-    "mtime": 1790184353.4106526,
+    "mtime": 1790185965.845824,
     "ast_hash": "aa1eb45be5af5cd0bfdb21902138708f",
     "semantic_hash": ""
   },
   "public/r/comparison-table.json": {
-    "mtime": 1790184353.4148133,
+    "mtime": 1790185965.8512921,
     "ast_hash": "13f88480011859cd12d7bb3c8d260925",
     "semantic_hash": ""
   },
   "public/r/conditional-formatting-table.json": {
-    "mtime": 1790184353.4152982,
+    "mtime": 1790185965.8518288,
     "ast_hash": "d84ee60030966cc82983356c17132c1e",
     "semantic_hash": ""
   },
   "public/r/data-table.json": {
-    "mtime": 1790184353.4062395,
+    "mtime": 1790185965.8406754,
     "ast_hash": "c98212dfa71ffefd49b21ff9ca5181b2",
     "semantic_hash": ""
   },
   "public/r/density-export-table.json": {
-    "mtime": 1790184353.4164033,
+    "mtime": 1790185965.8532467,
     "ast_hash": "d97d1cba6aedc5c88162858a48a8cc76",
     "semantic_hash": ""
   },
   "public/r/editable-table.json": {
-    "mtime": 1790184353.4119298,
+    "mtime": 1790185965.8479838,
     "ast_hash": "d534588b830db2200e0a53967aee58ce",
     "semantic_hash": ""
   },
@@ -120,72 +120,72 @@
     "semantic_hash": ""
   },
   "public/r/grouped-table.json": {
-    "mtime": 1790184353.4109628,
+    "mtime": 1790185965.8463914,
     "ast_hash": "b5da07fbbfc5754376fd14ef240e0bb9",
     "semantic_hash": ""
   },
   "public/r/heatmap-table.json": {
-    "mtime": 1790184353.4150414,
+    "mtime": 1790185965.851549,
     "ast_hash": "76b062a59141c24d96c2cacc4ef19dfb",
     "semantic_hash": ""
   },
   "public/r/kpi-table.json": {
-    "mtime": 1790184353.4145517,
+    "mtime": 1790185965.851019,
     "ast_hash": "8926649310c23567efdb0b29fcd30400",
     "semantic_hash": ""
   },
   "public/r/live-status-table.json": {
-    "mtime": 1790184353.4141903,
+    "mtime": 1790185965.8506215,
     "ast_hash": "3a1ecdae9e47000f55ecd299c7f1d03d",
     "semantic_hash": ""
   },
   "public/r/master-detail-table.json": {
-    "mtime": 1790184353.4116325,
+    "mtime": 1790185965.8475344,
     "ast_hash": "115961b75bb94f1147eb6c32b3219a36",
     "semantic_hash": ""
   },
   "public/r/mobile-cards-table.json": {
-    "mtime": 1790184353.417434,
+    "mtime": 1790185965.8541973,
     "ast_hash": "a6350f93411e8d08bf6ccf6011910e17",
     "semantic_hash": ""
   },
   "public/r/pivot-table.json": {
-    "mtime": 1790184353.4112284,
+    "mtime": 1790185965.847014,
     "ast_hash": "e67e00cd56d02bcae5c0bc1693e539b6",
     "semantic_hash": ""
   },
   "public/r/production-dashboard-table.json": {
-    "mtime": 1790184353.4156957,
+    "mtime": 1790185965.852197,
     "ast_hash": "d67e18c7b7b476f4ec76699176bdba7c",
     "semantic_hash": ""
   },
   "public/r/registry.json": {
-    "mtime": 1790184353.417678,
+    "mtime": 1790185965.8544414,
     "ast_hash": "98c6dbe11f8fb2756c6610cfb9d7066a",
     "semantic_hash": ""
   },
   "public/r/reorderable-table.json": {
-    "mtime": 1790184353.409884,
+    "mtime": 1790185965.8447924,
     "ast_hash": "8ba384c0561c867784d5a007202eec68",
     "semantic_hash": ""
   },
   "public/r/resizable-reorderable-columns-table.json": {
-    "mtime": 1790184353.4103265,
+    "mtime": 1790185965.845308,
     "ast_hash": "ee2090baa1ef47b4e25ede37677a26b3",
     "semantic_hash": ""
   },
   "public/r/server-combined-table.json": {
-    "mtime": 1790184353.407974,
+    "mtime": 1790185965.8425195,
     "ast_hash": "60fce83836d53bea6af0a2af871da469",
     "semantic_hash": ""
   },
   "public/r/server-filter-table.json": {
-    "mtime": 1790184353.4075177,
+    "mtime": 1790185965.8421311,
     "ast_hash": "26ad8391813b3219ff59c58b5fe8df5c",
     "semantic_hash": ""
   },
   "public/r/server-pagination-table.json": {
-    "mtime": 1790184353.4069774,
+    "mtime": 1790185965.8415728,
     "ast_hash": "571a884902cbeac298da75a27d250524",
     "semantic_hash": ""
   },
@@ -195,17 +195,17 @@
     "semantic_hash": ""
   },
   "public/r/tree-table-reorder.json": {
-    "mtime": 1790184353.4093797,
+    "mtime": 1790185965.844261,
     "ast_hash": "8ef02ca493aceb848a99520c9d58d795",
     "semantic_hash": ""
   },
   "public/r/tree-table-selection.json": {
-    "mtime": 1790184353.4090326,
+    "mtime": 1790185965.843977,
     "ast_hash": "e34b6e7c166f662e80c3ed1ae473e391",
     "semantic_hash": ""
   },
   "public/r/tree-table.json": {
-    "mtime": 1790184353.4086623,
+    "mtime": 1790185965.8435292,
     "ast_hash": "82fcf0675444c69b7163ba9beeb2b8e0",
     "semantic_hash": ""
   },
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/docs-layout.tsx": {
-    "mtime": 1790179425.5798523,
-    "ast_hash": "f5abc5c45d043b824e05dbca693db2e5",
+    "mtime": 1790196379.0584974,
+    "ast_hash": "fd315875d8f810ed71fdf0cedbc01152",
     "semantic_hash": ""
   },
   "src/components/docs/github-stars.tsx": {
@@ -375,8 +375,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/nav-content.tsx": {
-    "mtime": 1790184200.5217373,
-    "ast_hash": "fc9c4ecd3f984ae2a504d082adee4400",
+    "mtime": 1790196379.0560758,
+    "ast_hash": "081992a2bcb2ef1fd8d89d8a45f321f9",
     "semantic_hash": ""
   },
   "src/components/docs/reveal.tsx": {
@@ -1490,7 +1490,7 @@
     "semantic_hash": ""
   },
   "public/r/inventory-allocation-table.json": {
-    "mtime": 1790184353.416068,
+    "mtime": 1790185965.8527653,
     "ast_hash": "e9fdc3b3a56c9f6a742f90d8e8d770b4",
     "semantic_hash": ""
   },
@@ -1550,7 +1550,7 @@
     "semantic_hash": ""
   },
   "public/r/export-config-table.json": {
-    "mtime": 1790184353.416841,
+    "mtime": 1790185965.8536417,
     "ast_hash": "3b52cb4649f0868a6e8acaaccd3dc7e7",
     "semantic_hash": ""
   },
@@ -1600,7 +1600,7 @@
     "semantic_hash": ""
   },
   "public/r/export-selected-table.json": {
-    "mtime": 1790184353.4171414,
+    "mtime": 1790185965.8539436,
     "ast_hash": "c0e16854ea28f1dbd9e07088f1c368d3",
     "semantic_hash": ""
   },
@@ -1640,7 +1640,7 @@
     "semantic_hash": ""
   },
   "public/r/async-actions-table.json": {
-    "mtime": 1790184353.4138873,
+    "mtime": 1790185965.8503335,
     "ast_hash": "60caea54037e0b4a234a5c756d4930b3",
     "semantic_hash": ""
   },
@@ -1675,18 +1675,18 @@
     "semantic_hash": ""
   },
   "public/r/deployments-table.json": {
-    "mtime": 1790184353.4083629,
-    "ast_hash": "90513c838311bcb81cb7ed9d4d87e99f",
+    "mtime": 1790185965.842882,
+    "ast_hash": "672a010dd5c1a51caf7b49898e2cc93b",
     "semantic_hash": ""
   },
   "src/components/deployments/columns.tsx": {
-    "mtime": 1790184200.9289386,
-    "ast_hash": "d7e1e7d57400a400dae0699731981aee",
+    "mtime": 1790185954.751413,
+    "ast_hash": "4dc83026f07a18c7853ed1619fdc13c8",
     "semantic_hash": ""
   },
   "src/components/deployments/data-table.tsx": {
-    "mtime": 1790184312.7014542,
-    "ast_hash": "37c21e9cc6182c11da12ce9887d78294",
+    "mtime": 1790185889.2679222,
+    "ast_hash": "014791048c67b4749d97fdaf20c032c4",
     "semantic_hash": ""
   },
   "src/components/deployments/data.ts": {

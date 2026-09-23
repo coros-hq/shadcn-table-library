@@ -63,7 +63,7 @@ function Home() {
       <main className="flex flex-1">
         <section className="relative flex flex-1 items-center">
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
-            <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both">
+            <div>
 
               <h1 className="mt-5 text-4xl font-normal tracking-tight text-balance sm:text-5xl">
                 Table components for the parts of your app that a design system

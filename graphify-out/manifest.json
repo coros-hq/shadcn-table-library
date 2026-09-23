@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   ".impeccable/hook.cache.json": {
-    "mtime": 1790185978.776707,
-    "ast_hash": "0d5d51d1c69888e4a475578578adb150",
+    "mtime": 1790199435.4506786,
+    "ast_hash": "80ac545ce60abb399a0a7be0c4e938d0",
     "semantic_hash": ""
   },
   ".inkwell/app.json": {
@@ -1115,8 +1115,8 @@
     "semantic_hash": ""
   },
   "src/routes/__root.tsx": {
-    "mtime": 1790176089.3562174,
-    "ast_hash": "a58fe6f043fb2484922b2508349333db",
+    "mtime": 1790199435.4296937,
+    "ast_hash": "1c638dc9cd84c9ef2232ac0e8bbf002d",
     "semantic_hash": ""
   },
   "src/routes/animated-icons-table.ts": {
@@ -1170,8 +1170,8 @@
     "semantic_hash": ""
   },
   "src/routes/index.tsx": {
-    "mtime": 1790179434.4492784,
-    "ast_hash": "f694dae36a9e48fb238ecd80ddfd4a44",
+    "mtime": 1790199443.2845895,
+    "ast_hash": "b55d3520628c7572351d0736a4e57c1c",
     "semantic_hash": ""
   },
   "src/routes/kpi-table.ts": {
@@ -1540,8 +1540,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/aurora-background.tsx": {
-    "mtime": 1790175348.046886,
-    "ast_hash": "d4286953bfbb0887176fb7701e234ecb",
+    "mtime": 1790199456.6855853,
+    "ast_hash": "d1cbcd2f6b78095ba295ae59f2eb6c36",
     "semantic_hash": ""
   },
   "src/components/docs/code-theme.ts": {

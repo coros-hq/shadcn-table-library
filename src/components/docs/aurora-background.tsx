@@ -65,6 +65,19 @@ export function AuroraBackground({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
+    let cleanup: (() => void) | undefined
+    // Compiling shaders is synchronous — keep it off the hydration path
+    const idle = window.requestIdleCallback
+      ? window.requestIdleCallback(() => (cleanup = init()), { timeout: 1500 })
+      : window.setTimeout(() => (cleanup = init()), 200)
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idle)
+      else window.clearTimeout(idle)
+      cleanup?.()
+    }
+  }, [])
+
+  function init() {
     const canvas = canvasRef.current
     const parent = canvas?.parentElement
     const gl = canvas?.getContext('webgl', {
@@ -108,11 +121,14 @@ export function AuroraBackground({ className }: { className?: string }) {
     const uAccent = gl.getUniformLocation(program, 'u_accent')
     const uIntensity = gl.getUniformLocation(program, 'u_intensity')
 
-    const reducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
+    // Touch devices get a single static frame: the loop costs battery and
+    // GPU time that low-end phones can't spare
+    const staticOnly = window.matchMedia(
+      '(prefers-reduced-motion: reduce), (pointer: coarse), (max-width: 767px)',
     ).matches
     const start = performance.now()
     let frame = 0
+    let lastDraw = 0
     let visible = true
 
     const draw = () => {
@@ -122,14 +138,18 @@ export function AuroraBackground({ className }: { className?: string }) {
       gl.drawArrays(gl.TRIANGLES, 0, 6)
     }
 
-    const loop = () => {
-      draw()
+    // Slow-moving bands look the same at 30fps
+    const loop = (now: number) => {
+      if (now - lastDraw >= 33) {
+        lastDraw = now
+        draw()
+      }
       frame = requestAnimationFrame(loop)
     }
 
     const play = () => {
       cancelAnimationFrame(frame)
-      if (reducedMotion || !visible || document.hidden) {
+      if (staticOnly || !visible || document.hidden) {
         draw()
         return
       }
@@ -147,8 +167,8 @@ export function AuroraBackground({ className }: { className?: string }) {
     }
 
     const resize = () => {
-      // Soft gradients don't need full retina resolution
-      const dpr = Math.min(window.devicePixelRatio, 1.5)
+      // Soft gradients upscale invisibly, so render at half resolution
+      const dpr = 0.5
       canvas.width = Math.max(1, Math.floor(parent.clientWidth * dpr))
       canvas.height = Math.max(1, Math.floor(parent.clientHeight * dpr))
       gl.viewport(0, 0, canvas.width, canvas.height)
@@ -176,6 +196,7 @@ export function AuroraBackground({ className }: { className?: string }) {
     resize()
     applyTheme()
     play()
+    canvas.dataset.ready = ''
 
     return () => {
       cancelAnimationFrame(frame)
@@ -188,14 +209,14 @@ export function AuroraBackground({ className }: { className?: string }) {
       gl.deleteShader(vs)
       gl.deleteShader(fs)
     }
-  }, [])
+  }
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden
       className={cn(
-        'pointer-events-none absolute inset-0 size-full',
+        'pointer-events-none absolute inset-0 size-full opacity-0 transition-opacity duration-700 data-ready:opacity-100',
         className,
       )}
     />

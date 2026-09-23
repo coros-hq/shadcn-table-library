@@ -56,23 +56,10 @@ export const Route = createRootRoute({
     ],
     links: [
       {
-        rel: 'preconnect',
-        href: 'https://fonts.googleapis.com',
-      },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossOrigin: 'anonymous',
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap',
-      },
-      {
         rel: 'preload',
-        href: '/fonts/Outfit-Regular.ttf',
+        href: '/fonts/Outfit-Regular.woff2',
         as: 'font',
-        type: 'font/ttf',
+        type: 'font/woff2',
         crossOrigin: 'anonymous',
       },
       {
