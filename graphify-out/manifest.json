@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/docs-layout.tsx": {
-    "mtime": 1790179425.5798523,
-    "ast_hash": "f5abc5c45d043b824e05dbca693db2e5",
+    "mtime": 1790196379.0584974,
+    "ast_hash": "fd315875d8f810ed71fdf0cedbc01152",
     "semantic_hash": ""
   },
   "src/components/docs/github-stars.tsx": {
@@ -375,8 +375,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/nav-content.tsx": {
-    "mtime": 1790195935.833324,
-    "ast_hash": "c9fa2e439f1c2a005c6b896623bcf2cd",
+    "mtime": 1790196379.0560758,
+    "ast_hash": "081992a2bcb2ef1fd8d89d8a45f321f9",
     "semantic_hash": ""
   },
   "src/components/docs/reveal.tsx": {

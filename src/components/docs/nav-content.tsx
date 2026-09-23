@@ -152,10 +152,10 @@ export function NavContent({
                 >
                   <CollapsibleTrigger>
                     {group.title}
-                    <ChevronRight className="ml-auto size-3.5 text-muted-foreground/60 transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                    <ChevronRight className="ml-auto size-3.5 text-muted-foreground/60 transition-transform duration-200 ease-out group-data-[state=open]/collapsible:rotate-90" />
                   </CollapsibleTrigger>
                 </SidebarGroupLabel>
-                <CollapsibleContent>
+                <CollapsibleContent className="overflow-hidden duration-200 ease-out data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down motion-reduce:animate-none">
                   <SidebarGroupContent>
                     <SidebarMenu className="mt-1 ml-3.5 w-auto gap-0.5 border-l border-sidebar-border pl-3">
                       {group.items.map((link) => {

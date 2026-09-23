@@ -23,7 +23,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
       <div className="mx-auto max-w-6xl px-6 pt-12 pb-20">
         <div className="flex gap-16">
           <aside className="hidden shrink-0 md:block">
-            <div className="sticky top-20 max-h-[calc(100svh-6rem)] overflow-y-auto pr-2 pb-6">
+            <div className="sticky top-20 max-h-[calc(100svh-6rem)] overflow-x-hidden overflow-y-auto pr-2 pb-6">
               <NavContent pathname={pathname} />
             </div>
           </aside>
