@@ -20,6 +20,7 @@ import { Route as FilterStateShapeTableRouteImport } from './routes/filter-state
 import { Route as FilterToolbarTableRouteImport } from './routes/filter-toolbar-table'
 import { Route as GroupedTableRouteImport } from './routes/grouped-table'
 import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
+import { Route as InventoryAllocationTableRouteImport } from './routes/inventory-allocation-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
 import { Route as LiveStatusTableRouteImport } from './routes/live-status-table'
 import { Route as MasterDetailRouteImport } from './routes/master-detail'
@@ -94,6 +95,12 @@ const HeatmapTableRoute = HeatmapTableRouteImport.update({
   path: '/heatmap-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InventoryAllocationTableRoute =
+  InventoryAllocationTableRouteImport.update({
+    id: '/inventory-allocation-table',
+    path: '/inventory-allocation-table',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const KpiTableRoute = KpiTableRouteImport.update({
   id: '/kpi-table',
   path: '/kpi-table',
@@ -193,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
+  '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
@@ -223,6 +231,7 @@ export interface FileRoutesByTo {
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
+  '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
@@ -254,6 +263,7 @@ export interface FileRoutesById {
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
+  '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/master-detail': typeof MasterDetailRoute
@@ -286,6 +296,7 @@ export interface FileRouteTypes {
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
+    | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/master-detail'
@@ -316,6 +327,7 @@ export interface FileRouteTypes {
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
+    | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/master-detail'
@@ -346,6 +358,7 @@ export interface FileRouteTypes {
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
+    | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/master-detail'
@@ -377,6 +390,7 @@ export interface RootRouteChildren {
   FilterToolbarTableRoute: typeof FilterToolbarTableRoute
   GroupedTableRoute: typeof GroupedTableRoute
   HeatmapTableRoute: typeof HeatmapTableRoute
+  InventoryAllocationTableRoute: typeof InventoryAllocationTableRoute
   KpiTableRoute: typeof KpiTableRoute
   LiveStatusTableRoute: typeof LiveStatusTableRoute
   MasterDetailRoute: typeof MasterDetailRoute
@@ -473,6 +487,13 @@ declare module '@tanstack/react-router' {
       path: '/heatmap-table'
       fullPath: '/heatmap-table'
       preLoaderRoute: typeof HeatmapTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory-allocation-table': {
+      id: '/inventory-allocation-table'
+      path: '/inventory-allocation-table'
+      fullPath: '/inventory-allocation-table'
+      preLoaderRoute: typeof InventoryAllocationTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kpi-table': {
@@ -609,6 +630,7 @@ const rootRouteChildren: RootRouteChildren = {
   FilterToolbarTableRoute: FilterToolbarTableRoute,
   GroupedTableRoute: GroupedTableRoute,
   HeatmapTableRoute: HeatmapTableRoute,
+  InventoryAllocationTableRoute: InventoryAllocationTableRoute,
   KpiTableRoute: KpiTableRoute,
   LiveStatusTableRoute: LiveStatusTableRoute,
   MasterDetailRoute: MasterDetailRoute,

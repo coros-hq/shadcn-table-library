@@ -7,6 +7,8 @@ import { SiteHeader } from '#/components/docs/site-header.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 import { Reveal } from '#/components/docs/reveal.tsx'
+import { navGroups, topLevelLinks } from '#/components/docs/nav-content.tsx'
+import type { NavLink } from '#/components/docs/nav-content.tsx'
 import { LiveStatusLabel } from '#/components/docs/live-status-label.tsx'
 import { Button } from '#/components/ui/button.tsx'
 import DiscordIcon from '#/../public/icons/discord-logo.svg'
@@ -36,72 +38,40 @@ export const Route = createFileRoute('/')({
   component: Home,
 })
 
-interface CategoryLink {
-  title: string
-  to: string
-}
-
 interface Category {
   title: string
   description: string
-  links: CategoryLink[]
+  links: NavLink[]
 }
 
+const categoryDescriptions: Record<string, string> = {
+  'Data Table':
+    'The base primitive — client-side sorting, filtering, and pagination over an in-memory dataset. Everything else builds on this pattern.',
+  SSR: 'For datasets too large to ship to the client — pagination and filtering trigger real server requests instead of slicing an array in the browser.',
+  'Advanced Filters':
+    'Filter toolbars, typed filter state, and URL-synced params — for tables where finding the right rows is the main job.',
+  'Structure / Hierarchy':
+    'Nested and dimensional data — trees, grouped rows, pivoted aggregates, and parent/child record pairs.',
+  'Interaction-heavy':
+    'Tables where the user reshapes the data directly — selecting tree nodes, reordering rows, editing cells in place, resizing and pinning columns.',
+  Animated:
+    'Motion that carries meaning — animated status icons and live indicators for rows that change while you watch.',
+  'Dashboard / Analytics-specific':
+    'Summary rows, side-by-side comparisons, and heatmap cells for dashboards where the table is the analysis surface, not just a record list.',
+  'Export / Density Variants':
+    'Utilities that sit on top of any table — compact/comfortable row density and CSV export, wired through the same column API.',
+  Responsive:
+    'Layouts that stay usable on small screens — rows collapse into cards instead of forcing a horizontal scroll.',
+}
+
+// Derived from the sidebar so every docs page is reachable from the homepage.
 const categories: Category[] = [
-  {
-    title: 'Data Table',
-    description:
-      'The base primitive — client-side sorting, filtering, and pagination over an in-memory dataset. Everything else builds on this pattern.',
-    links: [{ title: 'Data Table', to: '/data-table' }],
-  },
-  {
-    title: 'SSR',
-    description:
-      'For datasets too large to ship to the client — pagination and filtering trigger real server requests instead of slicing an array in the browser.',
-    links: [
-      { title: 'Pagination', to: '/server-table' },
-      { title: 'Filter', to: '/server-filter' },
-    ],
-  },
-  {
-    title: 'Structure / Hierarchy',
-    description:
-      'Nested and dimensional data — trees, grouped rows, pivoted aggregates, and parent/child record pairs.',
-    links: [
-      { title: 'Tree Table', to: '/tree-table' },
-      { title: 'Grouped Table', to: '/grouped-table' },
-      { title: 'Pivot Table', to: '/pivot-table' },
-      { title: 'Master-Detail Table', to: '/master-detail' },
-    ],
-  },
-  {
-    title: 'Interaction-heavy',
-    description:
-      'Tables where the user reshapes the data directly — selecting tree nodes, reordering rows, editing cells in place, resizing columns.',
-    links: [
-      { title: 'Tree Table — Selection', to: '/tree-select' },
-      { title: 'Reorderable Table', to: '/reorder-table' },
-      { title: 'Editable Table', to: '/editable-table' },
-      { title: 'Resizable / Reorderable Columns', to: '/resizable-table' },
-    ],
-  },
-  {
-    title: 'Dashboard / Analytics-specific',
-    description:
-      'Summary rows, side-by-side comparisons, and heatmap cells for dashboards where the table is the analysis surface, not just a record list.',
-    links: [
-      { title: 'Summary / KPI Table', to: '/kpi-table' },
-      { title: 'Comparison Table', to: '/comparison-table' },
-      { title: 'Heatmap Table', to: '/heatmap-table' },
-    ],
-  },
-  {
-    title: 'Export / Density Variants',
-    description:
-      'Utilities that sit on top of any table — compact/comfortable row density and CSV export, wired through the same column API.',
-    links: [{ title: 'Density & Export', to: '/utility-table' }],
-  },
-]
+  { title: 'Data Table', links: topLevelLinks },
+  ...navGroups.map((group) => ({ title: group.title, links: group.items })),
+].map((category) => ({
+  ...category,
+  description: categoryDescriptions[category.title] ?? '',
+}))
 
 const differentiators = [
   {

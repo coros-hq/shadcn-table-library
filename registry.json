@@ -319,6 +319,22 @@
       "dependencies": ["@tanstack/react-table"]
     },
     {
+      "name": "inventory-allocation-table",
+      "type": "registry:block",
+      "title": "Inventory Allocation Table",
+      "description": "Editable inventory grid with expandable batch allocation and live formula columns — reorder point, days of cover, and suggested PO recalculate on every edit, with FEFO auto-allocation.",
+      "files": [
+        { "path": "src/components/inventory-allocation/formulas.ts", "type": "registry:component", "target": "@components/tables/inventory-allocation-table/formulas.ts" },
+        { "path": "src/components/inventory-allocation/editable-cell.tsx", "type": "registry:component", "target": "@components/tables/inventory-allocation-table/editable-cell.tsx" },
+        { "path": "src/components/inventory-allocation/columns.tsx", "type": "registry:component", "target": "@components/tables/inventory-allocation-table/columns.tsx" },
+        { "path": "src/components/inventory-allocation/batch-detail.tsx", "type": "registry:component", "target": "@components/tables/inventory-allocation-table/batch-detail.tsx" },
+        { "path": "src/components/inventory-allocation/data-table.tsx", "type": "registry:component", "target": "@components/tables/inventory-allocation-table/data-table.tsx" },
+        { "path": "src/components/inventory-allocation/index.tsx", "type": "registry:component", "target": "@components/tables/inventory-allocation-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button", "input"],
+      "dependencies": ["@tanstack/react-table"]
+    },
+    {
       "name": "density-export-table",
       "type": "registry:block",
       "title": "Density & Export",

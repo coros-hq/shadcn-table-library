@@ -1,11 +1,11 @@
 # Graph Report - shadcn-table-library  (2026-09-23)
 
 ## Corpus Check
-- 287 files · ~135,095 words
+- 287 files · ~135,131 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1424 nodes · 2736 edges · 116 communities (110 shown, 6 thin omitted)
+- 1424 nodes · 2731 edges · 117 communities (112 shown, 5 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.52)
 - Token cost: 0 input · 0 output
 
@@ -117,6 +117,7 @@
 - [[_COMMUNITY_live-status-table-page.tsx|live-status-table-page.tsx]]
 - [[_COMMUNITY_master-detail-page.tsx|master-detail-page.tsx]]
 - [[_COMMUNITY_pivot-table-page.tsx|pivot-table-page.tsx]]
+- [[_COMMUNITY_resizable-table-page.tsx|resizable-table-page.tsx]]
 - [[_COMMUNITY_index.tsx|index.tsx]]
 - [[_COMMUNITY_tree-table-page.tsx|tree-table-page.tsx]]
 - [[_COMMUNITY_registry.json|registry.json]]
@@ -158,15 +159,15 @@
 - 4-file cycle: `src/components/ssr/filter-example/data-table.tsx -> src/routes/server-filter.ts -> src/components/ssr/filter-example/filter-page.tsx -> src/components/ssr/filter-example/index.tsx -> src/components/ssr/filter-example/data-table.tsx`
 - 4-file cycle: `src/components/ssr/combined-example/data-table.tsx -> src/routes/server-combined-table.ts -> src/components/ssr/combined-example/server-combined-table-page.tsx -> src/components/ssr/combined-example/index.tsx -> src/components/ssr/combined-example/data-table.tsx`
 
-## Communities (116 total, 6 thin omitted)
+## Communities (117 total, 5 thin omitted)
 
 ### Community 0 - "routeTree.gen.ts"
 Cohesion: 0.05
-Nodes (44): TreeReorderPage(), getRouter(), Register, @tanstack/react-router, Route, Route, AnimatedIconsTableRoute, ColumnPinningTableRoute (+36 more)
+Nodes (42): TreeReorderPage(), getRouter(), Register, @tanstack/react-router, Route, AnimatedIconsTableRoute, ColumnPinningTableRoute, ComparisonTableRoute (+34 more)
 
 ### Community 1 - "sidebar.tsx"
 Cohesion: 0.10
-Nodes (26): react, NavGroup, Sidebar(), SidebarContent(), SidebarContext, SidebarContextProps, SidebarFooter(), SidebarGroup() (+18 more)
+Nodes (24): react, Sidebar(), SidebarContext, SidebarContextProps, SidebarFooter(), SidebarGroupAction(), SidebarHeader(), SidebarInput() (+16 more)
 
 ### Community 2 - "table.tsx"
 Cohesion: 0.17
@@ -185,36 +186,36 @@ Cohesion: 0.06
 Nodes (31): dependencies, class-variance-authority, clsx, cmdk, date-fns, @dnd-kit/core, @dnd-kit/modifiers, @dnd-kit/sortable (+23 more)
 
 ### Community 6 - "filter-condition-editor.tsx"
-Cohesion: 0.18
-Nodes (7): Dialog(), DialogContent(), DialogDescription(), DialogFooter(), DialogHeader(), DialogOverlay(), DialogTitle()
+Cohesion: 0.12
+Nodes (21): DraggableResizableHeader(), Card(), CardAction(), CardContent(), CardDescription(), CardFooter(), CardHeader(), CardTitle() (+13 more)
 
 ### Community 7 - "cn"
-Cohesion: 0.10
-Nodes (31): DraggableResizableHeader(), Card(), CardAction(), CardContent(), CardDescription(), CardFooter(), CardHeader(), CardTitle() (+23 more)
+Cohesion: 0.15
+Nodes (13): Field(), FieldContent(), FieldDescription(), FieldError(), FieldGroup(), FieldLabel(), FieldLegend(), FieldSeparator() (+5 more)
 
 ### Community 8 - "devDependencies"
 Cohesion: 0.04
 Nodes (46): devDependencies, @chromatic-com/storybook, eslint, eslint-plugin-storybook, jsdom, playwright, prettier, storybook (+38 more)
 
 ### Community 9 - "index.tsx"
-Cohesion: 0.13
-Nodes (14): allLinks, DocsPager(), PagerLink(), LABELS, LiveStatusLabel(), navGroups, NavLink, topLevelLinks (+6 more)
+Cohesion: 0.18
+Nodes (9): LABELS, LiveStatusLabel(), Reveal(), RevealProps, categories, Category, CategoryLink, differentiators (+1 more)
 
 ### Community 10 - "Button.stories.ts"
 Cohesion: 0.10
 Nodes (19): Button(), ButtonProps, Large, Primary, Secondary, Small, Story, Header() (+11 more)
 
 ### Community 11 - "code-block.tsx"
-Cohesion: 0.40
-Nodes (4): files, GroupedTablePage(), steps, Route
+Cohesion: 0.15
+Nodes (13): allLinks, DocsPager(), PagerLink(), NavGroup, navGroups, NavLink, topLevelLinks, SidebarContent() (+5 more)
 
 ### Community 12 - "copy-install-command.tsx"
 Cohesion: 0.13
-Nodes (13): ComparisonTablePage(), files, steps, InstallCommand(), InstallCommandProps, files, PivotTablePage(), steps (+5 more)
+Nodes (13): ComparisonTablePage(), files, steps, InstallCommand(), InstallCommandProps, files, ResizableTablePage(), steps (+5 more)
 
 ### Community 13 - "docs-layout.tsx"
-Cohesion: 0.11
-Nodes (14): DocsLayout(), DocsLayoutProps, formatStars(), GithubStars(), GlobalSearch(), NavContent(), SiteHeader(), SiteHeaderProps (+6 more)
+Cohesion: 0.09
+Nodes (18): DocsLayout(), DocsLayoutProps, formatStars(), GithubStars(), GlobalSearch(), NavContent(), SiteHeader(), SiteHeaderProps (+10 more)
 
 ### Community 14 - "columns.tsx"
 Cohesion: 0.13
@@ -233,8 +234,8 @@ Cohesion: 0.11
 Nodes (17): aliases, components, hooks, lib, ui, utils, iconLibrary, rsc (+9 more)
 
 ### Community 18 - "component-preview.tsx"
-Cohesion: 0.19
-Nodes (11): ComponentPreviewFile, ComponentPreviewProps, View, files, steps, ToolbarFilterTablePage(), Tabs(), TabsContent() (+3 more)
+Cohesion: 0.36
+Nodes (7): ComponentPreviewFile, ComponentPreviewProps, View, Tabs(), TabsContent(), TabsList(), TabsTrigger()
 
 ### Community 19 - "data-table.tsx"
 Cohesion: 0.24
@@ -301,8 +302,8 @@ Cohesion: 0.22
 Nodes (8): dependencies, description, files, name, registryDependencies, $schema, title, type
 
 ### Community 35 - "scripts"
-Cohesion: 0.40
-Nodes (4): files, ServerCombinedTablePage(), steps, Route
+Cohesion: 0.18
+Nodes (8): ComponentPreview(), files, ServerCombinedTablePage(), steps, files, Route, steps, Route
 
 ### Community 36 - "Mobile Performance — shad-table.dev"
 Cohesion: 0.18
@@ -313,8 +314,8 @@ Cohesion: 0.18
 Nodes (10): 1. `params-filter-table.tsx` has no schema, no canonical, and no OG tags, 2. No `SearchAction` on the homepage `WebSite` schema, 3. No `BreadcrumbList` anywhere, 4. `SoftwareSourceCode` blocks could carry `codeSampleType`/`text`, Critical, Detection Summary, Info, Medium (+2 more)
 
 ### Community 38 - "data-table.tsx"
-Cohesion: 0.18
-Nodes (9): ComponentPreview(), columns, DataTable(), files, ServerFilterPage(), steps, ServerFilterDemo(), files (+1 more)
+Cohesion: 0.19
+Nodes (8): columns, DataTable(), files, ServerFilterPage(), steps, ServerFilterDemo(), files, Route
 
 ### Community 39 - "columns.tsx"
 Cohesion: 0.24
@@ -497,7 +498,7 @@ Cohesion: 0.29
 Nodes (6): 1. Thin content depth on example pages, 2. Near-duplicate page names/topics, Content & On-Page SEO Findings — shad-table.dev, Low, Medium, What Works
 
 ### Community 84 - "Technical SEO Findings — shad-table.dev"
-Cohesion: 0.25
+Cohesion: 0.29
 Nodes (7): 1. Canonical tag and sitemap point at a URL that redirects away, 2. Sitemap is missing 12 of 27 live pages (44% of the site), 3. Missing common security headers, Critical, High, Info / Not Verifiable From This Environment, Technical SEO Findings — shad-table.dev
 
 ### Community 85 - "animated-icons-table-page.tsx"
@@ -509,8 +510,8 @@ Cohesion: 0.33
 Nodes (5): getUsersPage, files, ServerTablePage(), steps, Route
 
 ### Community 87 - "filter-state-shape-page.tsx"
-Cohesion: 0.40
-Nodes (4): files, FilterStateShapePage(), steps, Route
+Cohesion: 0.20
+Nodes (7): files, FilterStateShapePage(), steps, Route, Route, FileRoutesById, FileRoutesByPath
 
 ### Community 88 - "filter-toolbar-page.tsx"
 Cohesion: 0.33
@@ -530,7 +531,7 @@ Nodes (5): columns, OrgNode, TreeDataTable(), data, TreeTableDemo()
 
 ### Community 92 - "tree-reorder-page.tsx"
 Cohesion: 0.40
-Nodes (4): files, ResizableTablePage(), steps, Route
+Nodes (4): EditableTablePage(), files, steps, Route
 
 ### Community 93 - "reorder-table-page.tsx"
 Cohesion: 0.40
@@ -545,24 +546,32 @@ Cohesion: 0.33
 Nodes (5): Action Plan — shad-table.dev, Phase 1: Critical Fixes (This Week), Phase 2: High-Impact Improvements (Weeks 2–3), Phase 3: Content & Authority (Month 2), Phase 4: Monitoring & Iteration (Ongoing)
 
 ### Community 96 - "schema.md"
-Cohesion: 0.40
+Cohesion: 0.33
 Nodes (3): Current State, Recommendations (Medium priority), Schema / Structured Data Findings — shad-table.dev
 
 ### Community 97 - "editable-table-page.tsx"
-Cohesion: 0.10
-Nodes (16): CodeBlock(), CodeBlockHighlight, CodeBlockProps, EditableTablePage(), files, steps, files, Route (+8 more)
+Cohesion: 0.12
+Nodes (13): CodeBlock(), CodeBlockHighlight, CodeBlockProps, files, GroupedTablePage(), steps, files, Route (+5 more)
 
 ### Community 98 - "kpi-table-page.tsx"
 Cohesion: 0.33
 Nodes (5): KpiTableDemo(), files, KpiTablePage(), steps, Route
 
 ### Community 99 - "live-status-table-page.tsx"
-Cohesion: 0.17
-Nodes (9): files, LiveStatusTablePage(), steps, files, Route, steps, Route, Route (+1 more)
+Cohesion: 0.40
+Nodes (4): files, LiveStatusTablePage(), steps, Route
 
 ### Community 100 - "master-detail-page.tsx"
 Cohesion: 0.33
 Nodes (5): MasterDetailDemo(), files, MasterDetailPage(), steps, Route
+
+### Community 101 - "pivot-table-page.tsx"
+Cohesion: 0.40
+Nodes (4): files, PivotTablePage(), steps, Route
+
+### Community 102 - "resizable-table-page.tsx"
+Cohesion: 0.40
+Nodes (3): files, Route, steps
 
 ### Community 104 - "index.tsx"
 Cohesion: 0.17
@@ -589,24 +598,24 @@ Cohesion: 0.83
 Nodes (3): readParam(), useNativeFilters(), writeParam()
 
 ## Knowledge Gaps
-- **682 isolated node(s):** `version`, `tasks`, `boards`, `boardColumns`, `boardTasks` (+677 more)
+- **683 isolated node(s):** `version`, `tasks`, `boards`, `boardColumns`, `boardTasks` (+678 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `cn` to `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `filter-condition-editor.tsx`, `index.tsx`, `docs-layout.tsx`, `columns.tsx`, `server-combined-table-page.tsx`, `component-preview.tsx`, `data-table.tsx`, `popover.tsx`, `filter-toolbar.tsx`, `columns.tsx`, `data-table.tsx`, `columns.tsx`, `tree-select-page.tsx`, `utils.ts`, `index.tsx`, `data-table.tsx`, `columns.tsx`, `badge.tsx`, `code-block-highlight.tsx`, `data-table.tsx`, `data-table.tsx`, `data-table.tsx`, `index.tsx`, `index.tsx`, `index.tsx`, `index.tsx`, `editable-table-page.tsx`, `pivot-table-page.tsx`?**
-  _High betweenness centrality (0.169) - this node is a cross-community bridge._
+- **Why does `cn()` connect `filter-condition-editor.tsx` to `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `cn`, `index.tsx`, `code-block.tsx`, `docs-layout.tsx`, `columns.tsx`, `server-combined-table-page.tsx`, `component-preview.tsx`, `data-table.tsx`, `popover.tsx`, `filter-toolbar.tsx`, `columns.tsx`, `data-table.tsx`, `columns.tsx`, `tree-select-page.tsx`, `utils.ts`, `index.tsx`, `data-table.tsx`, `columns.tsx`, `badge.tsx`, `code-block-highlight.tsx`, `data-table.tsx`, `data-table.tsx`, `data-table.tsx`, `index.tsx`, `index.tsx`, `index.tsx`, `index.tsx`, `editable-table-page.tsx`?**
+  _High betweenness centrality (0.177) - this node is a cross-community bridge._
 - **Why does `react` connect `sidebar.tsx` to `Button.stories.ts`, `dependencies`, `filter-toolbar.tsx`?**
   _High betweenness centrality (0.087) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `devDependencies`, `sidebar.tsx`?**
   _High betweenness centrality (0.072) - this node is a cross-community bridge._
 - **What connects `version`, `tasks`, `boards` to the rest of the system?**
-  _682 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _683 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `routeTree.gen.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.04591836734693878 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.048484848484848485 - nodes in this community are weakly interconnected._
 - **Should `sidebar.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.1028225806451613 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09852216748768473 - nodes in this community are weakly interconnected._
 - **Should `data-table.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.14126984126984127 - nodes in this community are weakly interconnected._

@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   ".impeccable/hook.cache.json": {
-    "mtime": 1790161013.2813342,
-    "ast_hash": "cc52a9a02a1f1c8b3b1561d8ee1024f4",
+    "mtime": 1790160849.7372417,
+    "ast_hash": "7f87870e5e8a9b6eeaa447f81716afd4",
     "semantic_hash": ""
   },
   ".inkwell/app.json": {
@@ -1170,8 +1170,8 @@
     "semantic_hash": ""
   },
   "src/routes/index.tsx": {
-    "mtime": 1790161244.6425586,
-    "ast_hash": "1bc396e65db84a600442ffd72e19c1f1",
+    "mtime": 1790008245.694529,
+    "ast_hash": "9bbfc3f4d317d6abbebe4c233df02a63",
     "semantic_hash": ""
   },
   "src/routes/kpi-table.ts": {

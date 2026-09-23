@@ -20,8 +20,8 @@
     "semantic_hash": ""
   },
   ".impeccable/hook.cache.json": {
-    "mtime": 1790161013.2813342,
-    "ast_hash": "cc52a9a02a1f1c8b3b1561d8ee1024f4",
+    "mtime": 1790008050.356319,
+    "ast_hash": "b8114deabef88e3cd2ff55d93407cd96",
     "semantic_hash": ""
   },
   ".inkwell/app.json": {
@@ -75,37 +75,37 @@
     "semantic_hash": ""
   },
   "public/r/animated-icons-table.json": {
-    "mtime": 1790106764.6876678,
+    "mtime": 1789907531.067715,
     "ast_hash": "566985278f01e1e975557e6cfa330223",
     "semantic_hash": ""
   },
   "public/r/column-pinning-table.json": {
-    "mtime": 1790106764.6851993,
+    "mtime": 1789907531.0678267,
     "ast_hash": "aa1eb45be5af5cd0bfdb21902138708f",
     "semantic_hash": ""
   },
   "public/r/comparison-table.json": {
-    "mtime": 1790106764.6892602,
+    "mtime": 1786117826.2780035,
     "ast_hash": "13f88480011859cd12d7bb3c8d260925",
     "semantic_hash": ""
   },
   "public/r/conditional-formatting-table.json": {
-    "mtime": 1790106764.6909993,
+    "mtime": 1789907531.0679183,
     "ast_hash": "d84ee60030966cc82983356c17132c1e",
     "semantic_hash": ""
   },
   "public/r/data-table.json": {
-    "mtime": 1790106764.6812277,
+    "mtime": 1789907531.0680885,
     "ast_hash": "c98212dfa71ffefd49b21ff9ca5181b2",
     "semantic_hash": ""
   },
   "public/r/density-export-table.json": {
-    "mtime": 1790106764.6921449,
+    "mtime": 1786117826.2786708,
     "ast_hash": "d97d1cba6aedc5c88162858a48a8cc76",
     "semantic_hash": ""
   },
   "public/r/editable-table.json": {
-    "mtime": 1790106764.6869524,
+    "mtime": 1789907531.0682237,
     "ast_hash": "d534588b830db2200e0a53967aee58ce",
     "semantic_hash": ""
   },
@@ -120,73 +120,73 @@
     "semantic_hash": ""
   },
   "public/r/grouped-table.json": {
-    "mtime": 1790106764.685583,
+    "mtime": 1786117826.276028,
     "ast_hash": "b5da07fbbfc5754376fd14ef240e0bb9",
     "semantic_hash": ""
   },
   "public/r/heatmap-table.json": {
-    "mtime": 1790106764.689585,
+    "mtime": 1786117826.2783327,
     "ast_hash": "76b062a59141c24d96c2cacc4ef19dfb",
     "semantic_hash": ""
   },
   "public/r/kpi-table.json": {
-    "mtime": 1790106764.6887474,
+    "mtime": 1786117826.2776341,
     "ast_hash": "8926649310c23567efdb0b29fcd30400",
     "semantic_hash": ""
   },
   "public/r/live-status-table.json": {
-    "mtime": 1790106764.6881921,
+    "mtime": 1789907531.0685453,
     "ast_hash": "3a1ecdae9e47000f55ecd299c7f1d03d",
     "semantic_hash": ""
   },
   "public/r/master-detail-table.json": {
-    "mtime": 1790106764.6863987,
+    "mtime": 1786117826.2769659,
     "ast_hash": "115961b75bb94f1147eb6c32b3219a36",
     "semantic_hash": ""
   },
   "public/r/mobile-cards-table.json": {
-    "mtime": 1790106764.6926847,
+    "mtime": 1789907531.0686235,
     "ast_hash": "a6350f93411e8d08bf6ccf6011910e17",
     "semantic_hash": ""
   },
   "public/r/pivot-table.json": {
-    "mtime": 1790106764.6860502,
+    "mtime": 1786117826.2764502,
     "ast_hash": "e67e00cd56d02bcae5c0bc1693e539b6",
     "semantic_hash": ""
   },
   "public/r/production-dashboard-table.json": {
-    "mtime": 1790106764.6914537,
+    "mtime": 1789907531.0687342,
     "ast_hash": "d67e18c7b7b476f4ec76699176bdba7c",
     "semantic_hash": ""
   },
   "public/r/registry.json": {
-    "mtime": 1790106764.692952,
-    "ast_hash": "614ce082c0f88135b2a13d9da165da11",
+    "mtime": 1790098784.5668404,
+    "ast_hash": "bbc2d25b9476a625c428b0395aa587e2",
     "semantic_hash": ""
   },
   "public/r/reorderable-table.json": {
-    "mtime": 1790106764.6843534,
+    "mtime": 1789907531.069121,
     "ast_hash": "8ba384c0561c867784d5a007202eec68",
     "semantic_hash": ""
   },
   "public/r/resizable-reorderable-columns-table.json": {
-    "mtime": 1790106764.684849,
+    "mtime": 1789907531.0692425,
     "ast_hash": "ee2090baa1ef47b4e25ede37677a26b3",
     "semantic_hash": ""
   },
   "public/r/server-combined-table.json": {
-    "mtime": 1790106764.6830254,
-    "ast_hash": "60fce83836d53bea6af0a2af871da469",
+    "mtime": 1789907531.0694315,
+    "ast_hash": "7806bdfb42670b4c45249d15302f2e0b",
     "semantic_hash": ""
   },
   "public/r/server-filter-table.json": {
-    "mtime": 1790106764.6826348,
-    "ast_hash": "26ad8391813b3219ff59c58b5fe8df5c",
+    "mtime": 1789907531.0695846,
+    "ast_hash": "302ec261676f37dd333c1fb73e877928",
     "semantic_hash": ""
   },
   "public/r/server-pagination-table.json": {
-    "mtime": 1790106764.6820788,
-    "ast_hash": "571a884902cbeac298da75a27d250524",
+    "mtime": 1789907531.0697427,
+    "ast_hash": "5ca087a191de3a84ef3ef1cc1ef70cf7",
     "semantic_hash": ""
   },
   "public/r/toolbar-filter-table.json": {
@@ -195,23 +195,23 @@
     "semantic_hash": ""
   },
   "public/r/tree-table-reorder.json": {
-    "mtime": 1790106764.684022,
+    "mtime": 1786117826.2748132,
     "ast_hash": "8ef02ca493aceb848a99520c9d58d795",
     "semantic_hash": ""
   },
   "public/r/tree-table-selection.json": {
-    "mtime": 1790106764.683705,
+    "mtime": 1786117826.274426,
     "ast_hash": "e34b6e7c166f662e80c3ed1ae473e391",
     "semantic_hash": ""
   },
   "public/r/tree-table.json": {
-    "mtime": 1790106764.683318,
+    "mtime": 1786117826.2739785,
     "ast_hash": "82fcf0675444c69b7163ba9beeb2b8e0",
     "semantic_hash": ""
   },
   "registry.json": {
-    "mtime": 1790099410.852765,
-    "ast_hash": "614ce082c0f88135b2a13d9da165da11",
+    "mtime": 1790098784.5669622,
+    "ast_hash": "bbc2d25b9476a625c428b0395aa587e2",
     "semantic_hash": ""
   },
   "shad-table.dev-audit/audit-data.json": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/docs-layout.tsx": {
-    "mtime": 1790160849.716276,
-    "ast_hash": "8a0073d2ddd914e54e2d971fd3de705e",
+    "mtime": 1789907531.0755768,
+    "ast_hash": "6d1a469786f21cd5a3a534719460aa26",
     "semantic_hash": ""
   },
   "src/components/docs/github-stars.tsx": {
@@ -375,8 +375,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/nav-content.tsx": {
-    "mtime": 1790099406.3016713,
-    "ast_hash": "ed450cd35132b7376cae03ef414c9bcf",
+    "mtime": 1789907531.0759475,
+    "ast_hash": "2ca1f585186e81c06a4dbf7e4748abf7",
     "semantic_hash": ""
   },
   "src/components/docs/reveal.tsx": {
@@ -1105,8 +1105,8 @@
     "semantic_hash": ""
   },
   "src/routeTree.gen.ts": {
-    "mtime": 1790099412.2385252,
-    "ast_hash": "a39fdb8763ca67616e7077ac6b56f661",
+    "mtime": 1789907531.0836556,
+    "ast_hash": "5cce8caa39423270609f6d7067e4ed43",
     "semantic_hash": ""
   },
   "src/router.tsx": {
@@ -1170,8 +1170,8 @@
     "semantic_hash": ""
   },
   "src/routes/index.tsx": {
-    "mtime": 1790161244.6425586,
-    "ast_hash": "1bc396e65db84a600442ffd72e19c1f1",
+    "mtime": 1790008245.694529,
+    "ast_hash": "9bbfc3f4d317d6abbebe4c233df02a63",
     "semantic_hash": ""
   },
   "src/routes/kpi-table.ts": {
@@ -1492,51 +1492,6 @@
   "src/stories/assets/youtube.svg": {
     "mtime": 1784629608.7868083,
     "ast_hash": "42e8d9907ff8affc79bc8562059b4638",
-    "semantic_hash": ""
-  },
-  "public/r/inventory-allocation-table.json": {
-    "mtime": 1790106764.6918516,
-    "ast_hash": "e9fdc3b3a56c9f6a742f90d8e8d770b4",
-    "semantic_hash": ""
-  },
-  "src/components/inventory-allocation/batch-detail.tsx": {
-    "mtime": 1790106763.8917868,
-    "ast_hash": "f5500a0a4f04c177807c2d81287451a2",
-    "semantic_hash": ""
-  },
-  "src/components/inventory-allocation/columns.tsx": {
-    "mtime": 1790099315.6164303,
-    "ast_hash": "0b523389834312552d78b3a6e6721d8a",
-    "semantic_hash": ""
-  },
-  "src/components/inventory-allocation/data-table.tsx": {
-    "mtime": 1790099343.6433926,
-    "ast_hash": "52d49c253e6f1ec4724426041a401f59",
-    "semantic_hash": ""
-  },
-  "src/components/inventory-allocation/editable-cell.tsx": {
-    "mtime": 1790099282.607668,
-    "ast_hash": "e95fd2ddcfe3e845c46293acc1c8c354",
-    "semantic_hash": ""
-  },
-  "src/components/inventory-allocation/formulas.ts": {
-    "mtime": 1790099273.1000836,
-    "ast_hash": "3c635244ab27dbd8d23d52e568fe0ad7",
-    "semantic_hash": ""
-  },
-  "src/components/inventory-allocation/index.tsx": {
-    "mtime": 1790099372.8484838,
-    "ast_hash": "b539873822ac20c8ad139d543c62bc86",
-    "semantic_hash": ""
-  },
-  "src/routes/inventory-allocation-table.tsx": {
-    "mtime": 1790099406.1296327,
-    "ast_hash": "587c376b2ef5f64cba5ab84a85d8e7ec",
-    "semantic_hash": ""
-  },
-  "src/components/docs/docs-pager.tsx": {
-    "mtime": 1790160878.638902,
-    "ast_hash": "5d60d1829abc0d84b3b9faad96441817",
     "semantic_hash": ""
   }
 }

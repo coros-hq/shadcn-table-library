@@ -69,6 +69,7 @@ export const navGroups: NavGroup[] = [
       { title: 'Editable Table', to: '/editable-table' },
       { title: 'Resizable / Reorderable Columns', to: '/resizable-table' },
       { title: 'Column Pinning', to: '/column-pinning-table' },
+      { title: 'Inventory Allocation', to: '/inventory-allocation-table' },
     ],
   },
   {

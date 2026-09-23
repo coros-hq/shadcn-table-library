@@ -101,6 +101,7 @@
   "99": "live-status-table-page.tsx",
   "100": "master-detail-page.tsx",
   "101": "pivot-table-page.tsx",
+  "102": "resizable-table-page.tsx",
   "104": "index.tsx",
   "105": "tree-table-page.tsx",
   "106": "registry.json",
