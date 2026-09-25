@@ -107,7 +107,6 @@
   "105": "data-table.tsx",
   "106": "registry.json",
   "107": "registry.json",
-  "108": "data.ts",
   "109": "live-status-table-page.tsx",
   "110": "use-native-filters.ts",
   "111": "vercel.json",
@@ -126,11 +125,9 @@
   "124": "params-filter-table.tsx",
   "125": "Route",
   "126": "utility-table-page.tsx",
-  "127": "deployments-page.tsx",
   "128": "export-config-page.tsx",
-  "129": "index.tsx",
   "130": "export-selected-page.tsx",
-  "131": "async-actions-page.tsx",
+  "134": "kpi-table-page.tsx",
   "137": "pivot-table.ts",
   "146": "tree-reorder.ts"
 }

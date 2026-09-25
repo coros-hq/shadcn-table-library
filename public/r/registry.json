@@ -78,6 +78,44 @@
       "dependencies": ["@tanstack/react-table"]
     },
     {
+      "name": "logs-table",
+      "type": "registry:block",
+      "title": "Logs Table",
+      "description": "Observability-style log explorer with a date range picker, multi-select level, service, and status filters with live counts, highlighted search, and rows that expand into the full event.",
+      "files": [
+        { "path": "src/components/logs/data.ts", "type": "registry:component", "target": "@components/tables/logs-table/data.ts" },
+        { "path": "src/components/logs/columns.tsx", "type": "registry:component", "target": "@components/tables/logs-table/columns.tsx" },
+        { "path": "src/components/logs/use-logs-table.ts", "type": "registry:component", "target": "@components/tables/logs-table/use-logs-table.ts" },
+        { "path": "src/components/logs/log-fields.tsx", "type": "registry:component", "target": "@components/tables/logs-table/log-fields.tsx" },
+        { "path": "src/components/logs/faceted-filter.tsx", "type": "registry:component", "target": "@components/tables/logs-table/faceted-filter.tsx" },
+        { "path": "src/components/logs/date-range-filter.tsx", "type": "registry:component", "target": "@components/tables/logs-table/date-range-filter.tsx" },
+        { "path": "src/components/logs/toolbar.tsx", "type": "registry:component", "target": "@components/tables/logs-table/toolbar.tsx" },
+        { "path": "src/components/logs/data-table.tsx", "type": "registry:component", "target": "@components/tables/logs-table/data-table.tsx" },
+        { "path": "src/components/logs/index.tsx", "type": "registry:component", "target": "@components/tables/logs-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "badge", "input", "popover", "command", "calendar"],
+      "dependencies": ["@tanstack/react-table", "react-day-picker"]
+    },
+    {
+      "name": "logs-table-side-panel",
+      "type": "registry:block",
+      "title": "Logs Table — Side Panel",
+      "description": "The logs explorer with a details panel on the right: click or arrow through events while the table hides columns to make room.",
+      "files": [
+        { "path": "src/components/logs/data.ts", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/data.ts" },
+        { "path": "src/components/logs/columns.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/columns.tsx" },
+        { "path": "src/components/logs/use-logs-table.ts", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/use-logs-table.ts" },
+        { "path": "src/components/logs/log-fields.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/log-fields.tsx" },
+        { "path": "src/components/logs/faceted-filter.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/faceted-filter.tsx" },
+        { "path": "src/components/logs/date-range-filter.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/date-range-filter.tsx" },
+        { "path": "src/components/logs/toolbar.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/toolbar.tsx" },
+        { "path": "src/components/logs/side-panel-data-table.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/side-panel-data-table.tsx" },
+        { "path": "src/components/logs/side-panel-demo.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "badge", "input", "popover", "command", "calendar"],
+      "dependencies": ["@tanstack/react-table", "react-day-picker"]
+    },
+    {
       "name": "tree-table",
       "type": "registry:block",
       "title": "Tree Table",

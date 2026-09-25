@@ -50,6 +50,7 @@ export const navGroups: NavGroup[] = [
       { title: 'Filter Toolbar', to: '/filter-toolbar-table' },
       { title: 'Params Filter Table', to: '/params-filter-table' },
       { title: 'Deployments', to: '/deployments-table' },
+      { title: 'Logs', to: '/logs-table' },
     ],
   },
   {

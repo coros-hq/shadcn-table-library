@@ -27,6 +27,7 @@ import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
 import { Route as InventoryAllocationTableRouteImport } from './routes/inventory-allocation-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
 import { Route as LiveStatusTableRouteImport } from './routes/live-status-table'
+import { Route as LogsTableRouteImport } from './routes/logs-table'
 import { Route as MasterDetailRouteImport } from './routes/master-detail'
 import { Route as MobileCardsTableRouteImport } from './routes/mobile-cards-table'
 import { Route as ParamsFilterTableRouteImport } from './routes/params-filter-table'
@@ -135,6 +136,11 @@ const LiveStatusTableRoute = LiveStatusTableRouteImport.update({
   path: '/live-status-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LogsTableRoute = LogsTableRouteImport.update({
+  id: '/logs-table',
+  path: '/logs-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MasterDetailRoute = MasterDetailRouteImport.update({
   id: '/master-detail',
   path: '/master-detail',
@@ -231,6 +237,7 @@ export interface FileRoutesByFullPath {
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
+  '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
@@ -266,6 +273,7 @@ export interface FileRoutesByTo {
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
+  '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
@@ -302,6 +310,7 @@ export interface FileRoutesById {
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
+  '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
@@ -339,6 +348,7 @@ export interface FileRouteTypes {
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
+    | '/logs-table'
     | '/master-detail'
     | '/mobile-cards-table'
     | '/params-filter-table'
@@ -374,6 +384,7 @@ export interface FileRouteTypes {
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
+    | '/logs-table'
     | '/master-detail'
     | '/mobile-cards-table'
     | '/params-filter-table'
@@ -409,6 +420,7 @@ export interface FileRouteTypes {
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
+    | '/logs-table'
     | '/master-detail'
     | '/mobile-cards-table'
     | '/params-filter-table'
@@ -445,6 +457,7 @@ export interface RootRouteChildren {
   InventoryAllocationTableRoute: typeof InventoryAllocationTableRoute
   KpiTableRoute: typeof KpiTableRoute
   LiveStatusTableRoute: typeof LiveStatusTableRoute
+  LogsTableRoute: typeof LogsTableRoute
   MasterDetailRoute: typeof MasterDetailRoute
   MobileCardsTableRoute: typeof MobileCardsTableRoute
   ParamsFilterTableRoute: typeof ParamsFilterTableRoute
@@ -590,6 +603,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LiveStatusTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/logs-table': {
+      id: '/logs-table'
+      path: '/logs-table'
+      fullPath: '/logs-table'
+      preLoaderRoute: typeof LogsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/master-detail': {
       id: '/master-detail'
       path: '/master-detail'
@@ -717,6 +737,7 @@ const rootRouteChildren: RootRouteChildren = {
   InventoryAllocationTableRoute: InventoryAllocationTableRoute,
   KpiTableRoute: KpiTableRoute,
   LiveStatusTableRoute: LiveStatusTableRoute,
+  LogsTableRoute: LogsTableRoute,
   MasterDetailRoute: MasterDetailRoute,
   MobileCardsTableRoute: MobileCardsTableRoute,
   ParamsFilterTableRoute: ParamsFilterTableRoute,
