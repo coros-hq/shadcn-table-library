@@ -13,13 +13,16 @@ import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 export const Route = createFileRoute('/data-table')({
   head: () => ({
     meta: [
-      { title: 'Data Table — ShadTable' },
+      { title: 'Shadcn Data Table (TanStack Table Example) — ShadTable' },
       {
         name: 'description',
         content:
-          'A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.',
+          'A data table for shadcn/ui and TanStack Table. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.',
       },
-      { property: 'og:title', content: 'Data Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Data Table (TanStack Table Example) — ShadTable',
+      },
       {
         property: 'og:description',
         content:
@@ -96,7 +99,7 @@ const steps = [
   {
     title: 'Clicking a header sorts in place',
     description:
-      "Each sortable TableHead wires its onClick to column.getToggleSortingHandler(). TanStack re-sorts the already-filtered rows via getSortedRowModel — sorting, filtering, and pagination all compose on the same in-memory row list.",
+      'Each sortable TableHead wires its onClick to column.getToggleSortingHandler(). TanStack re-sorts the already-filtered rows via getSortedRowModel — sorting, filtering, and pagination all compose on the same in-memory row list.',
     file: 'src/components/basic/data-table.tsx',
     code: `<TableHead
   onClick={sortHandler}
@@ -109,7 +112,7 @@ const steps = [
   {
     title: 'Page size is just table.setPageSize',
     description:
-      "The page-size Select calls table.setPageSize directly, which recalculates pageIndex for you so the current scroll position stays sane. getPaginationRowModel then slices the filtered/sorted rows into pages, all without leaving the browser.",
+      'The page-size Select calls table.setPageSize directly, which recalculates pageIndex for you so the current scroll position stays sane. getPaginationRowModel then slices the filtered/sorted rows into pages, all without leaving the browser.',
     file: 'src/components/basic/data-table.tsx',
     code: `<Select
   value={pagination.pageSize.toString()}
@@ -125,12 +128,14 @@ function Home() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">Data Table</h1>
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+            Shadcn Data Table
+          </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A sortable, filterable, paginated table with a composable toolbar
-            for column-specific filters. Sorting, filtering, and pagination
-            all happen entirely in the browser — the whole dataset is sent to
-            the client once, and TanStack Table slices it locally.
+            for column-specific filters. Sorting, filtering, and pagination all
+            happen entirely in the browser — the whole dataset is sent to the
+            client once, and TanStack Table slices it locally.
           </p>
         </div>
 

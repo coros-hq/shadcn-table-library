@@ -5,13 +5,16 @@ import { getUserPageWithFilter } from '#/components/ssr/data'
 export const Route = createFileRoute('/server-filter')({
   head: () => ({
     meta: [
-      { title: 'SSR Filter — ShadTable' },
+      { title: 'Shadcn Server-Side Filtering Table — ShadTable' },
       {
         name: 'description',
         content:
-          'Filtering by column, resolved on the server the same way SSR Pagination resolves pages — every filter change is a real server request, not an in-memory slice.',
+          'A server-side filtering table for shadcn/ui and TanStack Table. Filtering by column, resolved on the server the same way SSR Pagination resolves pages — every filter change is a real server request, not an in-memory slice.',
       },
-      { property: 'og:title', content: 'SSR Filter — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Server-Side Filtering Table — ShadTable',
+      },
       {
         property: 'og:description',
         content:

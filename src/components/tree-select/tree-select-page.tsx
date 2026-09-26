@@ -42,7 +42,7 @@ const steps = [
   {
     title: 'The header checkbox reflects the whole tree',
     description:
-      "table.getIsAllRowsSelected() and table.getIsSomeRowsSelected() aggregate across every row in the table, not just the visible/expanded ones, so the header checkbox is accurate even while some branches are collapsed. table.toggleAllRowsSelected(true) cascades a full select-all through every branch in one call.",
+      'table.getIsAllRowsSelected() and table.getIsSomeRowsSelected() aggregate across every row in the table, not just the visible/expanded ones, so the header checkbox is accurate even while some branches are collapsed. table.toggleAllRowsSelected(true) cascades a full select-all through every branch in one call.',
     file: 'src/components/tree-select/columns.tsx',
     code: `header: ({ table }) => (
   <Checkbox
@@ -68,7 +68,7 @@ const totalCount = table.getRowModel().flatRows.length`,
   {
     title: 'getSelectedRowModel().rows is not a flat count for tree data',
     description:
-      "For nested rows, .rows only contains the top-level selected nodes with their selected descendants nested underneath (it preserves the hierarchy), so checking Engineering alone reports rows.length === 1 even though 7 rows are actually checked. .flatRows walks every selected row at every depth, which is what a \"12 of 25 selected\" style summary actually needs.",
+      'For nested rows, .rows only contains the top-level selected nodes with their selected descendants nested underneath (it preserves the hierarchy), so checking Engineering alone reports rows.length === 1 even though 7 rows are actually checked. .flatRows walks every selected row at every depth, which is what a "12 of 25 selected" style summary actually needs.',
     file: 'src/components/tree-select/data-table.tsx',
     code: `// Selecting just "Engineering" (which cascades to 6 descendants):
 table.getSelectedRowModel().rows.length     // 1 — only the root match
@@ -82,12 +82,12 @@ export function TreeSelectPage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Tree Table — Checkbox Selection
+            Shadcn Tree Table — Checkbox Selection
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            The same department/team/employee tree, with a checkbox column
-            that cascades selection from a parent down to every descendant
-            and reports indeterminate state for partially-selected branches.
+            The same department/team/employee tree, with a checkbox column that
+            cascades selection from a parent down to every descendant and
+            reports indeterminate state for partially-selected branches.
           </p>
         </div>
 

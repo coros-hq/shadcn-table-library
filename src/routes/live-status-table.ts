@@ -4,13 +4,16 @@ import { LiveStatusTablePage } from '#/components/live-status/live-status-table-
 export const Route = createFileRoute('/live-status-table')({
   head: () => ({
     meta: [
-      { title: 'Live Status Indicators — ShadTable' },
+      { title: 'Shadcn Table with Live Status Indicators — ShadTable' },
       {
         name: 'description',
         content:
-          'A service-health table where status and latency update live on a timer, with a pulsing indicator for actively-monitored states.',
+          'A live status table for shadcn/ui and TanStack Table. A service-health table where status and latency update live on a timer, with a pulsing indicator for actively-monitored states.',
       },
-      { property: 'og:title', content: 'Live Status Indicators — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table with Live Status Indicators — ShadTable',
+      },
       {
         property: 'og:description',
         content:

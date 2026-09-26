@@ -39,9 +39,9 @@ const steps = [
 }`,
   },
   {
-    title: "Dragging onto a different branch is a silent no-op",
+    title: 'Dragging onto a different branch is a silent no-op',
     description:
-      "Drag Ava Thompson from Frontend and hover over a row inside Design — reorderSiblings never finds an array containing both ids, so moved stays false and onDataChange is never called. The row animates back to its original position because the underlying data, and therefore its position in rowIds, never changed.",
+      'Drag Ava Thompson from Frontend and hover over a row inside Design — reorderSiblings never finds an array containing both ids, so moved stays false and onDataChange is never called. The row animates back to its original position because the underlying data, and therefore its position in rowIds, never changed.',
     file: 'src/components/tree-reorder/data-table.tsx',
     code: `function handleDragEnd(event: DragEndEvent) {
   const { active, over } = event
@@ -81,12 +81,12 @@ export function TreeReorderPage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Tree Table — Reorder
+            Shadcn Tree Table — Reorder
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             The same department/team/employee tree, with rows draggable by a
-            handle — reordering is scoped to siblings within the same parent,
-            so a department can't accidentally get dropped inside a team.
+            handle — reordering is scoped to siblings within the same parent, so
+            a department can't accidentally get dropped inside a team.
           </p>
         </div>
 

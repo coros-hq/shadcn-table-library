@@ -4,13 +4,16 @@ import { ReorderableTablePage } from '#/components/reorder/reorder-table-page'
 export const Route = createFileRoute('/reorder-table')({
   head: () => ({
     meta: [
-      { title: 'Reorderable Table — ShadTable' },
+      { title: 'Shadcn Drag-and-Drop Reorderable Table — ShadTable' },
       {
         name: 'description',
         content:
-          'Drag rows to reorder them, built on @dnd-kit/sortable rather than any table-specific drag logic.',
+          'A drag-and-drop reorderable table for shadcn/ui and TanStack Table. Drag rows to reorder them, built on @dnd-kit/sortable rather than any table-specific drag logic.',
       },
-      { property: 'og:title', content: 'Reorderable Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Drag-and-Drop Reorderable Table — ShadTable',
+      },
       {
         property: 'og:description',
         content:

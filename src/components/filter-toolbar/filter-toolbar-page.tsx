@@ -55,9 +55,10 @@ const files = [
 
 const steps = [
   {
-    title: 'Operators — and the value shape each one needs — live in one registry',
+    title:
+      'Operators — and the value shape each one needs — live in one registry',
     description:
-      "operatorRegistry maps each filterVariant to its valid operators (multiSelect gets \"is any of\" / \"is none of\", dateRange gets \"is between\", ...), and each operator declares a valueShape: none, single, array, or range. Neither the builder UI nor the filterFn hardcode a per-column operator list — both read it from here.",
+      'operatorRegistry maps each filterVariant to its valid operators (multiSelect gets "is any of" / "is none of", dateRange gets "is between", ...), and each operator declares a valueShape: none, single, array, or range. Neither the builder UI nor the filterFn hardcode a per-column operator list — both read it from here.',
     file: 'src/components/filter-toolbar/operators.ts',
     code: `export const operatorRegistry: Record<FilterVariant, OperatorDef[]> = {
   multiSelect: [
@@ -75,7 +76,8 @@ const steps = [
 }`,
   },
   {
-    title: 'A condition is { columnId, operator, value } — one generic filterFn evaluates all of them',
+    title:
+      'A condition is { columnId, operator, value } — one generic filterFn evaluates all of them',
     description:
       'Every filterable column shares the same conditionFilterFn. The comparison it runs is picked by filterValue.operator (contains, isAnyOf, isBetween, ...), not by which column the filterFn is attached to — so adding a new variant only means adding operators to the registry and a case to evaluateOperator, not a new filterFn per column.',
     file: 'src/components/filter-toolbar/filter-fns.ts',
@@ -87,7 +89,8 @@ const steps = [
 conditionFilterFn.autoRemove = (value) => !value?.operator`,
   },
   {
-    title: 'The builder walks column → operator → value, reusing existing controls',
+    title:
+      'The builder walks column → operator → value, reusing existing controls',
     description:
       "FilterConditionEditor is one component used for both adding a new filter and editing an existing one: pick a column (skipped when editing), pick an operator for that column's variant, then FilterValueInput renders whichever control matches the operator's valueShape — reusing MultiSelectFilter and DateRangeFilter as-is rather than rebuilding them.",
     file: 'src/components/filter-toolbar/filter-value-input.tsx',
@@ -102,7 +105,8 @@ switch (variant) {
 }`,
   },
   {
-    title: 'Conditions, pills, and chips all read the same columnFilters — nothing is stored twice',
+    title:
+      'Conditions, pills, and chips all read the same columnFilters — nothing is stored twice',
     description:
       'useFilterConditions maps table.getState().columnFilters back into FilterCondition[] for columns with a filterVariant. The toolbar pills, "+ Add filter" menu, and ActiveFilterChips (via useActiveFilters) all derive from that single call — removing a condition just calls column.setFilterValue(undefined) and every view updates on the next render.',
     file: 'src/components/filter-toolbar/use-filter-conditions.ts',
@@ -128,14 +132,19 @@ export function FilterToolbarPage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Filter Toolbar
+            Shadcn Filter Toolbar
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             An operator-based filter builder, Notion/tablecn-style. "+ Add
             filter" walks column → operator → value; each active condition
             becomes an editable pill; one generic filterFn evaluates every
-            column by reading the operator off its condition instead of a
-            fixed per-variant comparison.
+            column by reading the operator off its condition instead of a fixed
+            per-variant comparison.
+          </p>
+          <p className="mt-2 max-w-2xl text-base text-muted-foreground text-balance">
+            Use this when users need to build their own queries — “contains”,
+            “is between”, “before date” — across many columns, instead of a
+            fixed set of dropdowns.
           </p>
         </div>
 

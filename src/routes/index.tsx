@@ -13,7 +13,7 @@ import GithubIcon from '#/../public/icons/github-logo.svg'
 export const Route = createFileRoute('/')({
   head: () => ({
     meta: [
-      { title: 'ShadTable — Composable table components for shadcn/ui' },
+      { title: 'ShadTable — Shadcn Data Table & Table Components' },
       {
         name: 'description',
         content:
@@ -21,7 +21,7 @@ export const Route = createFileRoute('/')({
       },
       {
         property: 'og:title',
-        content: 'ShadTable — Composable table components for shadcn/ui',
+        content: 'ShadTable — Shadcn Data Table & Table Components',
       },
       {
         property: 'og:description',
@@ -64,7 +64,6 @@ function Home() {
         <section className="relative flex flex-1 items-center">
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
             <div>
-
               <h1 className="mt-5 text-4xl font-normal tracking-tight text-balance sm:text-5xl">
                 Table components for the parts of your app that a design system
                 doesn&apos;t cover.

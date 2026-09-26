@@ -4,13 +4,16 @@ import { MasterDetailPage } from '#/components/master-detail/master-detail-page'
 export const Route = createFileRoute('/master-detail')({
   head: () => ({
     meta: [
-      { title: 'Master-Detail Table — ShadTable' },
+      { title: 'Shadcn Master-Detail Table (Expandable Rows) — ShadTable' },
       {
         name: 'description',
         content:
-          "Expand an order to reveal its shipping address and a nested sub-table of line items — a full-width detail row rendered directly beneath the row that owns it.",
+          'A master-detail table with expandable rows for shadcn/ui and TanStack Table. Expand an order to reveal its shipping address and a nested sub-table of line items — a full-width detail row rendered directly beneath the row that owns it.',
       },
-      { property: 'og:title', content: 'Master-Detail Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Master-Detail Table (Expandable Rows) — ShadTable',
+      },
       {
         property: 'og:description',
         content:

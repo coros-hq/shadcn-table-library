@@ -4,15 +4,15 @@ import { TreeSelectPage } from '#/components/tree-select/tree-select-page'
 export const Route = createFileRoute('/tree-select')({
   head: () => ({
     meta: [
-      { title: 'Tree Table — Checkbox Selection — ShadTable' },
+      { title: 'Shadcn Tree Table with Checkbox Selection — ShadTable' },
       {
         name: 'description',
         content:
-          'The same department/team/employee tree, with a checkbox column that cascades selection to every descendant and reports indeterminate state for partial branches.',
+          'A tree table with checkbox selection for shadcn/ui and TanStack Table. The same department/team/employee tree, with a checkbox column that cascades selection to every descendant and reports indeterminate state for partial branches.',
       },
       {
         property: 'og:title',
-        content: 'Tree Table — Checkbox Selection — ShadTable',
+        content: 'Shadcn Tree Table with Checkbox Selection — ShadTable',
       },
       {
         property: 'og:description',

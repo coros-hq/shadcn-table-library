@@ -64,7 +64,7 @@ const table = useReactTable({
 }`,
   },
   {
-    title: "Columns without an aggregationFn render blank on group rows",
+    title: 'Columns without an aggregationFn render blank on group rows',
     description:
       "cell.getIsAggregated() is true for any non-grouping column on a group row, whether or not that column defines an aggregationFn — Customer and Status don't sum or average sensibly, so their cell functions explicitly return null on aggregated cells instead of showing a meaningless default value.",
     file: 'src/components/grouped/columns.tsx',
@@ -74,7 +74,7 @@ const table = useReactTable({
   {
     title: 'Expansion is the same mechanism as the Tree Table',
     description:
-      "Group rows collapse and expand through the exact same expanded state and row.getToggleExpandedHandler() the Tree Table uses — grouping and tree nesting are two different ways of producing the same subRows shape, so the expand/collapse code is identical between them.",
+      'Group rows collapse and expand through the exact same expanded state and row.getToggleExpandedHandler() the Tree Table uses — grouping and tree nesting are two different ways of producing the same subRows shape, so the expand/collapse code is identical between them.',
     file: 'src/components/grouped/data-table.tsx',
     code: `const [expanded, setExpanded] = useState<ExpandedState>(true)
 // same state shape and handler as src/components/tree/data-table.tsx`,
@@ -87,7 +87,7 @@ export function GroupedTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Grouped Table
+            Shadcn Grouped Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Orders grouped by category, with collapsible group headers and a

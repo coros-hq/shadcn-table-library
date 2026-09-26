@@ -1,7 +1,7 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from '@vercel/analytics/react'
 import { NuqsAdapter } from 'nuqs/adapters/tanstack-router'
 import appCss from '../styles.css?url'
 
@@ -16,7 +16,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'ShadTable — Composable table components for shadcn/ui',
+        title: 'ShadTable — Shadcn Data Table & Table Components',
       },
       {
         name: 'description',
@@ -118,7 +118,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <Analytics/>
+      <Analytics />
       <body>
         <NuqsAdapter>
           {children}

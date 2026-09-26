@@ -4,13 +4,16 @@ import { AsyncActionsPage } from '#/components/async-actions/async-actions-page'
 export const Route = createFileRoute('/async-actions-table')({
   head: () => ({
     meta: [
-      { title: 'Async Row Actions — ShadTable' },
+      { title: 'Shadcn Table with Async Row Actions — ShadTable' },
       {
         name: 'description',
         content:
-          'Table row actions with animated icons that reflect real request state: a sync icon that spins while pending, Retry on failure, Undo for archive, and a confirm step for delete.',
+          'A table with async row actions for shadcn/ui and TanStack Table. Table row actions with animated icons that reflect real request state: a sync icon that spins while pending, Retry on failure, Undo for archive, and a confirm step for delete.',
       },
-      { property: 'og:title', content: 'Async Row Actions — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table with Async Row Actions — ShadTable',
+      },
       {
         property: 'og:description',
         content:

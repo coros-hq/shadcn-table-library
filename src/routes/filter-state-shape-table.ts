@@ -4,13 +4,16 @@ import { FilterStateShapePage } from '#/components/filter-state-shape/filter-sta
 export const Route = createFileRoute('/filter-state-shape-table')({
   head: () => ({
     meta: [
-      { title: 'Filter State Shape — ShadTable' },
+      { title: 'Shadcn Data Table Filter State — ShadTable' },
       {
         name: 'description',
         content:
-          'A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, keeping the toolbar, chips row, and columnFilters in sync.',
+          'A data table filter state pattern for shadcn/ui and TanStack Table. A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, keeping the toolbar, chips row, and columnFilters in sync.',
       },
-      { property: 'og:title', content: 'Filter State Shape — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Data Table Filter State — ShadTable',
+      },
       {
         property: 'og:description',
         content:

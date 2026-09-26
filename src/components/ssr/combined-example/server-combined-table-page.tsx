@@ -12,8 +12,14 @@ import { ServerCombinedDemo } from './index'
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
   { path: 'src/routes/server-combined-table.ts', code: routeSource },
-  { path: 'src/components/ssr/combined-example/columns.tsx', code: columnsSource },
-  { path: 'src/components/ssr/combined-example/data-table.tsx', code: tableSource },
+  {
+    path: 'src/components/ssr/combined-example/columns.tsx',
+    code: columnsSource,
+  },
+  {
+    path: 'src/components/ssr/combined-example/data-table.tsx',
+    code: tableSource,
+  },
   { path: 'src/components/ssr/combined-example/index.tsx', code: demoSource },
 ]
 
@@ -58,7 +64,7 @@ loader: ({ deps }) => getUsersPageCombined({ data: deps }),`,
   {
     title: 'manualPagination, manualSorting, and manualFiltering are all true',
     description:
-      "Every getXRowModel that would slice, sort, or filter client-side is left out entirely — the table only ever renders the rows the server already resolved for this exact URL. Setting all three manual flags is what stops TanStack Table from silently re-sorting or re-filtering an already-correct server response.",
+      'Every getXRowModel that would slice, sort, or filter client-side is left out entirely — the table only ever renders the rows the server already resolved for this exact URL. Setting all three manual flags is what stops TanStack Table from silently re-sorting or re-filtering an already-correct server response.',
     file: 'src/components/ssr/combined-example/data-table.tsx',
     code: `const table = useReactTable({
   data: rows,
@@ -96,7 +102,7 @@ onSortingChange: (updater) => {
   {
     title: 'Every filter and sort change resets page to 0',
     description:
-      "Changing the role filter, the status filter, or the sort column all navigate with page: 0 alongside whatever else changed — the result set size or order shifted, so staying on page 4 of a now-2-page result set would just show an empty table. Only page-to-page navigation itself leaves page alone.",
+      'Changing the role filter, the status filter, or the sort column all navigate with page: 0 alongside whatever else changed — the result set size or order shifted, so staying on page 4 of a now-2-page result set would just show an empty table. Only page-to-page navigation itself leaves page alone.',
     file: 'src/components/ssr/combined-example/data-table.tsx',
     code: `navigate({
   search: (prev) => ({
@@ -114,13 +120,13 @@ export function ServerCombinedTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            SSR Sort + Filter + Pagination
+            Shadcn Server-Side Sort, Filter &amp; Pagination
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            Sorting, filtering, and pagination resolved together on the
-            server, from the same URL, in a single request — the way real
-            dashboards actually work, instead of three isolated demos that
-            don't have to interact with each other.
+            Sorting, filtering, and pagination resolved together on the server,
+            from the same URL, in a single request — the way real dashboards
+            actually work, instead of three isolated demos that don't have to
+            interact with each other.
           </p>
         </div>
 

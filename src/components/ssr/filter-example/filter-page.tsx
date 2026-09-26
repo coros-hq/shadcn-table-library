@@ -27,7 +27,7 @@ const steps = [
   {
     title: 'URL is the source of truth',
     description:
-      "validateSearch parses page, pageSize, role and status straight off the query string, with defaults for each. Nothing about the current filter lives in React state — bookmarking or refreshing the URL reproduces the exact same view.",
+      'validateSearch parses page, pageSize, role and status straight off the query string, with defaults for each. Nothing about the current filter lives in React state — bookmarking or refreshing the URL reproduces the exact same view.',
     file: 'src/routes/server-filter.ts',
     code: `validateSearch: (search) => ({
   page: Number(search.page ?? 0),
@@ -106,10 +106,16 @@ export function ServerFilterPage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">SSR Filter</h1>
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+            Shadcn Server-Side Filtering
+          </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Filtering by column, resolved on the server the same way SSR
             Pagination resolves pages.
+          </p>
+          <p className="mt-2 max-w-2xl text-base text-muted-foreground text-balance">
+            Use this when the dataset is too large to ship to the browser and
+            filtering has to run in the database or API instead of client-side.
           </p>
         </div>
 

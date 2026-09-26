@@ -35,7 +35,7 @@ return prev.map((service, i) => {
   {
     title: 'Status transitions are weighted, not random',
     description:
-      "nextStatus() picks from a small array of possible next states per current status, where the array itself encodes the odds — operational lists itself three times and degraded once, so a healthy service mostly stays healthy and rarely dips. A uniform 3-way random pick would make every service flicker between states constantly, which reads as broken rather than live.",
+      'nextStatus() picks from a small array of possible next states per current status, where the array itself encodes the odds — operational lists itself three times and degraded once, so a healthy service mostly stays healthy and rarely dips. A uniform 3-way random pick would make every service flicker between states constantly, which reads as broken rather than live.',
     file: 'src/components/live-status/data-table.tsx',
     code: `const TRANSITIONS: Record<ServiceStatus, ServiceStatus[]> = {
   operational: ['operational', 'operational', 'operational', 'degraded'],
@@ -46,7 +46,7 @@ return prev.map((service, i) => {
   {
     title: 'The pulse ring is absent for "down", not just recolored',
     description:
-      "StatusIndicator only renders the animate-ping ring when config.pulse is true, which is false for \"down\". A dead service shouldn't pull the eye the way a live, changing one should — the animation itself is the signal that something is actively being monitored, so it has to stop when there's nothing left to watch.",
+      'StatusIndicator only renders the animate-ping ring when config.pulse is true, which is false for "down". A dead service shouldn\'t pull the eye the way a live, changing one should — the animation itself is the signal that something is actively being monitored, so it has to stop when there\'s nothing left to watch.',
     file: 'src/components/live-status/status-indicator.tsx',
     code: `const STATUS_CONFIG: Record<ServiceStatus, { label: string; dot: string; pulse: boolean }> = {
   operational: { label: 'Operational', dot: 'bg-emerald-500', pulse: true },
@@ -55,7 +55,7 @@ return prev.map((service, i) => {
 }`,
   },
   {
-    title: 'The Live/Paused toggle just flips the effect\'s dependency',
+    title: "The Live/Paused toggle just flips the effect's dependency",
     description:
       "isLive is a plain useState read by the interval effect's dependency array. Toggling it to false lets the effect's cleanup clear the interval on the next render, and toggling back true re-arms it — no separate start/stop functions or manual clearInterval bookkeeping outside the effect.",
     file: 'src/components/live-status/data-table.tsx',
@@ -73,13 +73,13 @@ export function LiveStatusTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Live Status Indicators
+            Shadcn Live Status Indicators
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            A service-health table where status and latency update on their
-            own on a timer — a pulsing dot for actively-monitored states, a
-            still one once a service goes down. Toggle Live/Paused to see the
-            updates stop.
+            A service-health table where status and latency update on their own
+            on a timer — a pulsing dot for actively-monitored states, a still
+            one once a service goes down. Toggle Live/Paused to see the updates
+            stop.
           </p>
         </div>
 

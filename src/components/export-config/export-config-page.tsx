@@ -77,7 +77,7 @@ export function ExportConfigPage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Export Configuration
+            Shadcn Table Export Configuration
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Export through a dialog instead of a one-click download: pick which

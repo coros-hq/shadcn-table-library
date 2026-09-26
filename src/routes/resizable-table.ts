@@ -4,15 +4,15 @@ import { ResizableTablePage } from '#/components/resizable-reorder/resizable-tab
 export const Route = createFileRoute('/resizable-table')({
   head: () => ({
     meta: [
-      { title: 'Resizable / Reorderable Columns — ShadTable' },
+      { title: 'Shadcn Table Resizable & Reorderable Columns — ShadTable' },
       {
         name: 'description',
         content:
-          "Drag a header's grip to reorder columns, drag its right edge to resize — the resulting layout is saved to localStorage and restored on your next visit.",
+          "A table with resizable and reorderable columns for shadcn/ui and TanStack Table. Drag a header's grip to reorder columns, drag its right edge to resize — the resulting layout is saved to localStorage and restored on your next visit.",
       },
       {
         property: 'og:title',
-        content: 'Resizable / Reorderable Columns — ShadTable',
+        content: 'Shadcn Table Resizable & Reorderable Columns — ShadTable',
       },
       {
         property: 'og:description',

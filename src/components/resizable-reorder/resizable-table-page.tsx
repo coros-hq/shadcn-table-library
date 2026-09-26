@@ -9,13 +9,17 @@ import { ResizableTableDemo } from './index'
 
 const files = [
   { path: 'src/components/resizable-reorder/columns.tsx', code: columnsSource },
-  { path: 'src/components/resizable-reorder/data-table.tsx', code: tableSource },
+  {
+    path: 'src/components/resizable-reorder/data-table.tsx',
+    code: tableSource,
+  },
   { path: 'src/components/resizable-reorder/index.tsx', code: demoSource },
 ]
 
 const steps = [
   {
-    title: 'Resizing is a built-in TanStack Table feature, not custom drag math',
+    title:
+      'Resizing is a built-in TanStack Table feature, not custom drag math',
     description:
       "enableColumnResizing plus columnResizeMode: 'onChange' turns on the feature; header.getResizeHandler() returns a ready-made onMouseDown/onTouchStart handler that TanStack wires up to compute the new width itself from the pointer delta. This component only renders the thin edge strip and reads header.getSize() back — no manual pointer-position math.",
     file: 'src/components/resizable-reorder/data-table.tsx',
@@ -53,7 +57,8 @@ const steps = [
 <div onMouseDown={header.getResizeHandler()} onTouchStart={header.getResizeHandler()} />`,
   },
   {
-    title: 'Layout persists to localStorage, but only after the client hydrates',
+    title:
+      'Layout persists to localStorage, but only after the client hydrates',
     description:
       "columnOrder and columnSizing both start at the same defaults on the server and the first client render, so SSR output matches hydration exactly. A useEffect that only runs in the browser then reads localStorage and swaps in a saved layout — a separate save-effect is guarded by an isHydrated ref so it can't fire and overwrite storage with the defaults before that load has actually happened.",
     file: 'src/components/resizable-reorder/data-table.tsx',
@@ -72,7 +77,7 @@ useEffect(() => {
   {
     title: 'Reset layout clears storage and both pieces of state together',
     description:
-      "resetLayout wipes the localStorage key and sets columnOrder/columnSizing back to their defaults in the same function call, so the on-screen table and its persisted copy in localStorage are never briefly out of sync with each other.",
+      'resetLayout wipes the localStorage key and sets columnOrder/columnSizing back to their defaults in the same function call, so the on-screen table and its persisted copy in localStorage are never briefly out of sync with each other.',
     file: 'src/components/resizable-reorder/data-table.tsx',
     code: `function resetLayout() {
   window.localStorage.removeItem(STORAGE_KEY)
@@ -88,12 +93,12 @@ export function ResizableTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Resizable / Reorderable Columns
+            Shadcn Resizable / Reorderable Columns
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Drag a header's grip to reorder columns, drag its right edge to
-            resize — the resulting layout is saved to localStorage and
-            restored on your next visit.
+            resize — the resulting layout is saved to localStorage and restored
+            on your next visit.
           </p>
         </div>
 

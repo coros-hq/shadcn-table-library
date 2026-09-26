@@ -4,13 +4,13 @@ import { HeatmapTablePage } from '#/components/heatmap/heatmap-table-page'
 export const Route = createFileRoute('/heatmap-table')({
   head: () => ({
     meta: [
-      { title: 'Heatmap Table — ShadTable' },
+      { title: 'Shadcn Heatmap Table — ShadTable' },
       {
         name: 'description',
         content:
-          "Revenue by region and month, with each cell's background intensity mapped to its value — spot patterns across a matrix at a glance instead of reading numbers.",
+          "A heatmap table for shadcn/ui and TanStack Table. Revenue by region and month, with each cell's background intensity mapped to its value — spot patterns across a matrix at a glance instead of reading numbers.",
       },
-      { property: 'og:title', content: 'Heatmap Table — ShadTable' },
+      { property: 'og:title', content: 'Shadcn Heatmap Table — ShadTable' },
       {
         property: 'og:description',
         content:

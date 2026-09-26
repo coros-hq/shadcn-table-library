@@ -4,13 +4,16 @@ import { GroupedTablePage } from '#/components/grouped/grouped-table-page'
 export const Route = createFileRoute('/grouped-table')({
   head: () => ({
     meta: [
-      { title: 'Grouped Table — ShadTable' },
+      { title: 'Shadcn Grouped Table (Row Grouping) — ShadTable' },
       {
         name: 'description',
         content:
-          "Orders grouped by category, with collapsible group headers and a live subtotal of each group's order amounts.",
+          "A grouped table with row grouping for shadcn/ui and TanStack Table. Orders grouped by category, with collapsible group headers and a live subtotal of each group's order amounts.",
       },
-      { property: 'og:title', content: 'Grouped Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Grouped Table (Row Grouping) — ShadTable',
+      },
       {
         property: 'og:description',
         content:

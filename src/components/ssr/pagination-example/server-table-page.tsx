@@ -27,7 +27,7 @@ const steps = [
   {
     title: 'URL is the source of truth',
     description:
-      "validateSearch parses page and pageSize straight off the query string, with defaults for each. Nothing about the current page lives in React state — bookmarking or refreshing the URL reproduces the exact same view.",
+      'validateSearch parses page and pageSize straight off the query string, with defaults for each. Nothing about the current page lives in React state — bookmarking or refreshing the URL reproduces the exact same view.',
     file: 'src/routes/server-table.ts',
     code: `validateSearch: (search) => ({
   page: Number(search.page ?? 0),
@@ -104,12 +104,12 @@ export function ServerTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            SSR Pagination
+            Shadcn Server-Side Pagination
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            Only the current page's rows are ever sent to the browser —
-            changing pages triggers a real server request instead of slicing
-            an in-memory array.
+            Only the current page's rows are ever sent to the browser — changing
+            pages triggers a real server request instead of slicing an in-memory
+            array.
           </p>
         </div>
 

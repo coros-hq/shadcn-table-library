@@ -59,7 +59,7 @@ const steps = [
   {
     title: 'Text flips to white once the background gets dark enough',
     description:
-      "getHeatColor also returns isDark, true once the computed alpha crosses a fixed threshold. Cells past that threshold render with text-white instead of the default foreground color, so high-value cells (East in June, the darkest cell) stay legible instead of dark text disappearing into a dark background.",
+      'getHeatColor also returns isDark, true once the computed alpha crosses a fixed threshold. Cells past that threshold render with text-white instead of the default foreground color, so high-value cells (East in June, the darkest cell) stay legible instead of dark text disappearing into a dark background.',
     file: 'src/components/heatmap/heatmap.ts',
     code: `export function getHeatColor(value: number, min: number, max: number) {
   const range = max - min || 1
@@ -88,13 +88,12 @@ export function HeatmapTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Heatmap Table
+            Shadcn Heatmap Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            Revenue by region and month, with each cell's background
-            intensity mapped to its value — good for spotting patterns
-            across a matrix at a glance rather than reading numbers one by
-            one.
+            Revenue by region and month, with each cell's background intensity
+            mapped to its value — good for spotting patterns across a matrix at
+            a glance rather than reading numbers one by one.
           </p>
         </div>
 

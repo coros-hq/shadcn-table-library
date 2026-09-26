@@ -31,7 +31,7 @@ const steps = [
   {
     title: 'The table takes filter state as controlled props',
     description:
-      "ParamsDataTable never reaches for a router or a URL-state library itself. It receives search, role, onSearchChange, and onRoleChange as props and just filters the in-memory data against them — where that state actually lives is entirely up to the caller.",
+      'ParamsDataTable never reaches for a router or a URL-state library itself. It receives search, role, onSearchChange, and onRoleChange as props and just filters the in-memory data against them — where that state actually lives is entirely up to the caller.',
     file: 'src/components/params-filter/data-table.tsx',
     code: `interface DataTableProps<TData extends { role: string }, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -63,7 +63,7 @@ const steps = [
   {
     title: 'Option B — or skip the dependency with native URLSearchParams',
     description:
-      "useNativeFilters implements the exact same shape using only browser APIs: it reads the current query string on mount, writes back via history.replaceState (no full navigation), and re-syncs on popstate so browser back/forward still works. Nothing here is router-specific.",
+      'useNativeFilters implements the exact same shape using only browser APIs: it reads the current query string on mount, writes back via history.replaceState (no full navigation), and re-syncs on popstate so browser back/forward still works. Nothing here is router-specific.',
     file: 'src/components/params-filter/use-native-filters.ts',
     code: `function writeParam(key: string, value: string) {
   const url = new URL(window.location.href)
@@ -78,7 +78,7 @@ const steps = [
   {
     title: 'Swapping strategies is a one-line change',
     description:
-      "ParamsFilterTableDemo only imports whichever hook it wants and destructures the same four values. Since both hooks return an identical shape, switching from nuqs to native URLSearchParams (or a custom implementation of your own) never touches ParamsDataTable.",
+      'ParamsFilterTableDemo only imports whichever hook it wants and destructures the same four values. Since both hooks return an identical shape, switching from nuqs to native URLSearchParams (or a custom implementation of your own) never touches ParamsDataTable.',
     file: 'src/components/params-filter/index.tsx',
     code: `import { useNuqsFilters } from './use-nuqs-filters'
 // import { useNativeFilters as useNuqsFilters } from './use-native-filters'
@@ -107,13 +107,16 @@ const { search, role, setSearch, setRole } = useNuqsFilters()`,
 export const Route = createFileRoute('/params-filter-table')({
   head: () => ({
     meta: [
-      { title: 'Params Filter Table — ShadTable' },
+      { title: 'Shadcn Table with URL Params Filters — ShadTable' },
       {
         name: 'description',
         content:
-          'A data table whose filter state is synced to URL search params.',
+          'A data table with URL search params filters for shadcn/ui and TanStack Table. A data table whose filter state is synced to URL search params.',
       },
-      { property: 'og:title', content: 'Params Filter Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table with URL Params Filters — ShadTable',
+      },
       {
         property: 'og:description',
         content:
@@ -147,15 +150,18 @@ function ParamsFilterTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Params Filter Table
+            Shadcn Params Filter Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            A data table whose filter state is synced to URL search params.
-            The table itself is filter-state agnostic — it takes
-            search/role as controlled props, so you can back it with{' '}
-            <code>useNuqsFilters</code> (nuqs) or{' '}
-            <code>useNativeFilters</code> (plain URLSearchParams/History
-            API), whichever fits your app.
+            A data table whose filter state is synced to URL search params. The
+            table itself is filter-state agnostic — it takes search/role as
+            controlled props, so you can back it with{' '}
+            <code>useNuqsFilters</code> (nuqs) or <code>useNativeFilters</code>{' '}
+            (plain URLSearchParams/History API), whichever fits your app.
+          </p>
+          <p className="mt-2 max-w-2xl text-base text-muted-foreground text-balance">
+            Use this when filtered views must be shareable or bookmarkable, or
+            should survive a page reload and the browser back button.
           </p>
         </div>
 

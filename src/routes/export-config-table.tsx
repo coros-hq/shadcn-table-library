@@ -4,13 +4,16 @@ import { ExportConfigPage } from '#/components/export-config/export-config-page'
 export const Route = createFileRoute('/export-config-table')({
   head: () => ({
     meta: [
-      { title: 'Export Configuration — ShadTable' },
+      { title: 'Shadcn Table Export to CSV & Excel — ShadTable' },
       {
         name: 'description',
         content:
-          'A table whose Export button opens a dialog: filter by status, region, and date, pick columns and CSV or Excel, and see a live count of matching rows before downloading.',
+          'A table with configurable CSV and Excel export for shadcn/ui and TanStack Table. A table whose Export button opens a dialog: filter by status, region, and date, pick columns and CSV or Excel, and see a live count of matching rows before downloading.',
       },
-      { property: 'og:title', content: 'Export Configuration — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table Export to CSV & Excel — ShadTable',
+      },
       {
         property: 'og:description',
         content:

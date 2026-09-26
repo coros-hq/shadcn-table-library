@@ -4,13 +4,16 @@ import { AnimatedIconsTablePage } from '#/components/animated-icons/animated-ico
 export const Route = createFileRoute('/animated-icons-table')({
   head: () => ({
     meta: [
-      { title: 'Animated Icons Table — ShadTable' },
+      { title: 'Shadcn Table with Animated Icons — ShadTable' },
       {
         name: 'description',
         content:
-          'Row actions built with Iconimate — motion-driven icons that animate on hover, focus, and click, wired to favorite, notify, archive, and delete.',
+          'A table with animated row-action icons for shadcn/ui and TanStack Table. Row actions built with Iconimate — motion-driven icons that animate on hover, focus, and click, wired to favorite, notify, archive, and delete.',
       },
-      { property: 'og:title', content: 'Animated Icons Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table with Animated Icons — ShadTable',
+      },
       {
         property: 'og:description',
         content:

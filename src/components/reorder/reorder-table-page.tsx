@@ -80,7 +80,7 @@ export function ReorderableTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Reorderable Table
+            Shadcn Reorderable Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Drag rows to reorder them, built on @dnd-kit/sortable rather than

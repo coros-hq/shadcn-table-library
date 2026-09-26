@@ -12,13 +12,13 @@ export const Route = createFileRoute('/logs-table')({
   }),
   head: () => ({
     meta: [
-      { title: 'Logs Table — ShadTable' },
+      { title: 'Shadcn Logs Table — ShadTable' },
       {
         name: 'description',
         content:
           'A log explorer table for shadcn/ui and TanStack Table: a date range picker, multi-select level, service, and status filters, highlighted search, and expandable rows with the full event.',
       },
-      { property: 'og:title', content: 'Logs Table — ShadTable' },
+      { property: 'og:title', content: 'Shadcn Logs Table — ShadTable' },
       {
         property: 'og:description',
         content:

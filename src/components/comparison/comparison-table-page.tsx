@@ -19,7 +19,7 @@ const steps = [
   {
     title: 'Columns are generated per plan, not authored',
     description:
-      "Same dynamic-column technique as the Pivot Table: plans.map(...) builds one ColumnDef per pricing plan inside a useMemo. Add a fourth plan to the data and a fourth column — header, price, CTA button, and every feature cell beneath it — appears with zero changes to the table component itself.",
+      'Same dynamic-column technique as the Pivot Table: plans.map(...) builds one ColumnDef per pricing plan inside a useMemo. Add a fourth plan to the data and a fourth column — header, price, CTA button, and every feature cell beneath it — appears with zero changes to the table component itself.',
     file: 'src/components/comparison/data-table.tsx',
     code: `const columns = useMemo<ColumnDef<Feature>[]>(
   () => [
@@ -56,9 +56,9 @@ const steps = [
 </div>`,
   },
   {
-    title: "The highlighted plan is one boolean, applied per cell",
+    title: 'The highlighted plan is one boolean, applied per cell',
     description:
-      "plan.highlighted just adds a bg-primary/5 tint to that column's header cell and every one of its body cells — no special borders, no rounding, nothing column-specific beyond that one background class. The tint alone is enough to draw the eye down the \"Pro\" column without breaking the table's normal grid.",
+      'plan.highlighted just adds a bg-primary/5 tint to that column\'s header cell and every one of its body cells — no special borders, no rounding, nothing column-specific beyond that one background class. The tint alone is enough to draw the eye down the "Pro" column without breaking the table\'s normal grid.',
     file: 'src/components/comparison/data-table.tsx',
     code: `<TableCell
   key={cell.id}
@@ -68,7 +68,7 @@ const steps = [
   {
     title: 'Feature rows render differently by value type, from one function',
     description:
-      "renderValue() checks typeof value === 'boolean' to decide between a Check/X icon or the raw string. The column definition itself doesn't know the difference — accessorFn just reads feature.values[plan.id] — so \"Team members\" can render \"Unlimited\" and \"Single sign-on\" can render a checkmark, both through the same cell renderer.",
+      'renderValue() checks typeof value === \'boolean\' to decide between a Check/X icon or the raw string. The column definition itself doesn\'t know the difference — accessorFn just reads feature.values[plan.id] — so "Team members" can render "Unlimited" and "Single sign-on" can render a checkmark, both through the same cell renderer.',
     file: 'src/components/comparison/data-table.tsx',
     code: `function renderValue(value: FeatureValue) {
   if (typeof value === 'boolean') {
@@ -80,7 +80,7 @@ const steps = [
   {
     title: "The header cell's height comes from its own content, not the table",
     description:
-      "A plan's header cell holds three stacked pieces — name, price, and a full-width Button — instead of one line of text, while the leading \"\" header cell next to it stays empty. align-bottom py-4 on every TableHead keeps that taller content flush with the row instead of vertically centering oddly against the empty cell beside it.",
+      'A plan\'s header cell holds three stacked pieces — name, price, and a full-width Button — instead of one line of text, while the leading "" header cell next to it stays empty. align-bottom py-4 on every TableHead keeps that taller content flush with the row instead of vertically centering oddly against the empty cell beside it.',
     file: 'src/components/comparison/data-table.tsx',
     code: `<TableHead
   key={plan.id}
@@ -101,12 +101,12 @@ export function ComparisonTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Comparison Table
+            Shadcn Comparison Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Pricing plans as columns in an ordinary bordered table — feature
-            rows compare booleans and values across every plan at once, with
-            the recommended plan's column tinted to stand out.
+            rows compare booleans and values across every plan at once, with the
+            recommended plan's column tinted to stand out.
           </p>
         </div>
 

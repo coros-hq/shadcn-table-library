@@ -4,13 +4,16 @@ import { ToolbarFilterTablePage } from '#/components/toolbar-filter/toolbar-filt
 export const Route = createFileRoute('/toolbar-filter-table')({
   head: () => ({
     meta: [
-      { title: 'Toolbar Filter Table — ShadTable' },
+      { title: 'Shadcn Toolbar Filter Table — ShadTable' },
       {
         name: 'description',
         content:
-          'A simple filter row above the table — dropdown selects and a search input, filters applied immediately. The 80% use case for filtering.',
+          'A toolbar filter table for shadcn/ui and TanStack Table. A simple filter row above the table — dropdown selects and a search input, filters applied immediately. The 80% use case for filtering.',
       },
-      { property: 'og:title', content: 'Toolbar Filter Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Toolbar Filter Table — ShadTable',
+      },
       {
         property: 'og:description',
         content:

@@ -19,17 +19,23 @@ const files = [
   { path: 'src/components/animated-icons/index.tsx', code: demoSource },
   { path: 'src/lib/animated-icon.ts', code: iconLibSource },
   { path: 'src/components/ui/icons/star-icon.tsx', code: starIconSource },
-  { path: 'src/components/ui/icons/bell-ringing-icon.tsx', code: bellIconSource },
+  {
+    path: 'src/components/ui/icons/bell-ringing-icon.tsx',
+    code: bellIconSource,
+  },
   { path: 'src/components/ui/icons/archive-icon.tsx', code: archiveIconSource },
   { path: 'src/components/ui/icons/trash-icon.tsx', code: trashIconSource },
-  { path: 'src/components/ui/icons/arrows-clockwise-icon.tsx', code: refreshIconSource },
+  {
+    path: 'src/components/ui/icons/arrows-clockwise-icon.tsx',
+    code: refreshIconSource,
+  },
 ]
 
 const steps = [
   {
     title: 'Every icon exposes an imperative handle, not just `:hover`',
     description:
-      "Each icon forwards a ref shaped like { startAnimation, stopAnimation }, because `:hover` never fires on touch. The Reset button in the toolbar calls startAnimation() directly on click, so the refresh spin plays even for someone who tapped the button without ever hovering it.",
+      'Each icon forwards a ref shaped like { startAnimation, stopAnimation }, because `:hover` never fires on touch. The Reset button in the toolbar calls startAnimation() directly on click, so the refresh spin plays even for someone who tapped the button without ever hovering it.',
     file: 'src/components/animated-icons/data-table.tsx',
     code: `const refreshRef = useRef<IconHandle>(null)
 
@@ -43,7 +49,7 @@ function handleReset() {
   {
     title: 'A single useHover() drives motion, focus, and touch together',
     description:
-      "Every hover-driven icon (star, bell, archive, trash) shares one useHover() hook from #/lib/animated-icon.ts. It wires onMouseEnter/onMouseLeave AND onFocus/onBlur to the same controls, so tabbing to a row action previews its motion exactly like hovering it does — no separate keyboard path to maintain.",
+      'Every hover-driven icon (star, bell, archive, trash) shares one useHover() hook from #/lib/animated-icon.ts. It wires onMouseEnter/onMouseLeave AND onFocus/onBlur to the same controls, so tabbing to a row action previews its motion exactly like hovering it does — no separate keyboard path to maintain.',
     file: 'src/lib/animated-icon.ts',
     code: `return {
   controls,
@@ -57,7 +63,7 @@ function handleReset() {
   {
     title: 'The animation loops for as long as the pointer stays',
     description:
-      "start() doesn't just play the \"animate\" variant once — it replays it end-to-end while the pointer or focus is still on the icon, snapping back to \"normal\" between cycles (invisible, since keyframes end where they start) so the next replay actually restarts instead of resolving instantly.",
+      'start() doesn\'t just play the "animate" variant once — it replays it end-to-end while the pointer or focus is still on the icon, snapping back to "normal" between cycles (invisible, since keyframes end where they start) so the next replay actually restarts instead of resolving instantly.',
     file: 'src/lib/animated-icon.ts',
     code: `void controls.start('animate').then(() => {
   if (!looping.current) return
@@ -96,7 +102,7 @@ export function AnimatedIconsTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Animated Icons Table
+            Shadcn Animated Icons Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Row actions built with{' '}
@@ -118,7 +124,9 @@ export function AnimatedIconsTablePage() {
         <ComponentPreview preview={<AnimatedIconsTableDemo />} files={files} />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">Installing the icons individually</p>
+          <p className="text-sm font-medium">
+            Installing the icons individually
+          </p>
           <p className="text-sm text-muted-foreground">
             The icons themselves are published on{' '}
             <a

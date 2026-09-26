@@ -46,7 +46,8 @@ const steps = [
 </div>`,
   },
   {
-    title: 'The header disappears; its text moves onto the cell as a data attribute',
+    title:
+      'The header disappears; its text moves onto the cell as a data attribute',
     description:
       "hidden @[48rem]:table-header-group removes the header row visually below the breakpoint (screen readers still get context from data-label). Each TableCell carries its own column header as data-label — that's the one piece of information a headerless card still needs per field.",
     file: 'src/components/mobile-cards/data-table.tsx',
@@ -56,7 +57,8 @@ const label = typeof header === 'string' ? header : undefined
 <TableCell data-label={label}>`,
   },
   {
-    title: 'A pseudo-element renders the label — and disappears above the breakpoint',
+    title:
+      'A pseudo-element renders the label — and disappears above the breakpoint',
     description:
       'before:content-[attr(data-label)] pulls that data-label straight into CSS generated content, so the label renders without any extra DOM node. @[48rem]:before:content-none removes it again once the real <thead> is doing that job instead.',
     file: 'src/components/mobile-cards/data-table.tsx',
@@ -67,7 +69,8 @@ const label = typeof header === 'string' ? header : undefined
 )}`,
   },
   {
-    title: 'The first column is styled as the card title, not another label:value row',
+    title:
+      'The first column is styled as the card title, not another label:value row',
     description:
       'cellIndex === 0 renders the first cell (the order id) without a data-label prefix and in a slightly heavier weight, so each card reads top-to-bottom the way a real mobile UI would: an identifying line first, then attribute rows underneath — instead of every field looking identical.',
     file: 'src/components/mobile-cards/data-table.tsx',
@@ -105,13 +108,16 @@ className={isPrimary
 export const Route = createFileRoute('/mobile-cards-table')({
   head: () => ({
     meta: [
-      { title: 'Mobile Cards Table — ShadTable' },
+      { title: 'Shadcn Responsive Table (Mobile Cards) — ShadTable' },
       {
         name: 'description',
         content:
-          'A data table that transforms into stacked cards below a container-query breakpoint using pure CSS display overrides — no separate mobile component, no JS media query, no viewport dependency.',
+          'A responsive table that becomes cards on mobile for shadcn/ui and TanStack Table. A data table that transforms into stacked cards below a container-query breakpoint using pure CSS display overrides — no separate mobile component, no JS media query, no viewport dependency.',
       },
-      { property: 'og:title', content: 'Mobile Cards Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Responsive Table (Mobile Cards) — ShadTable',
+      },
       {
         property: 'og:description',
         content:
@@ -145,15 +151,14 @@ function MobileCardsTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Mobile Cards Table
+            Shadcn Mobile Cards Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            Switch the Mobile/Desktop tab below — each row becomes its own
-            card with labeled fields once the container narrows past
-            768px, no horizontal scrolling required. It's a container
-            query, not a viewport breakpoint, so it works wherever the
-            table is embedded — no separate mobile component, no JS
-            media-query hook.
+            Switch the Mobile/Desktop tab below — each row becomes its own card
+            with labeled fields once the container narrows past 768px, no
+            horizontal scrolling required. It's a container query, not a
+            viewport breakpoint, so it works wherever the table is embedded — no
+            separate mobile component, no JS media-query hook.
           </p>
         </div>
 

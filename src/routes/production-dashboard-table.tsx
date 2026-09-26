@@ -13,7 +13,10 @@ import { CodeBlock } from '#/components/docs/code-block.tsx'
 
 const files = [
   { path: 'src/components/production-dashboard/index.tsx', code: indexSource },
-  { path: 'src/components/production-dashboard/columns.tsx', code: columnsSource },
+  {
+    path: 'src/components/production-dashboard/columns.tsx',
+    code: columnsSource,
+  },
   {
     path: 'src/components/production-dashboard/data-table.tsx',
     code: dataTableSource,
@@ -33,14 +36,14 @@ const steps = [
   {
     title: 'Three primitives, not one new idea',
     description:
-      'This example is deliberately a composition, not a new feature: the same matchRule engine from the Conditional Formatting Table, the same hand-rolled Sparkline from the Summary/KPI Table, and a small new ProgressBar are combined onto one realistic dataset. Nothing here needs to be understood in isolation if you\'ve already seen those two examples.',
+      "This example is deliberately a composition, not a new feature: the same matchRule engine from the Conditional Formatting Table, the same hand-rolled Sparkline from the Summary/KPI Table, and a small new ProgressBar are combined onto one realistic dataset. Nothing here needs to be understood in isolation if you've already seen those two examples.",
     file: 'src/components/production-dashboard/columns.tsx',
     code: `import { ProgressBar } from './progress-bar'
 import { Sparkline } from './sparkline'
 import { matchRule } from './rules'`,
   },
   {
-    title: 'Progress bars need a default color; text formatting doesn\'t',
+    title: "Progress bars need a default color; text formatting doesn't",
     description:
       "The Conditional Formatting Table lets rule?.className be undefined for a healthy row — cn() just drops it and the cell renders unstyled. A progress bar can't do that; an unstyled bar still has to be some color. So every rule list here ends with a catch-all test: () => true, guaranteeing matchRule always returns something to color the bar with.",
     file: 'src/components/production-dashboard/columns.tsx',
@@ -62,7 +65,7 @@ import { matchRule } from './rules'`,
   {
     title: 'A sparkline can be colored the same way a bar can',
     description:
-      "Sparkline renders its polyline with stroke=\"currentColor\", so wrapping it in a <span className={rule?.className}> recolors the whole trend line through CSS inheritance — no prop threading into the SVG itself. The rule here compares the trend's last value to its first, so a declining line renders in the same rose-500 used for a low output bar.",
+      'Sparkline renders its polyline with stroke="currentColor", so wrapping it in a <span className={rule?.className}> recolors the whole trend line through CSS inheritance — no prop threading into the SVG itself. The rule here compares the trend\'s last value to its first, so a declining line renders in the same rose-500 used for a low output bar.',
     file: 'src/components/production-dashboard/columns.tsx',
     code: `const trendRules: FormatRule<ProductionLine>[] = [
   { test: (row) => row.trend[row.trend.length - 1] < row.trend[0], className: 'text-rose-500' },
@@ -78,15 +81,15 @@ import { matchRule } from './rules'`,
 export const Route = createFileRoute('/production-dashboard-table')({
   head: () => ({
     meta: [
-      { title: 'Production Dashboard Table — ShadTable' },
+      { title: 'Shadcn Production Dashboard Table — ShadTable' },
       {
         name: 'description',
         content:
-          'A production-line dashboard combining conditional formatting, progress bars, and sparklines on one realistic dataset — a composition of existing primitives, not a new feature.',
+          'A production dashboard table for shadcn/ui and TanStack Table. A production-line dashboard combining conditional formatting, progress bars, and sparklines on one realistic dataset — a composition of existing primitives, not a new feature.',
       },
       {
         property: 'og:title',
-        content: 'Production Dashboard Table — ShadTable',
+        content: 'Shadcn Production Dashboard Table — ShadTable',
       },
       {
         property: 'og:description',
@@ -121,14 +124,13 @@ function ProductionDashboardTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Production Dashboard Table
+            Shadcn Production Dashboard Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A production-line status table combining status badges,
-            output/utilization progress bars, and 7-day trend sparklines —
-            a composition of the Conditional Formatting and Summary/KPI
-            examples on one realistic dataset, not a new feature on its
-            own.
+            output/utilization progress bars, and 7-day trend sparklines — a
+            composition of the Conditional Formatting and Summary/KPI examples
+            on one realistic dataset, not a new feature on its own.
           </p>
         </div>
 

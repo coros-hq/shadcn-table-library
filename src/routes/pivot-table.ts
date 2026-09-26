@@ -4,13 +4,13 @@ import { PivotTablePage } from '#/components/pivot/pivot-table-page'
 export const Route = createFileRoute('/pivot-table')({
   head: () => ({
     meta: [
-      { title: 'Pivot Table — ShadTable' },
+      { title: 'Shadcn Pivot Table — ShadTable' },
       {
         name: 'description',
         content:
-          'Dashboard-style analytics table — pick which dimension becomes rows, which becomes columns, and how to aggregate (sum, average, or count), recomputed from flat sales data.',
+          'A pivot table for shadcn/ui and TanStack Table. Dashboard-style analytics table — pick which dimension becomes rows, which becomes columns, and how to aggregate (sum, average, or count), recomputed from flat sales data.',
       },
-      { property: 'og:title', content: 'Pivot Table — ShadTable' },
+      { property: 'og:title', content: 'Shadcn Pivot Table — ShadTable' },
       {
         property: 'og:description',
         content:

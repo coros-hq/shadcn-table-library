@@ -21,7 +21,7 @@ const steps = [
   {
     title: 'The sparkline is a hand-rolled SVG, not a charting library',
     description:
-      "Sparkline normalizes a small array of numbers to a 0..height range and joins the points into a single <polyline points=\"...\">. For 8-12 points that's simpler and lighter than pulling in a charting dependency to draw what is, in the end, just one line.",
+      'Sparkline normalizes a small array of numbers to a 0..height range and joins the points into a single <polyline points="...">. For 8-12 points that\'s simpler and lighter than pulling in a charting dependency to draw what is, in the end, just one line.',
     file: 'src/components/kpi/sparkline.tsx',
     code: `const min = Math.min(...data)
 const max = Math.max(...data)
@@ -37,7 +37,7 @@ const points = data
   .join(' ')`,
   },
   {
-    title: "Color comes from one number, reused twice",
+    title: 'Color comes from one number, reused twice',
     description:
       "change's sign drives both the TrendingUp/TrendingDown icon and color in the Change column, and the Sparkline's text-emerald/text-rose class in the Trend column. The badge and the sparkline can never disagree about whether a metric is trending up or down — they're colored by the exact same comparison, not two separate ones.",
     file: 'src/components/kpi/columns.tsx',
@@ -52,7 +52,7 @@ const points = data
 />`,
   },
   {
-    title: "The stroke color comes from currentColor, not a prop",
+    title: 'The stroke color comes from currentColor, not a prop',
     description:
       "Sparkline's polyline sets stroke=\"currentColor\" and takes its actual color from a Tailwind text-color class on the wrapping element — the same trick lucide-react icons use elsewhere in this library. That's how light/dark mode work for the sparkline for free, without the component itself knowing anything about the app's theme.",
     file: 'src/components/kpi/sparkline.tsx',
@@ -68,7 +68,7 @@ const points = data
   {
     title: 'No sorting, filtering, or pagination — this is a dashboard widget',
     description:
-      "With a small, fixed set of KPI rows meant to all be visible at once, getSortedRowModel/getFilteredRowModel/getPaginationRowModel would just be complexity a summary card never needs. getCoreRowModel is the entire row-model pipeline here.",
+      'With a small, fixed set of KPI rows meant to all be visible at once, getSortedRowModel/getFilteredRowModel/getPaginationRowModel would just be complexity a summary card never needs. getCoreRowModel is the entire row-model pipeline here.',
     file: 'src/components/kpi/data-table.tsx',
     code: `const table = useReactTable({
   data,
@@ -97,12 +97,12 @@ export function KpiTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Summary / KPI Table
+            Shadcn Summary / KPI Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            A compact metrics table — current value, period-over-period
-            change, and a per-row sparkline — for the kind of dashboard
-            summary that sits above the fold.
+            A compact metrics table — current value, period-over-period change,
+            and a per-row sparkline — for the kind of dashboard summary that
+            sits above the fold.
           </p>
         </div>
 

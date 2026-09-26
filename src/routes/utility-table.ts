@@ -4,13 +4,16 @@ import { UtilityTablePage } from '#/components/utility/utility-table-page'
 export const Route = createFileRoute('/utility-table')({
   head: () => ({
     meta: [
-      { title: 'Density & Export — ShadTable' },
+      { title: 'Shadcn Table Density Toggle & Export — ShadTable' },
       {
         name: 'description',
         content:
-          'One table, three modes: a compact/comfortable/spacious density toggle, CSV/Excel/PDF export, and a print-optimized view that ignores dark mode entirely.',
+          'A table with a density toggle and export for shadcn/ui and TanStack Table. One table, three modes: a compact/comfortable/spacious density toggle, CSV/Excel/PDF export, and a print-optimized view that ignores dark mode entirely.',
       },
-      { property: 'og:title', content: 'Density & Export — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table Density Toggle & Export — ShadTable',
+      },
       {
         property: 'og:description',
         content:

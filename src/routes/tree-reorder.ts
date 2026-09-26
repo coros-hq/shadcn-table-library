@@ -4,13 +4,16 @@ import { TreeReorderPage } from '#/components/tree-reorder/tree-reorder-page'
 export const Route = createFileRoute('/tree-reorder')({
   head: () => ({
     meta: [
-      { title: 'Tree Table — Reorder — ShadTable' },
+      { title: 'Shadcn Tree Table with Drag Reorder — ShadTable' },
       {
         name: 'description',
         content:
-          "The same department/team/employee tree, with rows draggable by a handle — reordering is scoped to siblings so a department can't be dropped inside a team.",
+          "A drag-and-drop tree table for shadcn/ui and TanStack Table. The same department/team/employee tree, with rows draggable by a handle — reordering is scoped to siblings so a department can't be dropped inside a team.",
       },
-      { property: 'og:title', content: 'Tree Table — Reorder — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Tree Table with Drag Reorder — ShadTable',
+      },
       {
         property: 'og:description',
         content:

@@ -89,13 +89,16 @@ className={cn(
 export const Route = createFileRoute('/column-pinning-table')({
   head: () => ({
     meta: [
-      { title: 'Column Pinning Table — ShadTable' },
+      { title: 'Shadcn Table Column Pinning — ShadTable' },
       {
         name: 'description',
         content:
-          'Excel/AG Grid–style column pinning: freeze columns to the left or right edge while the rest of the table scrolls underneath.',
+          'A column pinning table for shadcn/ui and TanStack Table. Excel/AG Grid–style column pinning: freeze columns to the left or right edge while the rest of the table scrolls underneath.',
       },
-      { property: 'og:title', content: 'Column Pinning Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table Column Pinning — ShadTable',
+      },
       {
         property: 'og:description',
         content:
@@ -129,21 +132,18 @@ function ColumnPinningTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Column Pinning Table
+            Shadcn Column Pinning Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Freeze columns to the left or right edge — Excel/AG Grid style —
-            while the rest of the table scrolls underneath. Hover a header
-            to pin it left or right; hover a pinned header to unpin it.
+            while the rest of the table scrolls underneath. Hover a header to
+            pin it left or right; hover a pinned header to unpin it.
           </p>
         </div>
 
         <InstallCommand name="column-pinning-table" />
 
-        <ComponentPreview
-          preview={<ColumnPinningTableDemo />}
-          files={files}
-        />
+        <ComponentPreview preview={<ColumnPinningTableDemo />} files={files} />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

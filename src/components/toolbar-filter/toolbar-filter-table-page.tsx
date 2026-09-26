@@ -64,12 +64,17 @@ export function ToolbarFilterTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Toolbar Filter Table
+            Shadcn Toolbar Filter Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A simple filter row above the table — dropdown selects and a search
             input, filters applied immediately. The 80% use case for filtering,
             and the default place to start.
+          </p>
+          <p className="mt-2 max-w-2xl text-base text-muted-foreground text-balance">
+            Use this when a handful of fixed dropdowns and a search box cover
+            your filtering needs and the filter state doesn&apos;t need to
+            survive a reload.
           </p>
         </div>
 

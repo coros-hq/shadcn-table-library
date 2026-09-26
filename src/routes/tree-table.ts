@@ -4,13 +4,16 @@ import { TreeTablePage } from '#/components/tree/tree-table-page'
 export const Route = createFileRoute('/tree-table')({
   head: () => ({
     meta: [
-      { title: 'Tree Table — ShadTable' },
+      { title: 'Shadcn Tree Table (Nested Rows) — ShadTable' },
       {
         name: 'description',
         content:
-          'A hierarchical table for nested data — departments, teams, and employees — with expand/collapse, sorting, and a search box that keeps a matching row\'s ancestors visible.',
+          "A tree table for nested rows for shadcn/ui and TanStack Table. A hierarchical table for nested data — departments, teams, and employees — with expand/collapse, sorting, and a search box that keeps a matching row's ancestors visible.",
       },
-      { property: 'og:title', content: 'Tree Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Tree Table (Nested Rows) — ShadTable',
+      },
       {
         property: 'og:description',
         content:

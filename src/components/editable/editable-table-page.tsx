@@ -27,7 +27,7 @@ const [pendingCells, setPendingCells] = useState<Set<string>>(new Set())`,
   {
     title: 'Validation runs once, at commit — not on every keystroke',
     description:
-      "field.validate(draftValue) only runs when the user presses Enter or the input blurs. An invalid value never reaches data — commitEdit exits edit mode without writing anything, and flashError puts the error message where the value used to be for two seconds before clearing itself.",
+      'field.validate(draftValue) only runs when the user presses Enter or the input blurs. An invalid value never reaches data — commitEdit exits edit mode without writing anything, and flashError puts the error message where the value used to be for two seconds before clearing itself.',
     file: 'src/components/editable/data-table.tsx',
     code: `const error = field.validate(draftValue)
 if (error) {
@@ -50,7 +50,7 @@ saveOptimistically(rowId, columnId, previousValue, key)`,
   {
     title: 'A failed save rolls back automatically',
     description:
-      "saveOptimistically simulates a 15% failure rate. On failure it writes previousValue straight back into data and removes that edit from the undo history — there's nothing to undo, since the save never actually went through — then flashes \"Save failed — reverted\" on that exact cell.",
+      'saveOptimistically simulates a 15% failure rate. On failure it writes previousValue straight back into data and removes that edit from the undo history — there\'s nothing to undo, since the save never actually went through — then flashes "Save failed — reverted" on that exact cell.',
     file: 'src/components/editable/data-table.tsx',
     code: `if (failed) {
   onDataChange((prev) =>
@@ -84,7 +84,7 @@ export function EditableTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Editable Table
+            Shadcn Editable Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Click a cell to edit it inline. Edits validate on commit, apply

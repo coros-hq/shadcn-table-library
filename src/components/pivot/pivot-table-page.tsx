@@ -17,9 +17,9 @@ const files = [
 
 const steps = [
   {
-    title: "The reshape happens before the table ever sees it",
+    title: 'The reshape happens before the table ever sees it',
     description:
-      "pivotData() takes flat sales records plus a rowKey, colKey, and aggFn, and returns plain { rowValue, cells, total } objects — no TanStack Table types involved. The table itself has no idea what a \"pivot\" is; by the time useReactTable sees the data, it's already a flat list of rows like any other table in this library.",
+      'pivotData() takes flat sales records plus a rowKey, colKey, and aggFn, and returns plain { rowValue, cells, total } objects — no TanStack Table types involved. The table itself has no idea what a "pivot" is; by the time useReactTable sees the data, it\'s already a flat list of rows like any other table in this library.',
     file: 'src/components/pivot/pivot.ts',
     code: `export function pivotData(data, rowKey, colKey, aggFn) {
   const rowValues = Array.from(new Set(data.map((d) => String(d[rowKey])))).sort()
@@ -71,7 +71,7 @@ const steps = [
   {
     title: 'One aggregate function drives every number on the page',
     description:
-      "aggregate() is the single function called for every cell, every column subtotal, and the grand total. Sum, average, and count all reuse it, so switching \"Aggregate\" from Sum to Average recomputes the whole table — including the totals row — with no separate subtotal formula that could drift out of sync with the body.",
+      'aggregate() is the single function called for every cell, every column subtotal, and the grand total. Sum, average, and count all reuse it, so switching "Aggregate" from Sum to Average recomputes the whole table — including the totals row — with no separate subtotal formula that could drift out of sync with the body.',
     file: 'src/components/pivot/pivot.ts',
     code: `export function aggregate(records: SalesRecord[], aggFn: AggregationType): number {
   if (aggFn === 'count') return records.length
@@ -81,7 +81,7 @@ const steps = [
 }`,
   },
   {
-    title: "The grand-total row bypasses TanStack Table entirely",
+    title: 'The grand-total row bypasses TanStack Table entirely',
     description:
       "columnTotals and grandTotal are rendered directly into a <TableFooter>, not through table.getRowModel() — it's a single row that doesn't sort, filter, or paginate like the others, so keeping it outside the table's own row model means it never has to fight those features if this example grows to include them later.",
     file: 'src/components/pivot/data-table.tsx',
@@ -103,13 +103,13 @@ export function PivotTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Pivot Table
+            Shadcn Pivot Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            Dashboard-style analytics: pick which dimension becomes rows,
-            which becomes columns, and how to aggregate (sum, average, or
-            count) — the table and its totals recompute from the same flat
-            sales data every time.
+            Dashboard-style analytics: pick which dimension becomes rows, which
+            becomes columns, and how to aggregate (sum, average, or count) — the
+            table and its totals recompute from the same flat sales data every
+            time.
           </p>
         </div>
 

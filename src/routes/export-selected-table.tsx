@@ -4,13 +4,16 @@ import { ExportSelectedPage } from '#/components/export-selected/export-selected
 export const Route = createFileRoute('/export-selected-table')({
   head: () => ({
     meta: [
-      { title: 'Export Selected Rows — ShadTable' },
+      { title: 'Shadcn Table — Export Selected Rows — ShadTable' },
       {
         name: 'description',
         content:
-          'A table with row checkboxes that exports only the selected rows to CSV or Excel. Selection persists across pages, with a page-level select-all and a "Select all" shortcut.',
+          'A table that exports selected rows for shadcn/ui and TanStack Table. A table with row checkboxes that exports only the selected rows to CSV or Excel. Selection persists across pages, with a page-level select-all and a "Select all" shortcut.',
       },
-      { property: 'og:title', content: 'Export Selected Rows — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table — Export Selected Rows — ShadTable',
+      },
       {
         property: 'og:description',
         content:

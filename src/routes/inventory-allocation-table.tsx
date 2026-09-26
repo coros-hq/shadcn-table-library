@@ -13,12 +13,18 @@ import { CodeBlock } from '#/components/docs/code-block.tsx'
 
 const files = [
   { path: 'src/components/inventory-allocation/index.tsx', code: indexSource },
-  { path: 'src/components/inventory-allocation/columns.tsx', code: columnsSource },
+  {
+    path: 'src/components/inventory-allocation/columns.tsx',
+    code: columnsSource,
+  },
   {
     path: 'src/components/inventory-allocation/data-table.tsx',
     code: dataTableSource,
   },
-  { path: 'src/components/inventory-allocation/formulas.ts', code: formulasSource },
+  {
+    path: 'src/components/inventory-allocation/formulas.ts',
+    code: formulasSource,
+  },
   {
     path: 'src/components/inventory-allocation/batch-detail.tsx',
     code: batchDetailSource,
@@ -41,9 +47,9 @@ const shortfall = Math.max(0, reorderPoint - position)
 const reorderQty = Math.ceil(shortfall / row.casePack) * row.casePack`,
   },
   {
-    title: 'Computed columns sort by the formula, not by what\'s on screen',
+    title: "Computed columns sort by the formula, not by what's on screen",
     description:
-      "Each formula column uses accessorFn to hand TanStack the derived number, so sorting by Reorder point or Suggested PO works with no custom sortingFn. Status sorts by a severity rank (Short → Reorder → Healthy) rather than alphabetically, so the default sort puts the SKUs that need attention first.",
+      'Each formula column uses accessorFn to hand TanStack the derived number, so sorting by Reorder point or Suggested PO works with no custom sortingFn. Status sorts by a severity rank (Short → Reorder → Healthy) rather than alphabetically, so the default sort puts the SKUs that need attention first.',
     file: 'src/components/inventory-allocation/columns.tsx',
     code: `{
   id: 'status',
@@ -88,7 +94,7 @@ validate={(n) => {
   {
     title: 'FEFO auto-allocation is just another formula',
     description:
-      "First-expired, first-out picks from the batch that expires soonest and skips expired stock. allocateFefo() takes a row and returns new batches, so the Auto-allocate button is a single updateRow call — and because nothing derived is stored, the status, reorder quantity, and totals all follow automatically.",
+      'First-expired, first-out picks from the batch that expires soonest and skips expired stock. allocateFefo() takes a row and returns new batches, so the Auto-allocate button is a single updateRow call — and because nothing derived is stored, the status, reorder quantity, and totals all follow automatically.',
     file: 'src/components/inventory-allocation/formulas.ts',
     code: `let remaining = row.orderedQty
 for (const id of batchesByExpiry) {
@@ -102,15 +108,15 @@ for (const id of batchesByExpiry) {
 export const Route = createFileRoute('/inventory-allocation-table')({
   head: () => ({
     meta: [
-      { title: 'Inventory Allocation Table — ShadTable' },
+      { title: 'Shadcn Inventory Allocation Table — ShadTable' },
       {
         name: 'description',
         content:
-          'An editable inventory grid with expandable batch detail and live formula columns — reorder point, days of cover, and suggested PO recalculate as you edit demand, lead time, or batch allocations.',
+          'An inventory allocation table for shadcn/ui and TanStack Table. An editable inventory grid with expandable batch detail and live formula columns — reorder point, days of cover, and suggested PO recalculate as you edit demand, lead time, or batch allocations.',
       },
       {
         property: 'og:title',
-        content: 'Inventory Allocation Table — ShadTable',
+        content: 'Shadcn Inventory Allocation Table — ShadTable',
       },
       {
         property: 'og:description',
@@ -145,22 +151,19 @@ function InventoryAllocationTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Inventory Allocation Table
+            Shadcn Inventory Allocation Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A fulfillment-center grid for SKU allocation: edit demand, lead
-            time, and safety stock inline, expand a SKU to allocate its
-            batches across warehouse locations, and watch reorder points,
-            days of cover, and suggested purchase orders recalculate live.
+            time, and safety stock inline, expand a SKU to allocate its batches
+            across warehouse locations, and watch reorder points, days of cover,
+            and suggested purchase orders recalculate live.
           </p>
         </div>
 
         <InstallCommand name="inventory-allocation-table" />
 
-        <ComponentPreview
-          preview={<InventoryAllocationDemo />}
-          files={files}
-        />
+        <ComponentPreview preview={<InventoryAllocationDemo />} files={files} />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

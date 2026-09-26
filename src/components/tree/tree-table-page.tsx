@@ -17,7 +17,7 @@ const steps = [
   {
     title: 'Rows are nested, not flat',
     description:
-      'Each node carries its own children array (department → team → employee). getSubRows tells TanStack Table how to find a row\'s children, so the whole hierarchy is built from one recursive data structure instead of a flat list plus a parentId lookup.',
+      "Each node carries its own children array (department → team → employee). getSubRows tells TanStack Table how to find a row's children, so the whole hierarchy is built from one recursive data structure instead of a flat list plus a parentId lookup.",
     file: 'src/components/tree/data-table.tsx',
     code: `const table = useReactTable({
   data,
@@ -31,7 +31,7 @@ const steps = [
   {
     title: 'Depth drives indentation',
     description:
-      "Every row TanStack produces carries a depth (0 for roots, 1 for their children, and so on). The Name cell reads row.depth directly into an inline padding-left — no manual recursion needed to indent nested rows.",
+      'Every row TanStack produces carries a depth (0 for roots, 1 for their children, and so on). The Name cell reads row.depth directly into an inline padding-left — no manual recursion needed to indent nested rows.',
     file: 'src/components/tree/columns.tsx',
     code: `cell: ({ row }) => (
   <div
@@ -56,9 +56,9 @@ const steps = [
 </button>`,
   },
   {
-    title: 'Search keeps a matching row\'s ancestors visible',
+    title: "Search keeps a matching row's ancestors visible",
     description:
-      "filterFromLeafRows: true changes how getFilteredRowModel treats the tree: a branch survives filtering if any descendant matches, not just the row itself. Without it, searching \"Ava\" would hide the whole Engineering → Frontend branch because the department and team rows don't contain that text.",
+      'filterFromLeafRows: true changes how getFilteredRowModel treats the tree: a branch survives filtering if any descendant matches, not just the row itself. Without it, searching "Ava" would hide the whole Engineering → Frontend branch because the department and team rows don\'t contain that text.',
     file: 'src/components/tree/data-table.tsx',
     code: `getFilteredRowModel: getFilteredRowModel(),
 filterFromLeafRows: true,`,
@@ -79,7 +79,9 @@ export function TreeTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">Tree Table</h1>
+          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+            Shadcn Tree Table
+          </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             A hierarchical table for nested data — departments, teams, and
             employees — with expand/collapse, sorting, and a search box that

@@ -5,13 +5,16 @@ import { ServerTablePage } from '#/components/ssr/pagination-example/server-tabl
 export const Route = createFileRoute('/server-table')({
   head: () => ({
     meta: [
-      { title: 'SSR Pagination — ShadTable' },
+      { title: 'Shadcn Server-Side Pagination Table — ShadTable' },
       {
         name: 'description',
         content:
-          "Only the current page's rows are ever sent to the browser — changing pages triggers a real server request instead of slicing an in-memory array.",
+          "A server-side pagination table for shadcn/ui and TanStack Table. Only the current page's rows are ever sent to the browser — changing pages triggers a real server request instead of slicing an in-memory array.",
       },
-      { property: 'og:title', content: 'SSR Pagination — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Server-Side Pagination Table — ShadTable',
+      },
       {
         property: 'og:description',
         content:

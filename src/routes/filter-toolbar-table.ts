@@ -4,13 +4,16 @@ import { FilterToolbarPage } from '#/components/filter-toolbar/filter-toolbar-pa
 export const Route = createFileRoute('/filter-toolbar-table')({
   head: () => ({
     meta: [
-      { title: 'Filter Toolbar — ShadTable' },
+      { title: 'Shadcn Data Table Filter Toolbar — ShadTable' },
       {
         name: 'description',
         content:
-          'A config-driven filter system — filters are generated from column.meta instead of being hand-wired per column, with an active-filters row derived from columnFilters.',
+          'A config-driven data table filter toolbar for shadcn/ui and TanStack Table. A config-driven filter system — filters are generated from column.meta instead of being hand-wired per column, with an active-filters row derived from columnFilters.',
       },
-      { property: 'og:title', content: 'Filter Toolbar — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Data Table Filter Toolbar — ShadTable',
+      },
       {
         property: 'og:description',
         content:

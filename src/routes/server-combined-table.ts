@@ -5,15 +5,15 @@ import { ServerCombinedTablePage } from '#/components/ssr/combined-example/serve
 export const Route = createFileRoute('/server-combined-table')({
   head: () => ({
     meta: [
-      { title: 'SSR Sort + Filter + Pagination — ShadTable' },
+      { title: 'Shadcn Server-Side Sort, Filter & Pagination — ShadTable' },
       {
         name: 'description',
         content:
-          'Sorting, filtering, and pagination all resolved together on the server from one URL, instead of three separate demos — the way real dashboards actually work.',
+          'A server-side sorting, filtering and pagination table for shadcn/ui and TanStack Table. Sorting, filtering, and pagination all resolved together on the server from one URL, instead of three separate demos — the way real dashboards actually work.',
       },
       {
         property: 'og:title',
-        content: 'SSR Sort + Filter + Pagination — ShadTable',
+        content: 'Shadcn Server-Side Sort, Filter & Pagination — ShadTable',
       },
       {
         property: 'og:description',
@@ -39,7 +39,9 @@ export const Route = createFileRoute('/server-combined-table')({
       },
     ],
   }),
-  validateSearch: (search): {
+  validateSearch: (
+    search,
+  ): {
     page: number
     pageSize: number
     role: string

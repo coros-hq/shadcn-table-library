@@ -76,7 +76,7 @@ function toggleRow(id: string) {
 </Table>`,
   },
   {
-    title: "Collapsed orders never compute their detail content",
+    title: 'Collapsed orders never compute their detail content',
     description:
       "OrderDetail (and each line item's qty × price subtotal) only renders inside the isExpanded ? ... : null branch — for the three collapsed orders on the page, nothing about their items or shipping address is rendered or computed until the user actually asks to see it.",
     file: 'src/components/master-detail/data-table.tsx',
@@ -92,12 +92,12 @@ export function MasterDetailPage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Master-Detail Table
+            Shadcn Master-Detail Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Expand an order to reveal its shipping address and a nested
-            sub-table of line items — a full-width detail row rendered
-            directly beneath the row that owns it.
+            sub-table of line items — a full-width detail row rendered directly
+            beneath the row that owns it.
           </p>
         </div>
 

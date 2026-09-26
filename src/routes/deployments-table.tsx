@@ -4,13 +4,13 @@ import { DeploymentsPage } from '#/components/deployments/deployments-page'
 export const Route = createFileRoute('/deployments-table')({
   head: () => ({
     meta: [
-      { title: 'Deployments Table — ShadTable' },
+      { title: 'Shadcn Deployments Table — ShadTable' },
       {
         name: 'description',
         content:
-          'A deployment history table like on hosting platforms: status with build time, environment, branch and commit, with filters for environment, status, branch, and date and live counts on every option.',
+          'A deployments table for shadcn/ui and TanStack Table. A deployment history table like on hosting platforms: status with build time, environment, branch and commit, with filters for environment, status, branch, and date and live counts on every option.',
       },
-      { property: 'og:title', content: 'Deployments Table — ShadTable' },
+      { property: 'og:title', content: 'Shadcn Deployments Table — ShadTable' },
       {
         property: 'og:description',
         content:

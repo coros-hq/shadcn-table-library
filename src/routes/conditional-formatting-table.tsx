@@ -10,8 +10,14 @@ import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 
 const files = [
-  { path: 'src/components/conditional-formatting/index.tsx', code: indexSource },
-  { path: 'src/components/conditional-formatting/columns.tsx', code: columnsSource },
+  {
+    path: 'src/components/conditional-formatting/index.tsx',
+    code: indexSource,
+  },
+  {
+    path: 'src/components/conditional-formatting/columns.tsx',
+    code: columnsSource,
+  },
   {
     path: 'src/components/conditional-formatting/data-table.tsx',
     code: dataTableSource,
@@ -72,7 +78,7 @@ export function matchRule<TData>(row: TData, rules: FormatRule<TData>[]) {
   {
     title: 'No match is a valid, silent outcome',
     description:
-      "matchRule returns undefined when nothing matches, and every cell handles that with cn(..., rule?.className) — undefined is simply dropped from the class list. A healthy row (in stock, decent margin, active status) needs zero special-case code; it just renders with no rule applied, which is the correct default for conditional formatting.",
+      'matchRule returns undefined when nothing matches, and every cell handles that with cn(..., rule?.className) — undefined is simply dropped from the class list. A healthy row (in stock, decent margin, active status) needs zero special-case code; it just renders with no rule applied, which is the correct default for conditional formatting.',
     file: 'src/components/conditional-formatting/columns.tsx',
     code: `const rule = matchRule(row.original, marginRules)
 // rule is undefined for anything between 10% and 30% margin
@@ -85,15 +91,15 @@ export function matchRule<TData>(row: TData, rules: FormatRule<TData>[]) {
 export const Route = createFileRoute('/conditional-formatting-table')({
   head: () => ({
     meta: [
-      { title: 'Conditional Formatting Table — ShadTable' },
+      { title: 'Shadcn Conditional Formatting Table — ShadTable' },
       {
         name: 'description',
         content:
-          'Excel-style conditional formatting: a small rule engine highlights cells, colors text, and re-colors badges based on the row data, not just a single value.',
+          'A conditional formatting table for shadcn/ui and TanStack Table. Excel-style conditional formatting: a small rule engine highlights cells, colors text, and re-colors badges based on the row data, not just a single value.',
       },
       {
         property: 'og:title',
-        content: 'Conditional Formatting Table — ShadTable',
+        content: 'Shadcn Conditional Formatting Table — ShadTable',
       },
       {
         property: 'og:description',
@@ -128,13 +134,13 @@ function ConditionalFormattingTablePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Conditional Formatting Table
+            Shadcn Conditional Formatting Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            Excel-style conditional formatting — a small, reusable rule
-            engine highlights out-of-stock rows, colors margin percentages,
-            and re-colors status badges, all driven by the same
-            row-level rules instead of one-off logic per column.
+            Excel-style conditional formatting — a small, reusable rule engine
+            highlights out-of-stock rows, colors margin percentages, and
+            re-colors status badges, all driven by the same row-level rules
+            instead of one-off logic per column.
           </p>
         </div>
 

@@ -82,13 +82,17 @@ export function FilterStateShapePage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Filter State Shape
+            Shadcn Filter State Shape
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            A normalized ActiveFilter[] array as the single source of truth
-            for multi-select and date-range filters — the toolbar, the
-            removable chips row, and TanStack Table's columnFilters all read
-            from (and write to) the same shape.
+            A normalized ActiveFilter[] array as the single source of truth for
+            multi-select and date-range filters — the toolbar, the removable
+            chips row, and TanStack Table's columnFilters all read from (and
+            write to) the same shape.
+          </p>
+          <p className="mt-2 max-w-2xl text-base text-muted-foreground text-balance">
+            Use this when several UI pieces (toolbar, chips, saved views) need
+            to read and write the same filters without drifting out of sync.
           </p>
         </div>
 

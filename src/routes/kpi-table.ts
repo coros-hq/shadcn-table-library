@@ -4,13 +4,16 @@ import { KpiTablePage } from '#/components/kpi/kpi-table-page'
 export const Route = createFileRoute('/kpi-table')({
   head: () => ({
     meta: [
-      { title: 'Summary / KPI Table — ShadTable' },
+      { title: 'Shadcn KPI / Summary Table — ShadTable' },
       {
         name: 'description',
         content:
-          'A compact metrics table — current value, period-over-period change, and a per-row sparkline — for the kind of dashboard summary that sits above the fold.',
+          'A KPI summary table for shadcn/ui and TanStack Table. A compact metrics table — current value, period-over-period change, and a per-row sparkline — for the kind of dashboard summary that sits above the fold.',
       },
-      { property: 'og:title', content: 'Summary / KPI Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn KPI / Summary Table — ShadTable',
+      },
       {
         property: 'og:description',
         content:

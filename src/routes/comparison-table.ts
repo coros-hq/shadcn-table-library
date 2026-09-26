@@ -4,13 +4,13 @@ import { ComparisonTablePage } from '#/components/comparison/comparison-table-pa
 export const Route = createFileRoute('/comparison-table')({
   head: () => ({
     meta: [
-      { title: 'Comparison Table — ShadTable' },
+      { title: 'Shadcn Comparison Table — ShadTable' },
       {
         name: 'description',
         content:
-          "Pricing plans as table columns — feature rows compare booleans and values across every plan, with the recommended plan's column tinted to stand out.",
+          "A comparison table for shadcn/ui and TanStack Table. Pricing plans as table columns — feature rows compare booleans and values across every plan, with the recommended plan's column tinted to stand out.",
       },
-      { property: 'og:title', content: 'Comparison Table — ShadTable' },
+      { property: 'og:title', content: 'Shadcn Comparison Table — ShadTable' },
       {
         property: 'og:description',
         content:

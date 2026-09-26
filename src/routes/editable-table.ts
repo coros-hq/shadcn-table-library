@@ -4,13 +4,16 @@ import { EditableTablePage } from '#/components/editable/editable-table-page'
 export const Route = createFileRoute('/editable-table')({
   head: () => ({
     meta: [
-      { title: 'Editable Table — ShadTable' },
+      { title: 'Shadcn Editable Table (Inline Editing) — ShadTable' },
       {
         name: 'description',
         content:
-          'Click a cell to edit it inline. Edits validate on commit, apply optimistically, roll back on a simulated failure, and can be undone one at a time.',
+          'An editable data table for shadcn/ui and TanStack Table. Click a cell to edit it inline. Edits validate on commit, apply optimistically, roll back on a simulated failure, and can be undone one at a time.',
       },
-      { property: 'og:title', content: 'Editable Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Editable Table (Inline Editing) — ShadTable',
+      },
       {
         property: 'og:description',
         content:

@@ -63,7 +63,7 @@ export function ExportSelectedPage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
-            Export Selected Rows
+            Shadcn Table — Export Selected Rows
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             Tick the rows you need, across as many pages as you like, and export

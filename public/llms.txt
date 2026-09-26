@@ -1,0 +1,68 @@
+# ShadTable
+
+> ShadTable (https://www.shad-table.dev) is an open-source collection of copy-paste table components for shadcn/ui, built on TanStack Table. Each component is a shadcn registry item installed with `npx shadcn add https://www.shad-table.dev/r/<name>.json`, so the code lives in your own project.
+
+Every page below has a live demo, the full source, an install command, and a step-by-step "How it works" explanation.
+
+- Source: https://github.com/coros-hq/shadcn-table-library
+- Registry index: https://www.shad-table.dev/r/registry.json
+
+## Data Table
+
+- [Data Table](https://www.shad-table.dev/data-table): A data table for shadcn/ui and TanStack Table. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.
+
+## SSR
+
+- [Pagination](https://www.shad-table.dev/server-table): A server-side pagination table for shadcn/ui and TanStack Table. Only the current page's rows are ever sent to the browser — changing pages triggers a real server request instead of slicing an in-memory array.
+- [Filter](https://www.shad-table.dev/server-filter): A server-side filtering table for shadcn/ui and TanStack Table. Filtering by column, resolved on the server the same way SSR Pagination resolves pages — every filter change is a real server request, not an in-memory slice.
+- [Sort + Filter + Pagination](https://www.shad-table.dev/server-combined-table): A server-side sorting, filtering and pagination table for shadcn/ui and TanStack Table. Sorting, filtering, and pagination all resolved together on the server from one URL, instead of three separate demos — the way real dashboards actually work.
+
+## Advanced Filters
+
+- [Toolbar Filter Table](https://www.shad-table.dev/toolbar-filter-table): A toolbar filter table for shadcn/ui and TanStack Table. A simple filter row above the table — dropdown selects and a search input, filters applied immediately. The 80% use case for filtering.
+- [Filter State Shape](https://www.shad-table.dev/filter-state-shape-table): A data table filter state pattern for shadcn/ui and TanStack Table. A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, keeping the toolbar, chips row, and columnFilters in sync.
+- [Filter Toolbar](https://www.shad-table.dev/filter-toolbar-table): A config-driven data table filter toolbar for shadcn/ui and TanStack Table. A config-driven filter system — filters are generated from column.meta instead of being hand-wired per column, with an active-filters row derived from columnFilters.
+- [Params Filter Table](https://www.shad-table.dev/params-filter-table): A data table with URL search params filters for shadcn/ui and TanStack Table. A data table whose filter state is synced to URL search params.
+- [Deployments](https://www.shad-table.dev/deployments-table): A deployments table for shadcn/ui and TanStack Table. A deployment history table like on hosting platforms: status with build time, environment, branch and commit, with filters for environment, status, branch, and date and live counts on every option.
+- [Logs](https://www.shad-table.dev/logs-table): A log explorer table for shadcn/ui and TanStack Table: a date range picker, multi-select level, service, and status filters, highlighted search, and expandable rows with the full event.
+
+## Structure / Hierarchy
+
+- [Tree Table](https://www.shad-table.dev/tree-table): A tree table for nested rows for shadcn/ui and TanStack Table. A hierarchical table for nested data — departments, teams, and employees — with expand/collapse, sorting, and a search box that keeps a matching row\
+- [Grouped Table](https://www.shad-table.dev/grouped-table): A grouped table with row grouping for shadcn/ui and TanStack Table. Orders grouped by category, with collapsible group headers and a live subtotal of each group's order amounts.
+- [Pivot Table](https://www.shad-table.dev/pivot-table): A pivot table for shadcn/ui and TanStack Table. Dashboard-style analytics table — pick which dimension becomes rows, which becomes columns, and how to aggregate (sum, average, or count), recomputed from flat sales data.
+- [Master-Detail Table](https://www.shad-table.dev/master-detail): A master-detail table with expandable rows for shadcn/ui and TanStack Table. Expand an order to reveal its shipping address and a nested sub-table of line items — a full-width detail row rendered directly beneath the row that owns it.
+
+## Interaction-heavy
+
+- [Tree Table — Selection](https://www.shad-table.dev/tree-select): A tree table with checkbox selection for shadcn/ui and TanStack Table. The same department/team/employee tree, with a checkbox column that cascades selection to every descendant and reports indeterminate state for partial branches.
+- [Tree Table — Reorder](https://www.shad-table.dev/tree-reorder): A drag-and-drop tree table for shadcn/ui and TanStack Table. The same department/team/employee tree, with rows draggable by a handle — reordering is scoped to siblings so a department can't be dropped inside a team.
+- [Reorderable Table](https://www.shad-table.dev/reorder-table): A drag-and-drop reorderable table for shadcn/ui and TanStack Table. Drag rows to reorder them, built on @dnd-kit/sortable rather than any table-specific drag logic.
+- [Editable Table](https://www.shad-table.dev/editable-table): An editable data table for shadcn/ui and TanStack Table. Click a cell to edit it inline. Edits validate on commit, apply optimistically, roll back on a simulated failure, and can be undone one at a time.
+- [Resizable / Reorderable Columns](https://www.shad-table.dev/resizable-table): A table with resizable and reorderable columns for shadcn/ui and TanStack Table. Drag a header's grip to reorder columns, drag its right edge to resize — the resulting layout is saved to localStorage and restored on your next visit.
+- [Column Pinning](https://www.shad-table.dev/column-pinning-table): A column pinning table for shadcn/ui and TanStack Table. Excel/AG Grid–style column pinning: freeze columns to the left or right edge while the rest of the table scrolls underneath.
+- [Inventory Allocation](https://www.shad-table.dev/inventory-allocation-table): An inventory allocation table for shadcn/ui and TanStack Table. An editable inventory grid with expandable batch detail and live formula columns — reorder point, days of cover, and suggested PO recalculate as you edit demand, lead time, or batch allocations.
+
+## Animated
+
+- [Animated Icons Table](https://www.shad-table.dev/animated-icons-table): A table with animated row-action icons for shadcn/ui and TanStack Table. Row actions built with Iconimate — motion-driven icons that animate on hover, focus, and click, wired to favorite, notify, archive, and delete.
+- [Live Status Indicators](https://www.shad-table.dev/live-status-table): A live status table for shadcn/ui and TanStack Table. A service-health table where status and latency update live on a timer, with a pulsing indicator for actively-monitored states.
+- [Async Row Actions](https://www.shad-table.dev/async-actions-table): A table with async row actions for shadcn/ui and TanStack Table. Table row actions with animated icons that reflect real request state: a sync icon that spins while pending, Retry on failure, Undo for archive, and a confirm step for delete.
+
+## Dashboard / Analytics-specific
+
+- [Summary / KPI Table](https://www.shad-table.dev/kpi-table): A KPI summary table for shadcn/ui and TanStack Table. A compact metrics table — current value, period-over-period change, and a per-row sparkline — for the kind of dashboard summary that sits above the fold.
+- [Comparison Table](https://www.shad-table.dev/comparison-table): A comparison table for shadcn/ui and TanStack Table. Pricing plans as table columns — feature rows compare booleans and values across every plan, with the recommended plan's column tinted to stand out.
+- [Heatmap Table](https://www.shad-table.dev/heatmap-table): A heatmap table for shadcn/ui and TanStack Table. Revenue by region and month, with each cell's background intensity mapped to its value — spot patterns across a matrix at a glance instead of reading numbers.
+- [Conditional Formatting](https://www.shad-table.dev/conditional-formatting-table): A conditional formatting table for shadcn/ui and TanStack Table. Excel-style conditional formatting: a small rule engine highlights cells, colors text, and re-colors badges based on the row data, not just a single value.
+- [Production Dashboard](https://www.shad-table.dev/production-dashboard-table): A production dashboard table for shadcn/ui and TanStack Table. A production-line dashboard combining conditional formatting, progress bars, and sparklines on one realistic dataset — a composition of existing primitives, not a new feature.
+
+## Export / Density Variants
+
+- [Density & Export](https://www.shad-table.dev/utility-table): A table with a density toggle and export for shadcn/ui and TanStack Table. One table, three modes: a compact/comfortable/spacious density toggle, CSV/Excel/PDF export, and a print-optimized view that ignores dark mode entirely.
+- [Export Configuration](https://www.shad-table.dev/export-config-table): A table with configurable CSV and Excel export for shadcn/ui and TanStack Table. A table whose Export button opens a dialog: filter by status, region, and date, pick columns and CSV or Excel, and see a live count of matching rows before downloading.
+- [Export Selected Rows](https://www.shad-table.dev/export-selected-table): A table that exports selected rows for shadcn/ui and TanStack Table. A table with row checkboxes that exports only the selected rows to CSV or Excel. Selection persists across pages, with a page-level select-all and a "Select all" shortcut.
+
+## Responsive
+
+- [Mobile Cards Table](https://www.shad-table.dev/mobile-cards-table): A responsive table that becomes cards on mobile for shadcn/ui and TanStack Table. A data table that transforms into stacked cards below a container-query breakpoint using pure CSS display overrides — no separate mobile component, no JS media query, no viewport dependency.
