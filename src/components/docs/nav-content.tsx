@@ -156,8 +156,15 @@ export function NavContent({
                     <ChevronRight className="ml-auto size-3.5 text-muted-foreground/60 transition-transform duration-200 ease-out group-data-[state=open]/collapsible:rotate-90" />
                   </CollapsibleTrigger>
                 </SidebarGroupLabel>
-                <CollapsibleContent className="overflow-hidden duration-200 ease-out data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down motion-reduce:animate-none">
-                  <SidebarGroupContent>
+                {/* forceMount keeps closed groups' links in the SSR HTML so
+                    crawlers can discover every page; visibility (transitioned
+                    alongside the row height) hides them from users and the
+                    tab order while closed. */}
+                <CollapsibleContent
+                  forceMount
+                  className="grid transition-[grid-template-rows,visibility] duration-200 ease-out data-[state=closed]:invisible data-[state=closed]:grid-rows-[0fr] data-[state=open]:grid-rows-[1fr] motion-reduce:transition-none"
+                >
+                  <SidebarGroupContent className="min-h-0 overflow-hidden">
                     <SidebarMenu className="mt-1 ml-3.5 w-auto gap-0.5 border-l border-sidebar-border pl-3">
                       {group.items.map((link) => {
                         const isActive = pathname === link.to
