@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouterState } from '@tanstack/react-router'
 import { Check, Copy } from 'lucide-react'
 
 import { Button } from '#/components/ui/button.tsx'
@@ -18,8 +19,13 @@ export function InstallCommand({
   command: commandOverride,
 }: InstallCommandProps) {
   const [copied, setCopied] = useState(false)
+  const isV9 = useRouterState({
+    select: (s) =>
+      s.location.pathname === '/v9' || s.location.pathname.startsWith('/v9/'),
+  })
   const command =
-    commandOverride ?? `npx shadcn add ${REGISTRY_BASE_URL}/${name}.json`
+    commandOverride ??
+    `npx shadcn add ${REGISTRY_BASE_URL}/${name}${isV9 ? '-v9' : ''}.json`
 
   async function handleCopy() {
     await navigator.clipboard.writeText(command)

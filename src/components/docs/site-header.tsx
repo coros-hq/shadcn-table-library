@@ -4,6 +4,7 @@ import DiscordIcon from '#/../public/icons/discord-logo.svg'
 import { ThemeToggle } from '#/components/docs/theme-toggle.tsx'
 import { GlobalSearch } from '#/components/docs/global-search.tsx'
 import { GithubStars } from '#/components/docs/github-stars.tsx'
+import { VersionSwitcher } from '#/components/docs/version-switcher.tsx'
 import { Button } from '#/components/ui/button.tsx'
 import { cn } from '#/lib/utils.ts'
 import {
@@ -27,6 +28,7 @@ export function SiteHeader({
   transparent = false,
 }: SiteHeaderProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const version = pathname.startsWith('/v9') ? 'v9' : 'v8'
 
   return (
     <>
@@ -62,6 +64,7 @@ export function SiteHeader({
           </div>
           <div className="flex flex-row items-center gap-3">
             <GlobalSearch />
+            <VersionSwitcher />
             <ThemeToggle />
             <a
               href="https://discord.gg/4J6MVnnRY"
@@ -88,6 +91,7 @@ export function SiteHeader({
           </SheetHeader>
           <NavContent
             pathname={pathname}
+            version={version}
             onNavigate={() => onMobileNavOpenChange(false)}
           />
         </SheetContent>

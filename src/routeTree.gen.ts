@@ -43,6 +43,40 @@ import { Route as TreeReorderRouteImport } from './routes/tree-reorder'
 import { Route as TreeSelectRouteImport } from './routes/tree-select'
 import { Route as TreeTableRouteImport } from './routes/tree-table'
 import { Route as UtilityTableRouteImport } from './routes/utility-table'
+import { Route as V9IndexRouteImport } from './routes/v9/index'
+import { Route as V9AnimatedIconsTableRouteImport } from './routes/v9/animated-icons-table'
+import { Route as V9AsyncActionsTableRouteImport } from './routes/v9/async-actions-table'
+import { Route as V9ColumnPinningTableRouteImport } from './routes/v9/column-pinning-table'
+import { Route as V9ComparisonTableRouteImport } from './routes/v9/comparison-table'
+import { Route as V9ConditionalFormattingTableRouteImport } from './routes/v9/conditional-formatting-table'
+import { Route as V9DataTableRouteImport } from './routes/v9/data-table'
+import { Route as V9DeploymentsTableRouteImport } from './routes/v9/deployments-table'
+import { Route as V9EditableTableRouteImport } from './routes/v9/editable-table'
+import { Route as V9ExportConfigTableRouteImport } from './routes/v9/export-config-table'
+import { Route as V9ExportSelectedTableRouteImport } from './routes/v9/export-selected-table'
+import { Route as V9FilterStateShapeTableRouteImport } from './routes/v9/filter-state-shape-table'
+import { Route as V9FilterToolbarTableRouteImport } from './routes/v9/filter-toolbar-table'
+import { Route as V9GroupedTableRouteImport } from './routes/v9/grouped-table'
+import { Route as V9HeatmapTableRouteImport } from './routes/v9/heatmap-table'
+import { Route as V9InventoryAllocationTableRouteImport } from './routes/v9/inventory-allocation-table'
+import { Route as V9KpiTableRouteImport } from './routes/v9/kpi-table'
+import { Route as V9LiveStatusTableRouteImport } from './routes/v9/live-status-table'
+import { Route as V9LogsTableRouteImport } from './routes/v9/logs-table'
+import { Route as V9MasterDetailRouteImport } from './routes/v9/master-detail'
+import { Route as V9MobileCardsTableRouteImport } from './routes/v9/mobile-cards-table'
+import { Route as V9ParamsFilterTableRouteImport } from './routes/v9/params-filter-table'
+import { Route as V9PivotTableRouteImport } from './routes/v9/pivot-table'
+import { Route as V9ProductionDashboardTableRouteImport } from './routes/v9/production-dashboard-table'
+import { Route as V9ReorderTableRouteImport } from './routes/v9/reorder-table'
+import { Route as V9ResizableTableRouteImport } from './routes/v9/resizable-table'
+import { Route as V9ServerCombinedTableRouteImport } from './routes/v9/server-combined-table'
+import { Route as V9ServerFilterRouteImport } from './routes/v9/server-filter'
+import { Route as V9ServerTableRouteImport } from './routes/v9/server-table'
+import { Route as V9ToolbarFilterTableRouteImport } from './routes/v9/toolbar-filter-table'
+import { Route as V9TreeReorderRouteImport } from './routes/v9/tree-reorder'
+import { Route as V9TreeSelectRouteImport } from './routes/v9/tree-select'
+import { Route as V9TreeTableRouteImport } from './routes/v9/tree-table'
+import { Route as V9UtilityTableRouteImport } from './routes/v9/utility-table'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -217,6 +251,179 @@ const UtilityTableRoute = UtilityTableRouteImport.update({
   path: '/utility-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const V9IndexRoute = V9IndexRouteImport.update({
+  id: '/v9/',
+  path: '/v9/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9AnimatedIconsTableRoute = V9AnimatedIconsTableRouteImport.update({
+  id: '/v9/animated-icons-table',
+  path: '/v9/animated-icons-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9AsyncActionsTableRoute = V9AsyncActionsTableRouteImport.update({
+  id: '/v9/async-actions-table',
+  path: '/v9/async-actions-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ColumnPinningTableRoute = V9ColumnPinningTableRouteImport.update({
+  id: '/v9/column-pinning-table',
+  path: '/v9/column-pinning-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ComparisonTableRoute = V9ComparisonTableRouteImport.update({
+  id: '/v9/comparison-table',
+  path: '/v9/comparison-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ConditionalFormattingTableRoute =
+  V9ConditionalFormattingTableRouteImport.update({
+    id: '/v9/conditional-formatting-table',
+    path: '/v9/conditional-formatting-table',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const V9DataTableRoute = V9DataTableRouteImport.update({
+  id: '/v9/data-table',
+  path: '/v9/data-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9DeploymentsTableRoute = V9DeploymentsTableRouteImport.update({
+  id: '/v9/deployments-table',
+  path: '/v9/deployments-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9EditableTableRoute = V9EditableTableRouteImport.update({
+  id: '/v9/editable-table',
+  path: '/v9/editable-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ExportConfigTableRoute = V9ExportConfigTableRouteImport.update({
+  id: '/v9/export-config-table',
+  path: '/v9/export-config-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ExportSelectedTableRoute = V9ExportSelectedTableRouteImport.update({
+  id: '/v9/export-selected-table',
+  path: '/v9/export-selected-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9FilterStateShapeTableRoute = V9FilterStateShapeTableRouteImport.update({
+  id: '/v9/filter-state-shape-table',
+  path: '/v9/filter-state-shape-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9FilterToolbarTableRoute = V9FilterToolbarTableRouteImport.update({
+  id: '/v9/filter-toolbar-table',
+  path: '/v9/filter-toolbar-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9GroupedTableRoute = V9GroupedTableRouteImport.update({
+  id: '/v9/grouped-table',
+  path: '/v9/grouped-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9HeatmapTableRoute = V9HeatmapTableRouteImport.update({
+  id: '/v9/heatmap-table',
+  path: '/v9/heatmap-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9InventoryAllocationTableRoute =
+  V9InventoryAllocationTableRouteImport.update({
+    id: '/v9/inventory-allocation-table',
+    path: '/v9/inventory-allocation-table',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const V9KpiTableRoute = V9KpiTableRouteImport.update({
+  id: '/v9/kpi-table',
+  path: '/v9/kpi-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9LiveStatusTableRoute = V9LiveStatusTableRouteImport.update({
+  id: '/v9/live-status-table',
+  path: '/v9/live-status-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9LogsTableRoute = V9LogsTableRouteImport.update({
+  id: '/v9/logs-table',
+  path: '/v9/logs-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9MasterDetailRoute = V9MasterDetailRouteImport.update({
+  id: '/v9/master-detail',
+  path: '/v9/master-detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9MobileCardsTableRoute = V9MobileCardsTableRouteImport.update({
+  id: '/v9/mobile-cards-table',
+  path: '/v9/mobile-cards-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ParamsFilterTableRoute = V9ParamsFilterTableRouteImport.update({
+  id: '/v9/params-filter-table',
+  path: '/v9/params-filter-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9PivotTableRoute = V9PivotTableRouteImport.update({
+  id: '/v9/pivot-table',
+  path: '/v9/pivot-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ProductionDashboardTableRoute =
+  V9ProductionDashboardTableRouteImport.update({
+    id: '/v9/production-dashboard-table',
+    path: '/v9/production-dashboard-table',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const V9ReorderTableRoute = V9ReorderTableRouteImport.update({
+  id: '/v9/reorder-table',
+  path: '/v9/reorder-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ResizableTableRoute = V9ResizableTableRouteImport.update({
+  id: '/v9/resizable-table',
+  path: '/v9/resizable-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ServerCombinedTableRoute = V9ServerCombinedTableRouteImport.update({
+  id: '/v9/server-combined-table',
+  path: '/v9/server-combined-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ServerFilterRoute = V9ServerFilterRouteImport.update({
+  id: '/v9/server-filter',
+  path: '/v9/server-filter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ServerTableRoute = V9ServerTableRouteImport.update({
+  id: '/v9/server-table',
+  path: '/v9/server-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9ToolbarFilterTableRoute = V9ToolbarFilterTableRouteImport.update({
+  id: '/v9/toolbar-filter-table',
+  path: '/v9/toolbar-filter-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9TreeReorderRoute = V9TreeReorderRouteImport.update({
+  id: '/v9/tree-reorder',
+  path: '/v9/tree-reorder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9TreeSelectRoute = V9TreeSelectRouteImport.update({
+  id: '/v9/tree-select',
+  path: '/v9/tree-select',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9TreeTableRoute = V9TreeTableRouteImport.update({
+  id: '/v9/tree-table',
+  path: '/v9/tree-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const V9UtilityTableRoute = V9UtilityTableRouteImport.update({
+  id: '/v9/utility-table',
+  path: '/v9/utility-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -253,6 +460,40 @@ export interface FileRoutesByFullPath {
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
   '/utility-table': typeof UtilityTableRoute
+  '/v9/animated-icons-table': typeof V9AnimatedIconsTableRoute
+  '/v9/async-actions-table': typeof V9AsyncActionsTableRoute
+  '/v9/column-pinning-table': typeof V9ColumnPinningTableRoute
+  '/v9/comparison-table': typeof V9ComparisonTableRoute
+  '/v9/conditional-formatting-table': typeof V9ConditionalFormattingTableRoute
+  '/v9/data-table': typeof V9DataTableRoute
+  '/v9/deployments-table': typeof V9DeploymentsTableRoute
+  '/v9/editable-table': typeof V9EditableTableRoute
+  '/v9/export-config-table': typeof V9ExportConfigTableRoute
+  '/v9/export-selected-table': typeof V9ExportSelectedTableRoute
+  '/v9/filter-state-shape-table': typeof V9FilterStateShapeTableRoute
+  '/v9/filter-toolbar-table': typeof V9FilterToolbarTableRoute
+  '/v9/grouped-table': typeof V9GroupedTableRoute
+  '/v9/heatmap-table': typeof V9HeatmapTableRoute
+  '/v9/inventory-allocation-table': typeof V9InventoryAllocationTableRoute
+  '/v9/kpi-table': typeof V9KpiTableRoute
+  '/v9/live-status-table': typeof V9LiveStatusTableRoute
+  '/v9/logs-table': typeof V9LogsTableRoute
+  '/v9/master-detail': typeof V9MasterDetailRoute
+  '/v9/mobile-cards-table': typeof V9MobileCardsTableRoute
+  '/v9/params-filter-table': typeof V9ParamsFilterTableRoute
+  '/v9/pivot-table': typeof V9PivotTableRoute
+  '/v9/production-dashboard-table': typeof V9ProductionDashboardTableRoute
+  '/v9/reorder-table': typeof V9ReorderTableRoute
+  '/v9/resizable-table': typeof V9ResizableTableRoute
+  '/v9/server-combined-table': typeof V9ServerCombinedTableRoute
+  '/v9/server-filter': typeof V9ServerFilterRoute
+  '/v9/server-table': typeof V9ServerTableRoute
+  '/v9/toolbar-filter-table': typeof V9ToolbarFilterTableRoute
+  '/v9/tree-reorder': typeof V9TreeReorderRoute
+  '/v9/tree-select': typeof V9TreeSelectRoute
+  '/v9/tree-table': typeof V9TreeTableRoute
+  '/v9/utility-table': typeof V9UtilityTableRoute
+  '/v9/': typeof V9IndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -289,6 +530,40 @@ export interface FileRoutesByTo {
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
   '/utility-table': typeof UtilityTableRoute
+  '/v9/animated-icons-table': typeof V9AnimatedIconsTableRoute
+  '/v9/async-actions-table': typeof V9AsyncActionsTableRoute
+  '/v9/column-pinning-table': typeof V9ColumnPinningTableRoute
+  '/v9/comparison-table': typeof V9ComparisonTableRoute
+  '/v9/conditional-formatting-table': typeof V9ConditionalFormattingTableRoute
+  '/v9/data-table': typeof V9DataTableRoute
+  '/v9/deployments-table': typeof V9DeploymentsTableRoute
+  '/v9/editable-table': typeof V9EditableTableRoute
+  '/v9/export-config-table': typeof V9ExportConfigTableRoute
+  '/v9/export-selected-table': typeof V9ExportSelectedTableRoute
+  '/v9/filter-state-shape-table': typeof V9FilterStateShapeTableRoute
+  '/v9/filter-toolbar-table': typeof V9FilterToolbarTableRoute
+  '/v9/grouped-table': typeof V9GroupedTableRoute
+  '/v9/heatmap-table': typeof V9HeatmapTableRoute
+  '/v9/inventory-allocation-table': typeof V9InventoryAllocationTableRoute
+  '/v9/kpi-table': typeof V9KpiTableRoute
+  '/v9/live-status-table': typeof V9LiveStatusTableRoute
+  '/v9/logs-table': typeof V9LogsTableRoute
+  '/v9/master-detail': typeof V9MasterDetailRoute
+  '/v9/mobile-cards-table': typeof V9MobileCardsTableRoute
+  '/v9/params-filter-table': typeof V9ParamsFilterTableRoute
+  '/v9/pivot-table': typeof V9PivotTableRoute
+  '/v9/production-dashboard-table': typeof V9ProductionDashboardTableRoute
+  '/v9/reorder-table': typeof V9ReorderTableRoute
+  '/v9/resizable-table': typeof V9ResizableTableRoute
+  '/v9/server-combined-table': typeof V9ServerCombinedTableRoute
+  '/v9/server-filter': typeof V9ServerFilterRoute
+  '/v9/server-table': typeof V9ServerTableRoute
+  '/v9/toolbar-filter-table': typeof V9ToolbarFilterTableRoute
+  '/v9/tree-reorder': typeof V9TreeReorderRoute
+  '/v9/tree-select': typeof V9TreeSelectRoute
+  '/v9/tree-table': typeof V9TreeTableRoute
+  '/v9/utility-table': typeof V9UtilityTableRoute
+  '/v9': typeof V9IndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -326,6 +601,40 @@ export interface FileRoutesById {
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
   '/utility-table': typeof UtilityTableRoute
+  '/v9/animated-icons-table': typeof V9AnimatedIconsTableRoute
+  '/v9/async-actions-table': typeof V9AsyncActionsTableRoute
+  '/v9/column-pinning-table': typeof V9ColumnPinningTableRoute
+  '/v9/comparison-table': typeof V9ComparisonTableRoute
+  '/v9/conditional-formatting-table': typeof V9ConditionalFormattingTableRoute
+  '/v9/data-table': typeof V9DataTableRoute
+  '/v9/deployments-table': typeof V9DeploymentsTableRoute
+  '/v9/editable-table': typeof V9EditableTableRoute
+  '/v9/export-config-table': typeof V9ExportConfigTableRoute
+  '/v9/export-selected-table': typeof V9ExportSelectedTableRoute
+  '/v9/filter-state-shape-table': typeof V9FilterStateShapeTableRoute
+  '/v9/filter-toolbar-table': typeof V9FilterToolbarTableRoute
+  '/v9/grouped-table': typeof V9GroupedTableRoute
+  '/v9/heatmap-table': typeof V9HeatmapTableRoute
+  '/v9/inventory-allocation-table': typeof V9InventoryAllocationTableRoute
+  '/v9/kpi-table': typeof V9KpiTableRoute
+  '/v9/live-status-table': typeof V9LiveStatusTableRoute
+  '/v9/logs-table': typeof V9LogsTableRoute
+  '/v9/master-detail': typeof V9MasterDetailRoute
+  '/v9/mobile-cards-table': typeof V9MobileCardsTableRoute
+  '/v9/params-filter-table': typeof V9ParamsFilterTableRoute
+  '/v9/pivot-table': typeof V9PivotTableRoute
+  '/v9/production-dashboard-table': typeof V9ProductionDashboardTableRoute
+  '/v9/reorder-table': typeof V9ReorderTableRoute
+  '/v9/resizable-table': typeof V9ResizableTableRoute
+  '/v9/server-combined-table': typeof V9ServerCombinedTableRoute
+  '/v9/server-filter': typeof V9ServerFilterRoute
+  '/v9/server-table': typeof V9ServerTableRoute
+  '/v9/toolbar-filter-table': typeof V9ToolbarFilterTableRoute
+  '/v9/tree-reorder': typeof V9TreeReorderRoute
+  '/v9/tree-select': typeof V9TreeSelectRoute
+  '/v9/tree-table': typeof V9TreeTableRoute
+  '/v9/utility-table': typeof V9UtilityTableRoute
+  '/v9/': typeof V9IndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -364,6 +673,40 @@ export interface FileRouteTypes {
     | '/tree-select'
     | '/tree-table'
     | '/utility-table'
+    | '/v9/animated-icons-table'
+    | '/v9/async-actions-table'
+    | '/v9/column-pinning-table'
+    | '/v9/comparison-table'
+    | '/v9/conditional-formatting-table'
+    | '/v9/data-table'
+    | '/v9/deployments-table'
+    | '/v9/editable-table'
+    | '/v9/export-config-table'
+    | '/v9/export-selected-table'
+    | '/v9/filter-state-shape-table'
+    | '/v9/filter-toolbar-table'
+    | '/v9/grouped-table'
+    | '/v9/heatmap-table'
+    | '/v9/inventory-allocation-table'
+    | '/v9/kpi-table'
+    | '/v9/live-status-table'
+    | '/v9/logs-table'
+    | '/v9/master-detail'
+    | '/v9/mobile-cards-table'
+    | '/v9/params-filter-table'
+    | '/v9/pivot-table'
+    | '/v9/production-dashboard-table'
+    | '/v9/reorder-table'
+    | '/v9/resizable-table'
+    | '/v9/server-combined-table'
+    | '/v9/server-filter'
+    | '/v9/server-table'
+    | '/v9/toolbar-filter-table'
+    | '/v9/tree-reorder'
+    | '/v9/tree-select'
+    | '/v9/tree-table'
+    | '/v9/utility-table'
+    | '/v9/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -400,6 +743,40 @@ export interface FileRouteTypes {
     | '/tree-select'
     | '/tree-table'
     | '/utility-table'
+    | '/v9/animated-icons-table'
+    | '/v9/async-actions-table'
+    | '/v9/column-pinning-table'
+    | '/v9/comparison-table'
+    | '/v9/conditional-formatting-table'
+    | '/v9/data-table'
+    | '/v9/deployments-table'
+    | '/v9/editable-table'
+    | '/v9/export-config-table'
+    | '/v9/export-selected-table'
+    | '/v9/filter-state-shape-table'
+    | '/v9/filter-toolbar-table'
+    | '/v9/grouped-table'
+    | '/v9/heatmap-table'
+    | '/v9/inventory-allocation-table'
+    | '/v9/kpi-table'
+    | '/v9/live-status-table'
+    | '/v9/logs-table'
+    | '/v9/master-detail'
+    | '/v9/mobile-cards-table'
+    | '/v9/params-filter-table'
+    | '/v9/pivot-table'
+    | '/v9/production-dashboard-table'
+    | '/v9/reorder-table'
+    | '/v9/resizable-table'
+    | '/v9/server-combined-table'
+    | '/v9/server-filter'
+    | '/v9/server-table'
+    | '/v9/toolbar-filter-table'
+    | '/v9/tree-reorder'
+    | '/v9/tree-select'
+    | '/v9/tree-table'
+    | '/v9/utility-table'
+    | '/v9'
   id:
     | '__root__'
     | '/'
@@ -436,6 +813,40 @@ export interface FileRouteTypes {
     | '/tree-select'
     | '/tree-table'
     | '/utility-table'
+    | '/v9/animated-icons-table'
+    | '/v9/async-actions-table'
+    | '/v9/column-pinning-table'
+    | '/v9/comparison-table'
+    | '/v9/conditional-formatting-table'
+    | '/v9/data-table'
+    | '/v9/deployments-table'
+    | '/v9/editable-table'
+    | '/v9/export-config-table'
+    | '/v9/export-selected-table'
+    | '/v9/filter-state-shape-table'
+    | '/v9/filter-toolbar-table'
+    | '/v9/grouped-table'
+    | '/v9/heatmap-table'
+    | '/v9/inventory-allocation-table'
+    | '/v9/kpi-table'
+    | '/v9/live-status-table'
+    | '/v9/logs-table'
+    | '/v9/master-detail'
+    | '/v9/mobile-cards-table'
+    | '/v9/params-filter-table'
+    | '/v9/pivot-table'
+    | '/v9/production-dashboard-table'
+    | '/v9/reorder-table'
+    | '/v9/resizable-table'
+    | '/v9/server-combined-table'
+    | '/v9/server-filter'
+    | '/v9/server-table'
+    | '/v9/toolbar-filter-table'
+    | '/v9/tree-reorder'
+    | '/v9/tree-select'
+    | '/v9/tree-table'
+    | '/v9/utility-table'
+    | '/v9/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -473,6 +884,40 @@ export interface RootRouteChildren {
   TreeSelectRoute: typeof TreeSelectRoute
   TreeTableRoute: typeof TreeTableRoute
   UtilityTableRoute: typeof UtilityTableRoute
+  V9AnimatedIconsTableRoute: typeof V9AnimatedIconsTableRoute
+  V9AsyncActionsTableRoute: typeof V9AsyncActionsTableRoute
+  V9ColumnPinningTableRoute: typeof V9ColumnPinningTableRoute
+  V9ComparisonTableRoute: typeof V9ComparisonTableRoute
+  V9ConditionalFormattingTableRoute: typeof V9ConditionalFormattingTableRoute
+  V9DataTableRoute: typeof V9DataTableRoute
+  V9DeploymentsTableRoute: typeof V9DeploymentsTableRoute
+  V9EditableTableRoute: typeof V9EditableTableRoute
+  V9ExportConfigTableRoute: typeof V9ExportConfigTableRoute
+  V9ExportSelectedTableRoute: typeof V9ExportSelectedTableRoute
+  V9FilterStateShapeTableRoute: typeof V9FilterStateShapeTableRoute
+  V9FilterToolbarTableRoute: typeof V9FilterToolbarTableRoute
+  V9GroupedTableRoute: typeof V9GroupedTableRoute
+  V9HeatmapTableRoute: typeof V9HeatmapTableRoute
+  V9InventoryAllocationTableRoute: typeof V9InventoryAllocationTableRoute
+  V9KpiTableRoute: typeof V9KpiTableRoute
+  V9LiveStatusTableRoute: typeof V9LiveStatusTableRoute
+  V9LogsTableRoute: typeof V9LogsTableRoute
+  V9MasterDetailRoute: typeof V9MasterDetailRoute
+  V9MobileCardsTableRoute: typeof V9MobileCardsTableRoute
+  V9ParamsFilterTableRoute: typeof V9ParamsFilterTableRoute
+  V9PivotTableRoute: typeof V9PivotTableRoute
+  V9ProductionDashboardTableRoute: typeof V9ProductionDashboardTableRoute
+  V9ReorderTableRoute: typeof V9ReorderTableRoute
+  V9ResizableTableRoute: typeof V9ResizableTableRoute
+  V9ServerCombinedTableRoute: typeof V9ServerCombinedTableRoute
+  V9ServerFilterRoute: typeof V9ServerFilterRoute
+  V9ServerTableRoute: typeof V9ServerTableRoute
+  V9ToolbarFilterTableRoute: typeof V9ToolbarFilterTableRoute
+  V9TreeReorderRoute: typeof V9TreeReorderRoute
+  V9TreeSelectRoute: typeof V9TreeSelectRoute
+  V9TreeTableRoute: typeof V9TreeTableRoute
+  V9UtilityTableRoute: typeof V9UtilityTableRoute
+  V9IndexRoute: typeof V9IndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -715,6 +1160,244 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UtilityTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/v9/': {
+      id: '/v9/'
+      path: '/v9'
+      fullPath: '/v9/'
+      preLoaderRoute: typeof V9IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/animated-icons-table': {
+      id: '/v9/animated-icons-table'
+      path: '/v9/animated-icons-table'
+      fullPath: '/v9/animated-icons-table'
+      preLoaderRoute: typeof V9AnimatedIconsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/async-actions-table': {
+      id: '/v9/async-actions-table'
+      path: '/v9/async-actions-table'
+      fullPath: '/v9/async-actions-table'
+      preLoaderRoute: typeof V9AsyncActionsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/column-pinning-table': {
+      id: '/v9/column-pinning-table'
+      path: '/v9/column-pinning-table'
+      fullPath: '/v9/column-pinning-table'
+      preLoaderRoute: typeof V9ColumnPinningTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/comparison-table': {
+      id: '/v9/comparison-table'
+      path: '/v9/comparison-table'
+      fullPath: '/v9/comparison-table'
+      preLoaderRoute: typeof V9ComparisonTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/conditional-formatting-table': {
+      id: '/v9/conditional-formatting-table'
+      path: '/v9/conditional-formatting-table'
+      fullPath: '/v9/conditional-formatting-table'
+      preLoaderRoute: typeof V9ConditionalFormattingTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/data-table': {
+      id: '/v9/data-table'
+      path: '/v9/data-table'
+      fullPath: '/v9/data-table'
+      preLoaderRoute: typeof V9DataTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/deployments-table': {
+      id: '/v9/deployments-table'
+      path: '/v9/deployments-table'
+      fullPath: '/v9/deployments-table'
+      preLoaderRoute: typeof V9DeploymentsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/editable-table': {
+      id: '/v9/editable-table'
+      path: '/v9/editable-table'
+      fullPath: '/v9/editable-table'
+      preLoaderRoute: typeof V9EditableTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/export-config-table': {
+      id: '/v9/export-config-table'
+      path: '/v9/export-config-table'
+      fullPath: '/v9/export-config-table'
+      preLoaderRoute: typeof V9ExportConfigTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/export-selected-table': {
+      id: '/v9/export-selected-table'
+      path: '/v9/export-selected-table'
+      fullPath: '/v9/export-selected-table'
+      preLoaderRoute: typeof V9ExportSelectedTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/filter-state-shape-table': {
+      id: '/v9/filter-state-shape-table'
+      path: '/v9/filter-state-shape-table'
+      fullPath: '/v9/filter-state-shape-table'
+      preLoaderRoute: typeof V9FilterStateShapeTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/filter-toolbar-table': {
+      id: '/v9/filter-toolbar-table'
+      path: '/v9/filter-toolbar-table'
+      fullPath: '/v9/filter-toolbar-table'
+      preLoaderRoute: typeof V9FilterToolbarTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/grouped-table': {
+      id: '/v9/grouped-table'
+      path: '/v9/grouped-table'
+      fullPath: '/v9/grouped-table'
+      preLoaderRoute: typeof V9GroupedTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/heatmap-table': {
+      id: '/v9/heatmap-table'
+      path: '/v9/heatmap-table'
+      fullPath: '/v9/heatmap-table'
+      preLoaderRoute: typeof V9HeatmapTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/inventory-allocation-table': {
+      id: '/v9/inventory-allocation-table'
+      path: '/v9/inventory-allocation-table'
+      fullPath: '/v9/inventory-allocation-table'
+      preLoaderRoute: typeof V9InventoryAllocationTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/kpi-table': {
+      id: '/v9/kpi-table'
+      path: '/v9/kpi-table'
+      fullPath: '/v9/kpi-table'
+      preLoaderRoute: typeof V9KpiTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/live-status-table': {
+      id: '/v9/live-status-table'
+      path: '/v9/live-status-table'
+      fullPath: '/v9/live-status-table'
+      preLoaderRoute: typeof V9LiveStatusTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/logs-table': {
+      id: '/v9/logs-table'
+      path: '/v9/logs-table'
+      fullPath: '/v9/logs-table'
+      preLoaderRoute: typeof V9LogsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/master-detail': {
+      id: '/v9/master-detail'
+      path: '/v9/master-detail'
+      fullPath: '/v9/master-detail'
+      preLoaderRoute: typeof V9MasterDetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/mobile-cards-table': {
+      id: '/v9/mobile-cards-table'
+      path: '/v9/mobile-cards-table'
+      fullPath: '/v9/mobile-cards-table'
+      preLoaderRoute: typeof V9MobileCardsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/params-filter-table': {
+      id: '/v9/params-filter-table'
+      path: '/v9/params-filter-table'
+      fullPath: '/v9/params-filter-table'
+      preLoaderRoute: typeof V9ParamsFilterTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/pivot-table': {
+      id: '/v9/pivot-table'
+      path: '/v9/pivot-table'
+      fullPath: '/v9/pivot-table'
+      preLoaderRoute: typeof V9PivotTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/production-dashboard-table': {
+      id: '/v9/production-dashboard-table'
+      path: '/v9/production-dashboard-table'
+      fullPath: '/v9/production-dashboard-table'
+      preLoaderRoute: typeof V9ProductionDashboardTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/reorder-table': {
+      id: '/v9/reorder-table'
+      path: '/v9/reorder-table'
+      fullPath: '/v9/reorder-table'
+      preLoaderRoute: typeof V9ReorderTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/resizable-table': {
+      id: '/v9/resizable-table'
+      path: '/v9/resizable-table'
+      fullPath: '/v9/resizable-table'
+      preLoaderRoute: typeof V9ResizableTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/server-combined-table': {
+      id: '/v9/server-combined-table'
+      path: '/v9/server-combined-table'
+      fullPath: '/v9/server-combined-table'
+      preLoaderRoute: typeof V9ServerCombinedTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/server-filter': {
+      id: '/v9/server-filter'
+      path: '/v9/server-filter'
+      fullPath: '/v9/server-filter'
+      preLoaderRoute: typeof V9ServerFilterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/server-table': {
+      id: '/v9/server-table'
+      path: '/v9/server-table'
+      fullPath: '/v9/server-table'
+      preLoaderRoute: typeof V9ServerTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/toolbar-filter-table': {
+      id: '/v9/toolbar-filter-table'
+      path: '/v9/toolbar-filter-table'
+      fullPath: '/v9/toolbar-filter-table'
+      preLoaderRoute: typeof V9ToolbarFilterTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/tree-reorder': {
+      id: '/v9/tree-reorder'
+      path: '/v9/tree-reorder'
+      fullPath: '/v9/tree-reorder'
+      preLoaderRoute: typeof V9TreeReorderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/tree-select': {
+      id: '/v9/tree-select'
+      path: '/v9/tree-select'
+      fullPath: '/v9/tree-select'
+      preLoaderRoute: typeof V9TreeSelectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/tree-table': {
+      id: '/v9/tree-table'
+      path: '/v9/tree-table'
+      fullPath: '/v9/tree-table'
+      preLoaderRoute: typeof V9TreeTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/v9/utility-table': {
+      id: '/v9/utility-table'
+      path: '/v9/utility-table'
+      fullPath: '/v9/utility-table'
+      preLoaderRoute: typeof V9UtilityTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -753,6 +1436,40 @@ const rootRouteChildren: RootRouteChildren = {
   TreeSelectRoute: TreeSelectRoute,
   TreeTableRoute: TreeTableRoute,
   UtilityTableRoute: UtilityTableRoute,
+  V9AnimatedIconsTableRoute: V9AnimatedIconsTableRoute,
+  V9AsyncActionsTableRoute: V9AsyncActionsTableRoute,
+  V9ColumnPinningTableRoute: V9ColumnPinningTableRoute,
+  V9ComparisonTableRoute: V9ComparisonTableRoute,
+  V9ConditionalFormattingTableRoute: V9ConditionalFormattingTableRoute,
+  V9DataTableRoute: V9DataTableRoute,
+  V9DeploymentsTableRoute: V9DeploymentsTableRoute,
+  V9EditableTableRoute: V9EditableTableRoute,
+  V9ExportConfigTableRoute: V9ExportConfigTableRoute,
+  V9ExportSelectedTableRoute: V9ExportSelectedTableRoute,
+  V9FilterStateShapeTableRoute: V9FilterStateShapeTableRoute,
+  V9FilterToolbarTableRoute: V9FilterToolbarTableRoute,
+  V9GroupedTableRoute: V9GroupedTableRoute,
+  V9HeatmapTableRoute: V9HeatmapTableRoute,
+  V9InventoryAllocationTableRoute: V9InventoryAllocationTableRoute,
+  V9KpiTableRoute: V9KpiTableRoute,
+  V9LiveStatusTableRoute: V9LiveStatusTableRoute,
+  V9LogsTableRoute: V9LogsTableRoute,
+  V9MasterDetailRoute: V9MasterDetailRoute,
+  V9MobileCardsTableRoute: V9MobileCardsTableRoute,
+  V9ParamsFilterTableRoute: V9ParamsFilterTableRoute,
+  V9PivotTableRoute: V9PivotTableRoute,
+  V9ProductionDashboardTableRoute: V9ProductionDashboardTableRoute,
+  V9ReorderTableRoute: V9ReorderTableRoute,
+  V9ResizableTableRoute: V9ResizableTableRoute,
+  V9ServerCombinedTableRoute: V9ServerCombinedTableRoute,
+  V9ServerFilterRoute: V9ServerFilterRoute,
+  V9ServerTableRoute: V9ServerTableRoute,
+  V9ToolbarFilterTableRoute: V9ToolbarFilterTableRoute,
+  V9TreeReorderRoute: V9TreeReorderRoute,
+  V9TreeSelectRoute: V9TreeSelectRoute,
+  V9TreeTableRoute: V9TreeTableRoute,
+  V9UtilityTableRoute: V9UtilityTableRoute,
+  V9IndexRoute: V9IndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

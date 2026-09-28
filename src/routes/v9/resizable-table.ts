@@ -1,0 +1,42 @@
+import { createFileRoute } from '@tanstack/react-router'
+import { ResizableTablePage } from '#/components/v9/resizable-reorder/resizable-table-page'
+
+export const Route = createFileRoute('/v9/resizable-table')({
+  head: () => ({
+    meta: [
+      { title: 'Shadcn Table Resizable & Reorderable Columns — ShadTable' },
+      {
+        name: 'description',
+        content:
+          "A table with resizable and reorderable columns for shadcn/ui and TanStack Table. Drag a header's grip to reorder columns, drag its right edge to resize — the resulting layout is saved to localStorage and restored on your next visit.",
+      },
+      {
+        property: 'og:title',
+        content: 'Shadcn Table Resizable & Reorderable Columns — ShadTable',
+      },
+      {
+        property: 'og:description',
+        content:
+          'A table with drag-to-resize and drag-to-reorder columns that persist to localStorage, built on shadcn/ui and TanStack Table.',
+      },
+      {
+        'script:ld+json': {
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareSourceCode',
+          name: 'Resizable / Reorderable Columns Table',
+          description:
+            'A table with drag-to-resize and drag-to-reorder columns that persist to localStorage.',
+          codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
+          programmingLanguage: 'TypeScript',
+        },
+      },
+    ],
+    links: [
+      {
+        rel: 'canonical',
+        href: 'https://www.shad-table.dev/v9/resizable-table',
+      },
+    ],
+  }),
+  component: ResizableTablePage,
+})

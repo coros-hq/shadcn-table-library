@@ -1,0 +1,42 @@
+import { createFileRoute } from '@tanstack/react-router'
+import { FilterStateShapePage } from '#/components/v9/filter-state-shape/filter-state-shape-page'
+
+export const Route = createFileRoute('/v9/filter-state-shape-table')({
+  head: () => ({
+    meta: [
+      { title: 'Shadcn Data Table Filter State — ShadTable' },
+      {
+        name: 'description',
+        content:
+          'A data table filter state pattern for shadcn/ui and TanStack Table. A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, keeping the toolbar, chips row, and columnFilters in sync.',
+      },
+      {
+        property: 'og:title',
+        content: 'Shadcn Data Table Filter State — ShadTable',
+      },
+      {
+        property: 'og:description',
+        content:
+          'A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, built on shadcn/ui and TanStack Table.',
+      },
+      {
+        'script:ld+json': {
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareSourceCode',
+          name: 'Filter State Shape',
+          description:
+            'A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, driving the toolbar, chips, and columnFilters.',
+          codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
+          programmingLanguage: 'TypeScript',
+        },
+      },
+    ],
+    links: [
+      {
+        rel: 'canonical',
+        href: 'https://www.shad-table.dev/v9/filter-state-shape-table',
+      },
+    ],
+  }),
+  component: FilterStateShapePage,
+})

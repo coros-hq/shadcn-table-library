@@ -106,13 +106,57 @@ export const navGroups: NavGroup[] = [
   },
 ]
 
+// Canonical (v8) paths that also have a ported /v9/<path> route. Every page
+// is ported as of this writing. Deliberately a fixed list, not derived from
+// navGroups above — a newly added v8-only page must be added here explicitly
+// once its /v9 route exists, so the nav never links into a 404 in the meantime.
+export const V9_PORTED_ROUTES = new Set<string>([
+  '/data-table',
+  '/server-table',
+  '/server-filter',
+  '/server-combined-table',
+  '/toolbar-filter-table',
+  '/filter-state-shape-table',
+  '/filter-toolbar-table',
+  '/params-filter-table',
+  '/deployments-table',
+  '/logs-table',
+  '/tree-table',
+  '/grouped-table',
+  '/pivot-table',
+  '/master-detail',
+  '/tree-select',
+  '/tree-reorder',
+  '/reorder-table',
+  '/editable-table',
+  '/resizable-table',
+  '/column-pinning-table',
+  '/inventory-allocation-table',
+  '/animated-icons-table',
+  '/live-status-table',
+  '/async-actions-table',
+  '/kpi-table',
+  '/comparison-table',
+  '/heatmap-table',
+  '/conditional-formatting-table',
+  '/production-dashboard-table',
+  '/utility-table',
+  '/export-config-table',
+  '/export-selected-table',
+  '/mobile-cards-table',
+])
+
 export function NavContent({
   pathname,
   onNavigate,
+  version = 'v8',
 }: {
   pathname: string
   onNavigate?: () => void
+  version?: 'v8' | 'v9'
 }) {
+  const prefix = (to: string) =>
+    version === 'v9' && V9_PORTED_ROUTES.has(to) ? `/v9${to}` : to
   return (
     <SidebarProvider
       className="min-h-0 w-auto items-start"
@@ -127,10 +171,10 @@ export function NavContent({
                   <SidebarMenuItem key={link.to}>
                     <SidebarMenuButton
                       asChild
-                      isActive={pathname === link.to}
+                      isActive={pathname === prefix(link.to)}
                       className="w-full rounded-md font-normal text-muted-foreground hover:bg-transparent hover:text-foreground data-[active=true]:bg-transparent data-[active=true]:font-normal data-[active=true]:text-foreground"
                     >
-                      <Link to={link.to} onClick={onNavigate}>
+                      <Link to={prefix(link.to)} onClick={onNavigate}>
                         {link.title}
                       </Link>
                     </SidebarMenuButton>
@@ -143,7 +187,7 @@ export function NavContent({
           {navGroups.map((group) => (
             <Collapsible
               key={group.title}
-              defaultOpen={group.items.some((l) => l.to === pathname)}
+              defaultOpen={group.items.some((l) => prefix(l.to) === pathname)}
               className="group/collapsible"
             >
               <SidebarGroup className="py-0.5">
@@ -167,7 +211,10 @@ export function NavContent({
                   <SidebarGroupContent className="min-h-0 overflow-hidden">
                     <SidebarMenu className="mt-1 ml-3.5 w-auto gap-0.5 border-l border-sidebar-border pl-3">
                       {group.items.map((link) => {
-                        const isActive = pathname === link.to
+                        const to = prefix(link.to)
+                        const isActive = pathname === to
+                        const unported =
+                          version === 'v9' && !V9_PORTED_ROUTES.has(link.to)
                         return (
                           <SidebarMenuItem key={link.to}>
                             <SidebarMenuButton
@@ -178,8 +225,13 @@ export function NavContent({
                                 isActive && 'before:bg-primary',
                               )}
                             >
-                              <Link to={link.to} onClick={onNavigate}>
+                              <Link to={to} onClick={onNavigate}>
                                 {link.title}
+                                {unported ? (
+                                  <span className="ml-auto text-[10px] text-muted-foreground/60">
+                                    v8 only
+                                  </span>
+                                ) : null}
                               </Link>
                             </SidebarMenuButton>
                           </SidebarMenuItem>

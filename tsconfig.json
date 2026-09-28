@@ -1,6 +1,8 @@
 {
   "include": ["**/*.ts", "**/*.tsx", "eslint.config.js", "prettier.config.js", "vite.config.js"],
   
+  "exclude": ["node_modules", "registry-v9"],
+
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",

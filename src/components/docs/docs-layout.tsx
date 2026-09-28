@@ -8,6 +8,7 @@ import {
   topLevelLinks,
 } from '#/components/docs/nav-content.tsx'
 import { DocsPager } from '#/components/docs/docs-pager.tsx'
+import { stripVersionPrefix } from '#/components/docs/version-switcher.tsx'
 
 const SITE_URL = 'https://www.shad-table.dev'
 
@@ -19,7 +20,7 @@ const allLinks = [
 // Home → page breadcrumb as JSON-LD; nav groups have no URL of their own, so
 // they're left out rather than emitted as item-less crumbs.
 function BreadcrumbJsonLd({ pathname }: { pathname: string }) {
-  const link = allLinks.find((l) => l.to === pathname)
+  const link = allLinks.find((l) => l.to === stripVersionPrefix(pathname))
   if (!link) return null
 
   const jsonLd = {
@@ -56,6 +57,7 @@ interface DocsLayoutProps {
 export function DocsLayout({ children }: DocsLayoutProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const version = pathname.startsWith('/v9') ? 'v9' : 'v8'
 
   return (
     <div className="min-h-svh">
@@ -69,7 +71,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
         <div className="flex gap-16">
           <aside className="hidden shrink-0 md:block">
             <div className="sticky top-20 max-h-[calc(100svh-6rem)] overflow-x-hidden overflow-y-auto pr-2 pb-6">
-              <NavContent pathname={pathname} />
+              <NavContent pathname={pathname} version={version} />
             </div>
           </aside>
 

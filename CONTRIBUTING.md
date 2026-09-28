@@ -69,10 +69,10 @@ Add an item to [`registry.json`](./registry.json) so the example is installable 
 Then regenerate the built registry files:
 
 ```bash
-npx shadcn build
+npm run registry:build
 ```
 
-This writes `public/r/<name>.json`. Commit the regenerated files alongside your `registry.json` change.
+This writes `public/r/<name>.json` for the v8 item **and** a `public/r/<name>-v9.json` twin. The v9 twin is generated from your v8 item (`scripts/build-registry.mjs`): it swaps each file for its counterpart under `src/components/v9/` / `src/routes/v9/`, rewrites imports for a consumer's project (`@tanstack/react-table`, a bundled `features.ts`), and pins `@tanstack/react-table@^9`. Port your example to v9 first (same relative path under `src/components/v9/`), otherwise the v9 twin falls back to the v8 file. `InstallCommand` appends `-v9` automatically on `/v9/*` pages. Commit the regenerated `public/r` files.
 
 ### 6. Verify
 

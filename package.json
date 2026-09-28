@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
+    "registry:build": "node scripts/build-registry.mjs && npx shadcn@latest build registry.json && npx shadcn@latest build registry-v9.json -o registry-v9/dist && node scripts/build-registry.mjs publish",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -31,6 +32,7 @@
     "@tanstack/react-router-ssr-query": "latest",
     "@tanstack/react-start": "latest",
     "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-table-v9": "npm:@tanstack/react-table@^9.2.4",
     "@tanstack/router-plugin": "^1.132.0",
     "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
