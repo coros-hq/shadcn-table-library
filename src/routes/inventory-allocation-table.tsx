@@ -10,6 +10,12 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import vueInventoryAllocationInventoryAllocationDemoSource from '#/components/vue/inventory-allocation/InventoryAllocationDemo.vue?raw'
+import vueInventoryAllocationcolumnsSource from '#/components/vue/inventory-allocation/columns.ts?raw'
+import vueInventoryAllocationBatchDetailSource from '#/components/vue/inventory-allocation/BatchDetail.vue?raw'
+import vueInventoryAllocationEditableNumberCellSource from '#/components/vue/inventory-allocation/EditableNumberCell.vue?raw'
+import vueInventoryAllocationInventoryTableSource from '#/components/vue/inventory-allocation/InventoryTable.vue?raw'
+import vueInventoryAllocationformulasSource from '#/components/vue/inventory-allocation/formulas.ts?raw'
 
 const files = [
   { path: 'src/components/inventory-allocation/index.tsx', code: indexSource },
@@ -34,6 +40,39 @@ const files = [
     code: editableCellSource,
   },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/inventory-allocation/InventoryAllocationDemo.vue',
+    code: vueInventoryAllocationInventoryAllocationDemoSource,
+  },
+  {
+    path: 'src/components/inventory-allocation/columns.ts',
+    code: vueInventoryAllocationcolumnsSource,
+  },
+  {
+    path: 'src/components/inventory-allocation/BatchDetail.vue',
+    code: vueInventoryAllocationBatchDetailSource,
+  },
+  {
+    path: 'src/components/inventory-allocation/EditableNumberCell.vue',
+    code: vueInventoryAllocationEditableNumberCellSource,
+  },
+  {
+    path: 'src/components/inventory-allocation/InventoryTable.vue',
+    code: vueInventoryAllocationInventoryTableSource,
+  },
+  {
+    path: 'src/components/inventory-allocation/formulas.ts',
+    code: vueInventoryAllocationformulasSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['badge', 'button', 'input', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -163,7 +202,12 @@ function InventoryAllocationTablePage() {
 
         <InstallCommand name="inventory-allocation-table" />
 
-        <ComponentPreview preview={<InventoryAllocationDemo />} files={files} />
+        <ComponentPreview
+          preview={<InventoryAllocationDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

@@ -8,6 +8,10 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import vueConditionalFormattingConditionalFormattingTableDemoSource from '#/components/vue/conditional-formatting/ConditionalFormattingTableDemo.vue?raw'
+import vueConditionalFormattingcolumnsSource from '#/components/vue/conditional-formatting/columns.ts?raw'
+import vueConditionalFormattingDataTableSource from '#/components/vue/conditional-formatting/DataTable.vue?raw'
+import vueConditionalFormattingrulesSource from '#/components/vue/conditional-formatting/rules.ts?raw'
 
 const files = [
   {
@@ -24,6 +28,31 @@ const files = [
   },
   { path: 'src/components/conditional-formatting/rules.ts', code: rulesSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/conditional-formatting/ConditionalFormattingTableDemo.vue',
+    code: vueConditionalFormattingConditionalFormattingTableDemoSource,
+  },
+  {
+    path: 'src/components/conditional-formatting/columns.ts',
+    code: vueConditionalFormattingcolumnsSource,
+  },
+  {
+    path: 'src/components/conditional-formatting/DataTable.vue',
+    code: vueConditionalFormattingDataTableSource,
+  },
+  {
+    path: 'src/components/conditional-formatting/rules.ts',
+    code: vueConditionalFormattingrulesSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['badge', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -149,6 +178,8 @@ function ConditionalFormattingTablePage() {
         <ComponentPreview
           preview={<ConditionalFormattingTableDemo />}
           files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
         />
 
         <div className="space-y-2">

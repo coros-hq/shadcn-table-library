@@ -8,6 +8,12 @@ import filterSource from './faceted-filter.tsx?raw'
 import dataSource from './data.ts?raw'
 import demoSource from './index.tsx?raw'
 import { DeploymentsDemo } from './index'
+import vueDeploymentsDeploymentsDemoSource from '#/components/vue/deployments/DeploymentsDemo.vue?raw'
+import vueDeploymentscolumnsSource from '#/components/vue/deployments/columns.ts?raw'
+import vueDeploymentsDeploymentsTableSource from '#/components/vue/deployments/DeploymentsTable.vue?raw'
+import vueDeploymentsFacetedFilterSource from '#/components/vue/deployments/FacetedFilter.vue?raw'
+import vueDeploymentsStatusIconSource from '#/components/vue/deployments/StatusIcon.vue?raw'
+import vueDeploymentsdataSource from '#/components/vue/deployments/data.ts?raw'
 
 const files = [
   { path: 'src/components/deployments/data-table.tsx', code: tableSource },
@@ -16,6 +22,39 @@ const files = [
   { path: 'src/components/deployments/data.ts', code: dataSource },
   { path: 'src/components/deployments/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/deployments/DeploymentsDemo.vue',
+    code: vueDeploymentsDeploymentsDemoSource,
+  },
+  {
+    path: 'src/components/deployments/columns.ts',
+    code: vueDeploymentscolumnsSource,
+  },
+  {
+    path: 'src/components/deployments/DeploymentsTable.vue',
+    code: vueDeploymentsDeploymentsTableSource,
+  },
+  {
+    path: 'src/components/deployments/FacetedFilter.vue',
+    code: vueDeploymentsFacetedFilterSource,
+  },
+  {
+    path: 'src/components/deployments/StatusIcon.vue',
+    code: vueDeploymentsStatusIconSource,
+  },
+  {
+    path: 'src/components/deployments/data.ts',
+    code: vueDeploymentsdataSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['badge', 'button', 'command', 'input', 'popover', 'select', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -87,7 +126,12 @@ export function DeploymentsPage() {
 
         <InstallCommand name="deployments-table" />
 
-        <ComponentPreview preview={<DeploymentsDemo />} files={files} />
+        <ComponentPreview
+          preview={<DeploymentsDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

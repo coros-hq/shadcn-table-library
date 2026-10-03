@@ -7,6 +7,10 @@ import dataSource from './data.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { PivotTableDemo } from './index'
+import vuePivotPivotTableDemoSource from '#/components/vue/pivot/PivotTableDemo.vue?raw'
+import vuePivotPivotTableSource from '#/components/vue/pivot/PivotTable.vue?raw'
+import vuePivotdataSource from '#/components/vue/pivot/data.ts?raw'
+import vuePivotpivotSource from '#/components/vue/pivot/pivot.ts?raw'
 
 const files = [
   { path: 'src/components/pivot/pivot.ts', code: pivotSource },
@@ -14,6 +18,24 @@ const files = [
   { path: 'src/components/pivot/data-table.tsx', code: tableSource },
   { path: 'src/components/pivot/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/pivot/PivotTableDemo.vue',
+    code: vuePivotPivotTableDemoSource,
+  },
+  {
+    path: 'src/components/pivot/PivotTable.vue',
+    code: vuePivotPivotTableSource,
+  },
+  { path: 'src/components/pivot/data.ts', code: vuePivotdataSource },
+  { path: 'src/components/pivot/pivot.ts', code: vuePivotpivotSource },
+]
+
+const vueDeps = {
+  npm: [],
+  shadcn: ['select', 'table'],
+}
 
 const steps = [
   {
@@ -115,7 +137,12 @@ export function PivotTablePage() {
 
         <InstallCommand name="pivot-table" />
 
-        <ComponentPreview preview={<PivotTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<PivotTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

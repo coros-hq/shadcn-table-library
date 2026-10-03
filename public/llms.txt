@@ -9,7 +9,7 @@ Every page below has a live demo, the full source, an install command, and a ste
 
 ## Data Table
 
-- [Data Table](https://www.shad-table.dev/data-table): A data table for shadcn/ui and TanStack Table. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.
+- [Data Table](https://www.shad-table.dev/data-table): A data table for shadcn/ui and TanStack Table. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table. Includes React and Vue (@tanstack/vue-table) source.
 
 ## SSR
 

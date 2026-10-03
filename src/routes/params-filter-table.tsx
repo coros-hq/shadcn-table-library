@@ -9,6 +9,10 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import vueParamsFilterParamsFilterTableDemoSource from '#/components/vue/params-filter/ParamsFilterTableDemo.vue?raw'
+import vueParamsFiltercolumnsSource from '#/components/vue/params-filter/columns.ts?raw'
+import vueParamsFilterParamsDataTableSource from '#/components/vue/params-filter/ParamsDataTable.vue?raw'
+import vueParamsFilteruseUrlFiltersSource from '#/components/vue/params-filter/useUrlFilters.ts?raw'
 
 const files = [
   { path: 'src/components/params-filter/index.tsx', code: indexSource },
@@ -26,6 +30,30 @@ const files = [
     code: useNativeFiltersSource,
   },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/params-filter/ParamsFilterTableDemo.vue',
+    code: vueParamsFilterParamsFilterTableDemoSource,
+  },
+  {
+    path: 'src/components/params-filter/columns.ts',
+    code: vueParamsFiltercolumnsSource,
+  },
+  {
+    path: 'src/components/params-filter/ParamsDataTable.vue',
+    code: vueParamsFilterParamsDataTableSource,
+  },
+  {
+    path: 'src/components/params-filter/useUrlFilters.ts',
+    code: vueParamsFilteruseUrlFiltersSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['button', 'input', 'select', 'table'],
+}
 
 const steps = [
   {
@@ -167,7 +195,12 @@ function ParamsFilterTablePage() {
 
         <InstallCommand name="params-filter-table" />
 
-        <ComponentPreview preview={<ParamsFilterTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ParamsFilterTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

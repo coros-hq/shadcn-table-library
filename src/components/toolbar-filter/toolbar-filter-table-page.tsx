@@ -6,12 +6,41 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ToolbarFilterTableDemo } from './index'
+import vueToolbarFilterToolbarFilterTableDemoSource from '#/components/vue/toolbar-filter/ToolbarFilterTableDemo.vue?raw'
+import vueToolbarFiltercolumnsSource from '#/components/vue/toolbar-filter/columns.ts?raw'
+import vueToolbarFilterToolbarFilterDataTableSource from '#/components/vue/toolbar-filter/ToolbarFilterDataTable.vue?raw'
+import vueToolbarFilterToolbarSelectSource from '#/components/vue/toolbar-filter/ToolbarSelect.vue?raw'
 
 const files = [
   { path: 'src/components/toolbar-filter/columns.tsx', code: columnsSource },
   { path: 'src/components/toolbar-filter/data-table.tsx', code: tableSource },
   { path: 'src/components/toolbar-filter/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/toolbar-filter/ToolbarFilterTableDemo.vue',
+    code: vueToolbarFilterToolbarFilterTableDemoSource,
+  },
+  {
+    path: 'src/components/toolbar-filter/columns.ts',
+    code: vueToolbarFiltercolumnsSource,
+  },
+  {
+    path: 'src/components/toolbar-filter/ToolbarFilterDataTable.vue',
+    code: vueToolbarFilterToolbarFilterDataTableSource,
+  },
+  {
+    path: 'src/components/toolbar-filter/ToolbarSelect.vue',
+    code: vueToolbarFilterToolbarSelectSource,
+  },
+]
+
+const vueDeps = {
+  npm: [],
+  shadcn: ['input', 'select', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -80,7 +109,12 @@ export function ToolbarFilterTablePage() {
 
         <InstallCommand name="toolbar-filter-table" />
 
-        <ComponentPreview preview={<ToolbarFilterTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ToolbarFilterTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

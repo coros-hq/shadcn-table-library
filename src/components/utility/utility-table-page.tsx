@@ -7,6 +7,10 @@ import exportSource from './export.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { UtilityTableDemo } from './index'
+import vueUtilityUtilityTableDemoSource from '#/components/vue/utility/UtilityTableDemo.vue?raw'
+import vueUtilitycolumnsSource from '#/components/vue/utility/columns.ts?raw'
+import vueUtilityUtilityTableSource from '#/components/vue/utility/UtilityTable.vue?raw'
+import vueUtilityexportSource from '#/components/vue/utility/export.ts?raw'
 
 const files = [
   { path: 'src/components/utility/columns.tsx', code: columnsSource },
@@ -14,6 +18,24 @@ const files = [
   { path: 'src/components/utility/data-table.tsx', code: tableSource },
   { path: 'src/components/utility/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/utility/UtilityTableDemo.vue',
+    code: vueUtilityUtilityTableDemoSource,
+  },
+  { path: 'src/components/utility/columns.ts', code: vueUtilitycolumnsSource },
+  {
+    path: 'src/components/utility/UtilityTable.vue',
+    code: vueUtilityUtilityTableSource,
+  },
+  { path: 'src/components/utility/export.ts', code: vueUtilityexportSource },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['button', 'select', 'table'],
+}
 
 const steps = [
   {
@@ -94,7 +116,12 @@ export function UtilityTablePage() {
 
         <InstallCommand name="density-export-table" />
 
-        <ComponentPreview preview={<UtilityTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<UtilityTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

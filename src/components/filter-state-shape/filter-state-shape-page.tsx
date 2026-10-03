@@ -8,6 +8,12 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { FilterStateShapeTableDemo } from './index'
+import vueFilterStateShapeFilterStateShapeTableDemoSource from '#/components/vue/filter-state-shape/FilterStateShapeTableDemo.vue?raw'
+import vueFilterStateShapecolumnsSource from '#/components/vue/filter-state-shape/columns.ts?raw'
+import vueFilterStateShapeActiveFilterChipsSource from '#/components/vue/filter-state-shape/ActiveFilterChips.vue?raw'
+import vueFilterStateShapeFilterStateShapeDataTableSource from '#/components/vue/filter-state-shape/FilterStateShapeDataTable.vue?raw'
+import vueFilterStateShapetypeSource from '#/components/vue/filter-state-shape/type.ts?raw'
+import vueFilterStateShapesharedmultiselectfilterMultiSelectFilterSource from '#/components/vue/shared/multi-select-filter/MultiSelectFilter.vue?raw'
 
 const files = [
   { path: 'src/components/filter-state-shape/type.ts', code: typeSource },
@@ -25,6 +31,48 @@ const files = [
   },
   { path: 'src/components/filter-state-shape/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/filter-state-shape/FilterStateShapeTableDemo.vue',
+    code: vueFilterStateShapeFilterStateShapeTableDemoSource,
+  },
+  {
+    path: 'src/components/filter-state-shape/columns.ts',
+    code: vueFilterStateShapecolumnsSource,
+  },
+  {
+    path: 'src/components/filter-state-shape/ActiveFilterChips.vue',
+    code: vueFilterStateShapeActiveFilterChipsSource,
+  },
+  {
+    path: 'src/components/filter-state-shape/FilterStateShapeDataTable.vue',
+    code: vueFilterStateShapeFilterStateShapeDataTableSource,
+  },
+  {
+    path: 'src/components/filter-state-shape/type.ts',
+    code: vueFilterStateShapetypeSource,
+  },
+  {
+    path: 'src/components/ui/multi-select-filter/MultiSelectFilter.vue',
+    code: vueFilterStateShapesharedmultiselectfilterMultiSelectFilterSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@internationalized/date', '@lucide/vue', 'date-fns'],
+  shadcn: [
+    'badge',
+    'button',
+    'checkbox',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'table',
+  ],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -101,6 +149,8 @@ export function FilterStateShapePage() {
         <ComponentPreview
           preview={<FilterStateShapeTableDemo />}
           files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
         />
 
         <div className="space-y-2">

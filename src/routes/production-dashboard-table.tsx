@@ -10,6 +10,12 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import vueProductionDashboardProductionDashboardTableDemoSource from '#/components/vue/production-dashboard/ProductionDashboardTableDemo.vue?raw'
+import vueProductionDashboardcolumnsSource from '#/components/vue/production-dashboard/columns.ts?raw'
+import vueProductionDashboardDataTableSource from '#/components/vue/production-dashboard/DataTable.vue?raw'
+import vueProductionDashboardProgressBarSource from '#/components/vue/production-dashboard/ProgressBar.vue?raw'
+import vueProductionDashboardSparklineSource from '#/components/vue/production-dashboard/Sparkline.vue?raw'
+import vueProductionDashboardrulesSource from '#/components/vue/production-dashboard/rules.ts?raw'
 
 const files = [
   { path: 'src/components/production-dashboard/index.tsx', code: indexSource },
@@ -31,6 +37,39 @@ const files = [
     code: sparklineSource,
   },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/production-dashboard/ProductionDashboardTableDemo.vue',
+    code: vueProductionDashboardProductionDashboardTableDemoSource,
+  },
+  {
+    path: 'src/components/production-dashboard/columns.ts',
+    code: vueProductionDashboardcolumnsSource,
+  },
+  {
+    path: 'src/components/production-dashboard/DataTable.vue',
+    code: vueProductionDashboardDataTableSource,
+  },
+  {
+    path: 'src/components/production-dashboard/ProgressBar.vue',
+    code: vueProductionDashboardProgressBarSource,
+  },
+  {
+    path: 'src/components/production-dashboard/Sparkline.vue',
+    code: vueProductionDashboardSparklineSource,
+  },
+  {
+    path: 'src/components/production-dashboard/rules.ts',
+    code: vueProductionDashboardrulesSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['badge', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -139,6 +178,8 @@ function ProductionDashboardTablePage() {
         <ComponentPreview
           preview={<ProductionDashboardTableDemo />}
           files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
         />
 
         <div className="space-y-2">

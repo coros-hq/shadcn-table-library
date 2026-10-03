@@ -7,6 +7,10 @@ import statusIndicatorSource from './status-indicator.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { LiveStatusTableDemo } from './index'
+import vueLiveStatusLiveStatusTableDemoSource from '#/components/vue/live-status/LiveStatusTableDemo.vue?raw'
+import vueLiveStatuscolumnsSource from '#/components/vue/live-status/columns.ts?raw'
+import vueLiveStatusLiveStatusTableSource from '#/components/vue/live-status/LiveStatusTable.vue?raw'
+import vueLiveStatusStatusIndicatorSource from '#/components/vue/live-status/StatusIndicator.vue?raw'
 
 const files = [
   { path: 'src/components/live-status/columns.tsx', code: columnsSource },
@@ -17,6 +21,30 @@ const files = [
   { path: 'src/components/live-status/data-table.tsx', code: tableSource },
   { path: 'src/components/live-status/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/live-status/LiveStatusTableDemo.vue',
+    code: vueLiveStatusLiveStatusTableDemoSource,
+  },
+  {
+    path: 'src/components/live-status/columns.ts',
+    code: vueLiveStatuscolumnsSource,
+  },
+  {
+    path: 'src/components/live-status/LiveStatusTable.vue',
+    code: vueLiveStatusLiveStatusTableSource,
+  },
+  {
+    path: 'src/components/live-status/StatusIndicator.vue',
+    code: vueLiveStatusStatusIndicatorSource,
+  },
+]
+
+const vueDeps = {
+  npm: [],
+  shadcn: ['table'],
+}
 
 const steps = [
   {
@@ -85,7 +113,12 @@ export function LiveStatusTablePage() {
 
         <InstallCommand name="live-status-table" />
 
-        <ComponentPreview preview={<LiveStatusTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<LiveStatusTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

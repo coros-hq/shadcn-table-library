@@ -8,6 +8,12 @@ import tableSource from './data-table.tsx?raw'
 import columnsSource from './columns.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ServerPaginationDemo } from './index'
+import vueSsrPaginationExampleServerPaginationDemoSource from '#/components/vue/ssr/pagination-example/ServerPaginationDemo.vue?raw'
+import vueSsrPaginationExamplecolumnsSource from '#/components/vue/ssr/pagination-example/columns.ts?raw'
+import vueSsrPaginationExampleDataTableSource from '#/components/vue/ssr/pagination-example/DataTable.vue?raw'
+import vueSsrPaginationExampledataSource from '#/components/vue/ssr/data.ts?raw'
+import vueSsrPaginationExampleuseServerQuerySource from '#/components/vue/ssr/useServerQuery.ts?raw'
+import vueSsrPaginationExampleuseUrlSearchSource from '#/components/vue/ssr/useUrlSearch.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -22,6 +28,39 @@ const files = [
   },
   { path: 'src/components/ssr/pagination-example/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/ssr/pagination-example/ServerPaginationDemo.vue',
+    code: vueSsrPaginationExampleServerPaginationDemoSource,
+  },
+  {
+    path: 'src/components/ssr/pagination-example/columns.ts',
+    code: vueSsrPaginationExamplecolumnsSource,
+  },
+  {
+    path: 'src/components/ssr/pagination-example/DataTable.vue',
+    code: vueSsrPaginationExampleDataTableSource,
+  },
+  {
+    path: 'src/components/ssr/data.ts',
+    code: vueSsrPaginationExampledataSource,
+  },
+  {
+    path: 'src/components/ssr/useServerQuery.ts',
+    code: vueSsrPaginationExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/components/ssr/useUrlSearch.ts',
+    code: vueSsrPaginationExampleuseUrlSearchSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['button', 'select', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -115,7 +154,12 @@ export function ServerTablePage() {
 
         <InstallCommand name="server-pagination-table" />
 
-        <ComponentPreview preview={<ServerPaginationDemo />} files={files} />
+        <ComponentPreview
+          preview={<ServerPaginationDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

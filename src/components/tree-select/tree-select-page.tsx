@@ -6,12 +6,36 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { TreeSelectDemo } from './index'
+import vueTreeSelectTreeSelectDemoSource from '#/components/vue/tree-select/TreeSelectDemo.vue?raw'
+import vueTreeSelectcolumnsSource from '#/components/vue/tree-select/columns.ts?raw'
+import vueTreeSelectTreeSelectDataTableSource from '#/components/vue/tree-select/TreeSelectDataTable.vue?raw'
 
 const files = [
   { path: 'src/components/tree-select/columns.tsx', code: columnsSource },
   { path: 'src/components/tree-select/data-table.tsx', code: tableSource },
   { path: 'src/components/tree-select/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/tree-select/TreeSelectDemo.vue',
+    code: vueTreeSelectTreeSelectDemoSource,
+  },
+  {
+    path: 'src/components/tree-select/columns.ts',
+    code: vueTreeSelectcolumnsSource,
+  },
+  {
+    path: 'src/components/tree-select/TreeSelectDataTable.vue',
+    code: vueTreeSelectTreeSelectDataTableSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['checkbox', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -93,7 +117,12 @@ export function TreeSelectPage() {
 
         <InstallCommand name="tree-table-selection" />
 
-        <ComponentPreview preview={<TreeSelectDemo />} files={files} />
+        <ComponentPreview
+          preview={<TreeSelectDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

@@ -7,6 +7,10 @@ import dataSource from './data.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ComparisonTableDemo } from './index'
+import vueComparisonComparisonTableDemoSource from '#/components/vue/comparison/ComparisonTableDemo.vue?raw'
+import vueComparisonComparisonTableSource from '#/components/vue/comparison/ComparisonTable.vue?raw'
+import vueComparisoncomparisonSource from '#/components/vue/comparison/comparison.ts?raw'
+import vueComparisondataSource from '#/components/vue/comparison/data.ts?raw'
 
 const files = [
   { path: 'src/components/comparison/comparison.ts', code: comparisonSource },
@@ -14,6 +18,27 @@ const files = [
   { path: 'src/components/comparison/data-table.tsx', code: tableSource },
   { path: 'src/components/comparison/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/comparison/ComparisonTableDemo.vue',
+    code: vueComparisonComparisonTableDemoSource,
+  },
+  {
+    path: 'src/components/comparison/ComparisonTable.vue',
+    code: vueComparisonComparisonTableSource,
+  },
+  {
+    path: 'src/components/comparison/comparison.ts',
+    code: vueComparisoncomparisonSource,
+  },
+  { path: 'src/components/comparison/data.ts', code: vueComparisondataSource },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['button', 'table'],
+}
 
 const steps = [
   {
@@ -112,7 +137,12 @@ export function ComparisonTablePage() {
 
         <InstallCommand name="comparison-table" />
 
-        <ComponentPreview preview={<ComparisonTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ComparisonTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

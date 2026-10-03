@@ -7,6 +7,10 @@ import dataSource from './data.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { HeatmapTableDemo } from './index'
+import vueHeatmapHeatmapTableDemoSource from '#/components/vue/heatmap/HeatmapTableDemo.vue?raw'
+import vueHeatmapHeatmapTableSource from '#/components/vue/heatmap/HeatmapTable.vue?raw'
+import vueHeatmapdataSource from '#/components/vue/heatmap/data.ts?raw'
+import vueHeatmapheatmapSource from '#/components/vue/heatmap/heatmap.ts?raw'
 
 const files = [
   { path: 'src/components/heatmap/heatmap.ts', code: heatmapSource },
@@ -14,6 +18,24 @@ const files = [
   { path: 'src/components/heatmap/data-table.tsx', code: tableSource },
   { path: 'src/components/heatmap/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/heatmap/HeatmapTableDemo.vue',
+    code: vueHeatmapHeatmapTableDemoSource,
+  },
+  {
+    path: 'src/components/heatmap/HeatmapTable.vue',
+    code: vueHeatmapHeatmapTableSource,
+  },
+  { path: 'src/components/heatmap/data.ts', code: vueHeatmapdataSource },
+  { path: 'src/components/heatmap/heatmap.ts', code: vueHeatmapheatmapSource },
+]
+
+const vueDeps = {
+  npm: [],
+  shadcn: ['table'],
+}
 
 const steps = [
   {
@@ -99,7 +121,12 @@ export function HeatmapTablePage() {
 
         <InstallCommand name="heatmap-table" />
 
-        <ComponentPreview preview={<HeatmapTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<HeatmapTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

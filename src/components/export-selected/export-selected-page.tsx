@@ -8,6 +8,11 @@ import tableSource from './data-table.tsx?raw'
 import exportSource from './export.ts?raw'
 import demoSource from './index.tsx?raw'
 import { ExportSelectedDemo } from './index'
+import vueExportSelectedExportSelectedDemoSource from '#/components/vue/export-selected/ExportSelectedDemo.vue?raw'
+import vueExportSelectedcolumnsSource from '#/components/vue/export-selected/columns.ts?raw'
+import vueExportSelectedExportSelectedTableSource from '#/components/vue/export-selected/ExportSelectedTable.vue?raw'
+import vueExportSelecteddataSource from '#/components/vue/export-selected/data.ts?raw'
+import vueExportSelectedexportSource from '#/components/vue/export-selected/export.ts?raw'
 
 const files = [
   { path: 'src/components/export-selected/data-table.tsx', code: tableSource },
@@ -16,6 +21,35 @@ const files = [
   { path: 'src/components/export-selected/data.ts', code: dataSource },
   { path: 'src/components/export-selected/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/export-selected/ExportSelectedDemo.vue',
+    code: vueExportSelectedExportSelectedDemoSource,
+  },
+  {
+    path: 'src/components/export-selected/columns.ts',
+    code: vueExportSelectedcolumnsSource,
+  },
+  {
+    path: 'src/components/export-selected/ExportSelectedTable.vue',
+    code: vueExportSelectedExportSelectedTableSource,
+  },
+  {
+    path: 'src/components/export-selected/data.ts',
+    code: vueExportSelecteddataSource,
+  },
+  {
+    path: 'src/components/export-selected/export.ts',
+    code: vueExportSelectedexportSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['badge', 'button', 'checkbox', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -75,7 +109,12 @@ export function ExportSelectedPage() {
 
         <InstallCommand name="export-selected-table" />
 
-        <ComponentPreview preview={<ExportSelectedDemo />} files={files} />
+        <ComponentPreview
+          preview={<ExportSelectedDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

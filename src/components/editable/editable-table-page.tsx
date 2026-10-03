@@ -6,12 +6,35 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { EditableTableDemo } from './index'
+import vueEditableEditableTableDemoSource from '#/components/vue/editable/EditableTableDemo.vue?raw'
+import vueEditablecolumnsSource from '#/components/vue/editable/columns.ts?raw'
+import vueEditableEditableTableSource from '#/components/vue/editable/EditableTable.vue?raw'
 
 const files = [
   { path: 'src/components/editable/columns.tsx', code: columnsSource },
   { path: 'src/components/editable/data-table.tsx', code: tableSource },
   { path: 'src/components/editable/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/editable/EditableTableDemo.vue',
+    code: vueEditableEditableTableDemoSource,
+  },
+  {
+    path: 'src/components/editable/columns.ts',
+    code: vueEditablecolumnsSource,
+  },
+  {
+    path: 'src/components/editable/EditableTable.vue',
+    code: vueEditableEditableTableSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['button', 'input', 'table'],
+}
 
 const steps = [
   {
@@ -95,7 +118,12 @@ export function EditableTablePage() {
 
         <InstallCommand name="editable-table" />
 
-        <ComponentPreview preview={<EditableTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<EditableTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

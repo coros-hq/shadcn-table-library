@@ -6,12 +6,33 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { GroupedTableDemo } from './index'
+import vueGroupedGroupedTableDemoSource from '#/components/vue/grouped/GroupedTableDemo.vue?raw'
+import vueGroupedcolumnsSource from '#/components/vue/grouped/columns.ts?raw'
+import vueGroupedGroupedDataTableSource from '#/components/vue/grouped/GroupedDataTable.vue?raw'
 
 const files = [
   { path: 'src/components/grouped/columns.tsx', code: columnsSource },
   { path: 'src/components/grouped/data-table.tsx', code: tableSource },
   { path: 'src/components/grouped/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/grouped/GroupedTableDemo.vue',
+    code: vueGroupedGroupedTableDemoSource,
+  },
+  { path: 'src/components/grouped/columns.ts', code: vueGroupedcolumnsSource },
+  {
+    path: 'src/components/grouped/GroupedDataTable.vue',
+    code: vueGroupedGroupedDataTableSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -97,7 +118,12 @@ export function GroupedTablePage() {
 
         <InstallCommand name="grouped-table" />
 
-        <ComponentPreview preview={<GroupedTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<GroupedTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

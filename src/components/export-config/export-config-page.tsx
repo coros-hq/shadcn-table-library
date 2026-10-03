@@ -10,6 +10,14 @@ import tableSource from './data-table.tsx?raw'
 import exportSource from './export.ts?raw'
 import demoSource from './index.tsx?raw'
 import { ExportConfigDemo } from './index'
+import vueExportConfigExportConfigDemoSource from '#/components/vue/export-config/ExportConfigDemo.vue?raw'
+import vueExportConfigcolumnsSource from '#/components/vue/export-config/columns.ts?raw'
+import vueExportConfigCheckboxGroupSource from '#/components/vue/export-config/CheckboxGroup.vue?raw'
+import vueExportConfigExportConfigTableSource from '#/components/vue/export-config/ExportConfigTable.vue?raw'
+import vueExportConfigExportDialogSource from '#/components/vue/export-config/ExportDialog.vue?raw'
+import vueExportConfigdataSource from '#/components/vue/export-config/data.ts?raw'
+import vueExportConfigexportconfigSource from '#/components/vue/export-config/export-config.ts?raw'
+import vueExportConfigexportSource from '#/components/vue/export-config/export.ts?raw'
 
 const files = [
   { path: 'src/components/export-config/data-table.tsx', code: tableSource },
@@ -23,6 +31,46 @@ const files = [
   { path: 'src/components/export-config/data.ts', code: dataSource },
   { path: 'src/components/export-config/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/export-config/ExportConfigDemo.vue',
+    code: vueExportConfigExportConfigDemoSource,
+  },
+  {
+    path: 'src/components/export-config/columns.ts',
+    code: vueExportConfigcolumnsSource,
+  },
+  {
+    path: 'src/components/export-config/CheckboxGroup.vue',
+    code: vueExportConfigCheckboxGroupSource,
+  },
+  {
+    path: 'src/components/export-config/ExportConfigTable.vue',
+    code: vueExportConfigExportConfigTableSource,
+  },
+  {
+    path: 'src/components/export-config/ExportDialog.vue',
+    code: vueExportConfigExportDialogSource,
+  },
+  {
+    path: 'src/components/export-config/data.ts',
+    code: vueExportConfigdataSource,
+  },
+  {
+    path: 'src/components/export-config/export-config.ts',
+    code: vueExportConfigexportconfigSource,
+  },
+  {
+    path: 'src/components/export-config/export.ts',
+    code: vueExportConfigexportSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['badge', 'button', 'checkbox', 'dialog', 'label', 'select', 'table'],
+}
 
 const steps = [
   {
@@ -88,7 +136,12 @@ export function ExportConfigPage() {
 
         <InstallCommand name="export-config-table" />
 
-        <ComponentPreview preview={<ExportConfigDemo />} files={files} />
+        <ComponentPreview
+          preview={<ExportConfigDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

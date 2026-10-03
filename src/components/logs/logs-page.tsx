@@ -18,6 +18,27 @@ import sidePanelDemoSource from './side-panel-demo.tsx?raw'
 import { LogsDemo } from './index'
 import { LogsSidePanelDemo } from './side-panel-demo'
 
+import vueLogscolumnsSource from '#/components/vue/logs/columns.ts?raw'
+import vueLogstoolbarSource from '#/components/vue/logs/toolbar.ts?raw'
+import vueLogsuselogstableSource from '#/components/vue/logs/use-logs-table.ts?raw'
+import vueLogsdaterangeSource from '#/components/vue/logs/date-range.ts?raw'
+import vueLogslevelstylesSource from '#/components/vue/logs/level-styles.ts?raw'
+import vueLogsdataSource from '#/components/vue/logs/data.ts?raw'
+import vueLogsLogsToolbarSource from '#/components/vue/logs/LogsToolbar.vue?raw'
+import vueLogsLoadOlderEventsSource from '#/components/vue/logs/LoadOlderEvents.vue?raw'
+import vueLogsNoResultsSource from '#/components/vue/logs/NoResults.vue?raw'
+import vueLogsLogFieldsSource from '#/components/vue/logs/LogFields.vue?raw'
+import vueLogsFacetedFilterSource from '#/components/vue/logs/FacetedFilter.vue?raw'
+import vueLogsDateRangeFilterSource from '#/components/vue/logs/DateRangeFilter.vue?raw'
+import vueLogsLevelDotSource from '#/components/vue/logs/LevelDot.vue?raw'
+import vueLogsLevelLabelSource from '#/components/vue/logs/LevelLabel.vue?raw'
+import vueLogsHighlightSource from '#/components/vue/logs/Highlight.vue?raw'
+import vueLogsLogsDemoSource from '#/components/vue/logs/LogsDemo.vue?raw'
+import vueLogsLogsTableSource from '#/components/vue/logs/LogsTable.vue?raw'
+import vueLogsLogsSidePanelDemoSource from '#/components/vue/logs/LogsSidePanelDemo.vue?raw'
+import vueLogsLogsSidePanelTableSource from '#/components/vue/logs/LogsSidePanelTable.vue?raw'
+import vueLogsLogPanelSource from '#/components/vue/logs/LogPanel.vue?raw'
+
 const dir = 'src/components/logs'
 
 const sharedFiles = [
@@ -41,6 +62,56 @@ const sidePanelFiles = [
   ...sharedFiles,
   { path: `${dir}/side-panel-demo.tsx`, code: sidePanelDemoSource },
 ]
+
+const vueSharedFiles = [
+  { path: `${dir}/columns.ts`, code: vueLogscolumnsSource },
+  { path: `${dir}/toolbar.ts`, code: vueLogstoolbarSource },
+  { path: `${dir}/use-logs-table.ts`, code: vueLogsuselogstableSource },
+  { path: `${dir}/date-range.ts`, code: vueLogsdaterangeSource },
+  { path: `${dir}/level-styles.ts`, code: vueLogslevelstylesSource },
+  { path: `${dir}/data.ts`, code: vueLogsdataSource },
+  { path: `${dir}/LogsToolbar.vue`, code: vueLogsLogsToolbarSource },
+  { path: `${dir}/LoadOlderEvents.vue`, code: vueLogsLoadOlderEventsSource },
+  { path: `${dir}/NoResults.vue`, code: vueLogsNoResultsSource },
+  { path: `${dir}/LogFields.vue`, code: vueLogsLogFieldsSource },
+  { path: `${dir}/FacetedFilter.vue`, code: vueLogsFacetedFilterSource },
+  { path: `${dir}/DateRangeFilter.vue`, code: vueLogsDateRangeFilterSource },
+  { path: `${dir}/LevelDot.vue`, code: vueLogsLevelDotSource },
+  { path: `${dir}/LevelLabel.vue`, code: vueLogsLevelLabelSource },
+  { path: `${dir}/Highlight.vue`, code: vueLogsHighlightSource },
+]
+
+const vueExpandFiles = [
+  { path: `${dir}/LogsDemo.vue`, code: vueLogsLogsDemoSource },
+  { path: `${dir}/LogsTable.vue`, code: vueLogsLogsTableSource },
+  ...vueSharedFiles,
+]
+
+const vueSidePanelFiles = [
+  {
+    path: `${dir}/LogsSidePanelDemo.vue`,
+    code: vueLogsLogsSidePanelDemoSource,
+  },
+  {
+    path: `${dir}/LogsSidePanelTable.vue`,
+    code: vueLogsLogsSidePanelTableSource,
+  },
+  { path: `${dir}/LogPanel.vue`, code: vueLogsLogPanelSource },
+  ...vueSharedFiles,
+]
+
+const vueDeps = {
+  npm: ['@internationalized/date', '@lucide/vue'],
+  shadcn: [
+    'badge',
+    'button',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'table',
+  ],
+}
 
 interface Step {
   title: string
@@ -198,6 +269,7 @@ const examples = [
     install: 'logs-table',
     preview: <LogsDemo />,
     files: expandFiles,
+    vueFiles: vueExpandFiles,
     steps: expandSteps,
   },
   {
@@ -208,6 +280,7 @@ const examples = [
     install: 'logs-table-side-panel',
     preview: <LogsSidePanelDemo />,
     files: sidePanelFiles,
+    vueFiles: vueSidePanelFiles,
     steps: sidePanelSteps,
   },
 ] as const
@@ -287,7 +360,12 @@ export function LogsPage() {
                 {ex.description}
               </p>
               <InstallCommand name={ex.install} />
-              <ComponentPreview preview={ex.preview} files={ex.files} />
+              <ComponentPreview
+                preview={ex.preview}
+                files={ex.files}
+                vueFiles={ex.vueFiles}
+                vueDeps={vueDeps}
+              />
               <HowItWorks steps={ex.steps} />
             </TabsContent>
           ))}

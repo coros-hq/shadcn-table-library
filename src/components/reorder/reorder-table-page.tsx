@@ -6,12 +6,33 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ReorderableTableDemo } from './index'
+import vueReorderReorderableTableDemoSource from '#/components/vue/reorder/ReorderableTableDemo.vue?raw'
+import vueReordercolumnsSource from '#/components/vue/reorder/columns.ts?raw'
+import vueReorderReorderableTableSource from '#/components/vue/reorder/ReorderableTable.vue?raw'
 
 const files = [
   { path: 'src/components/reorder/columns.tsx', code: columnsSource },
   { path: 'src/components/reorder/data-table.tsx', code: tableSource },
   { path: 'src/components/reorder/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/reorder/ReorderableTableDemo.vue',
+    code: vueReorderReorderableTableDemoSource,
+  },
+  { path: 'src/components/reorder/columns.ts', code: vueReordercolumnsSource },
+  {
+    path: 'src/components/reorder/ReorderableTable.vue',
+    code: vueReorderReorderableTableSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue', 'vue-draggable-plus'],
+  shadcn: ['table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -91,7 +112,12 @@ export function ReorderableTablePage() {
 
         <InstallCommand name="reorderable-table" />
 
-        <ComponentPreview preview={<ReorderableTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ReorderableTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

@@ -6,12 +6,33 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { TreeTableDemo } from './index'
+import vueTreeTreeTableDemoSource from '#/components/vue/tree/TreeTableDemo.vue?raw'
+import vueTreecolumnsSource from '#/components/vue/tree/columns.ts?raw'
+import vueTreeTreeDataTableSource from '#/components/vue/tree/TreeDataTable.vue?raw'
 
 const files = [
   { path: 'src/components/tree/columns.tsx', code: columnsSource },
   { path: 'src/components/tree/data-table.tsx', code: tableSource },
   { path: 'src/components/tree/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/tree/TreeTableDemo.vue',
+    code: vueTreeTreeTableDemoSource,
+  },
+  { path: 'src/components/tree/columns.ts', code: vueTreecolumnsSource },
+  {
+    path: 'src/components/tree/TreeDataTable.vue',
+    code: vueTreeTreeDataTableSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['input', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -91,7 +112,12 @@ export function TreeTablePage() {
 
         <InstallCommand name="tree-table" />
 
-        <ComponentPreview preview={<TreeTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<TreeTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

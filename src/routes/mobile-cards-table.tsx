@@ -8,6 +8,10 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import vueMobileCardsMobileCardsTableDemoSource from '#/components/vue/mobile-cards/MobileCardsTableDemo.vue?raw'
+import vueMobileCardscolumnsSource from '#/components/vue/mobile-cards/columns.ts?raw'
+import vueMobileCardsDataTableSource from '#/components/vue/mobile-cards/DataTable.vue?raw'
+import vueMobileCardsViewportToggleSource from '#/components/vue/mobile-cards/ViewportToggle.vue?raw'
 
 const files = [
   { path: 'src/components/mobile-cards/index.tsx', code: indexSource },
@@ -21,6 +25,30 @@ const files = [
     code: viewportToggleSource,
   },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/mobile-cards/MobileCardsTableDemo.vue',
+    code: vueMobileCardsMobileCardsTableDemoSource,
+  },
+  {
+    path: 'src/components/mobile-cards/columns.ts',
+    code: vueMobileCardscolumnsSource,
+  },
+  {
+    path: 'src/components/mobile-cards/DataTable.vue',
+    code: vueMobileCardsDataTableSource,
+  },
+  {
+    path: 'src/components/mobile-cards/ViewportToggle.vue',
+    code: vueMobileCardsViewportToggleSource,
+  },
+]
+
+const vueDeps = {
+  npm: [],
+  shadcn: ['badge', 'table', 'tabs'],
+}
 
 const steps = [
   {
@@ -164,7 +192,12 @@ function MobileCardsTablePage() {
 
         <InstallCommand name="mobile-cards-table" />
 
-        <ComponentPreview preview={<MobileCardsTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<MobileCardsTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

@@ -12,6 +12,15 @@ import archiveIconSource from '#/components/ui/icons/archive-icon.tsx?raw'
 import trashIconSource from '#/components/ui/icons/trash-icon.tsx?raw'
 import refreshIconSource from '#/components/ui/icons/arrows-clockwise-icon.tsx?raw'
 import { AnimatedIconsTableDemo } from './index'
+import vueAnimatedIconsAnimatedIconsTableDemoSource from '#/components/vue/animated-icons/AnimatedIconsTableDemo.vue?raw'
+import vueAnimatedIconscolumnsSource from '#/components/vue/animated-icons/columns.ts?raw'
+import vueAnimatedIconsAnimatedIconsTableSource from '#/components/vue/animated-icons/AnimatedIconsTable.vue?raw'
+import vueAnimatedIconssharediconsArchiveIconSource from '#/components/vue/shared/icons/ArchiveIcon.vue?raw'
+import vueAnimatedIconssharediconsuseIconAnimationSource from '#/components/vue/shared/icons/useIconAnimation.ts?raw'
+import vueAnimatedIconssharediconsArrowsClockwiseIconSource from '#/components/vue/shared/icons/ArrowsClockwiseIcon.vue?raw'
+import vueAnimatedIconssharediconsBellRingingIconSource from '#/components/vue/shared/icons/BellRingingIcon.vue?raw'
+import vueAnimatedIconssharediconsStarIconSource from '#/components/vue/shared/icons/StarIcon.vue?raw'
+import vueAnimatedIconssharediconsTrashIconSource from '#/components/vue/shared/icons/TrashIcon.vue?raw'
 
 const files = [
   { path: 'src/components/animated-icons/columns.tsx', code: columnsSource },
@@ -30,6 +39,50 @@ const files = [
     code: refreshIconSource,
   },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/animated-icons/AnimatedIconsTableDemo.vue',
+    code: vueAnimatedIconsAnimatedIconsTableDemoSource,
+  },
+  {
+    path: 'src/components/animated-icons/columns.ts',
+    code: vueAnimatedIconscolumnsSource,
+  },
+  {
+    path: 'src/components/animated-icons/AnimatedIconsTable.vue',
+    code: vueAnimatedIconsAnimatedIconsTableSource,
+  },
+  {
+    path: 'src/components/ui/icons/ArchiveIcon.vue',
+    code: vueAnimatedIconssharediconsArchiveIconSource,
+  },
+  {
+    path: 'src/components/ui/icons/useIconAnimation.ts',
+    code: vueAnimatedIconssharediconsuseIconAnimationSource,
+  },
+  {
+    path: 'src/components/ui/icons/ArrowsClockwiseIcon.vue',
+    code: vueAnimatedIconssharediconsArrowsClockwiseIconSource,
+  },
+  {
+    path: 'src/components/ui/icons/BellRingingIcon.vue',
+    code: vueAnimatedIconssharediconsBellRingingIconSource,
+  },
+  {
+    path: 'src/components/ui/icons/StarIcon.vue',
+    code: vueAnimatedIconssharediconsStarIconSource,
+  },
+  {
+    path: 'src/components/ui/icons/TrashIcon.vue',
+    code: vueAnimatedIconssharediconsTrashIconSource,
+  },
+]
+
+const vueDeps = {
+  npm: [],
+  shadcn: ['button', 'table'],
+}
 
 const steps = [
   {
@@ -121,7 +174,12 @@ export function AnimatedIconsTablePage() {
 
         <InstallCommand name="animated-icons-table" />
 
-        <ComponentPreview preview={<AnimatedIconsTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<AnimatedIconsTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">

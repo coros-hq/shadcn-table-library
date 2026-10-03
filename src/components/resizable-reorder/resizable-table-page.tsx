@@ -6,6 +6,9 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ResizableTableDemo } from './index'
+import vueResizableReorderResizableTableDemoSource from '#/components/vue/resizable-reorder/ResizableTableDemo.vue?raw'
+import vueResizableReordercolumnsSource from '#/components/vue/resizable-reorder/columns.ts?raw'
+import vueResizableReorderResizableTableSource from '#/components/vue/resizable-reorder/ResizableTable.vue?raw'
 
 const files = [
   { path: 'src/components/resizable-reorder/columns.tsx', code: columnsSource },
@@ -15,6 +18,27 @@ const files = [
   },
   { path: 'src/components/resizable-reorder/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/resizable-reorder/ResizableTableDemo.vue',
+    code: vueResizableReorderResizableTableDemoSource,
+  },
+  {
+    path: 'src/components/resizable-reorder/columns.ts',
+    code: vueResizableReordercolumnsSource,
+  },
+  {
+    path: 'src/components/resizable-reorder/ResizableTable.vue',
+    code: vueResizableReorderResizableTableSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue', 'vue-draggable-plus'],
+  shadcn: ['button', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -104,7 +128,12 @@ export function ResizableTablePage() {
 
         <InstallCommand name="resizable-reorderable-columns-table" />
 
-        <ComponentPreview preview={<ResizableTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ResizableTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

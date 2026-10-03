@@ -8,6 +8,12 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ServerCombinedDemo } from './index'
+import vueSsrCombinedExampleServerCombinedDemoSource from '#/components/vue/ssr/combined-example/ServerCombinedDemo.vue?raw'
+import vueSsrCombinedExamplecolumnsSource from '#/components/vue/ssr/combined-example/columns.ts?raw'
+import vueSsrCombinedExampleDataTableSource from '#/components/vue/ssr/combined-example/DataTable.vue?raw'
+import vueSsrCombinedExampledataSource from '#/components/vue/ssr/data.ts?raw'
+import vueSsrCombinedExampleuseServerQuerySource from '#/components/vue/ssr/useServerQuery.ts?raw'
+import vueSsrCombinedExampleuseUrlSearchSource from '#/components/vue/ssr/useUrlSearch.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -22,6 +28,35 @@ const files = [
   },
   { path: 'src/components/ssr/combined-example/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/ssr/combined-example/ServerCombinedDemo.vue',
+    code: vueSsrCombinedExampleServerCombinedDemoSource,
+  },
+  {
+    path: 'src/components/ssr/combined-example/columns.ts',
+    code: vueSsrCombinedExamplecolumnsSource,
+  },
+  {
+    path: 'src/components/ssr/combined-example/DataTable.vue',
+    code: vueSsrCombinedExampleDataTableSource,
+  },
+  { path: 'src/components/ssr/data.ts', code: vueSsrCombinedExampledataSource },
+  {
+    path: 'src/components/ssr/useServerQuery.ts',
+    code: vueSsrCombinedExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/components/ssr/useUrlSearch.ts',
+    code: vueSsrCombinedExampleuseUrlSearchSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['button', 'select', 'table'],
+}
 
 const steps = [
   {
@@ -132,7 +167,12 @@ export function ServerCombinedTablePage() {
 
         <InstallCommand name="server-combined-table" />
 
-        <ComponentPreview preview={<ServerCombinedDemo />} files={files} />
+        <ComponentPreview
+          preview={<ServerCombinedDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

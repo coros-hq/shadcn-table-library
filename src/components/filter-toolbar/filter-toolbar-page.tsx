@@ -14,6 +14,20 @@ import useActiveFiltersSource from './use-active-filters.ts?raw'
 import chipsSource from './active-filter-chips.tsx?raw'
 import exampleSource from './example.tsx?raw'
 import { FilterToolbarDemo } from './example'
+import vueFilterToolbarFilterToolbarDemoSource from '#/components/vue/filter-toolbar/FilterToolbarDemo.vue?raw'
+import vueFilterToolbarActiveFilterChipsSource from '#/components/vue/filter-toolbar/ActiveFilterChips.vue?raw'
+import vueFilterToolbarAddFilterTriggerSource from '#/components/vue/filter-toolbar/AddFilterTrigger.vue?raw'
+import vueFilterToolbarDateRangeFilterSource from '#/components/vue/filter-toolbar/DateRangeFilter.vue?raw'
+import vueFilterToolbarFilterConditionEditorSource from '#/components/vue/filter-toolbar/FilterConditionEditor.vue?raw'
+import vueFilterToolbarFilterConditionPillSource from '#/components/vue/filter-toolbar/FilterConditionPill.vue?raw'
+import vueFilterToolbarFilterToolbarSource from '#/components/vue/filter-toolbar/FilterToolbar.vue?raw'
+import vueFilterToolbarFilterValueInputSource from '#/components/vue/filter-toolbar/FilterValueInput.vue?raw'
+import vueFilterToolbarfilterfnsSource from '#/components/vue/filter-toolbar/filter-fns.ts?raw'
+import vueFilterToolbaroperatorsSource from '#/components/vue/filter-toolbar/operators.ts?raw'
+import vueFilterToolbartypesSource from '#/components/vue/filter-toolbar/types.ts?raw'
+import vueFilterToolbaruseactivefiltersSource from '#/components/vue/filter-toolbar/use-active-filters.ts?raw'
+import vueFilterToolbarusefilterconditionsSource from '#/components/vue/filter-toolbar/use-filter-conditions.ts?raw'
+import vueFilterToolbarsharedmultiselectfilterMultiSelectFilterSource from '#/components/vue/shared/multi-select-filter/MultiSelectFilter.vue?raw'
 
 const files = [
   { path: 'src/components/filter-toolbar/types.ts', code: typesSource },
@@ -52,6 +66,80 @@ const files = [
   },
   { path: 'src/components/filter-toolbar/example.tsx', code: exampleSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/filter-toolbar/FilterToolbarDemo.vue',
+    code: vueFilterToolbarFilterToolbarDemoSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/ActiveFilterChips.vue',
+    code: vueFilterToolbarActiveFilterChipsSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/AddFilterTrigger.vue',
+    code: vueFilterToolbarAddFilterTriggerSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/DateRangeFilter.vue',
+    code: vueFilterToolbarDateRangeFilterSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/FilterConditionEditor.vue',
+    code: vueFilterToolbarFilterConditionEditorSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/FilterConditionPill.vue',
+    code: vueFilterToolbarFilterConditionPillSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/FilterToolbar.vue',
+    code: vueFilterToolbarFilterToolbarSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/FilterValueInput.vue',
+    code: vueFilterToolbarFilterValueInputSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/filter-fns.ts',
+    code: vueFilterToolbarfilterfnsSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/operators.ts',
+    code: vueFilterToolbaroperatorsSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/types.ts',
+    code: vueFilterToolbartypesSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/use-active-filters.ts',
+    code: vueFilterToolbaruseactivefiltersSource,
+  },
+  {
+    path: 'src/components/filter-toolbar/use-filter-conditions.ts',
+    code: vueFilterToolbarusefilterconditionsSource,
+  },
+  {
+    path: 'src/components/ui/multi-select-filter/MultiSelectFilter.vue',
+    code: vueFilterToolbarsharedmultiselectfilterMultiSelectFilterSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@internationalized/date', '@lucide/vue', 'date-fns'],
+  shadcn: [
+    'badge',
+    'button',
+    'checkbox',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'select',
+    'table',
+  ],
+}
 
 const steps = [
   {
@@ -150,7 +238,12 @@ export function FilterToolbarPage() {
 
         <InstallCommand name="filter-toolbar-table" />
 
-        <ComponentPreview preview={<FilterToolbarDemo />} files={files} />
+        <ComponentPreview
+          preview={<FilterToolbarDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

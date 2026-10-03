@@ -5,6 +5,10 @@ import basicIndexSource from '#/components/basic/index.tsx?raw'
 import basicDataTableSource from '#/components/basic/data-table.tsx?raw'
 import basicColumnsSource from '#/components/basic/columns.tsx?raw'
 import dataTableFilterSource from '#/components/DataTableFilter.tsx?raw'
+import vueBasicTableSource from '#/components/vue/basic/BasicTable.vue?raw'
+import vueDataTableSource from '#/components/vue/basic/DataTable.vue?raw'
+import vueDataTableFilterSource from '#/components/vue/basic/DataTableFilter.vue?raw'
+import vueColumnsSource from '#/components/vue/basic/columns.ts?raw'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
@@ -17,7 +21,7 @@ export const Route = createFileRoute('/data-table')({
       {
         name: 'description',
         content:
-          'A data table for shadcn/ui and TanStack Table. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.',
+          'A data table for shadcn/ui and TanStack Table, with React and Vue source. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.',
       },
       {
         property: 'og:title',
@@ -53,6 +57,27 @@ const files = [
   { path: 'src/components/basic/data-table.tsx', code: basicDataTableSource },
   { path: 'src/components/DataTableFilter.tsx', code: dataTableFilterSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/basic/BasicTable.vue',
+    code: vueBasicTableSource,
+  },
+  { path: 'src/components/basic/columns.ts', code: vueColumnsSource },
+  {
+    path: 'src/components/basic/DataTable.vue',
+    code: vueDataTableSource,
+  },
+  {
+    path: 'src/components/basic/DataTableFilter.vue',
+    code: vueDataTableFilterSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['table', 'input', 'select', 'button'],
+}
 
 const steps = [
   {
@@ -141,7 +166,12 @@ function Home() {
 
         <InstallCommand name="data-table" />
 
-        <ComponentPreview preview={<BasicTableUsage />} files={files} />
+        <ComponentPreview
+          preview={<BasicTableUsage />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

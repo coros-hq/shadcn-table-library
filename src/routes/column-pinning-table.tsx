@@ -7,6 +7,10 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import vueColumnPinningColumnPinningTableDemoSource from '#/components/vue/column-pinning/ColumnPinningTableDemo.vue?raw'
+import vueColumnPinningcolumnsSource from '#/components/vue/column-pinning/columns.ts?raw'
+import vueColumnPinningDataTableSource from '#/components/vue/column-pinning/DataTable.vue?raw'
+import vueColumnPinningPinControlsSource from '#/components/vue/column-pinning/PinControls.vue?raw'
 
 const files = [
   { path: 'src/components/column-pinning/index.tsx', code: indexSource },
@@ -16,6 +20,31 @@ const files = [
     code: dataTableSource,
   },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/column-pinning/ColumnPinningTableDemo.vue',
+    code: vueColumnPinningColumnPinningTableDemoSource,
+  },
+  {
+    path: 'src/components/column-pinning/columns.ts',
+    code: vueColumnPinningcolumnsSource,
+  },
+  {
+    path: 'src/components/column-pinning/DataTable.vue',
+    code: vueColumnPinningDataTableSource,
+  },
+  {
+    path: 'src/components/column-pinning/PinControls.vue',
+    code: vueColumnPinningPinControlsSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['badge', 'button', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -143,7 +172,12 @@ function ColumnPinningTablePage() {
 
         <InstallCommand name="column-pinning-table" />
 
-        <ComponentPreview preview={<ColumnPinningTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ColumnPinningTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

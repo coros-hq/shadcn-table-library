@@ -8,6 +8,12 @@ import tableSource from './data-table.tsx?raw'
 import columnsSource from './columns.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ServerFilterDemo } from './index'
+import vueSsrFilterExampleServerFilterDemoSource from '#/components/vue/ssr/filter-example/ServerFilterDemo.vue?raw'
+import vueSsrFilterExamplecolumnsSource from '#/components/vue/ssr/filter-example/columns.ts?raw'
+import vueSsrFilterExampleDataTableSource from '#/components/vue/ssr/filter-example/DataTable.vue?raw'
+import vueSsrFilterExampledataSource from '#/components/vue/ssr/data.ts?raw'
+import vueSsrFilterExampleuseServerQuerySource from '#/components/vue/ssr/useServerQuery.ts?raw'
+import vueSsrFilterExampleuseUrlSearchSource from '#/components/vue/ssr/useUrlSearch.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -22,6 +28,36 @@ const files = [
   },
   { path: 'src/components/ssr/filter-example/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/ssr/filter-example/ServerFilterDemo.vue',
+    code: vueSsrFilterExampleServerFilterDemoSource,
+  },
+  {
+    path: 'src/components/ssr/filter-example/columns.ts',
+    code: vueSsrFilterExamplecolumnsSource,
+  },
+  {
+    path: 'src/components/ssr/filter-example/DataTable.vue',
+    code: vueSsrFilterExampleDataTableSource,
+  },
+  { path: 'src/components/ssr/data.ts', code: vueSsrFilterExampledataSource },
+  {
+    path: 'src/components/ssr/useServerQuery.ts',
+    code: vueSsrFilterExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/components/ssr/useUrlSearch.ts',
+    code: vueSsrFilterExampleuseUrlSearchSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['button', 'select', 'table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -121,7 +157,12 @@ export function ServerFilterPage() {
 
         <InstallCommand name="server-filter-table" />
 
-        <ComponentPreview preview={<ServerFilterDemo />} files={files} />
+        <ComponentPreview
+          preview={<ServerFilterDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

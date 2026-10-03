@@ -7,6 +7,10 @@ import tableSource from './data-table.tsx?raw'
 import detailSource from './order-detail.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { MasterDetailDemo } from './index'
+import vueMasterDetailMasterDetailDemoSource from '#/components/vue/master-detail/MasterDetailDemo.vue?raw'
+import vueMasterDetailcolumnsSource from '#/components/vue/master-detail/columns.ts?raw'
+import vueMasterDetailMasterDetailTableSource from '#/components/vue/master-detail/MasterDetailTable.vue?raw'
+import vueMasterDetailOrderDetailSource from '#/components/vue/master-detail/OrderDetail.vue?raw'
 
 const files = [
   { path: 'src/components/master-detail/columns.tsx', code: columnsSource },
@@ -17,6 +21,30 @@ const files = [
   },
   { path: 'src/components/master-detail/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/master-detail/MasterDetailDemo.vue',
+    code: vueMasterDetailMasterDetailDemoSource,
+  },
+  {
+    path: 'src/components/master-detail/columns.ts',
+    code: vueMasterDetailcolumnsSource,
+  },
+  {
+    path: 'src/components/master-detail/MasterDetailTable.vue',
+    code: vueMasterDetailMasterDetailTableSource,
+  },
+  {
+    path: 'src/components/master-detail/OrderDetail.vue',
+    code: vueMasterDetailOrderDetailSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['table'],
+}
 
 const steps = [
   {
@@ -103,7 +131,12 @@ export function MasterDetailPage() {
 
         <InstallCommand name="master-detail-table" />
 
-        <ComponentPreview preview={<MasterDetailDemo />} files={files} />
+        <ComponentPreview
+          preview={<MasterDetailDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

@@ -7,6 +7,17 @@ import buttonsSource from './action-buttons.tsx?raw'
 import dataSource from './data.ts?raw'
 import demoSource from './index.tsx?raw'
 import { AsyncActionsDemo } from './index'
+import vueAsyncActionsAsyncActionsDemoSource from '#/components/vue/async-actions/AsyncActionsDemo.vue?raw'
+import vueAsyncActionsArchiveButtonSource from '#/components/vue/async-actions/ArchiveButton.vue?raw'
+import vueAsyncActionsAsyncActionsTableSource from '#/components/vue/async-actions/AsyncActionsTable.vue?raw'
+import vueAsyncActionsDeleteButtonSource from '#/components/vue/async-actions/DeleteButton.vue?raw'
+import vueAsyncActionsSyncButtonSource from '#/components/vue/async-actions/SyncButton.vue?raw'
+import vueAsyncActionsactionButtonStylesSource from '#/components/vue/async-actions/actionButtonStyles.ts?raw'
+import vueAsyncActionsdataSource from '#/components/vue/async-actions/data.ts?raw'
+import vueAsyncActionssharediconsArchiveIconSource from '#/components/vue/shared/icons/ArchiveIcon.vue?raw'
+import vueAsyncActionssharediconsuseIconAnimationSource from '#/components/vue/shared/icons/useIconAnimation.ts?raw'
+import vueAsyncActionssharediconsTrashIconSource from '#/components/vue/shared/icons/TrashIcon.vue?raw'
+import vueAsyncActionssharediconsArrowsClockwiseIconSource from '#/components/vue/shared/icons/ArrowsClockwiseIcon.vue?raw'
 
 const files = [
   { path: 'src/components/async-actions/data-table.tsx', code: tableSource },
@@ -17,6 +28,58 @@ const files = [
   { path: 'src/components/async-actions/data.ts', code: dataSource },
   { path: 'src/components/async-actions/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/async-actions/AsyncActionsDemo.vue',
+    code: vueAsyncActionsAsyncActionsDemoSource,
+  },
+  {
+    path: 'src/components/async-actions/ArchiveButton.vue',
+    code: vueAsyncActionsArchiveButtonSource,
+  },
+  {
+    path: 'src/components/async-actions/AsyncActionsTable.vue',
+    code: vueAsyncActionsAsyncActionsTableSource,
+  },
+  {
+    path: 'src/components/async-actions/DeleteButton.vue',
+    code: vueAsyncActionsDeleteButtonSource,
+  },
+  {
+    path: 'src/components/async-actions/SyncButton.vue',
+    code: vueAsyncActionsSyncButtonSource,
+  },
+  {
+    path: 'src/components/async-actions/actionButtonStyles.ts',
+    code: vueAsyncActionsactionButtonStylesSource,
+  },
+  {
+    path: 'src/components/async-actions/data.ts',
+    code: vueAsyncActionsdataSource,
+  },
+  {
+    path: 'src/components/ui/icons/ArchiveIcon.vue',
+    code: vueAsyncActionssharediconsArchiveIconSource,
+  },
+  {
+    path: 'src/components/ui/icons/useIconAnimation.ts',
+    code: vueAsyncActionssharediconsuseIconAnimationSource,
+  },
+  {
+    path: 'src/components/ui/icons/TrashIcon.vue',
+    code: vueAsyncActionssharediconsTrashIconSource,
+  },
+  {
+    path: 'src/components/ui/icons/ArrowsClockwiseIcon.vue',
+    code: vueAsyncActionssharediconsArrowsClockwiseIconSource,
+  },
+]
+
+const vueDeps = {
+  npm: [],
+  shadcn: ['button', 'table'],
+}
 
 const steps = [
   {
@@ -88,7 +151,12 @@ export function AsyncActionsPage() {
 
         <InstallCommand name="async-actions-table" />
 
-        <ComponentPreview preview={<AsyncActionsDemo />} files={files} />
+        <ComponentPreview
+          preview={<AsyncActionsDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

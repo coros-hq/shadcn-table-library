@@ -6,12 +6,36 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { TreeReorderDemo } from './index'
+import vueTreeReorderTreeReorderDemoSource from '#/components/vue/tree-reorder/TreeReorderDemo.vue?raw'
+import vueTreeReordercolumnsSource from '#/components/vue/tree-reorder/columns.ts?raw'
+import vueTreeReorderTreeReorderDataTableSource from '#/components/vue/tree-reorder/TreeReorderDataTable.vue?raw'
 
 const files = [
   { path: 'src/components/tree-reorder/columns.tsx', code: columnsSource },
   { path: 'src/components/tree-reorder/data-table.tsx', code: tableSource },
   { path: 'src/components/tree-reorder/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/tree-reorder/TreeReorderDemo.vue',
+    code: vueTreeReorderTreeReorderDemoSource,
+  },
+  {
+    path: 'src/components/tree-reorder/columns.ts',
+    code: vueTreeReordercolumnsSource,
+  },
+  {
+    path: 'src/components/tree-reorder/TreeReorderDataTable.vue',
+    code: vueTreeReorderTreeReorderDataTableSource,
+  },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue', 'vue-draggable-plus'],
+  shadcn: ['table'],
+  valueUpdater: true,
+}
 
 const steps = [
   {
@@ -92,7 +116,12 @@ export function TreeReorderPage() {
 
         <InstallCommand name="tree-table-reorder" />
 
-        <ComponentPreview preview={<TreeReorderDemo />} files={files} />
+        <ComponentPreview
+          preview={<TreeReorderDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>

@@ -8,6 +8,11 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { KpiTableDemo } from './index'
+import vueKpiKpiTableDemoSource from '#/components/vue/kpi/KpiTableDemo.vue?raw'
+import vueKpicolumnsSource from '#/components/vue/kpi/columns.ts?raw'
+import vueKpiKpiTableSource from '#/components/vue/kpi/KpiTable.vue?raw'
+import vueKpiSparklineSource from '#/components/vue/kpi/Sparkline.vue?raw'
+import vueKpikpiSource from '#/components/vue/kpi/kpi.ts?raw'
 
 const files = [
   { path: 'src/components/kpi/kpi.ts', code: kpiSource },
@@ -16,6 +21,22 @@ const files = [
   { path: 'src/components/kpi/data-table.tsx', code: tableSource },
   { path: 'src/components/kpi/index.tsx', code: demoSource },
 ]
+
+const vueFiles = [
+  {
+    path: 'src/components/kpi/KpiTableDemo.vue',
+    code: vueKpiKpiTableDemoSource,
+  },
+  { path: 'src/components/kpi/columns.ts', code: vueKpicolumnsSource },
+  { path: 'src/components/kpi/KpiTable.vue', code: vueKpiKpiTableSource },
+  { path: 'src/components/kpi/Sparkline.vue', code: vueKpiSparklineSource },
+  { path: 'src/components/kpi/kpi.ts', code: vueKpikpiSource },
+]
+
+const vueDeps = {
+  npm: ['@lucide/vue'],
+  shadcn: ['table'],
+}
 
 const steps = [
   {
@@ -108,7 +129,12 @@ export function KpiTablePage() {
 
         <InstallCommand name="kpi-table" />
 
-        <ComponentPreview preview={<KpiTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<KpiTableDemo />}
+          files={files}
+          vueFiles={vueFiles}
+          vueDeps={vueDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">How it works</p>
