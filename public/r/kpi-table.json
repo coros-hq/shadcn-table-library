@@ -4,7 +4,8 @@
   "title": "Summary / KPI Table",
   "description": "Compact metrics table with period-over-period change and a hand-rolled SVG sparkline per row.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table"

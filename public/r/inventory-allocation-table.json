@@ -4,7 +4,8 @@
   "title": "Inventory Allocation Table",
   "description": "Editable inventory grid with expandable batch allocation and live formula columns — reorder point, days of cover, and suggested PO recalculate on every edit, with FEFO auto-allocation.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

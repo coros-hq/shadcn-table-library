@@ -10,6 +10,7 @@ Every page below has a live demo, the full source, an install command, and a ste
 ## Data Table
 
 - [Data Table](https://www.shad-table.dev/data-table): A data table for shadcn/ui and TanStack Table. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table. Includes React and Vue (@tanstack/vue-table) source.
+- [Migrating from TanStack Table v8 to v9](https://www.shad-table.dev/migrate-v9): A practical v8 to v9 migration guide for shadcn/ui tables with before and after code for feature registration, row models, types, sortFn, state, column pinning and selection, plus a checklist.
 
 ## SSR
 
@@ -42,6 +43,8 @@ Every page below has a live demo, the full source, an install command, and a ste
 - [Resizable / Reorderable Columns](https://www.shad-table.dev/resizable-table): A table with resizable and reorderable columns for shadcn/ui and TanStack Table. Drag a header's grip to reorder columns, drag its right edge to resize — the resulting layout is saved to localStorage and restored on your next visit.
 - [Column Pinning](https://www.shad-table.dev/column-pinning-table): A column pinning table for shadcn/ui and TanStack Table. Excel/AG Grid–style column pinning: freeze columns to the left or right edge while the rest of the table scrolls underneath.
 - [Inventory Allocation](https://www.shad-table.dev/inventory-allocation-table): An inventory allocation table for shadcn/ui and TanStack Table. An editable inventory grid with expandable batch detail and live formula columns — reorder point, days of cover, and suggested PO recalculate as you edit demand, lead time, or batch allocations.
+- [Infinite Scroll](https://www.shad-table.dev/infinite-scroll-table): An infinite scroll table for shadcn/ui and TanStack Table. Loads the next page as you scroll with an IntersectionObserver sentinel, skeleton loading rows, inline retry on errors, and a sticky header. Includes React and Vue source.
+- [Excel-like Table](https://www.shad-table.dev/spreadsheet-table): An Excel-like spreadsheet table for shadcn/ui and TanStack Table. A1 headers, keyboard navigation, range selection, type-to-edit, copy and paste, and formulas such as SUM and AVERAGE that recalculate as you edit. Includes React and Vue source.
 
 ## Animated
 

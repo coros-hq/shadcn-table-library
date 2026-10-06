@@ -4,11 +4,12 @@
   "title": "Mobile Cards Table",
   "description": "Transforms into stacked, labeled cards below a container-query breakpoint using pure CSS display overrides on the same markup — no separate mobile component, no JS media query, no viewport dependency.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3"
   ],
   "registryDependencies": [
     "table",
-    "badge"
+    "badge",
+    "tabs"
   ],
   "files": [
     {

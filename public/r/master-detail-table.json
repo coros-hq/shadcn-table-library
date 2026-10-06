@@ -4,7 +4,8 @@
   "title": "Master-Detail Table",
   "description": "Expand a row to reveal a nested sub-table detail panel, rendered as a full-width row beneath the row that owns it.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table"

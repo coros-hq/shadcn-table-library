@@ -4,7 +4,8 @@
   "title": "Comparison Table (v9)",
   "description": "Pricing plans as columns in an ordinary bordered table, with dynamically generated columns and the recommended plan tinted.",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

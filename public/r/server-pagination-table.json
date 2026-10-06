@@ -4,9 +4,10 @@
   "title": "SSR Pagination Table",
   "description": "Only the current page's rows are sent to the browser; the URL is the source of truth and a route loader resolves the page server-side.",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "@tanstack/react-router",
-    "@tanstack/react-start"
+    "@tanstack/react-start",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

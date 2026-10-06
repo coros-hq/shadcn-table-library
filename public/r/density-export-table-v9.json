@@ -4,7 +4,8 @@
   "title": "Density & Export (v9)",
   "description": "Compact/comfortable/spacious density toggle, CSV/Excel export, and a print-optimized PDF view via window.print().",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

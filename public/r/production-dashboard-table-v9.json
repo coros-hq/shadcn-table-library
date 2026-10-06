@@ -4,7 +4,8 @@
   "title": "Production Dashboard Table (v9)",
   "description": "A production-line status table combining conditional formatting, output/utilization progress bars, and 7-day trend sparklines on one realistic dataset.",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

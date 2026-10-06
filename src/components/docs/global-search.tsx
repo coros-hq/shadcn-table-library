@@ -9,7 +9,11 @@ import {
   CommandItem,
   CommandList,
 } from '#/components/ui/command.tsx'
-import { topLevelLinks, navGroups } from '#/components/docs/nav-content.tsx'
+import {
+  topLevelLinks,
+  navGroups,
+  NewBadge,
+} from '#/components/docs/nav-content.tsx'
 
 export function GlobalSearch() {
   const [open, setOpen] = useState(false)
@@ -64,6 +68,7 @@ export function GlobalSearch() {
                 onSelect={() => goTo(link.to)}
               >
                 {link.title}
+                {link.isNew ? <NewBadge className="ml-auto" /> : null}
               </CommandItem>
             ))}
           </CommandGroup>
@@ -76,6 +81,7 @@ export function GlobalSearch() {
                   onSelect={() => goTo(link.to)}
                 >
                   {link.title}
+                  {link.isNew ? <NewBadge className="ml-auto" /> : null}
                 </CommandItem>
               ))}
             </CommandGroup>

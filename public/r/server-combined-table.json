@@ -4,9 +4,10 @@
   "title": "SSR Sort + Filter + Pagination",
   "description": "Sorting, filtering, and pagination all resolved together on the server from one URL and one request, in that order — the way real dashboards actually work.",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "@tanstack/react-router",
-    "@tanstack/react-start"
+    "@tanstack/react-start",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

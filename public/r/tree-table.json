@@ -4,7 +4,8 @@
   "title": "Tree Table",
   "description": "Hierarchical rows with expand/collapse, sorting, and search that keeps a matching row's ancestors visible.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

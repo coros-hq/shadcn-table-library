@@ -22,6 +22,8 @@ import {
 export interface NavLink {
   title: string
   to: string
+  /** Shows a "New" pill; remove the flag once a page is no longer fresh */
+  isNew?: boolean
 }
 
 export interface NavGroup {
@@ -31,6 +33,7 @@ export interface NavGroup {
 
 export const topLevelLinks: NavLink[] = [
   { title: 'Data Table', to: '/data-table' },
+  { title: 'v8 → v9 Migration', to: '/migrate-v9', isNew: true },
 ]
 
 export const navGroups: NavGroup[] = [
@@ -56,7 +59,7 @@ export const navGroups: NavGroup[] = [
   {
     title: 'Structure / Hierarchy',
     items: [
-      { title: 'Tree Table', to: '/tree-table' },
+      { title: 'Tree Table', to: '/tree-table', isNew: true },
       { title: 'Grouped Table', to: '/grouped-table' },
       { title: 'Pivot Table', to: '/pivot-table' },
       { title: 'Master-Detail Table', to: '/master-detail' },
@@ -72,6 +75,8 @@ export const navGroups: NavGroup[] = [
       { title: 'Resizable / Reorderable Columns', to: '/resizable-table' },
       { title: 'Column Pinning', to: '/column-pinning-table' },
       { title: 'Inventory Allocation', to: '/inventory-allocation-table' },
+      { title: 'Infinite Scroll', to: '/infinite-scroll-table', isNew: true },
+      { title: 'Excel-like Table', to: '/spreadsheet-table', isNew: true },
     ],
   },
   {
@@ -132,6 +137,8 @@ export const V9_PORTED_ROUTES = new Set<string>([
   '/resizable-table',
   '/column-pinning-table',
   '/inventory-allocation-table',
+  '/infinite-scroll-table',
+  '/spreadsheet-table',
   '/animated-icons-table',
   '/live-status-table',
   '/async-actions-table',
@@ -145,6 +152,19 @@ export const V9_PORTED_ROUTES = new Set<string>([
   '/export-selected-table',
   '/mobile-cards-table',
 ])
+
+export function NewBadge({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn(
+        'rounded-full bg-primary/10 px-1.5 py-px text-[10px] leading-4 font-medium text-primary',
+        className,
+      )}
+    >
+      New
+    </span>
+  )
+}
 
 export function NavContent({
   pathname,
@@ -176,6 +196,7 @@ export function NavContent({
                     >
                       <Link to={prefix(link.to)} onClick={onNavigate}>
                         {link.title}
+                        {link.isNew ? <NewBadge className="ml-auto" /> : null}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -197,7 +218,10 @@ export function NavContent({
                 >
                   <CollapsibleTrigger>
                     {group.title}
-                    <ChevronRight className="ml-auto size-3.5 text-muted-foreground/60 transition-transform duration-200 ease-out group-data-[state=open]/collapsible:rotate-90" />
+                    <span className="ml-auto flex items-center gap-2">
+                      {group.items.some((l) => l.isNew) ? <NewBadge /> : null}
+                      <ChevronRight className="size-3.5 text-muted-foreground/60 transition-transform duration-200 ease-out group-data-[state=open]/collapsible:rotate-90" />
+                    </span>
                   </CollapsibleTrigger>
                 </SidebarGroupLabel>
                 {/* forceMount keeps closed groups' links in the SSR HTML so
@@ -227,6 +251,9 @@ export function NavContent({
                             >
                               <Link to={to} onClick={onNavigate}>
                                 {link.title}
+                                {link.isNew ? (
+                                  <NewBadge className="ml-auto" />
+                                ) : null}
                                 {unported ? (
                                   <span className="ml-auto text-[10px] text-muted-foreground/60">
                                     v8 only

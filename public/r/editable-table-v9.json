@@ -4,7 +4,8 @@
   "title": "Editable Table (v9)",
   "description": "Inline cell editing with per-cell validation, optimistic updates against a simulated save, and single-step undo.",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

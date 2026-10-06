@@ -1,0 +1,58 @@
+name: Registry
+
+# Installs every published component into a clean project with the real
+# shadcn CLI and type-checks the result, the way a user would. It also runs on
+# a schedule, because npm and shadcn move underneath us (the `latest` tag of
+# @tanstack/react-table is now v9) and a registry that passed last month can
+# stop installing without a single commit here.
+on:
+  pull_request:
+    paths:
+      - registry.json
+      - scripts/**
+      - public/r/**
+      - src/components/**
+      - src/lib/**
+      - .github/workflows/registry.yml
+  push:
+    branches: [main]
+    paths:
+      - registry.json
+      - scripts/**
+      - src/components/**
+      - src/lib/**
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: registry-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    name: Install every registry item
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Rebuild the registry
+        run: npm run registry:build
+
+      # public/r is committed, so a stale copy means users get old code
+      - name: Check public/r is up to date
+        run: |
+          if [ -n "$(git status --porcelain -- public/r)" ]; then
+            echo "::error::public/r is out of date. Run 'npm run registry:build' and commit the result."
+            git status --short -- public/r
+            exit 1
+          fi
+
+      - name: Install each item into a clean project
+        run: npm run registry:check

@@ -132,8 +132,11 @@ const v9Items = registry.items.map((item) => {
     name,
     title: `${item.title} (v9)`,
     files,
+    // The v8 items pin ^8 (npm's `latest` is now v9); the twins swap in the v9 range
     dependencies: (item.dependencies ?? []).map((dep) =>
-      dep === '@tanstack/react-table' ? `${dep}@${REACT_TABLE_V9_RANGE}` : dep,
+      dep.startsWith('@tanstack/react-table@')
+        ? `@tanstack/react-table@${REACT_TABLE_V9_RANGE}`
+        : dep,
     ),
   }
 })

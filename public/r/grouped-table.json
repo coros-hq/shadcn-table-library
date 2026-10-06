@@ -4,7 +4,8 @@
   "title": "Grouped Table",
   "description": "Rows grouped by a column value with collapsible group headers and live subtotals via aggregationFn.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table"

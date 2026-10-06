@@ -4,7 +4,8 @@
   "title": "Data Table (v9)",
   "description": "Sortable, filterable, paginated client-side table with a composable filter toolbar.",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

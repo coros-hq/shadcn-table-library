@@ -24,11 +24,13 @@ import { Route as FilterStateShapeTableRouteImport } from './routes/filter-state
 import { Route as FilterToolbarTableRouteImport } from './routes/filter-toolbar-table'
 import { Route as GroupedTableRouteImport } from './routes/grouped-table'
 import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
+import { Route as InfiniteScrollTableRouteImport } from './routes/infinite-scroll-table'
 import { Route as InventoryAllocationTableRouteImport } from './routes/inventory-allocation-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
 import { Route as LiveStatusTableRouteImport } from './routes/live-status-table'
 import { Route as LogsTableRouteImport } from './routes/logs-table'
 import { Route as MasterDetailRouteImport } from './routes/master-detail'
+import { Route as MigrateV9RouteImport } from './routes/migrate-v9'
 import { Route as MobileCardsTableRouteImport } from './routes/mobile-cards-table'
 import { Route as ParamsFilterTableRouteImport } from './routes/params-filter-table'
 import { Route as PivotTableRouteImport } from './routes/pivot-table'
@@ -38,6 +40,7 @@ import { Route as ResizableTableRouteImport } from './routes/resizable-table'
 import { Route as ServerCombinedTableRouteImport } from './routes/server-combined-table'
 import { Route as ServerFilterRouteImport } from './routes/server-filter'
 import { Route as ServerTableRouteImport } from './routes/server-table'
+import { Route as SpreadsheetTableRouteImport } from './routes/spreadsheet-table'
 import { Route as ToolbarFilterTableRouteImport } from './routes/toolbar-filter-table'
 import { Route as TreeReorderRouteImport } from './routes/tree-reorder'
 import { Route as TreeSelectRouteImport } from './routes/tree-select'
@@ -58,6 +61,7 @@ import { Route as V9FilterStateShapeTableRouteImport } from './routes/v9/filter-
 import { Route as V9FilterToolbarTableRouteImport } from './routes/v9/filter-toolbar-table'
 import { Route as V9GroupedTableRouteImport } from './routes/v9/grouped-table'
 import { Route as V9HeatmapTableRouteImport } from './routes/v9/heatmap-table'
+import { Route as V9InfiniteScrollTableRouteImport } from './routes/v9/infinite-scroll-table'
 import { Route as V9InventoryAllocationTableRouteImport } from './routes/v9/inventory-allocation-table'
 import { Route as V9KpiTableRouteImport } from './routes/v9/kpi-table'
 import { Route as V9LiveStatusTableRouteImport } from './routes/v9/live-status-table'
@@ -72,6 +76,7 @@ import { Route as V9ResizableTableRouteImport } from './routes/v9/resizable-tabl
 import { Route as V9ServerCombinedTableRouteImport } from './routes/v9/server-combined-table'
 import { Route as V9ServerFilterRouteImport } from './routes/v9/server-filter'
 import { Route as V9ServerTableRouteImport } from './routes/v9/server-table'
+import { Route as V9SpreadsheetTableRouteImport } from './routes/v9/spreadsheet-table'
 import { Route as V9ToolbarFilterTableRouteImport } from './routes/v9/toolbar-filter-table'
 import { Route as V9TreeReorderRouteImport } from './routes/v9/tree-reorder'
 import { Route as V9TreeSelectRouteImport } from './routes/v9/tree-select'
@@ -154,6 +159,11 @@ const HeatmapTableRoute = HeatmapTableRouteImport.update({
   path: '/heatmap-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InfiniteScrollTableRoute = InfiniteScrollTableRouteImport.update({
+  id: '/infinite-scroll-table',
+  path: '/infinite-scroll-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InventoryAllocationTableRoute =
   InventoryAllocationTableRouteImport.update({
     id: '/inventory-allocation-table',
@@ -178,6 +188,11 @@ const LogsTableRoute = LogsTableRouteImport.update({
 const MasterDetailRoute = MasterDetailRouteImport.update({
   id: '/master-detail',
   path: '/master-detail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MigrateV9Route = MigrateV9RouteImport.update({
+  id: '/migrate-v9',
+  path: '/migrate-v9',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MobileCardsTableRoute = MobileCardsTableRouteImport.update({
@@ -224,6 +239,11 @@ const ServerFilterRoute = ServerFilterRouteImport.update({
 const ServerTableRoute = ServerTableRouteImport.update({
   id: '/server-table',
   path: '/server-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpreadsheetTableRoute = SpreadsheetTableRouteImport.update({
+  id: '/spreadsheet-table',
+  path: '/spreadsheet-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolbarFilterTableRoute = ToolbarFilterTableRouteImport.update({
@@ -327,6 +347,11 @@ const V9HeatmapTableRoute = V9HeatmapTableRouteImport.update({
   path: '/v9/heatmap-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const V9InfiniteScrollTableRoute = V9InfiniteScrollTableRouteImport.update({
+  id: '/v9/infinite-scroll-table',
+  path: '/v9/infinite-scroll-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const V9InventoryAllocationTableRoute =
   V9InventoryAllocationTableRouteImport.update({
     id: '/v9/inventory-allocation-table',
@@ -399,6 +424,11 @@ const V9ServerTableRoute = V9ServerTableRouteImport.update({
   path: '/v9/server-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const V9SpreadsheetTableRoute = V9SpreadsheetTableRouteImport.update({
+  id: '/v9/spreadsheet-table',
+  path: '/v9/spreadsheet-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const V9ToolbarFilterTableRoute = V9ToolbarFilterTableRouteImport.update({
   id: '/v9/toolbar-filter-table',
   path: '/v9/toolbar-filter-table',
@@ -441,11 +471,13 @@ export interface FileRoutesByFullPath {
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
+  '/infinite-scroll-table': typeof InfiniteScrollTableRoute
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
+  '/migrate-v9': typeof MigrateV9Route
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
   '/pivot-table': typeof PivotTableRoute
@@ -455,6 +487,7 @@ export interface FileRoutesByFullPath {
   '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/spreadsheet-table': typeof SpreadsheetTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
   '/tree-select': typeof TreeSelectRoute
@@ -474,6 +507,7 @@ export interface FileRoutesByFullPath {
   '/v9/filter-toolbar-table': typeof V9FilterToolbarTableRoute
   '/v9/grouped-table': typeof V9GroupedTableRoute
   '/v9/heatmap-table': typeof V9HeatmapTableRoute
+  '/v9/infinite-scroll-table': typeof V9InfiniteScrollTableRoute
   '/v9/inventory-allocation-table': typeof V9InventoryAllocationTableRoute
   '/v9/kpi-table': typeof V9KpiTableRoute
   '/v9/live-status-table': typeof V9LiveStatusTableRoute
@@ -488,6 +522,7 @@ export interface FileRoutesByFullPath {
   '/v9/server-combined-table': typeof V9ServerCombinedTableRoute
   '/v9/server-filter': typeof V9ServerFilterRoute
   '/v9/server-table': typeof V9ServerTableRoute
+  '/v9/spreadsheet-table': typeof V9SpreadsheetTableRoute
   '/v9/toolbar-filter-table': typeof V9ToolbarFilterTableRoute
   '/v9/tree-reorder': typeof V9TreeReorderRoute
   '/v9/tree-select': typeof V9TreeSelectRoute
@@ -511,11 +546,13 @@ export interface FileRoutesByTo {
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
+  '/infinite-scroll-table': typeof InfiniteScrollTableRoute
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
+  '/migrate-v9': typeof MigrateV9Route
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
   '/pivot-table': typeof PivotTableRoute
@@ -525,6 +562,7 @@ export interface FileRoutesByTo {
   '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/spreadsheet-table': typeof SpreadsheetTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
   '/tree-select': typeof TreeSelectRoute
@@ -544,6 +582,7 @@ export interface FileRoutesByTo {
   '/v9/filter-toolbar-table': typeof V9FilterToolbarTableRoute
   '/v9/grouped-table': typeof V9GroupedTableRoute
   '/v9/heatmap-table': typeof V9HeatmapTableRoute
+  '/v9/infinite-scroll-table': typeof V9InfiniteScrollTableRoute
   '/v9/inventory-allocation-table': typeof V9InventoryAllocationTableRoute
   '/v9/kpi-table': typeof V9KpiTableRoute
   '/v9/live-status-table': typeof V9LiveStatusTableRoute
@@ -558,6 +597,7 @@ export interface FileRoutesByTo {
   '/v9/server-combined-table': typeof V9ServerCombinedTableRoute
   '/v9/server-filter': typeof V9ServerFilterRoute
   '/v9/server-table': typeof V9ServerTableRoute
+  '/v9/spreadsheet-table': typeof V9SpreadsheetTableRoute
   '/v9/toolbar-filter-table': typeof V9ToolbarFilterTableRoute
   '/v9/tree-reorder': typeof V9TreeReorderRoute
   '/v9/tree-select': typeof V9TreeSelectRoute
@@ -582,11 +622,13 @@ export interface FileRoutesById {
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
+  '/infinite-scroll-table': typeof InfiniteScrollTableRoute
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
+  '/migrate-v9': typeof MigrateV9Route
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
   '/pivot-table': typeof PivotTableRoute
@@ -596,6 +638,7 @@ export interface FileRoutesById {
   '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/spreadsheet-table': typeof SpreadsheetTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
   '/tree-select': typeof TreeSelectRoute
@@ -615,6 +658,7 @@ export interface FileRoutesById {
   '/v9/filter-toolbar-table': typeof V9FilterToolbarTableRoute
   '/v9/grouped-table': typeof V9GroupedTableRoute
   '/v9/heatmap-table': typeof V9HeatmapTableRoute
+  '/v9/infinite-scroll-table': typeof V9InfiniteScrollTableRoute
   '/v9/inventory-allocation-table': typeof V9InventoryAllocationTableRoute
   '/v9/kpi-table': typeof V9KpiTableRoute
   '/v9/live-status-table': typeof V9LiveStatusTableRoute
@@ -629,6 +673,7 @@ export interface FileRoutesById {
   '/v9/server-combined-table': typeof V9ServerCombinedTableRoute
   '/v9/server-filter': typeof V9ServerFilterRoute
   '/v9/server-table': typeof V9ServerTableRoute
+  '/v9/spreadsheet-table': typeof V9SpreadsheetTableRoute
   '/v9/toolbar-filter-table': typeof V9ToolbarFilterTableRoute
   '/v9/tree-reorder': typeof V9TreeReorderRoute
   '/v9/tree-select': typeof V9TreeSelectRoute
@@ -654,11 +699,13 @@ export interface FileRouteTypes {
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
+    | '/infinite-scroll-table'
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/logs-table'
     | '/master-detail'
+    | '/migrate-v9'
     | '/mobile-cards-table'
     | '/params-filter-table'
     | '/pivot-table'
@@ -668,6 +715,7 @@ export interface FileRouteTypes {
     | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
+    | '/spreadsheet-table'
     | '/toolbar-filter-table'
     | '/tree-reorder'
     | '/tree-select'
@@ -687,6 +735,7 @@ export interface FileRouteTypes {
     | '/v9/filter-toolbar-table'
     | '/v9/grouped-table'
     | '/v9/heatmap-table'
+    | '/v9/infinite-scroll-table'
     | '/v9/inventory-allocation-table'
     | '/v9/kpi-table'
     | '/v9/live-status-table'
@@ -701,6 +750,7 @@ export interface FileRouteTypes {
     | '/v9/server-combined-table'
     | '/v9/server-filter'
     | '/v9/server-table'
+    | '/v9/spreadsheet-table'
     | '/v9/toolbar-filter-table'
     | '/v9/tree-reorder'
     | '/v9/tree-select'
@@ -724,11 +774,13 @@ export interface FileRouteTypes {
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
+    | '/infinite-scroll-table'
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/logs-table'
     | '/master-detail'
+    | '/migrate-v9'
     | '/mobile-cards-table'
     | '/params-filter-table'
     | '/pivot-table'
@@ -738,6 +790,7 @@ export interface FileRouteTypes {
     | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
+    | '/spreadsheet-table'
     | '/toolbar-filter-table'
     | '/tree-reorder'
     | '/tree-select'
@@ -757,6 +810,7 @@ export interface FileRouteTypes {
     | '/v9/filter-toolbar-table'
     | '/v9/grouped-table'
     | '/v9/heatmap-table'
+    | '/v9/infinite-scroll-table'
     | '/v9/inventory-allocation-table'
     | '/v9/kpi-table'
     | '/v9/live-status-table'
@@ -771,6 +825,7 @@ export interface FileRouteTypes {
     | '/v9/server-combined-table'
     | '/v9/server-filter'
     | '/v9/server-table'
+    | '/v9/spreadsheet-table'
     | '/v9/toolbar-filter-table'
     | '/v9/tree-reorder'
     | '/v9/tree-select'
@@ -794,11 +849,13 @@ export interface FileRouteTypes {
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
+    | '/infinite-scroll-table'
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/logs-table'
     | '/master-detail'
+    | '/migrate-v9'
     | '/mobile-cards-table'
     | '/params-filter-table'
     | '/pivot-table'
@@ -808,6 +865,7 @@ export interface FileRouteTypes {
     | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
+    | '/spreadsheet-table'
     | '/toolbar-filter-table'
     | '/tree-reorder'
     | '/tree-select'
@@ -827,6 +885,7 @@ export interface FileRouteTypes {
     | '/v9/filter-toolbar-table'
     | '/v9/grouped-table'
     | '/v9/heatmap-table'
+    | '/v9/infinite-scroll-table'
     | '/v9/inventory-allocation-table'
     | '/v9/kpi-table'
     | '/v9/live-status-table'
@@ -841,6 +900,7 @@ export interface FileRouteTypes {
     | '/v9/server-combined-table'
     | '/v9/server-filter'
     | '/v9/server-table'
+    | '/v9/spreadsheet-table'
     | '/v9/toolbar-filter-table'
     | '/v9/tree-reorder'
     | '/v9/tree-select'
@@ -865,11 +925,13 @@ export interface RootRouteChildren {
   FilterToolbarTableRoute: typeof FilterToolbarTableRoute
   GroupedTableRoute: typeof GroupedTableRoute
   HeatmapTableRoute: typeof HeatmapTableRoute
+  InfiniteScrollTableRoute: typeof InfiniteScrollTableRoute
   InventoryAllocationTableRoute: typeof InventoryAllocationTableRoute
   KpiTableRoute: typeof KpiTableRoute
   LiveStatusTableRoute: typeof LiveStatusTableRoute
   LogsTableRoute: typeof LogsTableRoute
   MasterDetailRoute: typeof MasterDetailRoute
+  MigrateV9Route: typeof MigrateV9Route
   MobileCardsTableRoute: typeof MobileCardsTableRoute
   ParamsFilterTableRoute: typeof ParamsFilterTableRoute
   PivotTableRoute: typeof PivotTableRoute
@@ -879,6 +941,7 @@ export interface RootRouteChildren {
   ServerCombinedTableRoute: typeof ServerCombinedTableRoute
   ServerFilterRoute: typeof ServerFilterRoute
   ServerTableRoute: typeof ServerTableRoute
+  SpreadsheetTableRoute: typeof SpreadsheetTableRoute
   ToolbarFilterTableRoute: typeof ToolbarFilterTableRoute
   TreeReorderRoute: typeof TreeReorderRoute
   TreeSelectRoute: typeof TreeSelectRoute
@@ -898,6 +961,7 @@ export interface RootRouteChildren {
   V9FilterToolbarTableRoute: typeof V9FilterToolbarTableRoute
   V9GroupedTableRoute: typeof V9GroupedTableRoute
   V9HeatmapTableRoute: typeof V9HeatmapTableRoute
+  V9InfiniteScrollTableRoute: typeof V9InfiniteScrollTableRoute
   V9InventoryAllocationTableRoute: typeof V9InventoryAllocationTableRoute
   V9KpiTableRoute: typeof V9KpiTableRoute
   V9LiveStatusTableRoute: typeof V9LiveStatusTableRoute
@@ -912,6 +976,7 @@ export interface RootRouteChildren {
   V9ServerCombinedTableRoute: typeof V9ServerCombinedTableRoute
   V9ServerFilterRoute: typeof V9ServerFilterRoute
   V9ServerTableRoute: typeof V9ServerTableRoute
+  V9SpreadsheetTableRoute: typeof V9SpreadsheetTableRoute
   V9ToolbarFilterTableRoute: typeof V9ToolbarFilterTableRoute
   V9TreeReorderRoute: typeof V9TreeReorderRoute
   V9TreeSelectRoute: typeof V9TreeSelectRoute
@@ -1027,6 +1092,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HeatmapTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/infinite-scroll-table': {
+      id: '/infinite-scroll-table'
+      path: '/infinite-scroll-table'
+      fullPath: '/infinite-scroll-table'
+      preLoaderRoute: typeof InfiniteScrollTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/inventory-allocation-table': {
       id: '/inventory-allocation-table'
       path: '/inventory-allocation-table'
@@ -1060,6 +1132,13 @@ declare module '@tanstack/react-router' {
       path: '/master-detail'
       fullPath: '/master-detail'
       preLoaderRoute: typeof MasterDetailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/migrate-v9': {
+      id: '/migrate-v9'
+      path: '/migrate-v9'
+      fullPath: '/migrate-v9'
+      preLoaderRoute: typeof MigrateV9RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mobile-cards-table': {
@@ -1123,6 +1202,13 @@ declare module '@tanstack/react-router' {
       path: '/server-table'
       fullPath: '/server-table'
       preLoaderRoute: typeof ServerTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spreadsheet-table': {
+      id: '/spreadsheet-table'
+      path: '/spreadsheet-table'
+      fullPath: '/spreadsheet-table'
+      preLoaderRoute: typeof SpreadsheetTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/toolbar-filter-table': {
@@ -1265,6 +1351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof V9HeatmapTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/v9/infinite-scroll-table': {
+      id: '/v9/infinite-scroll-table'
+      path: '/v9/infinite-scroll-table'
+      fullPath: '/v9/infinite-scroll-table'
+      preLoaderRoute: typeof V9InfiniteScrollTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/v9/inventory-allocation-table': {
       id: '/v9/inventory-allocation-table'
       path: '/v9/inventory-allocation-table'
@@ -1363,6 +1456,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof V9ServerTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/v9/spreadsheet-table': {
+      id: '/v9/spreadsheet-table'
+      path: '/v9/spreadsheet-table'
+      fullPath: '/v9/spreadsheet-table'
+      preLoaderRoute: typeof V9SpreadsheetTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/v9/toolbar-filter-table': {
       id: '/v9/toolbar-filter-table'
       path: '/v9/toolbar-filter-table'
@@ -1417,11 +1517,13 @@ const rootRouteChildren: RootRouteChildren = {
   FilterToolbarTableRoute: FilterToolbarTableRoute,
   GroupedTableRoute: GroupedTableRoute,
   HeatmapTableRoute: HeatmapTableRoute,
+  InfiniteScrollTableRoute: InfiniteScrollTableRoute,
   InventoryAllocationTableRoute: InventoryAllocationTableRoute,
   KpiTableRoute: KpiTableRoute,
   LiveStatusTableRoute: LiveStatusTableRoute,
   LogsTableRoute: LogsTableRoute,
   MasterDetailRoute: MasterDetailRoute,
+  MigrateV9Route: MigrateV9Route,
   MobileCardsTableRoute: MobileCardsTableRoute,
   ParamsFilterTableRoute: ParamsFilterTableRoute,
   PivotTableRoute: PivotTableRoute,
@@ -1431,6 +1533,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServerCombinedTableRoute: ServerCombinedTableRoute,
   ServerFilterRoute: ServerFilterRoute,
   ServerTableRoute: ServerTableRoute,
+  SpreadsheetTableRoute: SpreadsheetTableRoute,
   ToolbarFilterTableRoute: ToolbarFilterTableRoute,
   TreeReorderRoute: TreeReorderRoute,
   TreeSelectRoute: TreeSelectRoute,
@@ -1450,6 +1553,7 @@ const rootRouteChildren: RootRouteChildren = {
   V9FilterToolbarTableRoute: V9FilterToolbarTableRoute,
   V9GroupedTableRoute: V9GroupedTableRoute,
   V9HeatmapTableRoute: V9HeatmapTableRoute,
+  V9InfiniteScrollTableRoute: V9InfiniteScrollTableRoute,
   V9InventoryAllocationTableRoute: V9InventoryAllocationTableRoute,
   V9KpiTableRoute: V9KpiTableRoute,
   V9LiveStatusTableRoute: V9LiveStatusTableRoute,
@@ -1464,6 +1568,7 @@ const rootRouteChildren: RootRouteChildren = {
   V9ServerCombinedTableRoute: V9ServerCombinedTableRoute,
   V9ServerFilterRoute: V9ServerFilterRoute,
   V9ServerTableRoute: V9ServerTableRoute,
+  V9SpreadsheetTableRoute: V9SpreadsheetTableRoute,
   V9ToolbarFilterTableRoute: V9ToolbarFilterTableRoute,
   V9TreeReorderRoute: V9TreeReorderRoute,
   V9TreeSelectRoute: V9TreeSelectRoute,

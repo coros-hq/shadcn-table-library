@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select'
+} from '#/components/ui/select'
 
 type Props<TData> = {
   column?: Column<TData, unknown>

@@ -4,11 +4,12 @@
   "title": "Resizable / Reorderable Columns",
   "description": "Drag a header's grip to reorder columns, drag its edge to resize, with the resulting layout persisted to localStorage.",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "@dnd-kit/core",
     "@dnd-kit/sortable",
     "@dnd-kit/utilities",
-    "@dnd-kit/modifiers"
+    "@dnd-kit/modifiers",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

@@ -4,7 +4,7 @@
   "title": "Async Row Actions",
   "description": "Row actions with animated icons that reflect request state: sync spins while pending and becomes Retry on failure, archive offers Undo, and delete needs a confirming second click.",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "motion"
   ],
   "registryDependencies": [

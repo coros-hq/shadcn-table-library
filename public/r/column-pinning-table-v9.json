@@ -4,7 +4,8 @@
   "title": "Column Pinning Table (v9)",
   "description": "Excel/AG Grid-style column pinning — freeze columns to the left or right edge from a hover control in the header while the rest of the table scrolls underneath.",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

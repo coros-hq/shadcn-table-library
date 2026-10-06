@@ -4,7 +4,7 @@
   "title": "Live Status Indicators",
   "description": "A service-health table whose status and latency columns update on their own on a timer, with a pulsing indicator for actively-monitored states and a Live/Paused toggle.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3"
   ],
   "registryDependencies": [
     "table"

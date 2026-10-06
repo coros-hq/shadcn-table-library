@@ -1,7 +1,7 @@
 import { columns } from './columns'
 import { DataTable } from './data-table'
-import { DataTableFilter } from '../DataTableFilter'
-import type { User } from '#/components/basic/columns'
+import { DataTableFilter } from './data-table-filter'
+import type { User } from './columns'
 
 const roleOptions = [
   { label: 'Admin', value: 'admin' },

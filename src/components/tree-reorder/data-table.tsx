@@ -115,7 +115,7 @@ export function TreeReorderDataTable<TData extends TreeNode>({
     columns,
     getRowId: (row) => row.id,
     getCoreRowModel: getCoreRowModel(),
-    getSubRows: (row) => row.children,
+    getSubRows: (row) => row.children as TData[] | undefined,
     getExpandedRowModel: getExpandedRowModel(),
     onExpandedChange: setExpanded,
     state: { expanded },

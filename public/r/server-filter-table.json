@@ -4,9 +4,10 @@
   "title": "SSR Filter Table",
   "description": "Column filtering resolved on the server the same way SSR pagination resolves pages, with manualFiltering and a URL-driven filter state.",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "@tanstack/react-router",
-    "@tanstack/react-start"
+    "@tanstack/react-start",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

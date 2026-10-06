@@ -1,7 +1,7 @@
 import type { Table as ReactTable } from '@tanstack/react-table-v9'
 import { columns } from './columns'
 import { DataTable } from './data-table'
-import { DataTableFilter } from '../DataTableFilter'
+import { DataTableFilter } from './data-table-filter'
 import type { User } from '#/components/v9/basic/columns'
 import type { V9Features } from '#/lib/table-v9-features.ts'
 

@@ -4,7 +4,8 @@
   "title": "Conditional Formatting Table",
   "description": "Excel-style conditional formatting — a small rule engine highlights cells, colors text, and re-colors badges based on the whole row, not just one value.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

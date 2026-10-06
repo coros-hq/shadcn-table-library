@@ -5,7 +5,8 @@
   "description": "Observability-style log explorer with a date range picker, multi-select level, service, and status filters with live counts, highlighted search, and rows that expand into the full event.",
   "dependencies": [
     "@tanstack/react-table@^9.2.4",
-    "react-day-picker"
+    "react-day-picker",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

@@ -78,7 +78,9 @@ This writes `public/r/<name>.json` for the v8 item **and** a `public/r/<name>-v9
 
 - `npm run dev`, visit your new route, and confirm it renders with no console errors.
 - Actually interact with the feature (click, drag, type — whatever the example demonstrates) rather than only checking that it renders.
-- `npm run lint` and `npm run check` before opening a PR.
+- `npm run typecheck` and `npm run test:unit` before opening a PR. The tests render every example (React v8 and v9) and check that your route, nav entry, sitemap URL, `llms.txt` line and registry item all exist and agree. Adding an example without one of those fails the run and says which.
+- After `npm run registry:build`, run `npm run registry:check -- --only <your-item>,<your-item>-v9`. It installs the item into a clean project with the real shadcn CLI and type-checks it, which catches missing `dependencies` or `registryDependencies` and imports that only resolve inside this repo. Needs network access. Drop `--only` to check every item (about five minutes).
+- `npm run lint` is advisory for now (CI reports it without blocking).
 
 ## Code conventions
 

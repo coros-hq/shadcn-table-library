@@ -6,7 +6,8 @@
   "dependencies": [
     "@tanstack/react-table@^9.2.4",
     "@tanstack/react-router",
-    "@tanstack/react-start"
+    "@tanstack/react-start",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

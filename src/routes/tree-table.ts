@@ -2,6 +2,16 @@ import { createFileRoute } from '@tanstack/react-router'
 import { TreeTablePage } from '#/components/tree/tree-table-page'
 
 export const Route = createFileRoute('/tree-table')({
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { example?: 'variants' | 'detail' } => ({
+    // Unknown keys survive validation, so an invalid value must be cleared
+    // explicitly rather than left out
+    example:
+      search.example === 'variants' || search.example === 'detail'
+        ? search.example
+        : undefined,
+  }),
   head: () => ({
     meta: [
       { title: 'Shadcn Tree Table (Nested Rows) — ShadTable' },

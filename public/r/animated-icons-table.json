@@ -4,7 +4,7 @@
   "title": "Animated Icons Table",
   "description": "Row actions built with Iconimate animated icons (favorite, notify, archive, delete) that animate on hover, focus, and click instead of static glyphs.",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "motion"
   ],
   "registryDependencies": [

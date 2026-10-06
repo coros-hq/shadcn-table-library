@@ -1,14 +1,13 @@
 'use client'
 
-import {
-  flexRender,
-  useTable,
-} from '@tanstack/react-table-v9'
+import { flexRender, useTable } from '@tanstack/react-table-v9'
 
 import type {
   ColumnDef,
   ExpandedState,
-  SortingState, RowData} from '@tanstack/react-table-v9'
+  SortingState,
+  RowData,
+} from '@tanstack/react-table-v9'
 
 import {
   Table,

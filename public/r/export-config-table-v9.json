@@ -4,7 +4,8 @@
   "title": "Export Configuration (v9)",
   "description": "Export button opens a dialog to filter by status, region, and date, pick columns and CSV or Excel, with a live count of matching rows before download.",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

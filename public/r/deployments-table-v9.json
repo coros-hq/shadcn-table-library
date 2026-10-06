@@ -4,7 +4,8 @@
   "title": "Deployments Table (v9)",
   "description": "Hosting-platform style deployment history with status and build time, branch and commit, search, and environment, status, branch, and date filters with faceted counts.",
   "dependencies": [
-    "@tanstack/react-table@^9.2.4"
+    "@tanstack/react-table@^9.2.4",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

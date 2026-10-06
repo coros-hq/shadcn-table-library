@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select'
+} from '#/components/ui/select'
 import type { V9Features } from '#/lib/table-v9-features.ts'
 
 type Props<TData extends RowData> = {

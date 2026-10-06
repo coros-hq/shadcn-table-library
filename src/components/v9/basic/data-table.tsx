@@ -17,9 +17,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../../ui/table'
+} from '#/components/ui/table'
 import { useState } from 'react'
-import { Button } from '../../ui/button'
+import { Button } from '#/components/ui/button'
 import {
   ArrowDown,
   ArrowUp,
@@ -37,8 +37,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../ui/select'
-import { Input } from '../../ui/input'
+} from '#/components/ui/select'
+import { Input } from '#/components/ui/input'
 import { v9Features, type V9Features } from '#/lib/table-v9-features.ts'
 
 interface DataTableProps<TData extends RowData> {

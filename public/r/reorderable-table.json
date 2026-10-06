@@ -4,11 +4,12 @@
   "title": "Reorderable Table",
   "description": "Drag rows to reorder them, built on @dnd-kit/sortable.",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8.21.3",
     "@dnd-kit/core",
     "@dnd-kit/sortable",
     "@dnd-kit/utilities",
-    "@dnd-kit/modifiers"
+    "@dnd-kit/modifiers",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table"

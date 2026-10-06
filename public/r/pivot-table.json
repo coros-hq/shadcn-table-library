@@ -4,7 +4,7 @@
   "title": "Pivot Table",
   "description": "Dashboard-style analytics: pick which dimension becomes rows, which becomes columns, and how to aggregate (sum, average, count).",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3"
   ],
   "registryDependencies": [
     "table",

@@ -4,7 +4,8 @@
   "title": "Export Selected Rows",
   "description": "Row checkboxes with selection that persists across pages, a page-level select-all plus a Select all shortcut, and CSV or Excel export of only the selected rows.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

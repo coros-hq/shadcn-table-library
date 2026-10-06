@@ -4,7 +4,7 @@ import { BasicTableUsage } from '#/components/v9/basic'
 import basicIndexSource from '#/components/v9/basic/index.tsx?raw'
 import basicDataTableSource from '#/components/v9/basic/data-table.tsx?raw'
 import basicColumnsSource from '#/components/v9/basic/columns.tsx?raw'
-import dataTableFilterSource from '#/components/v9/DataTableFilter.tsx?raw'
+import dataTableFilterSource from '#/components/v9/basic/data-table-filter.tsx?raw'
 import tableV9FeaturesSource from '#/lib/table-v9-features.ts?raw'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
@@ -63,7 +63,7 @@ const files = [
     code: basicDataTableSource,
   },
   {
-    path: 'src/components/v9/DataTableFilter.tsx',
+    path: 'src/components/v9/basic/data-table-filter.tsx',
     code: dataTableFilterSource,
   },
 ]

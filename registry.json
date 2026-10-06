@@ -12,10 +12,10 @@
         { "path": "src/components/basic/columns.tsx", "type": "registry:component", "target": "@components/tables/data-table/columns.tsx" },
         { "path": "src/components/basic/data-table.tsx", "type": "registry:component", "target": "@components/tables/data-table/data-table.tsx" },
         { "path": "src/components/basic/index.tsx", "type": "registry:component", "target": "@components/tables/data-table/index.tsx" },
-        { "path": "src/components/DataTableFilter.tsx", "type": "registry:component", "target": "@components/tables/data-table/data-table-filter.tsx" }
+        { "path": "src/components/basic/data-table-filter.tsx", "type": "registry:component", "target": "@components/tables/data-table/data-table-filter.tsx" }
       ],
       "registryDependencies": ["table", "button", "select", "input"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "server-pagination-table",
@@ -30,7 +30,7 @@
         { "path": "src/routes/server-table.ts", "type": "registry:component", "target": "src/routes/server-table.ts" }
       ],
       "registryDependencies": ["table", "button", "select"],
-      "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "@tanstack/react-router", "@tanstack/react-start", "lucide-react"]
     },
     {
       "name": "server-filter-table",
@@ -45,7 +45,7 @@
         { "path": "src/routes/server-filter.ts", "type": "registry:component", "target": "src/routes/server-filter.ts" }
       ],
       "registryDependencies": ["table", "button", "select"],
-      "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "@tanstack/react-router", "@tanstack/react-start", "lucide-react"]
     },
     {
       "name": "server-combined-table",
@@ -60,7 +60,7 @@
         { "path": "src/routes/server-combined-table.ts", "type": "registry:component", "target": "src/routes/server-combined-table.ts" }
       ],
       "registryDependencies": ["table", "button", "select"],
-      "dependencies": ["@tanstack/react-table", "@tanstack/react-router", "@tanstack/react-start"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "@tanstack/react-router", "@tanstack/react-start", "lucide-react"]
     },
     {
       "name": "deployments-table",
@@ -75,7 +75,7 @@
         { "path": "src/components/deployments/index.tsx", "type": "registry:component", "target": "@components/tables/deployments-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "badge", "input", "select", "popover", "command"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "logs-table",
@@ -94,7 +94,7 @@
         { "path": "src/components/logs/index.tsx", "type": "registry:component", "target": "@components/tables/logs-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "badge", "input", "popover", "command", "calendar"],
-      "dependencies": ["@tanstack/react-table", "react-day-picker"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "react-day-picker", "lucide-react"]
     },
     {
       "name": "logs-table-side-panel",
@@ -113,7 +113,7 @@
         { "path": "src/components/logs/side-panel-demo.tsx", "type": "registry:component", "target": "@components/tables/logs-table-side-panel/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "badge", "input", "popover", "command", "calendar"],
-      "dependencies": ["@tanstack/react-table", "react-day-picker"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "react-day-picker", "lucide-react"]
     },
     {
       "name": "tree-table",
@@ -126,7 +126,37 @@
         { "path": "src/components/tree/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table/index.tsx" }
       ],
       "registryDependencies": ["table", "input"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "tree-table-variants",
+      "type": "registry:block",
+      "title": "Tree Table — Product Variants",
+      "description": "A product catalog table where a Show variants link opens a bracketed group of variant rows, with selectable products and row actions.",
+      "files": [
+        { "path": "src/components/tree/variants/data.ts", "type": "registry:component", "target": "@components/tables/tree-table-variants/data.ts" },
+        { "path": "src/components/tree/variants/product-actions.tsx", "type": "registry:component", "target": "@components/tables/tree-table-variants/product-actions.tsx" },
+        { "path": "src/components/tree/variants/columns.tsx", "type": "registry:component", "target": "@components/tables/tree-table-variants/columns.tsx" },
+        { "path": "src/components/tree/variants/data-table.tsx", "type": "registry:component", "target": "@components/tables/tree-table-variants/data-table.tsx" },
+        { "path": "src/components/tree/variants/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table-variants/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "checkbox"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "tree-table-detail-card",
+      "type": "registry:block",
+      "title": "Tree Table — Detail Card",
+      "description": "Orders with one shipment each: clicking the child row opens a details card beside the table, which makes room for it.",
+      "files": [
+        { "path": "src/components/tree/detail/data.ts", "type": "registry:component", "target": "@components/tables/tree-table-detail-card/data.ts" },
+        { "path": "src/components/tree/detail/columns.tsx", "type": "registry:component", "target": "@components/tables/tree-table-detail-card/columns.tsx" },
+        { "path": "src/components/tree/detail/shipment-card.tsx", "type": "registry:component", "target": "@components/tables/tree-table-detail-card/shipment-card.tsx" },
+        { "path": "src/components/tree/detail/data-table.tsx", "type": "registry:component", "target": "@components/tables/tree-table-detail-card/data-table.tsx" },
+        { "path": "src/components/tree/detail/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table-detail-card/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "tree-table-selection",
@@ -139,7 +169,7 @@
         { "path": "src/components/tree-select/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table-selection/index.tsx" }
       ],
       "registryDependencies": ["table", "checkbox"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "tree-table-reorder",
@@ -152,13 +182,7 @@
         { "path": "src/components/tree-reorder/index.tsx", "type": "registry:component", "target": "@components/tables/tree-table-reorder/index.tsx" }
       ],
       "registryDependencies": ["table"],
-      "dependencies": [
-        "@tanstack/react-table",
-        "@dnd-kit/core",
-        "@dnd-kit/sortable",
-        "@dnd-kit/utilities",
-        "@dnd-kit/modifiers"
-      ]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "@dnd-kit/core", "@dnd-kit/sortable", "@dnd-kit/utilities", "@dnd-kit/modifiers", "lucide-react"]
     },
     {
       "name": "reorderable-table",
@@ -171,13 +195,7 @@
         { "path": "src/components/reorder/index.tsx", "type": "registry:component", "target": "@components/tables/reorderable-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
-      "dependencies": [
-        "@tanstack/react-table",
-        "@dnd-kit/core",
-        "@dnd-kit/sortable",
-        "@dnd-kit/utilities",
-        "@dnd-kit/modifiers"
-      ]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "@dnd-kit/core", "@dnd-kit/sortable", "@dnd-kit/utilities", "@dnd-kit/modifiers", "lucide-react"]
     },
     {
       "name": "resizable-reorderable-columns-table",
@@ -190,13 +208,7 @@
         { "path": "src/components/resizable-reorder/index.tsx", "type": "registry:component", "target": "@components/tables/resizable-reorderable-columns-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button"],
-      "dependencies": [
-        "@tanstack/react-table",
-        "@dnd-kit/core",
-        "@dnd-kit/sortable",
-        "@dnd-kit/utilities",
-        "@dnd-kit/modifiers"
-      ]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "@dnd-kit/core", "@dnd-kit/sortable", "@dnd-kit/utilities", "@dnd-kit/modifiers", "lucide-react"]
     },
     {
       "name": "column-pinning-table",
@@ -209,7 +221,7 @@
         { "path": "src/components/column-pinning/index.tsx", "type": "registry:component", "target": "@components/tables/column-pinning-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "badge"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "grouped-table",
@@ -222,7 +234,7 @@
         { "path": "src/components/grouped/index.tsx", "type": "registry:component", "target": "@components/tables/grouped-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "pivot-table",
@@ -236,7 +248,7 @@
         { "path": "src/components/pivot/index.tsx", "type": "registry:component", "target": "@components/tables/pivot-table/index.tsx" }
       ],
       "registryDependencies": ["table", "select"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3"]
     },
     {
       "name": "master-detail-table",
@@ -250,7 +262,7 @@
         { "path": "src/components/master-detail/index.tsx", "type": "registry:component", "target": "@components/tables/master-detail-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "editable-table",
@@ -263,7 +275,7 @@
         { "path": "src/components/editable/index.tsx", "type": "registry:component", "target": "@components/tables/editable-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "input"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "animated-icons-table",
@@ -282,7 +294,7 @@
         { "path": "src/components/animated-icons/index.tsx", "type": "registry:component", "target": "@components/tables/animated-icons-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button"],
-      "dependencies": ["@tanstack/react-table", "motion"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "motion"]
     },
     {
       "name": "async-actions-table",
@@ -300,7 +312,37 @@
         { "path": "src/components/async-actions/index.tsx", "type": "registry:component", "target": "@components/tables/async-actions-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button"],
-      "dependencies": ["@tanstack/react-table", "motion"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "motion"]
+    },
+    {
+      "name": "infinite-scroll-table",
+      "type": "registry:block",
+      "title": "Infinite Scroll Table",
+      "description": "A table that loads the next page as you scroll: an IntersectionObserver sentinel, a reusable cursor-based useInfiniteRows hook, skeleton loading rows, inline retry on errors, and a sticky header.",
+      "files": [
+        { "path": "src/components/infinite-scroll/data.ts", "type": "registry:component", "target": "@components/tables/infinite-scroll-table/data.ts" },
+        { "path": "src/components/infinite-scroll/use-infinite-rows.ts", "type": "registry:component", "target": "@components/tables/infinite-scroll-table/use-infinite-rows.ts" },
+        { "path": "src/components/infinite-scroll/columns.tsx", "type": "registry:component", "target": "@components/tables/infinite-scroll-table/columns.tsx" },
+        { "path": "src/components/infinite-scroll/data-table.tsx", "type": "registry:component", "target": "@components/tables/infinite-scroll-table/data-table.tsx" },
+        { "path": "src/components/infinite-scroll/index.tsx", "type": "registry:component", "target": "@components/tables/infinite-scroll-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button", "skeleton"],
+      "dependencies": ["@tanstack/react-table@^8.21.3"]
+    },
+    {
+      "name": "spreadsheet-table",
+      "type": "registry:block",
+      "title": "Excel-like Table",
+      "description": "A spreadsheet grid: A1 headers, keyboard navigation, range selection, type-to-edit, copy and paste, and a small formula engine (cell references, ranges, SUM, AVERAGE, MIN, MAX, COUNT).",
+      "files": [
+        { "path": "src/components/spreadsheet/formula.ts", "type": "registry:component", "target": "@components/tables/spreadsheet-table/formula.ts" },
+        { "path": "src/components/spreadsheet/data.ts", "type": "registry:component", "target": "@components/tables/spreadsheet-table/data.ts" },
+        { "path": "src/components/spreadsheet/columns.tsx", "type": "registry:component", "target": "@components/tables/spreadsheet-table/columns.tsx" },
+        { "path": "src/components/spreadsheet/data-table.tsx", "type": "registry:component", "target": "@components/tables/spreadsheet-table/data-table.tsx" },
+        { "path": "src/components/spreadsheet/index.tsx", "type": "registry:component", "target": "@components/tables/spreadsheet-table/index.tsx" }
+      ],
+      "registryDependencies": ["table"],
+      "dependencies": ["@tanstack/react-table@^8.21.3"]
     },
     {
       "name": "live-status-table",
@@ -314,7 +356,7 @@
         { "path": "src/components/live-status/index.tsx", "type": "registry:component", "target": "@components/tables/live-status-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3"]
     },
     {
       "name": "kpi-table",
@@ -329,7 +371,7 @@
         { "path": "src/components/kpi/index.tsx", "type": "registry:component", "target": "@components/tables/kpi-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "comparison-table",
@@ -343,7 +385,7 @@
         { "path": "src/components/comparison/index.tsx", "type": "registry:component", "target": "@components/tables/comparison-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "heatmap-table",
@@ -357,7 +399,7 @@
         { "path": "src/components/heatmap/index.tsx", "type": "registry:component", "target": "@components/tables/heatmap-table/index.tsx" }
       ],
       "registryDependencies": ["table"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3"]
     },
     {
       "name": "conditional-formatting-table",
@@ -371,7 +413,7 @@
         { "path": "src/components/conditional-formatting/index.tsx", "type": "registry:component", "target": "@components/tables/conditional-formatting-table/index.tsx" }
       ],
       "registryDependencies": ["table", "badge"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "production-dashboard-table",
@@ -387,7 +429,7 @@
         { "path": "src/components/production-dashboard/index.tsx", "type": "registry:component", "target": "@components/tables/production-dashboard-table/index.tsx" }
       ],
       "registryDependencies": ["table", "badge"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "inventory-allocation-table",
@@ -403,7 +445,7 @@
         { "path": "src/components/inventory-allocation/index.tsx", "type": "registry:component", "target": "@components/tables/inventory-allocation-table/index.tsx" }
       ],
       "registryDependencies": ["table", "badge", "button", "input"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "density-export-table",
@@ -417,7 +459,7 @@
         { "path": "src/components/utility/index.tsx", "type": "registry:component", "target": "@components/tables/density-export-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "select"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "export-config-table",
@@ -434,7 +476,7 @@
         { "path": "src/components/export-config/index.tsx", "type": "registry:component", "target": "@components/tables/export-config-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "dialog", "checkbox", "label", "select", "badge"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "export-selected-table",
@@ -449,7 +491,7 @@
         { "path": "src/components/export-selected/index.tsx", "type": "registry:component", "target": "@components/tables/export-selected-table/index.tsx" }
       ],
       "registryDependencies": ["table", "button", "checkbox", "badge"],
-      "dependencies": ["@tanstack/react-table"]
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
       "name": "mobile-cards-table",
@@ -462,8 +504,8 @@
         { "path": "src/components/mobile-cards/viewport-toggle.tsx", "type": "registry:component", "target": "@components/tables/mobile-cards-table/viewport-toggle.tsx" },
         { "path": "src/components/mobile-cards/index.tsx", "type": "registry:component", "target": "@components/tables/mobile-cards-table/index.tsx" }
       ],
-      "registryDependencies": ["table", "badge"],
-      "dependencies": ["@tanstack/react-table"]
+      "registryDependencies": ["table", "badge", "tabs"],
+      "dependencies": ["@tanstack/react-table@^8.21.3"]
     }
   ]
 }

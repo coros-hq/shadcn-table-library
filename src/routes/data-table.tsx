@@ -4,7 +4,7 @@ import { BasicTableUsage } from '#/components/basic'
 import basicIndexSource from '#/components/basic/index.tsx?raw'
 import basicDataTableSource from '#/components/basic/data-table.tsx?raw'
 import basicColumnsSource from '#/components/basic/columns.tsx?raw'
-import dataTableFilterSource from '#/components/DataTableFilter.tsx?raw'
+import dataTableFilterSource from '#/components/basic/data-table-filter.tsx?raw'
 import vueBasicTableSource from '#/components/vue/basic/BasicTable.vue?raw'
 import vueDataTableSource from '#/components/vue/basic/DataTable.vue?raw'
 import vueDataTableFilterSource from '#/components/vue/basic/DataTableFilter.vue?raw'
@@ -55,7 +55,7 @@ const files = [
   { path: 'src/components/basic/index.tsx', code: basicIndexSource },
   { path: 'src/components/basic/columns.tsx', code: basicColumnsSource },
   { path: 'src/components/basic/data-table.tsx', code: basicDataTableSource },
-  { path: 'src/components/DataTableFilter.tsx', code: dataTableFilterSource },
+  { path: 'src/components/basic/data-table-filter.tsx', code: dataTableFilterSource },
 ]
 
 const vueFiles = [
@@ -111,7 +111,7 @@ const steps = [
     title: 'Per-column filters are just column.setFilterValue',
     description:
       "DataTableFilter is a thin Select wrapper around the column API — it reads column.getFilterValue() and writes back with column.setFilterValue(). BasicTableUsage composes one per filterable column through the table's filters render-prop.",
-    file: 'src/components/DataTableFilter.tsx',
+    file: 'src/components/basic/data-table-filter.tsx',
     code: `const filterValue = column?.getFilterValue() as string | undefined
 
 <Select

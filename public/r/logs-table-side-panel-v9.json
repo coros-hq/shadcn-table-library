@@ -5,7 +5,8 @@
   "description": "The logs explorer with a details panel on the right: click or arrow through events while the table hides columns to make room.",
   "dependencies": [
     "@tanstack/react-table@^9.2.4",
-    "react-day-picker"
+    "react-day-picker",
+    "lucide-react"
   ],
   "registryDependencies": [
     "table",

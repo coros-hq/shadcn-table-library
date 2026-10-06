@@ -4,7 +4,7 @@
   "title": "Heatmap Table",
   "description": "Matrix data with cell background intensity mapped to value, normalized globally across the whole table.",
   "dependencies": [
-    "@tanstack/react-table"
+    "@tanstack/react-table@^8.21.3"
   ],
   "registryDependencies": [
     "table"
