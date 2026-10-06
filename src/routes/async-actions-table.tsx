@@ -8,7 +8,7 @@ export const Route = createFileRoute('/async-actions-table')({
       {
         name: 'description',
         content:
-          'A table with async row actions for shadcn/ui and TanStack Table. Table row actions with animated icons that reflect real request state: a sync icon that spins while pending, Retry on failure, Undo for archive, and a confirm step for delete.',
+          'Shadcn table row actions that show real request state: spinning sync, Retry on failure, Undo for archive, confirm for delete.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/async-actions-table')({
             'Row actions with animated icons that reflect pending, failed, undo, and confirm states.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/async-actions-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

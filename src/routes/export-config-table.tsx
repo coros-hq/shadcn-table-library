@@ -8,7 +8,7 @@ export const Route = createFileRoute('/export-config-table')({
       {
         name: 'description',
         content:
-          'A table with configurable CSV and Excel export for shadcn/ui and TanStack Table. A table whose Export button opens a dialog: filter by status, region, and date, pick columns and CSV or Excel, and see a live count of matching rows before downloading.',
+          'Export a shadcn/ui table to CSV or Excel: choose rows by filter, pick columns, and see a live row count before you download.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/export-config-table')({
             'A table with an export dialog for choosing filters, columns, and format before downloading CSV or Excel.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/export-config-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

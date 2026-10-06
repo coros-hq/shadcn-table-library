@@ -4,15 +4,17 @@ import { MasterDetailPage } from '#/components/v9/master-detail/master-detail-pa
 export const Route = createFileRoute('/v9/master-detail')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Master-Detail Table (Expandable Rows) — ShadTable' },
+      {
+        title: 'Shadcn Master-Detail Table — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A master-detail table with expandable rows for shadcn/ui and TanStack Table. Expand an order to reveal its shipping address and a nested sub-table of line items — a full-width detail row rendered directly beneath the row that owns it.',
+          'Master-detail table for shadcn/ui and TanStack Table: expandable rows reveal details and a nested sub-table of line items. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Master-Detail Table (Expandable Rows) — ShadTable',
+        content: 'Shadcn Master-Detail Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +30,13 @@ export const Route = createFileRoute('/v9/master-detail')({
             'A table with expandable rows that reveal a nested detail sub-table.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/master-detail',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

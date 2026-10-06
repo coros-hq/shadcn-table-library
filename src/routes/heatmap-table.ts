@@ -8,7 +8,7 @@ export const Route = createFileRoute('/heatmap-table')({
       {
         name: 'description',
         content:
-          "A heatmap table for shadcn/ui and TanStack Table. Revenue by region and month, with each cell's background intensity mapped to its value — spot patterns across a matrix at a glance instead of reading numbers.",
+          'Heatmap table for shadcn/ui and TanStack Table: cell color intensity follows the value, so patterns show at a glance.',
       },
       { property: 'og:title', content: 'Shadcn Heatmap Table — ShadTable' },
       {
@@ -25,6 +25,13 @@ export const Route = createFileRoute('/heatmap-table')({
             'A matrix table with value-mapped cell background intensity for spotting patterns at a glance.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/heatmap-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

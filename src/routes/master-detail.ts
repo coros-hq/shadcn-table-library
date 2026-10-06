@@ -8,7 +8,7 @@ export const Route = createFileRoute('/master-detail')({
       {
         name: 'description',
         content:
-          'A master-detail table with expandable rows for shadcn/ui and TanStack Table. Expand an order to reveal its shipping address and a nested sub-table of line items — a full-width detail row rendered directly beneath the row that owns it.',
+          'Master-detail table for shadcn/ui and TanStack Table: expandable rows reveal details and a nested sub-table of line items.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/master-detail')({
             'A table with expandable rows that reveal a nested detail sub-table.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/master-detail',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

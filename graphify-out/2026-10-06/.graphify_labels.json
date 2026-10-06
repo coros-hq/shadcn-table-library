@@ -278,5 +278,13 @@
   "276": "index.tsx",
   "277": "toolbar-filter-table-page.tsx",
   "278": "utility-table-page.tsx",
-  "279": "TreeDataTable.vue"
+  "279": "TreeDataTable.vue",
+  "280": "index.tsx",
+  "281": "index.tsx",
+  "282": "AnimatedIconsTableDemo.vue",
+  "283": "ResizableTableDemo.vue",
+  "284": "UtilityTableDemo.vue",
+  "285": "demos.test.tsx",
+  "286": "editable-cell.tsx",
+  "287": "vitest.config.ts"
 }

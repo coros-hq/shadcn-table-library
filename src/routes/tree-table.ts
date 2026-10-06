@@ -18,7 +18,7 @@ export const Route = createFileRoute('/tree-table')({
       {
         name: 'description',
         content:
-          "A tree table for nested rows for shadcn/ui and TanStack Table. A hierarchical table for nested data — departments, teams, and employees — with expand/collapse, sorting, and a search box that keeps a matching row's ancestors visible.",
+          'Tree table for shadcn/ui and TanStack Table: nested rows, expand/collapse, sorting, search, product variants and a detail card.',
       },
       {
         property: 'og:title',
@@ -38,6 +38,13 @@ export const Route = createFileRoute('/tree-table')({
             'A hierarchical table for nested data with expand/collapse, sorting, and ancestor-aware search.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/tree-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

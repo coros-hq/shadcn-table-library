@@ -55,6 +55,72 @@ describe('navigation, routes, sitemap and llms.txt', () => {
   })
 })
 
+describe('page metadata', () => {
+  const pages = [
+    ...readdirSync('src/routes').map((f) => join('src/routes', f)),
+    ...readdirSync('src/routes/v9').map((f) => join('src/routes/v9', f)),
+  ]
+    .filter((file) => /\.tsx?$/.test(file))
+    .map((file) => {
+      const source = read(file)
+      return {
+        file,
+        route: /createFileRoute\('([^']+)'\)/.exec(source)?.[1],
+        title: /meta:\s*\[\s*\{\s*title:\s*(['"])(.*?)\1/s.exec(source)?.[2],
+        description:
+          /name: 'description',\s*content:\s*(['"])(.*?)\1,?\s*\}/s.exec(
+            source,
+          )?.[2],
+      }
+    })
+    .filter((page) => page.route && page.title && page.route !== '/v9/')
+
+  it('finds every page', () => {
+    expect(pages.length).toBeGreaterThan(70)
+  })
+
+  it('gives every page a unique title, so v8 and v9 pages never compete', () => {
+    const titles = pages.map((page) => page.title)
+    expect(titles.filter((title, i) => titles.indexOf(title) !== i)).toEqual([])
+  })
+
+  it('gives every page a unique description', () => {
+    const descriptions = pages.map((page) => page.description)
+    expect(
+      descriptions.filter((text, i) => descriptions.indexOf(text) !== i),
+    ).toEqual([])
+  })
+
+  it.each(pages.map((page) => [page.route, page] as const))(
+    '%s has a title and description that fit a search result',
+    (_route, page) => {
+      expect(page.title!.length).toBeLessThanOrEqual(75)
+      // Google cuts descriptions at about 155-160 characters
+      expect(page.description!.length).toBeGreaterThanOrEqual(70)
+      expect(page.description!.length).toBeLessThanOrEqual(160)
+    },
+  )
+
+  it('lists every page in the sitemap, and nothing else (run `npm run seo:build`)', () => {
+    const sitemap = read('public/sitemap.xml')
+    const listed = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+      (match) => match[1].replace(SITE, '') || '/',
+    )
+    const routes = pages.map((page) => page.route!)
+    expect(routes.filter((route) => !listed.includes(route))).toEqual([])
+    expect(listed.filter((route) => !routes.includes(route))).toEqual([])
+  })
+
+  it('lists every v9 page in llms.txt', () => {
+    const llms = read('public/llms.txt')
+    expect(
+      pages
+        .filter((page) => page.route!.startsWith('/v9/'))
+        .filter((page) => !llms.includes(`](${SITE}${page.route})`)),
+    ).toEqual([])
+  })
+})
+
 type RegistryFile = { path: string; target: string }
 type RegistryItem = {
   name: string

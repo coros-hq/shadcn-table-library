@@ -124,7 +124,7 @@ export const Route = createFileRoute('/conditional-formatting-table')({
       {
         name: 'description',
         content:
-          'A conditional formatting table for shadcn/ui and TanStack Table. Excel-style conditional formatting: a small rule engine highlights cells, colors text, and re-colors badges based on the row data, not just a single value.',
+          'Excel-style conditional formatting for shadcn/ui and TanStack Table: a small rule engine colors cells and badges from row data.',
       },
       {
         property: 'og:title',
@@ -144,6 +144,13 @@ export const Route = createFileRoute('/conditional-formatting-table')({
             'A data table with a small rule engine that highlights cells, colors text, and re-colors badges based on row data.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/conditional-formatting-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],
@@ -183,14 +190,14 @@ function ConditionalFormattingTablePage() {
         />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">How it works</p>
+          <h2 className="text-sm font-medium">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <h3 className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <span className="text-muted-foreground">{i + 1}.</span>
                   {step.title}
-                </p>
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {step.description}
                 </p>

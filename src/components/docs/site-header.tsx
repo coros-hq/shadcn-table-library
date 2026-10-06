@@ -54,10 +54,12 @@ export function SiteHeader({
             </Button>
             <Link
               to="/"
+              aria-label="ShadTable home"
               className="flex items-center gap-2 rounded-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
             >
               <img src="/logo.svg" alt="" className="size-6 rounded-md" />
-              <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-sm font-semibold tracking-tight text-transparent">
+              {/* Hidden on narrow phones, where the header controls would clip it */}
+              <span className="hidden min-[480px]:inline bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-sm font-semibold tracking-tight text-transparent">
                 ShadTable
               </span>
             </Link>

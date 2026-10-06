@@ -16,7 +16,7 @@ export const Route = createFileRoute('/logs-table')({
       {
         name: 'description',
         content:
-          'A log explorer table for shadcn/ui and TanStack Table: a date range picker, multi-select level, service, and status filters, highlighted search, and expandable rows with the full event.',
+          'Log explorer table for shadcn/ui and TanStack Table: date range, level, service and status filters, search highlight, expandable rows.',
       },
       { property: 'og:title', content: 'Shadcn Logs Table — ShadTable' },
       {
@@ -33,6 +33,13 @@ export const Route = createFileRoute('/logs-table')({
             'A log explorer table with level, service, status, and date range filters, search highlighting, and expandable rows.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/logs-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

@@ -4,13 +4,16 @@ import { ComparisonTablePage } from '#/components/v9/comparison/comparison-table
 export const Route = createFileRoute('/v9/comparison-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Comparison Table — ShadTable' },
+      { title: 'Shadcn Comparison Table — TanStack Table v9 — ShadTable' },
       {
         name: 'description',
         content:
-          "A comparison table for shadcn/ui and TanStack Table. Pricing plans as table columns — feature rows compare booleans and values across every plan, with the recommended plan's column tinted to stand out.",
+          'Pricing comparison table for shadcn/ui and TanStack Table: plans as columns, features as rows, recommended plan highlighted. For TanStack Table v9.',
       },
-      { property: 'og:title', content: 'Shadcn Comparison Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Comparison Table — TanStack Table v9 — ShadTable',
+      },
       {
         property: 'og:description',
         content:
@@ -25,6 +28,13 @@ export const Route = createFileRoute('/v9/comparison-table')({
             'A pricing/feature comparison table with plans as columns and a highlighted recommended plan.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/comparison-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

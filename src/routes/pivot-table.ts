@@ -8,7 +8,7 @@ export const Route = createFileRoute('/pivot-table')({
       {
         name: 'description',
         content:
-          'A pivot table for shadcn/ui and TanStack Table. Dashboard-style analytics table — pick which dimension becomes rows, which becomes columns, and how to aggregate (sum, average, or count), recomputed from flat sales data.',
+          'Pivot table for shadcn/ui and TanStack Table: choose row and column dimensions, then sum, average or count flat data.',
       },
       { property: 'og:title', content: 'Shadcn Pivot Table — ShadTable' },
       {
@@ -25,6 +25,13 @@ export const Route = createFileRoute('/pivot-table')({
             'A pivot table for dashboard-style analytics with configurable row/column dimensions and aggregation.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/pivot-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

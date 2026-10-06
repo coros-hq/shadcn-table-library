@@ -4,15 +4,15 @@ import { KpiTablePage } from '#/components/v9/kpi/kpi-table-page'
 export const Route = createFileRoute('/v9/kpi-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn KPI / Summary Table — ShadTable' },
+      { title: 'Shadcn KPI / Summary Table — TanStack Table v9 — ShadTable' },
       {
         name: 'description',
         content:
-          'A KPI summary table for shadcn/ui and TanStack Table. A compact metrics table — current value, period-over-period change, and a per-row sparkline — for the kind of dashboard summary that sits above the fold.',
+          'KPI summary table for shadcn/ui and TanStack Table: current value, period-over-period change and a sparkline per row. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn KPI / Summary Table — ShadTable',
+        content: 'Shadcn KPI / Summary Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/v9/kpi-table')({
             'A compact KPI/metrics table with sparklines and period-over-period change.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/kpi-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

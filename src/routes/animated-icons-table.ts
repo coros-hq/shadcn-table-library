@@ -8,7 +8,7 @@ export const Route = createFileRoute('/animated-icons-table')({
       {
         name: 'description',
         content:
-          'A table with animated row-action icons for shadcn/ui and TanStack Table. Row actions built with Iconimate — motion-driven icons that animate on hover, focus, and click, wired to favorite, notify, archive, and delete.',
+          'Table with animated row-action icons for shadcn/ui and TanStack Table: favorite, notify, archive and delete with Iconimate.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/animated-icons-table')({
             'A data table with row actions built from Iconimate animated icons: favorite, notify, archive, and delete.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/animated-icons-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

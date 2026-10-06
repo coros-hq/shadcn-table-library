@@ -199,28 +199,28 @@ export function DataTable({ columns }: DataTableProps) {
           onClick={() => table.firstPage()}
           disabled={!table.getCanPreviousPage()}
           variant={'outline'}
-        >
+         aria-label="First page">
           <ChevronsLeft className="h-3 w-3" />
         </Button>
         <Button
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
           variant={'outline'}
-        >
+         aria-label="Previous page">
           <ChevronLeft className="h-3 w-3" />
         </Button>
         <Button
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
           variant={'outline'}
-        >
+         aria-label="Next page">
           <ChevronRight className="h-3 w-3" />
         </Button>
         <Button
           onClick={() => table.lastPage()}
           disabled={!table.getCanNextPage()}
           variant={'outline'}
-        >
+         aria-label="Last page">
           <ChevronsRight className="h-3 w-3" />
         </Button>
         <Select

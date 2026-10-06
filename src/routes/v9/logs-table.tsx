@@ -12,13 +12,16 @@ export const Route = createFileRoute('/v9/logs-table')({
   }),
   head: () => ({
     meta: [
-      { title: 'Shadcn Logs Table — ShadTable' },
+      { title: 'Shadcn Logs Table — TanStack Table v9 — ShadTable' },
       {
         name: 'description',
         content:
-          'A log explorer table for shadcn/ui and TanStack Table: a date range picker, multi-select level, service, and status filters, highlighted search, and expandable rows with the full event.',
+          'Log explorer table for shadcn/ui and TanStack Table: date range, level, service and status filters, search highlight, expandable rows. For TanStack Table v9.',
       },
-      { property: 'og:title', content: 'Shadcn Logs Table — ShadTable' },
+      {
+        property: 'og:title',
+        content: 'Shadcn Logs Table — TanStack Table v9 — ShadTable',
+      },
       {
         property: 'og:description',
         content:
@@ -33,6 +36,13 @@ export const Route = createFileRoute('/v9/logs-table')({
             'A log explorer table with level, service, status, and date range filters, search highlighting, and expandable rows.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/logs-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

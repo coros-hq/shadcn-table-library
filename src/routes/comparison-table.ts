@@ -8,7 +8,7 @@ export const Route = createFileRoute('/comparison-table')({
       {
         name: 'description',
         content:
-          "A comparison table for shadcn/ui and TanStack Table. Pricing plans as table columns — feature rows compare booleans and values across every plan, with the recommended plan's column tinted to stand out.",
+          'Pricing comparison table for shadcn/ui and TanStack Table: plans as columns, features as rows, recommended plan highlighted.',
       },
       { property: 'og:title', content: 'Shadcn Comparison Table — ShadTable' },
       {
@@ -25,6 +25,13 @@ export const Route = createFileRoute('/comparison-table')({
             'A pricing/feature comparison table with plans as columns and a highlighted recommended plan.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/comparison-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

@@ -8,7 +8,7 @@ export const Route = createFileRoute('/filter-state-shape-table')({
       {
         name: 'description',
         content:
-          'A data table filter state pattern for shadcn/ui and TanStack Table. A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, keeping the toolbar, chips row, and columnFilters in sync.',
+          'Data table filter state for shadcn/ui and TanStack Table: one ActiveFilter[] array keeps toolbar, chips and columnFilters in sync.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/filter-state-shape-table')({
             'A normalized ActiveFilter[] array as the single source of truth for multi-select and date-range filters, driving the toolbar, chips, and columnFilters.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/filter-state-shape-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

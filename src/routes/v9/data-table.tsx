@@ -15,13 +15,12 @@ export const Route = createFileRoute('/v9/data-table')({
   head: () => ({
     meta: [
       {
-        title:
-          'Shadcn Data Table — TanStack Table v9 Example — ShadTable',
+        title: 'Shadcn Data Table — TanStack Table v9 Example — ShadTable',
       },
       {
         name: 'description',
         content:
-          'A data table for shadcn/ui and TanStack Table v9. Same sortable, filterable, paginated table as the v8 version, ported to v9 useTable/tableFeatures.',
+          'Sortable, filterable, paginated data table for shadcn/ui and TanStack Table with a composable filter toolbar. React and Vue code. For TanStack Table v9.',
       },
       {
         property: 'og:title',
@@ -41,6 +40,13 @@ export const Route = createFileRoute('/v9/data-table')({
             'A sortable, filterable, paginated table with a composable toolbar for column-specific filters, built on shadcn/ui and TanStack Table v9.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/data-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],
@@ -88,7 +94,7 @@ const steps = [
   {
     title: '`useReactTable` becomes `useTable`, `features` is required',
     description:
-      "The hook is renamed and now takes a features option built from tableFeatures(). getCoreRowModel is gone — the core row model is automatic.",
+      'The hook is renamed and now takes a features option built from tableFeatures(). getCoreRowModel is gone — the core row model is automatic.',
     file: 'src/components/v9/basic/data-table.tsx',
     code: `const table = useTable({
   features: v9Features,
@@ -128,7 +134,7 @@ export const columns = columnHelper.columns([
   {
     title: '`table.getState()` becomes `table.state`',
     description:
-      "State is a direct property instead of a method call. Per-slice state and onXChange callbacks work exactly like v8 — this table still owns pagination/sorting/filters as controlled React state.",
+      'State is a direct property instead of a method call. Per-slice state and onXChange callbacks work exactly like v8 — this table still owns pagination/sorting/filters as controlled React state.',
     file: 'src/components/v9/basic/data-table.tsx',
     code: `{table.state.columnFilters.length > 0 ? (
   <Button onClick={() => table.resetColumnFilters()}>Clear Filters</Button>
@@ -148,8 +154,8 @@ function Home() {
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             The same sortable, filterable, paginated table as the v8 version,
             ported to TanStack Table v9's useTable and tableFeatures API.
-            Behavior is unchanged — sorting, filtering, and pagination still
-            run entirely in the browser.
+            Behavior is unchanged — sorting, filtering, and pagination still run
+            entirely in the browser.
           </p>
         </div>
 
@@ -162,10 +168,10 @@ function Home() {
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <h3 className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <span className="text-muted-foreground">{i + 1}.</span>
                   {step.title}
-                </p>
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {step.description}
                 </p>

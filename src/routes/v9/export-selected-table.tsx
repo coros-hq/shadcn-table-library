@@ -4,15 +4,19 @@ import { ExportSelectedPage } from '#/components/v9/export-selected/export-selec
 export const Route = createFileRoute('/v9/export-selected-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Table — Export Selected Rows — ShadTable' },
+      {
+        title:
+          'Shadcn Table — Export Selected Rows — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A table that exports selected rows for shadcn/ui and TanStack Table. A table with row checkboxes that exports only the selected rows to CSV or Excel. Selection persists across pages, with a page-level select-all and a "Select all" shortcut.',
+          'Export only selected rows to CSV or Excel from a shadcn/ui and TanStack Table table; selection persists across pages. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Table — Export Selected Rows — ShadTable',
+        content:
+          'Shadcn Table — Export Selected Rows — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/export-selected-table')({
             'A table that exports only the selected rows to CSV or Excel, with selection that persists across pages.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/export-selected-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

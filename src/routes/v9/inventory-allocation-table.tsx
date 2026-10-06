@@ -12,7 +12,10 @@ import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 
 const files = [
-  { path: 'src/components/v9/inventory-allocation/index.tsx', code: indexSource },
+  {
+    path: 'src/components/v9/inventory-allocation/index.tsx',
+    code: indexSource,
+  },
   {
     path: 'src/components/v9/inventory-allocation/columns.tsx',
     code: columnsSource,
@@ -108,15 +111,19 @@ for (const id of batchesByExpiry) {
 export const Route = createFileRoute('/v9/inventory-allocation-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Inventory Allocation Table — ShadTable' },
+      {
+        title:
+          'Shadcn Inventory Allocation Table — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'An inventory allocation table for shadcn/ui and TanStack Table. An editable inventory grid with expandable batch detail and live formula columns — reorder point, days of cover, and suggested PO recalculate as you edit demand, lead time, or batch allocations.',
+          'Editable inventory table for shadcn/ui and TanStack Table with batch detail and live formula columns like days of cover. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Inventory Allocation Table — ShadTable',
+        content:
+          'Shadcn Inventory Allocation Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -132,6 +139,13 @@ export const Route = createFileRoute('/v9/inventory-allocation-table')({
             'An editable inventory batch management and order allocation table with master-detail expansion and live formula columns.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/inventory-allocation-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],
@@ -166,14 +180,14 @@ function InventoryAllocationTablePage() {
         <ComponentPreview preview={<InventoryAllocationDemo />} files={files} />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">How it works</p>
+          <h2 className="text-sm font-medium">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <h3 className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <span className="text-muted-foreground">{i + 1}.</span>
                   {step.title}
-                </p>
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {step.description}
                 </p>

@@ -8,7 +8,7 @@ export const Route = createFileRoute('/kpi-table')({
       {
         name: 'description',
         content:
-          'A KPI summary table for shadcn/ui and TanStack Table. A compact metrics table — current value, period-over-period change, and a per-row sparkline — for the kind of dashboard summary that sits above the fold.',
+          'KPI summary table for shadcn/ui and TanStack Table: current value, period-over-period change and a sparkline per row.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/kpi-table')({
             'A compact KPI/metrics table with sparklines and period-over-period change.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/kpi-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

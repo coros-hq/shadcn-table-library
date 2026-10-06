@@ -69,3 +69,45 @@ Every page below has a live demo, the full source, an install command, and a ste
 ## Responsive
 
 - [Mobile Cards Table](https://www.shad-table.dev/mobile-cards-table): A responsive table that becomes cards on mobile for shadcn/ui and TanStack Table. A data table that transforms into stacked cards below a container-query breakpoint using pure CSS display overrides — no separate mobile component, no JS media query, no viewport dependency.
+
+<!-- v9:start -->
+## TanStack Table v9 versions
+
+Every example above is also available for @tanstack/react-table v9. Install it by adding `-v9` to the name, for example `npx shadcn add https://www.shad-table.dev/r/tree-table-v9.json`.
+
+- [Shadcn Table with Animated Icons (v9)](https://www.shad-table.dev/v9/animated-icons-table): Table with animated row-action icons for shadcn/ui and TanStack Table: favorite, notify, archive and delete with Iconimate. For TanStack Table v9.
+- [Shadcn Table with Async Row Actions (v9)](https://www.shad-table.dev/v9/async-actions-table): Shadcn table row actions that show real request state: spinning sync, Retry on failure, Undo for archive, confirm for delete. For TanStack Table v9.
+- [Shadcn Table Column Pinning (v9)](https://www.shad-table.dev/v9/column-pinning-table): Column pinning for shadcn/ui and TanStack Table: freeze columns to the left or right edge, Excel-style, while the rest scrolls. For TanStack Table v9.
+- [Shadcn Comparison Table (v9)](https://www.shad-table.dev/v9/comparison-table): Pricing comparison table for shadcn/ui and TanStack Table: plans as columns, features as rows, recommended plan highlighted. For TanStack Table v9.
+- [Shadcn Conditional Formatting Table (v9)](https://www.shad-table.dev/v9/conditional-formatting-table): Excel-style conditional formatting for shadcn/ui and TanStack Table: a small rule engine colors cells and badges from row data. For TanStack Table v9.
+- [Shadcn Data Table (v9)](https://www.shad-table.dev/v9/data-table): Sortable, filterable, paginated data table for shadcn/ui and TanStack Table with a composable filter toolbar. React and Vue code. For TanStack Table v9.
+- [Shadcn Deployments Table (v9)](https://www.shad-table.dev/v9/deployments-table): Deployments table for shadcn/ui and TanStack Table: build status, environment, branch and commit, with live-count filters. For TanStack Table v9.
+- [Shadcn Editable Table (Inline Editing) (v9)](https://www.shad-table.dev/v9/editable-table): Inline-editable data table for shadcn/ui and TanStack Table: validation, optimistic updates, rollback and undo. For TanStack Table v9.
+- [Shadcn Table Export to CSV & Excel (v9)](https://www.shad-table.dev/v9/export-config-table): Export a shadcn/ui table to CSV or Excel: choose rows by filter, pick columns, and see a live row count before you download. For TanStack Table v9.
+- [Shadcn Table — Export Selected Rows (v9)](https://www.shad-table.dev/v9/export-selected-table): Export only selected rows to CSV or Excel from a shadcn/ui and TanStack Table table; selection persists across pages. For TanStack Table v9.
+- [Shadcn Data Table Filter State (v9)](https://www.shad-table.dev/v9/filter-state-shape-table): Data table filter state for shadcn/ui and TanStack Table: one ActiveFilter[] array keeps toolbar, chips and columnFilters in sync. For TanStack Table v9.
+- [Shadcn Data Table Filter Toolbar (v9)](https://www.shad-table.dev/v9/filter-toolbar-table): Config-driven filter toolbar for shadcn/ui and TanStack Table: filters generated from column.meta with an active-filters row. For TanStack Table v9.
+- [Shadcn Grouped Table (Row Grouping) (v9)](https://www.shad-table.dev/v9/grouped-table): Row grouping for shadcn/ui and TanStack Table: collapsible group headers with live subtotals per group. For TanStack Table v9.
+- [Shadcn Heatmap Table (v9)](https://www.shad-table.dev/v9/heatmap-table): Heatmap table for shadcn/ui and TanStack Table: cell color intensity follows the value, so patterns show at a glance. For TanStack Table v9.
+- [Shadcn Infinite Scroll Table (v9)](https://www.shad-table.dev/v9/infinite-scroll-table): Infinite scroll table for shadcn/ui and TanStack Table: IntersectionObserver loading, skeleton rows, retry on error, sticky header. For TanStack Table v9.
+- [Shadcn Inventory Allocation Table (v9)](https://www.shad-table.dev/v9/inventory-allocation-table): Editable inventory table for shadcn/ui and TanStack Table with batch detail and live formula columns like days of cover. For TanStack Table v9.
+- [Shadcn KPI / Summary Table (v9)](https://www.shad-table.dev/v9/kpi-table): KPI summary table for shadcn/ui and TanStack Table: current value, period-over-period change and a sparkline per row. For TanStack Table v9.
+- [Shadcn Table with Live Status Indicators (v9)](https://www.shad-table.dev/v9/live-status-table): Live status table for shadcn/ui and TanStack Table: status and latency update on a timer with pulsing indicators. For TanStack Table v9.
+- [Shadcn Logs Table (v9)](https://www.shad-table.dev/v9/logs-table): Log explorer table for shadcn/ui and TanStack Table: date range, level, service and status filters, search highlight, expandable rows. For TanStack Table v9.
+- [Shadcn Master-Detail Table (v9)](https://www.shad-table.dev/v9/master-detail): Master-detail table for shadcn/ui and TanStack Table: expandable rows reveal details and a nested sub-table of line items. For TanStack Table v9.
+- [Shadcn Responsive Table (Mobile Cards) (v9)](https://www.shad-table.dev/v9/mobile-cards-table): Responsive table that turns into cards on mobile for shadcn/ui and TanStack Table, using only CSS container queries. For TanStack Table v9.
+- [Shadcn Table with URL Params Filters (v9)](https://www.shad-table.dev/v9/params-filter-table): Data table with filters synced to URL search params for shadcn/ui and TanStack Table: shareable and back-button friendly. For TanStack Table v9.
+- [Shadcn Pivot Table (v9)](https://www.shad-table.dev/v9/pivot-table): Pivot table for shadcn/ui and TanStack Table: choose row and column dimensions, then sum, average or count flat data. For TanStack Table v9.
+- [Shadcn Production Dashboard Table (v9)](https://www.shad-table.dev/v9/production-dashboard-table): Production dashboard table for shadcn/ui and TanStack Table combining conditional formatting, progress bars and sparklines. For TanStack Table v9.
+- [Shadcn Drag-and-Drop Reorderable Table (v9)](https://www.shad-table.dev/v9/reorder-table): Drag-and-drop reorderable table for shadcn/ui and TanStack Table, built on @dnd-kit/sortable. For TanStack Table v9.
+- [Shadcn Resizable Columns Table (v9)](https://www.shad-table.dev/v9/resizable-table): Resizable and reorderable columns for shadcn/ui and TanStack Table, with the layout saved to localStorage. For TanStack Table v9.
+- [Shadcn Server Sort, Filter, Pagination (v9)](https://www.shad-table.dev/v9/server-combined-table): Server-side sorting, filtering and pagination for shadcn/ui and TanStack Table, all driven from one URL. For TanStack Table v9.
+- [Shadcn Server-Side Filtering Table (v9)](https://www.shad-table.dev/v9/server-filter): Server-side filtering table for shadcn/ui and TanStack Table: every filter change is a real server request, driven by the URL. For TanStack Table v9.
+- [Shadcn Server-Side Pagination Table (v9)](https://www.shad-table.dev/v9/server-table): Server-side pagination table for shadcn/ui and TanStack Table: only the current page's rows are sent to the browser. For TanStack Table v9.
+- [Shadcn Excel-like Spreadsheet Table (v9)](https://www.shad-table.dev/v9/spreadsheet-table): Excel-like spreadsheet table for shadcn/ui and TanStack Table: keyboard navigation, ranges, copy and paste, SUM and AVERAGE formulas. For TanStack Table v9.
+- [Shadcn Toolbar Filter Table (v9)](https://www.shad-table.dev/v9/toolbar-filter-table): Toolbar filter table for shadcn/ui and TanStack Table: dropdown selects and a search input above the table. For TanStack Table v9.
+- [Shadcn Tree Table with Drag Reorder (v9)](https://www.shad-table.dev/v9/tree-reorder): Drag-and-drop tree table for shadcn/ui and TanStack Table: reorder rows among siblings with a drag handle. For TanStack Table v9.
+- [Shadcn Tree Table with Checkbox Selection (v9)](https://www.shad-table.dev/v9/tree-select): Tree table with checkbox selection for shadcn/ui and TanStack Table: cascading selection and indeterminate parents. For TanStack Table v9.
+- [Shadcn Tree Table (Nested Rows) (v9)](https://www.shad-table.dev/v9/tree-table): Tree table for shadcn/ui and TanStack Table: nested rows, expand/collapse, sorting, search, product variants and a detail card. For TanStack Table v9.
+- [Shadcn Table Density Toggle & Export (v9)](https://www.shad-table.dev/v9/utility-table): Table density toggle and CSV, Excel or PDF export for shadcn/ui and TanStack Table, with a print-friendly view. For TanStack Table v9.
+<!-- v9:end -->

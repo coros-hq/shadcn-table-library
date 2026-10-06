@@ -3,6 +3,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { Analytics } from '@vercel/analytics/react'
 import { NuqsAdapter } from 'nuqs/adapters/tanstack-router'
+import { NotFound } from '#/components/docs/not-found.tsx'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -33,15 +34,22 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:image',
-        content: 'https://www.shad-table.dev/logo512.png',
+        content: 'https://www.shad-table.dev/og.png',
+      },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      {
+        property: 'og:image:alt',
+        content:
+          'ShadTable: copy-paste table components for shadcn/ui and TanStack Table',
       },
       {
         name: 'twitter:card',
-        content: 'summary',
+        content: 'summary_large_image',
       },
       {
         name: 'twitter:image',
-        content: 'https://www.shad-table.dev/logo512.png',
+        content: 'https://www.shad-table.dev/og.png',
       },
       {
         'script:ld+json': {
@@ -99,6 +107,7 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
+  notFoundComponent: NotFound,
 })
 
 const themeInitScript = `

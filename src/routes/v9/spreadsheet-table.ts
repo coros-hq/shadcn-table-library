@@ -4,15 +4,19 @@ import { SpreadsheetPage } from '#/components/v9/spreadsheet/spreadsheet-page'
 export const Route = createFileRoute('/v9/spreadsheet-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Excel-like Spreadsheet Table — ShadTable' },
+      {
+        title:
+          'Shadcn Excel-like Spreadsheet Table — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'An Excel-like spreadsheet table for shadcn/ui and TanStack Table. A1 headers, keyboard navigation, range selection, type-to-edit, copy and paste, and formulas such as SUM and AVERAGE that recalculate as you edit.',
+          'Excel-like spreadsheet table for shadcn/ui and TanStack Table: keyboard navigation, ranges, copy and paste, SUM and AVERAGE formulas. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Excel-like Spreadsheet Table — ShadTable',
+        content:
+          'Shadcn Excel-like Spreadsheet Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/spreadsheet-table')({
             'An Excel-like table with keyboard navigation, range selection, copy and paste, and a small formula engine.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/spreadsheet-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

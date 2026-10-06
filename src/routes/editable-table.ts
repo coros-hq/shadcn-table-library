@@ -8,7 +8,7 @@ export const Route = createFileRoute('/editable-table')({
       {
         name: 'description',
         content:
-          'An editable data table for shadcn/ui and TanStack Table. Click a cell to edit it inline. Edits validate on commit, apply optimistically, roll back on a simulated failure, and can be undone one at a time.',
+          'Inline-editable data table for shadcn/ui and TanStack Table: validation, optimistic updates, rollback and undo.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/editable-table')({
             'An inline-editable table with optimistic updates, validation, rollback, and undo.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/editable-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

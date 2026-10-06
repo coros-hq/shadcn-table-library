@@ -4,15 +4,19 @@ import { ExportConfigPage } from '#/components/v9/export-config/export-config-pa
 export const Route = createFileRoute('/v9/export-config-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Table Export to CSV & Excel — ShadTable' },
+      {
+        title:
+          'Shadcn Table Export to CSV & Excel — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A table with configurable CSV and Excel export for shadcn/ui and TanStack Table. A table whose Export button opens a dialog: filter by status, region, and date, pick columns and CSV or Excel, and see a live count of matching rows before downloading.',
+          'Export a shadcn/ui table to CSV or Excel: choose rows by filter, pick columns, and see a live row count before you download. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Table Export to CSV & Excel — ShadTable',
+        content:
+          'Shadcn Table Export to CSV & Excel — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/export-config-table')({
             'A table with an export dialog for choosing filters, columns, and format before downloading CSV or Excel.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/export-config-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

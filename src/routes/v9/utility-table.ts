@@ -4,15 +4,19 @@ import { UtilityTablePage } from '#/components/v9/utility/utility-table-page'
 export const Route = createFileRoute('/v9/utility-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Table Density Toggle & Export — ShadTable' },
+      {
+        title:
+          'Shadcn Table Density Toggle & Export — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A table with a density toggle and export for shadcn/ui and TanStack Table. One table, three modes: a compact/comfortable/spacious density toggle, CSV/Excel/PDF export, and a print-optimized view that ignores dark mode entirely.',
+          'Table density toggle and CSV, Excel or PDF export for shadcn/ui and TanStack Table, with a print-friendly view. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Table Density Toggle & Export — ShadTable',
+        content:
+          'Shadcn Table Density Toggle & Export — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/utility-table')({
             'A table with a density toggle, CSV/Excel/PDF export, and a print-optimized view.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/utility-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

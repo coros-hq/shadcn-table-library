@@ -8,7 +8,7 @@ export const Route = createFileRoute('/live-status-table')({
       {
         name: 'description',
         content:
-          'A live status table for shadcn/ui and TanStack Table. A service-health table where status and latency update live on a timer, with a pulsing indicator for actively-monitored states.',
+          'Live status table for shadcn/ui and TanStack Table: status and latency update on a timer with pulsing indicators.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/live-status-table')({
             'A data table with self-updating status and latency columns, showing weighted state transitions and a Live/Paused toggle.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/live-status-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

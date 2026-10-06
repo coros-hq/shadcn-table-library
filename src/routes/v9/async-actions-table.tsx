@@ -4,15 +4,19 @@ import { AsyncActionsPage } from '#/components/v9/async-actions/async-actions-pa
 export const Route = createFileRoute('/v9/async-actions-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Table with Async Row Actions — ShadTable' },
+      {
+        title:
+          'Shadcn Table with Async Row Actions — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A table with async row actions for shadcn/ui and TanStack Table. Table row actions with animated icons that reflect real request state: a sync icon that spins while pending, Retry on failure, Undo for archive, and a confirm step for delete.',
+          'Shadcn table row actions that show real request state: spinning sync, Retry on failure, Undo for archive, confirm for delete. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Table with Async Row Actions — ShadTable',
+        content:
+          'Shadcn Table with Async Row Actions — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/async-actions-table')({
             'Row actions with animated icons that reflect pending, failed, undo, and confirm states.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/async-actions-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

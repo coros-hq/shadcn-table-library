@@ -8,7 +8,7 @@ export const Route = createFileRoute('/migrate-v9')({
       {
         name: 'description',
         content:
-          'A practical guide to migrating shadcn/ui tables from TanStack Table v8 to v9: feature registration, row models, typing, sortFn, state, column pinning, and a checklist, with before and after code.',
+          'Migrate shadcn/ui tables from TanStack Table v8 to v9: features, row models, types, sortFn, state and pinning, with before/after code.',
       },
       {
         property: 'og:title',

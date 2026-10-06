@@ -1,16 +1,16 @@
 # Graph Report - shadcn-table-library  (2026-10-06)
 
 ## Corpus Check
-- 830 files · ~362,796 words
+- 836 files · ~401,671 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 4201 nodes · 9021 edges · 288 communities (278 shown, 10 thin omitted)
+- 4242 nodes · 9063 edges · 300 communities (290 shown, 10 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 89 edges (avg confidence: 0.66)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7ced5fd0`
+- Built from commit: `ed5b697a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -300,6 +300,18 @@
 - [[_COMMUNITY_demos.test.tsx|demos.test.tsx]]
 - [[_COMMUNITY_editable-cell.tsx|editable-cell.tsx]]
 - [[_COMMUNITY_vitest.config.ts|vitest.config.ts]]
+- [[_COMMUNITY_data-table.tsx|data-table.tsx]]
+- [[_COMMUNITY_production-dashboard-table.tsx|production-dashboard-table.tsx]]
+- [[_COMMUNITY_Action Plan — shad-table.dev|Action Plan — shad-table.dev]]
+- [[_COMMUNITY_action-buttons.tsx|action-buttons.tsx]]
+- [[_COMMUNITY_async-actions-page.tsx|async-actions-page.tsx]]
+- [[_COMMUNITY_heatmap-table-page.tsx|heatmap-table-page.tsx]]
+- [[_COMMUNITY_tree-reorder-page.tsx|tree-reorder-page.tsx]]
+- [[_COMMUNITY_data.ts|data.ts]]
+- [[_COMMUNITY_TreeReorderDemo.vue|TreeReorderDemo.vue]]
+- [[_COMMUNITY_schema|schema.md]]
+- [[_COMMUNITY_not-found.tsx|not-found.tsx]]
+- [[_COMMUNITY_LogFields.vue|LogFields.vue]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 344 edges
@@ -310,7 +322,7 @@
 6. `TableRow()` - 123 edges
 7. `TableHead()` - 123 edges
 8. `TableCell()` - 123 edges
-9. `Button()` - 109 edges
+9. `Button()` - 110 edges
 10. `FileRoutesByPath` - 75 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -333,35 +345,35 @@
 - 4-file cycle: `src/components/ssr/filter-example/data-table.tsx -> src/routes/server-filter.ts -> src/components/ssr/filter-example/filter-page.tsx -> src/components/ssr/filter-example/index.tsx -> src/components/ssr/filter-example/data-table.tsx`
 - 4-file cycle: `src/components/ssr/combined-example/data-table.tsx -> src/routes/server-combined-table.ts -> src/components/ssr/combined-example/server-combined-table-page.tsx -> src/components/ssr/combined-example/index.tsx -> src/components/ssr/combined-example/data-table.tsx`
 
-## Communities (288 total, 10 thin omitted)
+## Communities (300 total, 10 thin omitted)
 
 ### Community 0 - "routeTree.gen.ts"
 Cohesion: 0.02
-Nodes (86): getRouter(), Register, @tanstack/react-router, Route, AnimatedIconsTableRoute, AsyncActionsTableRoute, ColumnPinningTableRoute, ComparisonTableRoute (+78 more)
+Nodes (85): getRouter(), Register, @tanstack/react-router, Route, AnimatedIconsTableRoute, AsyncActionsTableRoute, ColumnPinningTableRoute, ComparisonTableRoute (+77 more)
 
 ### Community 1 - "sidebar.tsx"
 Cohesion: 0.08
 Nodes (33): react, NavGroup, NewBadge(), DatePickerWithRange(), Sidebar(), SidebarContent(), SidebarContext, SidebarContextProps (+25 more)
 
 ### Community 2 - "table.tsx"
-Cohesion: 0.06
-Nodes (70): statusStyle, DataTableProps, DataTableProps, HistoryEntry, FilterOption, FilterStateShapeDataTableProps, columns, data (+62 more)
+Cohesion: 0.04
+Nodes (86): DataTableProps, DataTableProps, GroupedDataTableProps, TRANSITIONS, expandColumn, LogsTableProps, DataTableProps, DataTableProps (+78 more)
 
 ### Community 3 - "data-table.tsx"
-Cohesion: 0.07
-Nodes (58): DataTableProps, Props, PAGES_SIZE, datePresets, Density, densityCellClass, densityHeadClass, DensityToggleProps (+50 more)
+Cohesion: 0.06
+Nodes (60): DataTableProps, Props, PAGES_SIZE, datePresets, Density, densityCellClass, densityHeadClass, DensityToggleProps (+52 more)
 
 ### Community 4 - "animated-icon.ts"
-Cohesion: 0.06
-Nodes (51): args, failed, index, items, keep, MIME, onlyArg, packageName() (+43 more)
+Cohesion: 0.14
+Nodes (14): args, failed, index, items, keep, MIME, onlyArg, packageName() (+6 more)
 
 ### Community 5 - "dependencies"
 Cohesion: 0.06
 Nodes (32): dependencies, class-variance-authority, clsx, cmdk, date-fns, @dnd-kit/core, @dnd-kit/modifiers, @dnd-kit/sortable (+24 more)
 
 ### Community 6 - "filter-condition-editor.tsx"
-Cohesion: 0.15
-Nodes (13): columns, inDateRange(), statusTone(), formatDay(), formatTime(), logs, pad(), toStatusClass() (+5 more)
+Cohesion: 0.17
+Nodes (11): columns, inDateRange(), statusTone(), formatDay(), logs, toStatusClass(), utcDayStart(), formatRange() (+3 more)
 
 ### Community 7 - "cn"
 Cohesion: 0.11
@@ -372,16 +384,16 @@ Cohesion: 0.07
 Nodes (29): devDependencies, @chromatic-com/storybook, eslint, eslint-plugin-storybook, jsdom, playwright, prettier, storybook (+21 more)
 
 ### Community 9 - "index.tsx"
-Cohesion: 0.06
-Nodes (27): allLinks, DocsLayout(), DocsLayoutProps, allLinks, DocsPager(), PagerLink(), navGroups, topLevelLinks (+19 more)
+Cohesion: 0.07
+Nodes (21): allLinks, DocsLayout(), DocsLayoutProps, files, FilterToolbarPage(), steps, files, Route (+13 more)
 
 ### Community 10 - "Button.stories.ts"
 Cohesion: 0.10
 Nodes (19): Button(), ButtonProps, Large, Primary, Secondary, Small, Story, Header() (+11 more)
 
 ### Community 11 - "code-block.tsx"
-Cohesion: 0.13
-Nodes (22): BatchDetail(), BatchDetailProps, formatDate(), Batch, columns, editableColumn(), EditableSkuField, getMeta() (+14 more)
+Cohesion: 0.15
+Nodes (24): BatchDetail(), BatchDetailProps, formatDate(), Batch, columns, editableColumn(), EditableSkuField, getMeta() (+16 more)
 
 ### Community 12 - "copy-install-command.tsx"
 Cohesion: 0.29
@@ -396,8 +408,8 @@ Cohesion: 0.12
 Nodes (17): CHANNEL_SPLIT, CHANNELS, QUARTER_GROWTH, QUARTERS, REGION_BASE, REGIONS, salesData, formatValue() (+9 more)
 
 ### Community 15 - "server-combined-table-page.tsx"
-Cohesion: 0.11
-Nodes (27): ActiveFilterChips(), ActiveFilterChipsProps, DateRangeFilter(), FilterConditionEditor(), FilterConditionEditorProps, conditionFilterFn(), evaluateOperator(), FilterConditionValue (+19 more)
+Cohesion: 0.10
+Nodes (29): ActiveFilterChips(), ActiveFilterChipsProps, DateRangeFilter(), columns, data, FilterToolbarDemo(), Task, FilterConditionEditor() (+21 more)
 
 ### Community 16 - "compilerOptions"
 Cohesion: 0.10
@@ -416,24 +428,24 @@ Cohesion: 0.18
 Nodes (10): editableFields, FieldConfig, FieldType, Product, cellKey(), currency(), EditableTable(), EditableTableProps (+2 more)
 
 ### Community 20 - "Adding a new table example"
-Cohesion: 0.12
-Nodes (15): 1. Component folder, 2. Docs page, 3. Route, 4. Navigation, 5. Registry entry, 6. Verify, Adding a new table example, Code conventions (+7 more)
+Cohesion: 0.10
+Nodes (18): 1. Component folder, 2. Docs page, 3. Route, 4. Navigation, 5. Registry entry, 6. Verify, Adding a new table example, Code conventions (+10 more)
 
 ### Community 21 - "GEO / AI Search Analysis — shad-table.dev"
-Cohesion: 0.12
-Nodes (16): 1. ~~Meta description trapped, never visible~~ — retracted, was a research error, 2. Homepage's definition sentence is well-placed, 3. Heading hierarchy is inverted site-wide: `<h2>` before `<h1>`, AI Crawler Access Status, Authority & Brand Signals, Brand Mention Analysis — Critical Gap, Content Reformatting Suggestions, GEO / AI Search Analysis — shad-table.dev (+8 more)
+Cohesion: 0.07
+Nodes (22): ComponentPreview(), ComponentPreviewFile, ComponentPreviewProps, Framework, readFramework(), files, Route, steps (+14 more)
 
 ### Community 22 - "popover.tsx"
-Cohesion: 0.09
-Nodes (21): columns, OrgNode, TreeSelectDataTable(), data, TreeSelectDemo(), Checkbox(), Label(), columns (+13 more)
+Cohesion: 0.08
+Nodes (23): columns, OrgNode, TreeSelectDataTable(), data, TreeSelectDemo(), Checkbox(), columns, usd (+15 more)
 
 ### Community 23 - "filter-toolbar.tsx"
-Cohesion: 0.13
-Nodes (15): scripts, build, build-storybook, check, dev, format, generate-routes, lint (+7 more)
+Cohesion: 0.12
+Nodes (16): scripts, build, build-storybook, check, dev, format, generate-routes, lint (+8 more)
 
 ### Community 24 - "Technical SEO Deep Audit — shad-table.dev"
 Cohesion: 0.13
-Nodes (15): 1. Crawlability — warn (65/100), 2. Indexability — fail (45/100), 3. Security — warn (60/100), 4. URL Structure — pass (85/100), 5. Mobile — pass, partial (80/100), 6. Core Web Vitals — unknown, 7. Structured Data — fail (45/100), 8. JavaScript Rendering — pass (95/100) (+7 more)
+Nodes (13): Dialog(), DialogContent(), DialogDescription(), DialogFooter(), DialogHeader(), DialogOverlay(), DialogTitle(), canExport (+5 more)
 
 ### Community 25 - "columns.tsx"
 Cohesion: 0.21
@@ -444,15 +456,15 @@ Cohesion: 0.06
 Nodes (55): columns, inDateRange(), LevelDot(), LevelLabel(), levelStyles, statusTone(), formatDay(), formatDuration() (+47 more)
 
 ### Community 27 - "SEO Audit — shad-table.dev"
-Cohesion: 0.15
-Nodes (13): AI Search Readiness (GEO) — see [findings/geo.md](findings/geo.md), Content Quality — see [findings/content.md](findings/content.md), Executive Summary, Images, Methodology note, On-Page SEO, Performance, Schema & Structured Data — see [findings/schema.md](findings/schema.md) (+5 more)
+Cohesion: 0.12
+Nodes (15): AI search readiness — score 60, Content quality — score 74, Executive summary, Images and social — score 90, Method and limits, Not assessed, On-page SEO — score 72, Performance — score 95 (lab only) (+7 more)
 
 ### Community 28 - "columns.tsx"
 Cohesion: 0.22
 Nodes (8): dependencies, description, files, name, registryDependencies, $schema, title, type
 
 ### Community 29 - "data-table.tsx"
-Cohesion: 0.22
+Cohesion: 0.29
 Nodes (9): columns, currency(), Order, OrderItem, MasterDetailTable(), MasterDetailTableProps, data, MasterDetailDemo() (+1 more)
 
 ### Community 30 - "reorder-table-page.tsx"
@@ -468,7 +480,7 @@ Cohesion: 0.13
 Nodes (15): columns, outputRules, ProductionLine, statusRules, trendRules, utilizationRules, DataTable(), data (+7 more)
 
 ### Community 33 - "index.tsx"
-Cohesion: 0.24
+Cohesion: 0.31
 Nodes (9): Feature, FeatureValue, Plan, features, plans, ComparisonTable(), ComparisonTableProps, renderValue() (+1 more)
 
 ### Community 34 - "filter-value-input.tsx"
@@ -480,16 +492,16 @@ Cohesion: 0.29
 Nodes (6): imports, name, pnpm, onlyBuiltDependencies, private, type
 
 ### Community 36 - "Mobile Performance — shad-table.dev"
-Cohesion: 0.18
-Nodes (10): Confirmed: render-blocking Google Fonts request (790ms estimated savings), Fix Applied — Font-loading waterfall, Investigated, Not Changed — Shared vendor chunk "unused JS", Investigated, Not Changed — Tailwind class-attribute weight, Mobile Performance — shad-table.dev, New, fixed: mobile-only missing accessible name, New, fixed: non-composited hero background animation, Real Mobile Lighthouse Results (`/editable-table`, simulated slow mobile network + CPU throttling) (+2 more)
+Cohesion: 0.12
+Nodes (16): 1. ~~Meta description trapped, never visible~~ — retracted, was a research error, 2. Homepage's definition sentence is well-placed, 3. Heading hierarchy is inverted site-wide: `<h2>` before `<h1>`, AI Crawler Access Status, Authority & Brand Signals, Brand Mention Analysis — Critical Gap, Content Reformatting Suggestions, GEO / AI Search Analysis — shad-table.dev (+8 more)
 
 ### Community 37 - "Schema Markup Audit — shad-table.dev"
-Cohesion: 0.18
-Nodes (10): 1. `params-filter-table.tsx` has no schema, no canonical, and no OG tags, 2. No `SearchAction` on the homepage `WebSite` schema, 3. No `BreadcrumbList` anywhere, 4. `SoftwareSourceCode` blocks could carry `codeSampleType`/`text`, Critical, Detection Summary, Info, Medium (+2 more)
+Cohesion: 0.13
+Nodes (14): examples, expandFiles, expandSteps, LogsExample, LogsPage(), sharedFiles, sidePanelFiles, sidePanelSteps (+6 more)
 
 ### Community 38 - "data-table.tsx"
-Cohesion: 0.06
-Nodes (30): getUserPageWithFilter, getUsersPage, getUsersPageCombined, Users, files, ServerFilterPage(), steps, vueDeps (+22 more)
+Cohesion: 0.07
+Nodes (28): files, ServerCombinedTablePage(), steps, vueDeps, vueFiles, getUsersPage, getUsersPageCombined, Users (+20 more)
 
 ### Community 39 - "columns.tsx"
 Cohesion: 0.18
@@ -508,8 +520,8 @@ Cohesion: 0.29
 Nodes (7): columns, TeamMember, ParamsDataTable(), data, ParamsFilterTableDemo(), roleOptions, useNuqsFilters()
 
 ### Community 43 - "data.ts"
-Cohesion: 0.28
-Nodes (5): columns, Task, FilterStateShapeDataTable(), categoryOptions, data
+Cohesion: 0.24
+Nodes (6): columns, Task, FilterStateShapeDataTable(), categoryOptions, data, FilterStateShapeTableDemo()
 
 ### Community 44 - "animated-icons-table.json"
 Cohesion: 0.22
@@ -616,20 +628,20 @@ Cohesion: 0.22
 Nodes (8): dependencies, description, files, name, registryDependencies, $schema, title, type
 
 ### Community 70 - "FULL-AUDIT-REPORT.md"
-Cohesion: 0.22
-Nodes (6): AI Search Readiness (GEO) Findings — shad-table.dev, Gaps, Recommendation Priority: Medium, What Works, Recommendation, Sitemap Findings — shad-table.dev
+Cohesion: 0.13
+Nodes (15): 1. Crawlability — warn (65/100), 2. Indexability — fail (45/100), 3. Security — warn (60/100), 4. URL Structure — pass (85/100), 5. Mobile — pass, partial (80/100), 6. Core Web Vitals — unknown, 7. Structured Data — fail (45/100), 8. JavaScript Rendering — pass (95/100) (+7 more)
 
 ### Community 71 - "code-block-highlight.tsx"
 Cohesion: 0.50
 Nodes (3): CodeBlockHighlight(), CodeBlockHighlightProps, codeTheme
 
 ### Community 72 - "index.tsx"
-Cohesion: 0.11
+Cohesion: 0.14
 Nodes (18): columns, date, money, statusStyle, fetchTransactions(), FIRST, LAST, makeTransaction() (+10 more)
 
 ### Community 73 - "data-table.tsx"
-Cohesion: 0.14
-Nodes (18): BreadcrumbJsonLd(), formatStars(), GithubStars(), GlobalSearch(), NavContent(), V9_PORTED_ROUTES, SiteHeaderProps, stripVersionPrefix() (+10 more)
+Cohesion: 0.11
+Nodes (22): BreadcrumbJsonLd(), formatStars(), GithubStars(), GlobalSearch(), NavContent(), V9_PORTED_ROUTES, SiteHeaderProps, ThemeToggle() (+14 more)
 
 ### Community 74 - "index.tsx"
 Cohesion: 0.22
@@ -652,36 +664,36 @@ Cohesion: 0.32
 Nodes (5): columns, Order, GroupedDataTable(), data, GroupedTableDemo()
 
 ### Community 79 - "filter-value-input.tsx"
-Cohesion: 0.06
-Nodes (49): columns, inDateRange(), LevelDot(), LevelLabel(), levelStyles, statusTone(), formatDay(), formatDuration() (+41 more)
+Cohesion: 0.07
+Nodes (40): columns, inDateRange(), LevelDot(), LevelLabel(), levelStyles, statusTone(), formatDay(), formatDuration() (+32 more)
 
 ### Community 80 - "index.tsx"
 Cohesion: 0.32
 Nodes (6): columns, User, loadLayout(), ResizableTable(), data, ResizableTableDemo()
 
 ### Community 81 - "app.json"
-Cohesion: 0.15
-Nodes (14): columns, date, money, statusStyle, fetchTransactions(), FIRST, LAST, makeTransaction() (+6 more)
+Cohesion: 0.12
+Nodes (16): columns, date, money, statusStyle, fetchTransactions(), FIRST, LAST, makeTransaction() (+8 more)
 
 ### Community 82 - "data-table.tsx"
 Cohesion: 0.09
 Nodes (24): columns, hiddenColumns, statusDot, StatusIcon(), authors, branches, Deployment, deployments (+16 more)
 
 ### Community 83 - "Content & On-Page SEO Findings — shad-table.dev"
-Cohesion: 0.29
-Nodes (6): 1. Thin content depth on example pages, 2. Near-duplicate page names/topics, Content & On-Page SEO Findings — shad-table.dev, Low, Medium, What Works
+Cohesion: 0.20
+Nodes (12): pop, StarIcon, twinkle, AnimationControls, ARRIVE, Bezier, DUR, HoverController (+4 more)
 
 ### Community 84 - "Technical SEO Findings — shad-table.dev"
-Cohesion: 0.29
-Nodes (7): 1. Canonical tag and sitemap point at a URL that redirects away, 2. Sitemap is missing 12 of 27 live pages (44% of the site), 3. Missing common security headers, Critical, High, Info / Not Verifiable From This Environment, Technical SEO Findings — shad-table.dev
+Cohesion: 0.21
+Nodes (11): columns, Order, regions, statuses, statusVariant, usd, customers, orders (+3 more)
 
 ### Community 85 - "button.tsx"
 Cohesion: 0.28
 Nodes (7): columns, Employee, statusVariant, DataTable(), getPinningStyles(), ColumnPinningTableDemo(), data
 
 ### Community 86 - "active-filter-chips.tsx"
-Cohesion: 0.04
-Nodes (59): ComponentPreviewFile, ComponentPreviewProps, Framework, examples, expandFiles, expandSteps, LogsExample, LogsPage() (+51 more)
+Cohesion: 0.10
+Nodes (20): columns, OrgNode, TreeDataTable(), data, TreeTableDemo(), detailFiles, detailSteps, detailVueDeps (+12 more)
 
 ### Community 87 - "filter-state-shape-page.tsx"
 Cohesion: 0.17
@@ -689,23 +701,23 @@ Nodes (10): builtIndex, KNOWN_UNINSTALLABLE_IMPORTS, links, read(), registry, Re
 
 ### Community 88 - "filter-toolbar-page.tsx"
 Cohesion: 0.12
-Nodes (26): columns, Order, regions, statuses, statusVariant, usd, customers, orders (+18 more)
+Nodes (27): columns, Order, regions, statuses, statusVariant, usd, customers, orders (+19 more)
 
 ### Community 89 - "filter-condition-editor.tsx"
-Cohesion: 0.22
-Nodes (9): arrayMove(), columnOrder, columnSizing, customUpdate(), defaultOrder(), props, resetLayout(), StoredLayout (+1 more)
+Cohesion: 0.16
+Nodes (12): columns, User, arrayMove(), columnOrder, columnSizing, customUpdate(), defaultOrder(), props (+4 more)
 
 ### Community 90 - "utility-table-page.tsx"
 Cohesion: 0.29
 Nodes (6): files, steps, TreeReorderPage(), vueDeps, vueFiles, Route
 
 ### Community 91 - "index.tsx"
-Cohesion: 0.19
-Nodes (9): columns, OrgNode, TreeDataTable(), data, TreeTableDemo(), columns, OrgNode, data (+1 more)
+Cohesion: 0.14
+Nodes (14): columns, OrgNode, DetailPanelTableDemo(), data, TreeTableDemo(), detailFiles, detailSteps, examples (+6 more)
 
 ### Community 92 - "tree-reorder-page.tsx"
-Cohesion: 0.29
-Nodes (6): ExportSelectedPage(), files, steps, vueDeps, vueFiles, Route
+Cohesion: 0.09
+Nodes (18): CodeBlock(), ExportSelectedPage(), files, steps, vueDeps, vueFiles, files, KpiTablePage() (+10 more)
 
 ### Community 93 - "data-table.tsx"
 Cohesion: 0.21
@@ -717,19 +729,19 @@ Nodes (42): columns, SheetRow, filled, initialSheet(), CellKind, CellView, COLS,
 
 ### Community 95 - "Action Plan — shad-table.dev"
 Cohesion: 0.33
-Nodes (5): Action Plan — shad-table.dev, Phase 1: Critical Fixes (This Week), Phase 2: High-Impact Improvements (Weeks 2–3), Phase 3: Content & Authority (Month 2), Phase 4: Monitoring & Iteration (Ongoing)
+Nodes (5): Action Plan — shad-table.dev (2026-10-06), Phase 1: Critical / High (this week), Phase 2: Medium (weeks 2–3), Phase 3: Low / polish (month 2), Phase 4: Measure (ongoing)
 
 ### Community 96 - "schema.md"
-Cohesion: 0.33
-Nodes (3): Current State, Recommendations (Medium priority), Schema / Structured Data Findings — shad-table.dev
+Cohesion: 0.16
+Nodes (11): TabsContent(), examples, expandFiles, expandSteps, LogsExample, LogsPage(), sharedFiles, sidePanelFiles (+3 more)
 
 ### Community 97 - "editable-table-page.tsx"
-Cohesion: 0.33
-Nodes (5): columns, User, DataTable(), DataTableProps, ServerPaginationDemo()
+Cohesion: 0.15
+Nodes (13): AI Search Readiness (GEO) — see [findings/geo.md](findings/geo.md), Content Quality — see [findings/content.md](findings/content.md), Executive Summary, Images, Methodology note, On-Page SEO, Performance, Schema & Structured Data — see [findings/schema.md](findings/schema.md) (+5 more)
 
 ### Community 98 - "theme-toggle.tsx"
 Cohesion: 0.04
-Nodes (63): DataTable(), DataTableProps, DataTable(), DataTableProps, getPinningStyles(), ComparisonTable(), renderValue(), DataTable() (+55 more)
+Nodes (52): columnHelper, columns, User, DataTable(), DataTableProps, DataTableFilter(), BasicTableUsage(), data (+44 more)
 
 ### Community 99 - "live-status-table-page.tsx"
 Cohesion: 0.29
@@ -737,7 +749,7 @@ Nodes (6): files, MasterDetailPage(), steps, vueDeps, vueFiles, Route
 
 ### Community 100 - "router.tsx"
 Cohesion: 0.19
-Nodes (14): columns, day, money, statusStyle, Order, orders, OrderStatus, Shipment (+6 more)
+Nodes (17): columns, day, money, statusStyle, Order, orders, OrderStatus, Shipment (+9 more)
 
 ### Community 101 - "pivot-table-page.tsx"
 Cohesion: 0.05
@@ -764,12 +776,12 @@ Cohesion: 0.40
 Nodes (4): homepage, items, name, $schema
 
 ### Community 108 - "data.ts"
-Cohesion: 0.12
-Nodes (29): ActiveFilterChips(), ActiveFilterChipsProps, columns, data, FilterToolbarDemo(), Task, FilterConditionEditor(), FilterConditionEditorProps (+21 more)
+Cohesion: 0.13
+Nodes (27): ActiveFilterChips(), ActiveFilterChipsProps, DateRangeFilter(), FilterToolbarDemo(), FilterConditionEditor(), FilterConditionEditorProps, conditionFilterFn(), evaluateOperator() (+19 more)
 
 ### Community 109 - "live-status-table-page.tsx"
-Cohesion: 0.25
-Nodes (7): ExportConfigPage(), files, steps, vueDeps, vueFiles, ExportConfigDemo(), Route
+Cohesion: 0.29
+Nodes (6): ExportConfigPage(), files, steps, vueDeps, vueFiles, Route
 
 ### Community 110 - "use-native-filters.ts"
 Cohesion: 0.83
@@ -777,35 +789,35 @@ Nodes (3): readParam(), useNativeFilters(), writeParam()
 
 ### Community 119 - "column-pinning-table.tsx"
 Cohesion: 0.10
-Nodes (21): columns, hiddenColumns, statusDot, StatusIcon(), authors, branches, Deployment, deployments (+13 more)
+Nodes (20): columns, hiddenColumns, statusDot, StatusIcon(), authors, branches, deployments, DeploymentStatus (+12 more)
 
 ### Community 120 - "column-pinning-table.tsx"
-Cohesion: 0.11
-Nodes (24): BatchDetail(), BatchDetailProps, formatDate(), Batch, columns, editableColumn(), EditableSkuField, getMeta() (+16 more)
+Cohesion: 0.14
+Nodes (23): BatchDetail(), BatchDetailProps, formatDate(), Batch, columns, editableColumn(), EditableSkuField, getMeta() (+15 more)
 
 ### Community 121 - "tree-table-page.tsx"
 Cohesion: 0.28
 Nodes (7): columns, Order, statusVariant, DataTable(), data, MobileCardsTableDemo(), ViewportToggle()
 
 ### Community 122 - "date-range-picker.tsx"
-Cohesion: 0.15
-Nodes (27): FacetedFilterProps, DateRangeFilterProps, FacetedFilterProps, Badge(), badgeVariants, Command(), CommandDialog(), CommandEmpty() (+19 more)
+Cohesion: 0.17
+Nodes (22): FacetedFilterProps, FilterConditionEditorProps, FacetedFilterProps, Badge(), badgeVariants, Command(), CommandDialog(), CommandEmpty() (+14 more)
 
 ### Community 123 - "Route"
 Cohesion: 0.28
 Nodes (7): columns, Task, ToolbarFilterDataTable(), categoryOptions, data, statusOptions, ToolbarFilterTableDemo()
 
 ### Community 124 - "params-filter-table.tsx"
-Cohesion: 0.18
-Nodes (10): activeOperator, apply(), columnId, emit, meta, operator, operators, props (+2 more)
+Cohesion: 0.20
+Nodes (9): entries, git(), lastmod(), llms, section, startAt, today, v8 (+1 more)
 
 ### Community 125 - "Route"
 Cohesion: 0.14
 Nodes (14): columns, outputRules, ProductionLine, statusRules, trendRules, utilizationRules, data, ProductionDashboardTableDemo() (+6 more)
 
 ### Community 126 - "utility-table-page.tsx"
-Cohesion: 0.19
-Nodes (12): calendarDate(), DateRangeValue, fromCalendarDate(), toCalendarDate(), apply(), draft, onSelect(), open (+4 more)
+Cohesion: 0.17
+Nodes (13): NOW, calendarDate(), DateRangeValue, fromCalendarDate(), toCalendarDate(), apply(), draft, onSelect() (+5 more)
 
 ### Community 127 - "deployments-page.tsx"
 Cohesion: 0.29
@@ -816,40 +828,40 @@ Cohesion: 0.15
 Nodes (14): columns, date, icons, number, statusDot, Product, ProductKind, products (+6 more)
 
 ### Community 129 - "data.ts"
-Cohesion: 0.13
-Nodes (15): CHANNEL_SPLIT, CHANNELS, QUARTER_GROWTH, QUARTERS, REGION_BASE, REGIONS, salesData, PivotTableProps (+7 more)
+Cohesion: 0.09
+Nodes (25): months, revenueByRegion, HeatmapTable(), HeatmapTableProps, getHeatColor(), getHeatmapRange(), HeatmapRow, HeatmapTableDemo() (+17 more)
 
 ### Community 130 - "data-table.tsx"
-Cohesion: 0.10
-Nodes (26): Dialog(), DialogContent(), DialogDescription(), DialogFooter(), DialogHeader(), DialogTitle(), columns, Order (+18 more)
+Cohesion: 0.13
+Nodes (21): columns, Order, regions, statuses, statusVariant, usd, customers, orders (+13 more)
 
 ### Community 131 - "async-actions-page.tsx"
 Cohesion: 0.29
 Nodes (6): AsyncActionsPage(), files, steps, vueDeps, vueFiles, Route
 
 ### Community 132 - "data-table.tsx"
-Cohesion: 0.33
-Nodes (5): columns, User, DataTable(), DataTableProps, ServerFilterDemo()
+Cohesion: 0.12
+Nodes (14): getUserPageWithFilter, columns, DataTable(), files, ServerFilterPage(), steps, vueDeps, vueFiles (+6 more)
 
 ### Community 133 - "data-table.tsx"
-Cohesion: 0.24
-Nodes (8): columns, Service, ServiceStatus, LiveStatusTableProps, initialData, LiveStatusTableDemo(), STATUS_CONFIG, StatusIndicator()
+Cohesion: 0.22
+Nodes (12): columns, Service, ServiceStatus, jitterLatency(), LiveStatusTable(), LiveStatusTableProps, nextStatus(), TRANSITIONS (+4 more)
 
 ### Community 134 - "columns.tsx"
-Cohesion: 0.05
-Nodes (36): columns, Customer, usd, customers, rows, downloadFile(), toCsv(), toExcelHtml() (+28 more)
+Cohesion: 0.06
+Nodes (31): downloadFile(), toCsv(), toExcelHtml(), allPageSelected, ExportFormat, format, handleExport(), pagination (+23 more)
 
 ### Community 135 - "columns.tsx"
 Cohesion: 0.26
 Nodes (8): columns, data, KpiTableDemo(), formatKpiValue(), Kpi, KpiUnit, Sparkline(), SparklineProps
 
 ### Community 136 - "editable-table.ts"
-Cohesion: 0.33
-Nodes (5): files, GroupedTablePage(), steps, GroupedTableDemo(), Route
+Cohesion: 0.40
+Nodes (4): files, GroupedTablePage(), steps, Route
 
 ### Community 137 - "data-table.tsx"
-Cohesion: 0.36
-Nodes (6): Feature, FeatureValue, Plan, features, plans, ComparisonTableProps
+Cohesion: 0.31
+Nodes (7): Feature, FeatureValue, Plan, features, plans, ComparisonTableProps, ComparisonTableDemo()
 
 ### Community 138 - "columns.tsx"
 Cohesion: 0.23
@@ -860,16 +872,16 @@ Cohesion: 0.29
 Nodes (6): files, HeatmapTablePage(), steps, vueDeps, vueFiles, Route
 
 ### Community 140 - "kpi-table.ts"
-Cohesion: 0.29
-Nodes (6): files, KpiTablePage(), steps, vueDeps, vueFiles, Route
+Cohesion: 0.18
+Nodes (10): Confirmed: render-blocking Google Fonts request (790ms estimated savings), Fix Applied — Font-loading waterfall, Investigated, Not Changed — Shared vendor chunk "unused JS", Investigated, Not Changed — Tailwind class-attribute weight, Mobile Performance — shad-table.dev, New, fixed: mobile-only missing accessible name, New, fixed: non-composited hero background animation, Real Mobile Lighthouse Results (`/editable-table`, simulated slow mobile network + CPU throttling) (+2 more)
 
 ### Community 141 - "data-table.tsx"
 Cohesion: 0.24
 Nodes (11): editableFields, FieldConfig, FieldType, Product, cellKey(), currency(), EditableTable(), EditableTableProps (+3 more)
 
 ### Community 142 - "index.tsx"
-Cohesion: 0.10
-Nodes (15): AuroraBackground(), palettes, columns, data, HeroTable(), SpendNode, statusDot, total (+7 more)
+Cohesion: 0.08
+Nodes (21): AuroraBackground(), palettes, allLinks, DocsPager(), PagerLink(), columns, data, HeroTable() (+13 more)
 
 ### Community 143 - "tree-select.ts"
 Cohesion: 0.29
@@ -880,8 +892,8 @@ Cohesion: 0.17
 Nodes (12): columns, date, icons, number, statusDot, Product, ProductKind, products (+4 more)
 
 ### Community 145 - "index.tsx"
-Cohesion: 0.08
-Nodes (37): FacetedFilter(), Reveal(), RevealProps, DraggableResizableHeader(), Card(), CardAction(), CardContent(), CardDescription() (+29 more)
+Cohesion: 0.07
+Nodes (39): FacetedFilter(), Reveal(), RevealProps, DraggableResizableHeader(), Card(), CardAction(), CardContent(), CardDescription() (+31 more)
 
 ### Community 146 - "tree-reorder.ts"
 Cohesion: 0.13
@@ -889,19 +901,19 @@ Nodes (15): columns, date, number, statusDot, Product, ProductKind, products, St
 
 ### Community 147 - "data-table.tsx"
 Cohesion: 0.12
-Nodes (22): columns, SheetRow, filled, initialSheet(), cellName(), Pos, SpreadsheetTable(), SpreadsheetTableProps (+14 more)
+Nodes (20): columns, SheetRow, filled, initialSheet(), cellName(), SpreadsheetTable(), CellKind, CellView (+12 more)
 
 ### Community 148 - "index.tsx"
 Cohesion: 0.27
 Nodes (8): months, revenueByRegion, HeatmapTable(), HeatmapTableProps, getHeatColor(), getHeatmapRange(), HeatmapRow, HeatmapTableDemo()
 
 ### Community 149 - "index.tsx"
-Cohesion: 0.28
-Nodes (5): columns, Task, categoryOptions, data, FilterStateShapeTableDemo()
+Cohesion: 0.24
+Nodes (6): columns, Task, FilterStateShapeDataTable(), categoryOptions, data, FilterStateShapeTableDemo()
 
 ### Community 150 - "HeatmapTable"
-Cohesion: 0.08
-Nodes (32): activeFilters, props, onSelect(), toDate(), value, conditionFilterFn(), evaluateOperator(), FilterConditionValue (+24 more)
+Cohesion: 0.07
+Nodes (37): activeFilters, props, conditionFilterFn(), evaluateOperator(), FilterConditionValue, activeOperator, apply(), columnId (+29 more)
 
 ### Community 151 - "index.tsx"
 Cohesion: 0.33
@@ -1028,8 +1040,8 @@ Cohesion: 0.22
 Nodes (8): dependencies, description, files, name, registryDependencies, $schema, title, type
 
 ### Community 182 - "data-table.tsx"
-Cohesion: 0.08
-Nodes (35): columns, Order, regions, statuses, statusVariant, usd, customers, orders (+27 more)
+Cohesion: 0.14
+Nodes (18): applyExportConfig(), DatePreset, datePresets, defaultExportConfig(), ExportConfig, ExportFormat, downloadFile(), toCsv() (+10 more)
 
 ### Community 183 - "data-table.tsx"
 Cohesion: 0.27
@@ -1044,8 +1056,8 @@ Cohesion: 0.25
 Nodes (8): columns, Customer, usd, customers, rows, ExportSelectedTable(), ExportSelectedTableProps, ExportSelectedDemo()
 
 ### Community 186 - "index.tsx"
-Cohesion: 0.19
-Nodes (9): columns, Order, statusVariant, data, MobileCardsTableDemo(), ViewportToggle(), files, Route (+1 more)
+Cohesion: 0.32
+Nodes (6): columns, Order, statusVariant, data, MobileCardsTableDemo(), ViewportToggle()
 
 ### Community 187 - "index.tsx"
 Cohesion: 0.32
@@ -1060,28 +1072,28 @@ Cohesion: 0.33
 Nodes (5): AnimatedIconsTablePage(), files, iconInstalls, steps, Route
 
 ### Community 190 - "editable-table-page.tsx"
-Cohesion: 0.27
-Nodes (8): months, revenueByRegion, HeatmapTable(), HeatmapTableProps, getHeatColor(), getHeatmapRange(), HeatmapRow, HeatmapTableDemo()
+Cohesion: 0.18
+Nodes (10): 1. `params-filter-table.tsx` has no schema, no canonical, and no OG tags, 2. No `SearchAction` on the homepage `WebSite` schema, 3. No `BreadcrumbList` anywhere, 4. `SoftwareSourceCode` blocks could carry `codeSampleType`/`text`, Critical, Detection Summary, Info, Medium (+2 more)
 
 ### Community 191 - "export-config-page.tsx"
 Cohesion: 0.28
 Nodes (7): formatLastSynced(), initialSources, Source, SyncStatus, AsyncActionsTable(), AsyncActionsTableProps, AsyncActionsDemo()
 
 ### Community 192 - "export-selected-page.tsx"
-Cohesion: 0.24
-Nodes (8): columnHelper, columns, User, DataTableFilter(), BasicTableUsage(), data, roleOptions, statusOptions
+Cohesion: 0.35
+Nodes (7): View, Tabs(), TabsList(), TabsTrigger(), View, frameStyle, View
 
 ### Community 193 - "active-filter-chips.tsx"
-Cohesion: 0.12
-Nodes (21): columns, SheetRow, filled, initialSheet(), cellName(), Pos, SpreadsheetTable(), SpreadsheetTableProps (+13 more)
+Cohesion: 0.13
+Nodes (17): columns, SheetRow, filled, initialSheet(), CellKind, CellView, COLS, err() (+9 more)
 
 ### Community 194 - "filter-toolbar-page.tsx"
-Cohesion: 0.16
-Nodes (17): columns, day, money, statusStyle, Order, orders, OrderStatus, Shipment (+9 more)
+Cohesion: 0.17
+Nodes (18): columns, day, money, statusStyle, Order, orders, OrderStatus, Shipment (+10 more)
 
 ### Community 195 - "heatmap-table-page.tsx"
-Cohesion: 0.09
-Nodes (17): files, ResizableTablePage(), steps, vueDeps, vueFiles, ColumnPinningTableDemo(), TreeSelectDemo(), files (+9 more)
+Cohesion: 0.10
+Nodes (15): InstallCommandProps, files, ResizableTablePage(), steps, vueDeps, vueFiles, files, PivotTablePage() (+7 more)
 
 ### Community 196 - "index.tsx"
 Cohesion: 0.29
@@ -1116,20 +1128,20 @@ Cohesion: 0.09
 Nodes (23): CHANNEL_SPLIT, CHANNELS, QUARTER_GROWTH, QUARTERS, REGION_BASE, REGIONS, salesData, aggregate() (+15 more)
 
 ### Community 205 - "async-actions-page.tsx"
-Cohesion: 0.08
-Nodes (30): earliestUsable, metrics, props, Batch, columns, editableColumn(), EditableSkuField, getMeta() (+22 more)
+Cohesion: 0.15
+Nodes (17): Batch, columns, editableColumn(), EditableSkuField, getMeta(), SkuRow, statusRank, statusStyles (+9 more)
 
 ### Community 206 - "data-table.tsx"
-Cohesion: 0.06
-Nodes (32): emit, icon, onClick(), archive(), archived, columns, confirmDelete(), confirmingId (+24 more)
+Cohesion: 0.14
+Nodes (17): archive(), archived, columns, confirmDelete(), confirmingId, later(), leaving, props (+9 more)
 
 ### Community 207 - "columns.tsx"
-Cohesion: 0.47
-Nodes (4): columns, Employee, statusVariant, data
+Cohesion: 0.38
+Nodes (5): columns, Employee, statusVariant, ColumnPinningTableDemo(), data
 
 ### Community 208 - "comparison-table-page.tsx"
-Cohesion: 0.33
-Nodes (8): columns, currency(), Order, OrderItem, MasterDetailTable(), MasterDetailTableProps, data, OrderDetail()
+Cohesion: 0.29
+Nodes (9): columns, currency(), Order, OrderItem, MasterDetailTable(), MasterDetailTableProps, data, MasterDetailDemo() (+1 more)
 
 ### Community 209 - "deployments-page.tsx"
 Cohesion: 0.22
@@ -1144,19 +1156,19 @@ Cohesion: 0.22
 Nodes (8): dependencies, description, files, name, registryDependencies, $schema, title, type
 
 ### Community 212 - "master-detail-page.tsx"
-Cohesion: 0.25
-Nodes (7): FilterToolbarDemo(), files, FilterToolbarPage(), steps, vueDeps, vueFiles, Route
+Cohesion: 0.29
+Nodes (6): files, FilterToolbarPage(), steps, vueDeps, vueFiles, Route
 
 ### Community 213 - "pivot-table-page.tsx"
-Cohesion: 0.19
-Nodes (9): columns, DataTable(), ServerCombinedDemo(), files, ServerCombinedTablePage(), steps, vueDeps, vueFiles (+1 more)
+Cohesion: 0.33
+Nodes (5): columns, User, DataTable(), DataTableProps, ServerCombinedDemo()
 
 ### Community 214 - "tree-reorder-page.tsx"
 Cohesion: 0.14
 Nodes (13): columns, outputRules, ProductionLine, statusRules, trendRules, utilizationRules, data, clamped (+5 more)
 
 ### Community 215 - "index.tsx"
-Cohesion: 0.33
+Cohesion: 0.43
 Nodes (5): TeamMember, AnimatedIconsTable(), AnimatedIconsTableProps, AnimatedIconsTableDemo(), initialData
 
 ### Community 216 - "index.tsx"
@@ -1184,8 +1196,8 @@ Cohesion: 0.22
 Nodes (7): { animating, start, stop, bind }, { animating, start, stop, bind, onAnimationEnd }, { animating, start, stop, bind }, { animating, start, stop, bind }, { animating, start, stop, bind }, IconHandle, useIconAnimation()
 
 ### Community 222 - "DeleteButton.vue"
-Cohesion: 0.20
-Nodes (12): hex(), levelFor(), messages, months, NOW, pick(), random, regions (+4 more)
+Cohesion: 0.19
+Nodes (13): formatTime(), hex(), levelFor(), messages, months, pad(), pick(), random (+5 more)
 
 ### Community 223 - "columns.ts"
 Cohesion: 0.25
@@ -1204,8 +1216,8 @@ Cohesion: 0.22
 Nodes (8): dependencies, description, files, name, registryDependencies, $schema, title, type
 
 ### Community 227 - "TreeReorderDataTable.vue"
-Cohesion: 0.17
-Nodes (12): columns, OrgNode, arrayMove(), customUpdate(), data, expanded, props, reorderSiblings() (+4 more)
+Cohesion: 0.28
+Nodes (8): arrayMove(), customUpdate(), data, expanded, props, reorderSiblings(), table, TreeNode
 
 ### Community 228 - "deployments-page.tsx"
 Cohesion: 0.29
@@ -1216,16 +1228,16 @@ Cohesion: 0.29
 Nodes (6): EditableTablePage(), files, steps, vueDeps, vueFiles, Route
 
 ### Community 230 - "filter-state-shape-page.tsx"
-Cohesion: 0.40
-Nodes (4): DeploymentsPage(), files, steps, Route
+Cohesion: 0.13
+Nodes (12): DeploymentsPage(), files, steps, files, Route, steps, vueDeps, vueFiles (+4 more)
 
 ### Community 231 - "grouped-table-page.tsx"
 Cohesion: 0.29
 Nodes (6): files, GroupedTablePage(), steps, vueDeps, vueFiles, Route
 
 ### Community 232 - "resizable-table-page.tsx"
-Cohesion: 0.43
-Nodes (5): buttonVariants, Calendar(), CalendarDayButton(), DateRangeFilter(), DateRangeFilterProps
+Cohesion: 0.20
+Nodes (7): emit, icon, onClick(), button, emit, icon, props
 
 ### Community 233 - "tree-table-page.tsx"
 Cohesion: 0.38
@@ -1236,24 +1248,24 @@ Cohesion: 0.22
 Nodes (8): dependencies, description, files, name, registryDependencies, $schema, title, type
 
 ### Community 235 - "data.ts"
-Cohesion: 0.39
-Nodes (5): Feature, FeatureValue, Plan, features, plans
+Cohesion: 0.23
+Nodes (8): Feature, FeatureValue, Plan, columns, props, table, features, plans
 
 ### Community 236 - "EditableNumberCell.vue"
-Cohesion: 0.25
-Nodes (7): files, FilterStateShapePage(), steps, vueDeps, vueFiles, FilterStateShapeTableDemo(), Route
+Cohesion: 0.29
+Nodes (6): files, FilterStateShapePage(), steps, vueDeps, vueFiles, Route
 
 ### Community 237 - "ReorderableTable.vue"
-Cohesion: 0.38
-Nodes (5): ActiveFilterChips(), formatFilterLabel(), ActiveFilter, DateRangeFilter, MultiSelectFilter
+Cohesion: 0.12
+Nodes (23): FilterOption, FilterStateShapeDataTableProps, DateRangeFilterProps, buttonVariants, Calendar(), CalendarDayButton(), MultiSelectFilter(), Popover() (+15 more)
 
 ### Community 238 - "active-filter-chips.tsx"
 Cohesion: 0.38
 Nodes (5): ActiveFilterChips(), formatFilterLabel(), ActiveFilter, DateRangeFilter, MultiSelectFilter
 
 ### Community 239 - "index.tsx"
-Cohesion: 0.29
-Nodes (6): files, steps, UtilityTablePage(), vueDeps, vueFiles, Route
+Cohesion: 0.10
+Nodes (16): InstallCommand(), files, steps, UtilityTablePage(), vueDeps, vueFiles, ExportConfigPage(), files (+8 more)
 
 ### Community 240 - "SyncButton.vue"
 Cohesion: 0.47
@@ -1264,8 +1276,8 @@ Cohesion: 0.38
 Nodes (5): columns, Task, categoryOptions, data, statusOptions
 
 ### Community 242 - "column-pinning-table.tsx"
-Cohesion: 0.13
-Nodes (16): formatDuration(), LogEntry, fields, props, hiddenWhileOpen, onRowKeyDown(), props, rows (+8 more)
+Cohesion: 0.18
+Nodes (12): hiddenWhileOpen, onRowKeyDown(), props, rows, selectAt(), selected, selectedId, selectedIndex (+4 more)
 
 ### Community 243 - "conditional-formatting-table.tsx"
 Cohesion: 0.22
@@ -1280,16 +1292,16 @@ Cohesion: 0.33
 Nodes (7): Customer, ExportFormat, ExportSelectedTable(), ExportSelectedTableProps, downloadFile(), toCsv(), toExcelHtml()
 
 ### Community 246 - "tree-table-page.tsx"
-Cohesion: 0.05
-Nodes (31): ComparisonTablePage(), files, steps, vueDeps, vueFiles, InstallCommand(), InstallCommandProps, AsyncActionsPage() (+23 more)
+Cohesion: 0.29
+Nodes (6): ComparisonTablePage(), files, steps, vueDeps, vueFiles, Route
 
 ### Community 247 - "data.ts"
 Cohesion: 0.36
-Nodes (5): levels, services, statusClasses, clearFilters(), isFiltered()
+Nodes (6): levels, LogEntry, services, statusClasses, clearFilters(), isFiltered()
 
 ### Community 248 - "columns.ts"
-Cohesion: 0.33
-Nodes (5): ReorderableTableDemo(), files, ReorderableTablePage(), steps, Route
+Cohesion: 0.40
+Nodes (4): files, ReorderableTablePage(), steps, Route
 
 ### Community 249 - "GroupedTableDemo.vue"
 Cohesion: 0.47
@@ -1297,7 +1309,7 @@ Nodes (3): columns, Order, data
 
 ### Community 250 - "columns.ts"
 Cohesion: 0.29
-Nodes (4): columnPinning, props, table, props
+Nodes (8): ArchiveButton(), DeleteButton(), hoverHandlers(), SyncButton(), ArchiveIcon, lid, TrashIcon, RETURN_TRANSITION
 
 ### Community 251 - "ReorderableTableDemo.vue"
 Cohesion: 0.47
@@ -1308,72 +1320,72 @@ Cohesion: 0.29
 Nodes (6): files, SpreadsheetPage(), steps, vueDeps, vueFiles, Route
 
 ### Community 253 - "ResizableTableDemo.vue"
-Cohesion: 0.06
-Nodes (28): CodeBlock(), CodeBlockHighlight, CodeBlockProps, checklist, MigrateV9Page(), renames, sections, EditableTablePage() (+20 more)
+Cohesion: 0.40
+Nodes (4): EditableTablePage(), files, steps, Route
 
 ### Community 254 - "TreeTableDemo.vue"
 Cohesion: 0.60
 Nodes (3): columns, OrgNode, data
 
 ### Community 255 - "UtilityTableDemo.vue"
-Cohesion: 0.29
-Nodes (5): files, Route, steps, vueDeps, vueFiles
+Cohesion: 0.10
+Nodes (15): CodeBlockHighlight, CodeBlockProps, files, InfiniteScrollPage(), steps, files, steps, TreeSelectPage() (+7 more)
 
 ### Community 256 - "toolbar-filter-table-page.tsx"
 Cohesion: 0.29
 Nodes (6): files, steps, ToolbarFilterTablePage(), vueDeps, vueFiles, Route
 
 ### Community 257 - "async-actions-page.tsx"
-Cohesion: 0.20
-Nodes (9): TeamMember, AnimatedIconsTable(), AnimatedIconsTableProps, AnimatedIconsTableDemo(), initialData, FacetedFilter(), CheckboxGroup(), toggle() (+1 more)
+Cohesion: 0.43
+Nodes (5): TeamMember, AnimatedIconsTable(), AnimatedIconsTableProps, AnimatedIconsTableDemo(), initialData
 
 ### Community 258 - "filter-state-shape-page.tsx"
 Cohesion: 0.53
 Nodes (4): ExportConfigTableProps, downloadFile(), toCsv(), toExcelHtml()
 
 ### Community 259 - "infinite-scroll-page.tsx"
-Cohesion: 0.40
-Nodes (4): files, InfiniteScrollPage(), steps, Route
+Cohesion: 0.22
+Nodes (8): run(), arcs, BellRingingIcon, clapper, CROWN, DOME, shell, useHover()
 
 ### Community 260 - "reorder-table-page.tsx"
 Cohesion: 0.40
 Nodes (4): ExportSelectedPage(), files, steps, Route
 
 ### Community 261 - "index.tsx"
-Cohesion: 0.10
-Nodes (15): ComponentPreview(), readFramework(), MasterDetailDemo(), files, MasterDetailPage(), steps, files, Route (+7 more)
+Cohesion: 0.40
+Nodes (4): files, MasterDetailPage(), steps, Route
 
 ### Community 262 - "toolbar-filter-table-page.tsx"
 Cohesion: 0.40
 Nodes (4): files, FilterStateShapePage(), steps, Route
 
 ### Community 263 - "tree-reorder-page.tsx"
-Cohesion: 0.53
-Nodes (4): ThemeToggle(), getInitialTheme(), Theme, useTheme()
+Cohesion: 0.22
+Nodes (6): AI Search Readiness (GEO) Findings — shad-table.dev, Gaps, Recommendation Priority: Medium, What Works, Recommendation, Sitemap Findings — shad-table.dev
 
 ### Community 264 - "AnimatedIconsTableDemo.vue"
-Cohesion: 0.53
-Nodes (4): ExportFormat, downloadFile(), toCsv(), toExcelHtml()
+Cohesion: 0.09
+Nodes (28): statusStyle, HistoryEntry, ExportFormat, downloadFile(), toCsv(), toExcelHtml(), Button(), LogEntry (+20 more)
 
 ### Community 266 - "LogFields.vue"
-Cohesion: 0.47
-Nodes (3): columns, Order, data
+Cohesion: 0.38
+Nodes (4): columns, Order, data, GroupedTableDemo()
 
 ### Community 267 - "FilterStateShapeTableDemo.vue"
-Cohesion: 0.53
-Nodes (4): InfiniteScrollTable(), InfinitePage, InfiniteStatus, useInfiniteRows()
+Cohesion: 0.25
+Nodes (7): 1. Canonical tag and sitemap point at a URL that redirects away, 2. Sitemap is missing 12 of 27 live pages (44% of the site), 3. Missing common security headers, Critical, High, Info / Not Verifiable From This Environment, Technical SEO Findings — shad-table.dev
 
 ### Community 268 - "EditableNumberCell.vue"
 Cohesion: 0.40
 Nodes (4): files, KpiTablePage(), steps, Route
 
 ### Community 269 - "TreeSelectDataTable.vue"
-Cohesion: 0.25
-Nodes (7): expanded, props, rowSelection, selectedCount, sorting, table, totalCount
+Cohesion: 0.29
+Nodes (5): commit(), draft, emit, error, props
 
 ### Community 270 - "grouped-table-page.tsx"
-Cohesion: 0.33
-Nodes (5): ComparisonTablePage(), files, steps, ComparisonTableDemo(), Route
+Cohesion: 0.40
+Nodes (4): ComparisonTablePage(), files, steps, Route
 
 ### Community 271 - "resizable-table-page.tsx"
 Cohesion: 0.40
@@ -1388,8 +1400,8 @@ Cohesion: 0.40
 Nodes (4): files, LiveStatusTablePage(), steps, Route
 
 ### Community 274 - "pivot-table-page.tsx"
-Cohesion: 0.40
-Nodes (4): files, PivotTablePage(), steps, Route
+Cohesion: 0.29
+Nodes (6): 1. Thin content depth on example pages, 2. Near-duplicate page names/topics, Content & On-Page SEO Findings — shad-table.dev, Low, Medium, What Works
 
 ### Community 275 - "TreeReorderDemo.vue"
 Cohesion: 0.47
@@ -1404,28 +1416,28 @@ Cohesion: 0.40
 Nodes (4): files, steps, ToolbarFilterTablePage(), Route
 
 ### Community 278 - "utility-table-page.tsx"
-Cohesion: 0.33
-Nodes (5): UtilityTableDemo(), files, steps, UtilityTablePage(), Route
+Cohesion: 0.40
+Nodes (4): files, steps, UtilityTablePage(), Route
 
 ### Community 279 - "TreeDataTable.vue"
-Cohesion: 0.33
-Nodes (5): columnFilters, FilterOption, globalFilter, props, table
+Cohesion: 0.29
+Nodes (6): box, BOX_BOTTOM, label, lid, LID_HINGE, OVERSHOOT_BACK
 
 ### Community 280 - "index.tsx"
-Cohesion: 0.60
-Nodes (3): columns, Task, initialData
+Cohesion: 0.47
+Nodes (4): columns, Task, initialData, ReorderableTableDemo()
 
 ### Community 281 - "index.tsx"
-Cohesion: 0.60
-Nodes (3): columns, Employee, data
+Cohesion: 0.47
+Nodes (4): columns, Employee, data, UtilityTableDemo()
 
 ### Community 282 - "AnimatedIconsTableDemo.vue"
 Cohesion: 0.50
 Nodes (3): data, initialData, TeamMember
 
 ### Community 283 - "ResizableTableDemo.vue"
-Cohesion: 0.60
-Nodes (3): columns, User, data
+Cohesion: 0.33
+Nodes (4): Label(), id, props, selected
 
 ### Community 284 - "UtilityTableDemo.vue"
 Cohesion: 0.60
@@ -1435,25 +1447,73 @@ Nodes (3): columns, Employee, data
 Cohesion: 0.50
 Nodes (3): entries, loaders, NEEDS_ROUTER
 
+### Community 286 - "editable-cell.tsx"
+Cohesion: 0.29
+Nodes (4): emit, icon, props, syncing
+
+### Community 288 - "data-table.tsx"
+Cohesion: 0.29
+Nodes (5): files, Route, steps, vueDeps, vueFiles
+
+### Community 289 - "production-dashboard-table.tsx"
+Cohesion: 0.29
+Nodes (5): files, Route, steps, vueDeps, vueFiles
+
+### Community 290 - "Action Plan — shad-table.dev"
+Cohesion: 0.33
+Nodes (5): Action Plan — shad-table.dev, Phase 1: Critical Fixes (This Week), Phase 2: High-Impact Improvements (Weeks 2–3), Phase 3: Content & Authority (Month 2), Phase 4: Monitoring & Iteration (Ongoing)
+
+### Community 291 - "action-buttons.tsx"
+Cohesion: 0.53
+Nodes (5): ArrowsClockwiseIcon, ArchiveButton(), DeleteButton(), hoverHandlers(), SyncButton()
+
+### Community 292 - "async-actions-page.tsx"
+Cohesion: 0.40
+Nodes (4): AsyncActionsPage(), files, steps, Route
+
+### Community 293 - "heatmap-table-page.tsx"
+Cohesion: 0.40
+Nodes (4): files, HeatmapTablePage(), steps, Route
+
+### Community 294 - "tree-reorder-page.tsx"
+Cohesion: 0.40
+Nodes (4): files, steps, TreeReorderPage(), Route
+
+### Community 295 - "data.ts"
+Cohesion: 0.40
+Nodes (4): formatLastSynced(), initialSources, Source, SyncStatus
+
+### Community 296 - "TreeReorderDemo.vue"
+Cohesion: 0.47
+Nodes (4): columns, OrgNode, data, initialData
+
+### Community 297 - "schema.md"
+Cohesion: 0.40
+Nodes (3): Current State, Recommendations (Medium priority), Schema / Structured Data Findings — shad-table.dev
+
+### Community 299 - "LogFields.vue"
+Cohesion: 0.50
+Nodes (3): formatDuration(), fields, props
+
 ## Knowledge Gaps
-- **1895 isolated node(s):** `config`, `preview`, `$schema`, `style`, `rsc` (+1890 more)
+- **1925 isolated node(s):** `config`, `preview`, `$schema`, `style`, `rsc` (+1920 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `index.tsx` to `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `animated-icon.ts`, `filter-condition-editor.tsx`, `cn`, `index.tsx`, `code-block.tsx`, `data-table.tsx`, `popover.tsx`, `columns.tsx`, `data-table.tsx`, `utils.ts`, `index.tsx`, `columns.tsx`, `hero-table.tsx`, `code-block-highlight.tsx`, `index.tsx`, `data-table.tsx`, `data-table.tsx`, `index.tsx`, `filter-value-input.tsx`, `app.json`, `data-table.tsx`, `button.tsx`, `active-filter-chips.tsx`, `filter-toolbar-page.tsx`, `filter-condition-editor.tsx`, `data-table.tsx`, `index.tsx`, `editable-table-page.tsx`, `theme-toggle.tsx`, `router.tsx`, `pivot-table-page.tsx`, `column-pinning-table.tsx`, `column-pinning-table.tsx`, `tree-table-page.tsx`, `date-range-picker.tsx`, `Route`, `utility-table-page.tsx`, `server-combined-table-page.tsx`, `data-table.tsx`, `data-table.tsx`, `data-table.tsx`, `columns.tsx`, `columns.tsx`, `columns.tsx`, `data-table.tsx`, `index.tsx`, `utility-table-page.tsx`, `tree-reorder.ts`, `data-table.tsx`, `index.tsx`, `data-table.tsx`, `data-table.tsx`, `index.tsx`, `version-switcher.tsx`, `editable-table-page.tsx`, `export-config-page.tsx`, `active-filter-chips.tsx`, `filter-toolbar-page.tsx`, `toolbar-filter-table-page.tsx`, `index.tsx`, `async-actions-page.tsx`, `data-table.tsx`, `grouped-table-page.tsx`, `pivot-table-page.tsx`, `tree-reorder-page.tsx`, `index.tsx`, `index.tsx`, `HeatmapTable.vue`, `UtilityTable.vue`, `columns.ts`, `columns.ts`, `resizable-table-page.tsx`, `tree-table-page.tsx`, `column-pinning-table.tsx`, `data-table.tsx`, `columns.ts`, `ResizableTableDemo.vue`, `async-actions-page.tsx`, `AnimatedIconsTableDemo.vue`, `LevelLabel.vue`, `editable-cell.tsx`?**
+- **Why does `cn()` connect `index.tsx` to `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `filter-condition-editor.tsx`, `cn`, `code-block.tsx`, `data-table.tsx`, `popover.tsx`, `Technical SEO Deep Audit — shad-table.dev`, `columns.tsx`, `data-table.tsx`, `utils.ts`, `index.tsx`, `data-table.tsx`, `columns.tsx`, `hero-table.tsx`, `code-block-highlight.tsx`, `index.tsx`, `data-table.tsx`, `data-table.tsx`, `index.tsx`, `filter-value-input.tsx`, `app.json`, `data-table.tsx`, `button.tsx`, `filter-toolbar-page.tsx`, `filter-condition-editor.tsx`, `tree-reorder-page.tsx`, `data-table.tsx`, `index.tsx`, `schema.md`, `theme-toggle.tsx`, `router.tsx`, `pivot-table-page.tsx`, `column-pinning-table.tsx`, `column-pinning-table.tsx`, `tree-table-page.tsx`, `date-range-picker.tsx`, `Route`, `utility-table-page.tsx`, `server-combined-table-page.tsx`, `data.ts`, `data-table.tsx`, `data-table.tsx`, `data-table.tsx`, `columns.tsx`, `columns.tsx`, `columns.tsx`, `data-table.tsx`, `index.tsx`, `utility-table-page.tsx`, `tree-reorder.ts`, `data-table.tsx`, `index.tsx`, `data-table.tsx`, `index.tsx`, `version-switcher.tsx`, `export-config-page.tsx`, `export-selected-page.tsx`, `filter-toolbar-page.tsx`, `toolbar-filter-table-page.tsx`, `index.tsx`, `async-actions-page.tsx`, `data-table.tsx`, `grouped-table-page.tsx`, `pivot-table-page.tsx`, `tree-reorder-page.tsx`, `index.tsx`, `index.tsx`, `HeatmapTable.vue`, `UtilityTable.vue`, `columns.ts`, `columns.ts`, `resizable-table-page.tsx`, `tree-table-page.tsx`, `data.ts`, `ReorderableTable.vue`, `column-pinning-table.tsx`, `data-table.tsx`, `columns.ts`, `UtilityTableDemo.vue`, `async-actions-page.tsx`, `AnimatedIconsTableDemo.vue`, `LevelLabel.vue`, `TreeSelectDataTable.vue`, `ResizableTableDemo.vue`, `editable-cell.tsx`, `action-buttons.tsx`, `LogFields.vue`?**
   _High betweenness centrality (0.177) - this node is a cross-community bridge._
-- **Why does `Button()` connect `data-table.tsx` to `server-combined-table-page.tsx`, `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `filter-state-shape-page.tsx`, `columns.tsx`, `cn`, `AnimatedIconsTableDemo.vue`, `filter-condition-editor.tsx`, `FilterStateShapeTableDemo.vue`, `data-table.tsx`, `index.tsx`, `server-combined-table-page.tsx`, `utility-table-page.tsx`, `index.tsx`, `tree-reorder.ts`, `HeatmapTable`, `data-table.tsx`, `hero-table.tsx`, `data-table.tsx`, `data-table.tsx`, `version-switcher.tsx`, `filter-toolbar-page.tsx`, `toolbar-filter-table-page.tsx`, `index.tsx`, `data-table.tsx`, `data-table.tsx`, `async-actions-page.tsx`, `data-table.tsx`, `filter-value-input.tsx`, `filter-toolbar-page.tsx`, `index.tsx`, `filter-condition-editor.tsx`, `UtilityTable.vue`, `theme-toggle.tsx`, `router.tsx`, `pivot-table-page.tsx`, `resizable-table-page.tsx`, `columns.ts`, `data.ts`, `ReorderableTable.vue`, `active-filter-chips.tsx`, `column-pinning-table.tsx`, `data-table.tsx`, `tree-table-page.tsx`, `data.ts`, `date-range-picker.tsx`, `params-filter-table.tsx`, `ResizableTableDemo.vue`, `utility-table-page.tsx`?**
-  _High betweenness centrality (0.054) - this node is a cross-community bridge._
-- **Why does `react` connect `sidebar.tsx` to `resizable-table-page.tsx`, `index.tsx`, `Button.stories.ts`, `dependencies`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+- **Why does `Button()` connect `AnimatedIconsTableDemo.vue` to `server-combined-table-page.tsx`, `sidebar.tsx`, `table.tsx`, `data-table.tsx`, `async-actions-page.tsx`, `filter-state-shape-page.tsx`, `data-table.tsx`, `columns.tsx`, `cn`, `filter-condition-editor.tsx`, `code-block.tsx`, `data-table.tsx`, `index.tsx`, `server-combined-table-page.tsx`, `utility-table-page.tsx`, `index.tsx`, `tree-reorder.ts`, `HeatmapTable`, `Technical SEO Deep Audit — shad-table.dev`, `data-table.tsx`, `index.tsx`, `hero-table.tsx`, `not-found.tsx`, `data-table.tsx`, `data-table.tsx`, `version-switcher.tsx`, `filter-toolbar-page.tsx`, `heatmap-table-page.tsx`, `toolbar-filter-table-page.tsx`, `index.tsx`, `index.tsx`, `data-table.tsx`, `data-table.tsx`, `data-table.tsx`, `filter-value-input.tsx`, `index.tsx`, `filter-toolbar-page.tsx`, `index.tsx`, `filter-condition-editor.tsx`, `UtilityTable.vue`, `theme-toggle.tsx`, `router.tsx`, `pivot-table-page.tsx`, `data.ts`, `data.ts`, `ReorderableTable.vue`, `active-filter-chips.tsx`, `data-table.tsx`, `data.ts`, `column-pinning-table.tsx`, `date-range-picker.tsx`, `utility-table-page.tsx`, `UtilityTableDemo.vue`?**
+  _High betweenness centrality (0.057) - this node is a cross-community bridge._
+- **Why does `react` connect `sidebar.tsx` to `ReorderableTable.vue`, `GEO / AI Search Analysis — shad-table.dev`, `Button.stories.ts`, `dependencies`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
 - **Are the 36 inferred relationships involving `V9Features` (e.g. with `AnimatedIconsTable()` and `AsyncActionsTable()`) actually correct?**
   _`V9Features` has 36 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `config`, `preview`, `$schema` to the rest of the system?**
-  _1895 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1925 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `routeTree.gen.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.023470661672908864 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.023772204806687566 - nodes in this community are weakly interconnected._
 - **Should `sidebar.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._

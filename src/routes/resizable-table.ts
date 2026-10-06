@@ -8,7 +8,7 @@ export const Route = createFileRoute('/resizable-table')({
       {
         name: 'description',
         content:
-          "A table with resizable and reorderable columns for shadcn/ui and TanStack Table. Drag a header's grip to reorder columns, drag its right edge to resize — the resulting layout is saved to localStorage and restored on your next visit.",
+          'Resizable and reorderable columns for shadcn/ui and TanStack Table, with the layout saved to localStorage.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/resizable-table')({
             'A table with drag-to-resize and drag-to-reorder columns that persist to localStorage.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/resizable-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

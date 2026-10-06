@@ -8,7 +8,7 @@ export const Route = createFileRoute('/toolbar-filter-table')({
       {
         name: 'description',
         content:
-          'A toolbar filter table for shadcn/ui and TanStack Table. A simple filter row above the table — dropdown selects and a search input, filters applied immediately. The 80% use case for filtering.',
+          'Toolbar filter table for shadcn/ui and TanStack Table: dropdown selects and a search input above the table.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/toolbar-filter-table')({
             'A simple filter row above the table — dropdown selects and a search input, filters applied immediately.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/toolbar-filter-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

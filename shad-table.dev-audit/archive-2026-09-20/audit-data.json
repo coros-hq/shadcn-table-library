@@ -1,0 +1,168 @@
+{
+  "summary": {
+    "health_score": 68,
+    "business_type": "Developer tool / open-source component library (shadcn/ui + TanStack Table add-ons)",
+    "top_findings": [
+      "Canonical tags, sitemap, and og:image all point at a host (shad-table.dev) that 307-redirects to www.shad-table.dev",
+      "sitemap.xml is missing 12 of 27 live pages (44%)",
+      "Apex-to-www redirect uses 307 (temporary) instead of 301/308 (permanent)",
+      "No security headers beyond HSTS (missing X-Content-Type-Options, X-Frame-Options, CSP, Referrer-Policy)",
+      "Only one JSON-LD block site-wide (homepage WebSite); no schema on any of the 27 example pages"
+    ],
+    "quick_wins": [
+      "Regenerate sitemap.xml with all 27 pages",
+      "Align canonical/OG/sitemap host and switch redirect to 301",
+      "Add llms.txt",
+      "Add security headers via Vercel config",
+      "Add BreadcrumbList + SoftwareSourceCode schema to shared example-page layout"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 55,
+      "what_works": [
+        "robots.txt is permissive and correctly references sitemap.xml",
+        "No noindex tags found on sampled pages",
+        "Core content is server-rendered (not JS-only), safe for all crawlers"
+      ],
+      "findings": [
+        {
+          "title": "Canonical/sitemap/OG point at a redirecting host",
+          "severity": "Critical",
+          "description": "https://shad-table.dev/ returns HTTP 307 to https://www.shad-table.dev/, but every canonical tag, sitemap <loc>, and og:image URL uses the shad-table.dev (redirecting) host.",
+          "recommendation": "Pick one canonical host and align canonical tags, sitemap, and OG/Twitter tags to it; change redirect to 301."
+        },
+        {
+          "title": "Sitemap missing 44% of live pages",
+          "severity": "Critical",
+          "description": "27 live 200-status pages discovered via internal link crawl; sitemap.xml lists only 16.",
+          "recommendation": "Regenerate sitemap.xml from the actual route manifest, ideally automated at build time."
+        },
+        {
+          "title": "Temporary redirect used for permanent host preference",
+          "severity": "High",
+          "description": "Apex-to-www redirect returns 307 instead of 301/308.",
+          "recommendation": "Switch to a 301 (or 308) permanent redirect."
+        },
+        {
+          "title": "Missing security headers",
+          "severity": "High",
+          "description": "Only strict-transport-security present; no X-Content-Type-Options, X-Frame-Options, CSP, or Referrer-Policy.",
+          "recommendation": "Add baseline security headers via Vercel/Next config."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 72,
+      "what_works": [
+        "Unique titles, meta descriptions, and H1s across all sampled pages",
+        "Descriptions are specific to each component, not boilerplate"
+      ],
+      "findings": [
+        {
+          "title": "Thin unique prose per example page",
+          "severity": "Medium",
+          "description": "580-840 words per page, mostly nav/UI chrome rather than page-specific explanatory text.",
+          "recommendation": "Add a 2-4 sentence unique intro per page describing the use case."
+        },
+        {
+          "title": "Near-duplicate page topics risk cannibalization",
+          "severity": "Medium",
+          "description": "filter-toolbar-table, toolbar-filter-table, params-filter-table, filter-state-shape-table, and server-filter overlap conceptually.",
+          "recommendation": "Ensure each page's copy clearly differentiates its specific use case."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 45,
+      "what_works": [
+        "Existing WebSite JSON-LD validates correctly"
+      ],
+      "findings": [
+        {
+          "title": "No schema on any example page",
+          "severity": "Medium",
+          "description": "Only the homepage has JSON-LD (WebSite type); 27 example pages have none.",
+          "recommendation": "Add BreadcrumbList and SoftwareSourceCode/TechArticle schema via the shared page layout."
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "score": null,
+      "what_works": [],
+      "findings": [
+        {
+          "title": "Field data not measurable from this environment",
+          "severity": "Info",
+          "description": "curl timing showed a flat ~10s connect time on every request regardless of asset size, indicating a sandbox network artifact rather than real site latency.",
+          "recommendation": "Run PageSpeed Insights / CrUX directly against https://www.shad-table.dev for trustworthy LCP/INP/CLS data."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 60,
+      "what_works": [
+        "robots.txt allows all crawlers including AI bots (GPTBot, ClaudeBot, PerplexityBot)",
+        "Content is server-rendered and readable without JS execution"
+      ],
+      "findings": [
+        {
+          "title": "No llms.txt",
+          "severity": "Medium",
+          "description": "https://www.shad-table.dev/llms.txt returns 404.",
+          "recommendation": "Add an llms.txt summarizing the product and linking to component pages."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Week 1",
+        "items": [
+          "Align canonical host across canonical tags, sitemap, and OG tags",
+          "Switch host redirect from 307 to 301",
+          "Regenerate sitemap.xml to include all 27 live pages"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "Automate sitemap generation from route manifest",
+          "Add security headers (X-Content-Type-Options, X-Frame-Options, CSP, Referrer-Policy)",
+          "Add BreadcrumbList and SoftwareSourceCode/TechArticle schema to example-page layout",
+          "Run PageSpeed Insights for real CWV field data"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Add unique intro copy to each example page, especially near-duplicate filter pages",
+          "Add llms.txt",
+          "Add SearchAction to homepage WebSite schema if applicable"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "CI check comparing sitemap.xml against actual routes on every deploy",
+          "Track indexation of previously-missing pages in Search Console",
+          "Re-run Lighthouse/PageSpeed after adding new example pages"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}

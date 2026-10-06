@@ -8,7 +8,7 @@ export const Route = createFileRoute('/tree-reorder')({
       {
         name: 'description',
         content:
-          "A drag-and-drop tree table for shadcn/ui and TanStack Table. The same department/team/employee tree, with rows draggable by a handle — reordering is scoped to siblings so a department can't be dropped inside a team.",
+          'Drag-and-drop tree table for shadcn/ui and TanStack Table: reorder rows among siblings with a drag handle.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/tree-reorder')({
             'A hierarchical tree table with sibling-scoped drag-to-reorder rows.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/tree-reorder',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

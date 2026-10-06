@@ -4,15 +4,19 @@ import { AnimatedIconsTablePage } from '#/components/v9/animated-icons/animated-
 export const Route = createFileRoute('/v9/animated-icons-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Table with Animated Icons — ShadTable' },
+      {
+        title:
+          'Shadcn Table with Animated Icons — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A table with animated row-action icons for shadcn/ui and TanStack Table. Row actions built with Iconimate — motion-driven icons that animate on hover, focus, and click, wired to favorite, notify, archive, and delete.',
+          'Table with animated row-action icons for shadcn/ui and TanStack Table: favorite, notify, archive and delete with Iconimate. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Table with Animated Icons — ShadTable',
+        content:
+          'Shadcn Table with Animated Icons — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/animated-icons-table')({
             'A data table with row actions built from Iconimate animated icons: favorite, notify, archive, and delete.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/animated-icons-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

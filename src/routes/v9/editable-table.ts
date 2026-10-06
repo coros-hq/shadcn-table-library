@@ -4,15 +4,19 @@ import { EditableTablePage } from '#/components/v9/editable/editable-table-page'
 export const Route = createFileRoute('/v9/editable-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Editable Table (Inline Editing) — ShadTable' },
+      {
+        title:
+          'Shadcn Editable Table (Inline Editing) — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'An editable data table for shadcn/ui and TanStack Table. Click a cell to edit it inline. Edits validate on commit, apply optimistically, roll back on a simulated failure, and can be undone one at a time.',
+          'Inline-editable data table for shadcn/ui and TanStack Table: validation, optimistic updates, rollback and undo. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Editable Table (Inline Editing) — ShadTable',
+        content:
+          'Shadcn Editable Table (Inline Editing) — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/editable-table')({
             'An inline-editable table with optimistic updates, validation, rollback, and undo.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/editable-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

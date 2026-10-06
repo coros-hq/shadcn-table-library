@@ -151,7 +151,7 @@ export const Route = createFileRoute('/inventory-allocation-table')({
       {
         name: 'description',
         content:
-          'An inventory allocation table for shadcn/ui and TanStack Table. An editable inventory grid with expandable batch detail and live formula columns — reorder point, days of cover, and suggested PO recalculate as you edit demand, lead time, or batch allocations.',
+          'Editable inventory table for shadcn/ui and TanStack Table with batch detail and live formula columns like days of cover.',
       },
       {
         property: 'og:title',
@@ -171,6 +171,13 @@ export const Route = createFileRoute('/inventory-allocation-table')({
             'An editable inventory batch management and order allocation table with master-detail expansion and live formula columns.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/inventory-allocation-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],
@@ -210,14 +217,14 @@ function InventoryAllocationTablePage() {
         />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">How it works</p>
+          <h2 className="text-sm font-medium">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <h3 className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <span className="text-muted-foreground">{i + 1}.</span>
                   {step.title}
-                </p>
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {step.description}
                 </p>

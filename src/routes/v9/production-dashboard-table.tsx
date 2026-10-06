@@ -12,7 +12,10 @@ import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 
 const files = [
-  { path: 'src/components/v9/production-dashboard/index.tsx', code: indexSource },
+  {
+    path: 'src/components/v9/production-dashboard/index.tsx',
+    code: indexSource,
+  },
   {
     path: 'src/components/v9/production-dashboard/columns.tsx',
     code: columnsSource,
@@ -21,7 +24,10 @@ const files = [
     path: 'src/components/v9/production-dashboard/data-table.tsx',
     code: dataTableSource,
   },
-  { path: 'src/components/v9/production-dashboard/rules.ts', code: rulesSource },
+  {
+    path: 'src/components/v9/production-dashboard/rules.ts',
+    code: rulesSource,
+  },
   {
     path: 'src/components/v9/production-dashboard/progress-bar.tsx',
     code: progressBarSource,
@@ -81,15 +87,19 @@ import { matchRule } from './rules'`,
 export const Route = createFileRoute('/v9/production-dashboard-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Production Dashboard Table — ShadTable' },
+      {
+        title:
+          'Shadcn Production Dashboard Table — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A production dashboard table for shadcn/ui and TanStack Table. A production-line dashboard combining conditional formatting, progress bars, and sparklines on one realistic dataset — a composition of existing primitives, not a new feature.',
+          'Production dashboard table for shadcn/ui and TanStack Table combining conditional formatting, progress bars and sparklines. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Production Dashboard Table — ShadTable',
+        content:
+          'Shadcn Production Dashboard Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -105,6 +115,13 @@ export const Route = createFileRoute('/v9/production-dashboard-table')({
             'A production-line dashboard table combining conditional formatting, progress bars, and sparklines.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/production-dashboard-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],
@@ -142,14 +159,14 @@ function ProductionDashboardTablePage() {
         />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">How it works</p>
+          <h2 className="text-sm font-medium">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <h3 className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <span className="text-muted-foreground">{i + 1}.</span>
                   {step.title}
-                </p>
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {step.description}
                 </p>

@@ -8,7 +8,7 @@ export const Route = createFileRoute('/infinite-scroll-table')({
       {
         name: 'description',
         content:
-          'An infinite scroll table for shadcn/ui and TanStack Table. Loads the next page as you scroll with an IntersectionObserver sentinel, skeleton loading rows, inline retry on errors, and a sticky header.',
+          'Infinite scroll table for shadcn/ui and TanStack Table: IntersectionObserver loading, skeleton rows, retry on error, sticky header.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/infinite-scroll-table')({
             'A table that loads more rows as you scroll, using an IntersectionObserver sentinel and a cursor-based fetcher.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/infinite-scroll-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

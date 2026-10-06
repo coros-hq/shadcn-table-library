@@ -4,15 +4,19 @@ import { TreeSelectPage } from '#/components/v9/tree-select/tree-select-page'
 export const Route = createFileRoute('/v9/tree-select')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Tree Table with Checkbox Selection — ShadTable' },
+      {
+        title:
+          'Shadcn Tree Table with Checkbox Selection — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A tree table with checkbox selection for shadcn/ui and TanStack Table. The same department/team/employee tree, with a checkbox column that cascades selection to every descendant and reports indeterminate state for partial branches.',
+          'Tree table with checkbox selection for shadcn/ui and TanStack Table: cascading selection and indeterminate parents. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Tree Table with Checkbox Selection — ShadTable',
+        content:
+          'Shadcn Tree Table with Checkbox Selection — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/tree-select')({
             'A hierarchical tree table with cascading checkbox selection and indeterminate state.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/tree-select',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

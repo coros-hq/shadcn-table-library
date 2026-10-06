@@ -4,15 +4,18 @@ import { ResizableTablePage } from '#/components/v9/resizable-reorder/resizable-
 export const Route = createFileRoute('/v9/resizable-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Table Resizable & Reorderable Columns — ShadTable' },
+      {
+        title: 'Shadcn Resizable Columns Table — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          "A table with resizable and reorderable columns for shadcn/ui and TanStack Table. Drag a header's grip to reorder columns, drag its right edge to resize — the resulting layout is saved to localStorage and restored on your next visit.",
+          'Resizable and reorderable columns for shadcn/ui and TanStack Table, with the layout saved to localStorage. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Table Resizable & Reorderable Columns — ShadTable',
+        content:
+          'Shadcn Resizable Columns Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +31,13 @@ export const Route = createFileRoute('/v9/resizable-table')({
             'A table with drag-to-resize and drag-to-reorder columns that persist to localStorage.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/resizable-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

@@ -4,15 +4,19 @@ import { TreeReorderPage } from '#/components/v9/tree-reorder/tree-reorder-page'
 export const Route = createFileRoute('/v9/tree-reorder')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Tree Table with Drag Reorder — ShadTable' },
+      {
+        title:
+          'Shadcn Tree Table with Drag Reorder — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          "A drag-and-drop tree table for shadcn/ui and TanStack Table. The same department/team/employee tree, with rows draggable by a handle — reordering is scoped to siblings so a department can't be dropped inside a team.",
+          'Drag-and-drop tree table for shadcn/ui and TanStack Table: reorder rows among siblings with a drag handle. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Tree Table with Drag Reorder — ShadTable',
+        content:
+          'Shadcn Tree Table with Drag Reorder — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/tree-reorder')({
             'A hierarchical tree table with sibling-scoped drag-to-reorder rows.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/tree-reorder',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

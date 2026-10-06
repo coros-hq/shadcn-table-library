@@ -8,7 +8,7 @@ export const Route = createFileRoute('/grouped-table')({
       {
         name: 'description',
         content:
-          "A grouped table with row grouping for shadcn/ui and TanStack Table. Orders grouped by category, with collapsible group headers and a live subtotal of each group's order amounts.",
+          'Row grouping for shadcn/ui and TanStack Table: collapsible group headers with live subtotals per group.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/grouped-table')({
             'A table with collapsible row groups and live per-group subtotals.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/grouped-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

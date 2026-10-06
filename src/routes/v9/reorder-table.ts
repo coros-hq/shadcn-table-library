@@ -4,15 +4,19 @@ import { ReorderableTablePage } from '#/components/v9/reorder/reorder-table-page
 export const Route = createFileRoute('/v9/reorder-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Drag-and-Drop Reorderable Table — ShadTable' },
+      {
+        title:
+          'Shadcn Drag-and-Drop Reorderable Table — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A drag-and-drop reorderable table for shadcn/ui and TanStack Table. Drag rows to reorder them, built on @dnd-kit/sortable rather than any table-specific drag logic.',
+          'Drag-and-drop reorderable table for shadcn/ui and TanStack Table, built on @dnd-kit/sortable. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Drag-and-Drop Reorderable Table — ShadTable',
+        content:
+          'Shadcn Drag-and-Drop Reorderable Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +32,13 @@ export const Route = createFileRoute('/v9/reorder-table')({
             'A table with drag-to-reorder rows powered by @dnd-kit/sortable.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/reorder-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

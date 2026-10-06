@@ -8,7 +8,7 @@ export const Route = createFileRoute('/tree-select')({
       {
         name: 'description',
         content:
-          'A tree table with checkbox selection for shadcn/ui and TanStack Table. The same department/team/employee tree, with a checkbox column that cascades selection to every descendant and reports indeterminate state for partial branches.',
+          'Tree table with checkbox selection for shadcn/ui and TanStack Table: cascading selection and indeterminate parents.',
       },
       {
         property: 'og:title',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/tree-select')({
             'A hierarchical tree table with cascading checkbox selection and indeterminate state.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/tree-select',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

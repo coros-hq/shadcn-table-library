@@ -4,15 +4,15 @@ import { InfiniteScrollPage } from '#/components/v9/infinite-scroll/infinite-scr
 export const Route = createFileRoute('/v9/infinite-scroll-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Infinite Scroll Table — ShadTable' },
+      { title: 'Shadcn Infinite Scroll Table — TanStack Table v9 — ShadTable' },
       {
         name: 'description',
         content:
-          'An infinite scroll table for shadcn/ui and TanStack Table. Loads the next page as you scroll with an IntersectionObserver sentinel, skeleton loading rows, inline retry on errors, and a sticky header.',
+          'Infinite scroll table for shadcn/ui and TanStack Table: IntersectionObserver loading, skeleton rows, retry on error, sticky header. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Infinite Scroll Table — ShadTable',
+        content: 'Shadcn Infinite Scroll Table — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -28,6 +28,13 @@ export const Route = createFileRoute('/v9/infinite-scroll-table')({
             'A table that loads more rows as you scroll, using an IntersectionObserver sentinel and a cursor-based fetcher.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/infinite-scroll-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],

@@ -107,15 +107,19 @@ const { search, role, setSearch, setRole } = useNuqsFilters()`,
 export const Route = createFileRoute('/v9/params-filter-table')({
   head: () => ({
     meta: [
-      { title: 'Shadcn Table with URL Params Filters — ShadTable' },
+      {
+        title:
+          'Shadcn Table with URL Params Filters — TanStack Table v9 — ShadTable',
+      },
       {
         name: 'description',
         content:
-          'A data table with URL search params filters for shadcn/ui and TanStack Table. A data table whose filter state is synced to URL search params.',
+          'Data table with filters synced to URL search params for shadcn/ui and TanStack Table: shareable and back-button friendly. For TanStack Table v9.',
       },
       {
         property: 'og:title',
-        content: 'Shadcn Table with URL Params Filters — ShadTable',
+        content:
+          'Shadcn Table with URL Params Filters — TanStack Table v9 — ShadTable',
       },
       {
         property: 'og:description',
@@ -131,6 +135,13 @@ export const Route = createFileRoute('/v9/params-filter-table')({
             'A data table whose filter state is synced to URL search params, decoupled from the filtering UI via a controlled-props interface.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/v9/params-filter-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],
@@ -170,14 +181,14 @@ function ParamsFilterTablePage() {
         <ComponentPreview preview={<ParamsFilterTableDemo />} files={files} />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">How it works</p>
+          <h2 className="text-sm font-medium">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <h3 className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <span className="text-muted-foreground">{i + 1}.</span>
                   {step.title}
-                </p>
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {step.description}
                 </p>

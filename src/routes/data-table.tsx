@@ -21,7 +21,7 @@ export const Route = createFileRoute('/data-table')({
       {
         name: 'description',
         content:
-          'A data table for shadcn/ui and TanStack Table, with React and Vue source. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table.',
+          'Sortable, filterable, paginated data table for shadcn/ui and TanStack Table with a composable filter toolbar. React and Vue code.',
       },
       {
         property: 'og:title',
@@ -41,6 +41,13 @@ export const Route = createFileRoute('/data-table')({
             'A sortable, filterable, paginated table with a composable toolbar for column-specific filters, built on shadcn/ui and TanStack Table.',
           codeRepository: 'https://github.com/coros-hq/shadcn-table-library',
           programmingLanguage: 'TypeScript',
+          url: 'https://www.shad-table.dev/data-table',
+          isAccessibleForFree: true,
+          author: {
+            '@type': 'Organization',
+            name: 'coros-hq',
+            url: 'https://github.com/coros-hq',
+          },
         },
       },
     ],
@@ -55,7 +62,10 @@ const files = [
   { path: 'src/components/basic/index.tsx', code: basicIndexSource },
   { path: 'src/components/basic/columns.tsx', code: basicColumnsSource },
   { path: 'src/components/basic/data-table.tsx', code: basicDataTableSource },
-  { path: 'src/components/basic/data-table-filter.tsx', code: dataTableFilterSource },
+  {
+    path: 'src/components/basic/data-table-filter.tsx',
+    code: dataTableFilterSource,
+  },
 ]
 
 const vueFiles = [
@@ -174,14 +184,14 @@ function Home() {
         />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">How it works</p>
+          <h2 className="text-sm font-medium">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">
-                <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <h3 className="flex items-center gap-2 text-sm font-medium text-foreground">
                   <span className="text-muted-foreground">{i + 1}.</span>
                   {step.title}
-                </p>
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {step.description}
                 </p>
