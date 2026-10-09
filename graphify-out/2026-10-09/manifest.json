@@ -335,8 +335,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/docs-layout.tsx": {
-    "mtime": 1791540921.1290338,
-    "ast_hash": "b11388b5f4e8aa5cd2b0f713a830ea52",
+    "mtime": 1790537158.8777106,
+    "ast_hash": "fd1db320085dc520ccb3d537ae918dd6",
     "semantic_hash": ""
   },
   "src/components/docs/github-stars.tsx": {
@@ -1145,8 +1145,8 @@
     "semantic_hash": ""
   },
   "src/routes/index.tsx": {
-    "mtime": 1791540910.5594919,
-    "ast_hash": "6db426b72454a5f8c215cadb69cd4d64",
+    "mtime": 1791294552.2989454,
+    "ast_hash": "8ed6972ee6a354c4e280cdb3976e9805",
     "semantic_hash": ""
   },
   "src/routes/kpi-table.ts": {
@@ -1305,8 +1305,8 @@
     "semantic_hash": ""
   },
   "shad-table.dev-audit/ACTION-PLAN.md": {
-    "mtime": 1791294653.2263916,
-    "ast_hash": "024b375065b04c312f8b72224dcf24fd",
+    "mtime": 1791294642.8329687,
+    "ast_hash": "a2c3fd6fd85b620d4837f8d857a1fb22",
     "semantic_hash": ""
   },
   "shad-table.dev-audit/FULL-AUDIT-REPORT.md": {
@@ -1725,7 +1725,7 @@
     "semantic_hash": ""
   },
   "public/llms.txt": {
-    "mtime": 1791540935.3611846,
+    "mtime": 1791294636.7954118,
     "ast_hash": "390a8e688c9d631a2225c8e6e844872e",
     "semantic_hash": ""
   },

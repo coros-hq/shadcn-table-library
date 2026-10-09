@@ -5,8 +5,13 @@ import { ArrowRight } from 'lucide-react'
 import { SiteHeader } from '#/components/docs/site-header.tsx'
 import { AuroraBackground } from '#/components/docs/aurora-background.tsx'
 import { HeroTable } from '#/components/docs/hero-table.tsx'
-import { navGroups, topLevelLinks } from '#/components/docs/nav-content.tsx'
+import {
+  navGroups,
+  topLevelLinks,
+  V9_PORTED_ROUTES,
+} from '#/components/docs/nav-content.tsx'
 import type { NavLink } from '#/components/docs/nav-content.tsx'
+import { withVersionPrefix } from '#/components/docs/version-switcher.tsx'
 import { Button } from '#/components/ui/button.tsx'
 import GithubIcon from '#/../public/icons/github-logo.svg'
 
@@ -107,6 +112,52 @@ function Home() {
           </div>
         </section>
       </main>
+
+      <section
+        aria-labelledby="all-tables"
+        className="relative mx-auto w-full max-w-6xl px-6 pb-24"
+      >
+        <h2 id="all-tables" className="text-2xl font-normal tracking-tight">
+          All table components
+        </h2>
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {categories.map((category) => (
+            <div key={category.title}>
+              <h3 className="text-sm font-medium">{category.title}</h3>
+              <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                {category.links.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to} className="hover:text-foreground">
+                      {link.title}
+                    </Link>
+                    {V9_PORTED_ROUTES.has(link.to) && (
+                      <>
+                        {' · '}
+                        <Link
+                          to={withVersionPrefix(link.to, 'v9')}
+                          className="hover:text-foreground"
+                        >
+                          v9
+                        </Link>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p className="mt-10 text-sm text-muted-foreground">
+          Moving to TanStack Table v9? Read the{' '}
+          <Link
+            to="/migrate-v9"
+            className="font-medium text-foreground underline underline-offset-4"
+          >
+            v8 → v9 migration guide
+          </Link>
+          .
+        </p>
+      </section>
     </div>
   )
 }

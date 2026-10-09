@@ -1,14 +1,18 @@
 import type * as React from 'react'
 import { useState } from 'react'
-import { useRouterState } from '@tanstack/react-router'
+import { Link, useRouterState } from '@tanstack/react-router'
 import { SiteHeader } from '#/components/docs/site-header.tsx'
 import {
   NavContent,
   navGroups,
   topLevelLinks,
+  V9_PORTED_ROUTES,
 } from '#/components/docs/nav-content.tsx'
 import { DocsPager } from '#/components/docs/docs-pager.tsx'
-import { stripVersionPrefix } from '#/components/docs/version-switcher.tsx'
+import {
+  stripVersionPrefix,
+  withVersionPrefix,
+} from '#/components/docs/version-switcher.tsx'
 
 const SITE_URL = 'https://www.shad-table.dev'
 
@@ -50,6 +54,31 @@ function BreadcrumbJsonLd({ pathname }: { pathname: string }) {
   )
 }
 
+// Plain in-content link between the v8 and v9 twins of a page, so each is
+// reachable from the other without the client-side version toggle.
+function VersionTwinLink({ pathname }: { pathname: string }) {
+  const isV9 = pathname === '/v9' || pathname.startsWith('/v9/')
+  const base = stripVersionPrefix(pathname)
+  if (!V9_PORTED_ROUTES.has(base)) return null
+  const link = allLinks.find((l) => l.to === base)
+  if (!link) return null
+
+  return (
+    <p className="text-sm text-muted-foreground">
+      {isV9 ? 'Using TanStack Table v8? ' : 'Using TanStack Table v9? '}
+      <Link
+        to={withVersionPrefix(base, isV9 ? 'v8' : 'v9')}
+        className="font-medium text-foreground underline underline-offset-4"
+      >
+        {isV9
+          ? `See the v8 ${link.title}`
+          : `See the v9 version of ${link.title}`}
+      </Link>
+      .
+    </p>
+  )
+}
+
 interface DocsLayoutProps {
   children: React.ReactNode
 }
@@ -77,6 +106,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
 
           <main className="min-w-0 flex-1 space-y-16">
             {children}
+            <VersionTwinLink pathname={pathname} />
             <DocsPager pathname={pathname} />
           </main>
         </div>
