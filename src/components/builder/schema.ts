@@ -18,7 +18,7 @@ export interface BuilderState {
 
 export const MAX_COLUMNS = 20
 export const MAX_NAME_LENGTH = 40
-const MAX_OPTIONS = 12
+export const MAX_OPTIONS = 12
 
 export const columnTypes: { value: ColumnType; label: string }[] = [
   { value: 'text', label: 'Text' },
@@ -186,6 +186,20 @@ export function moveColumn(
   if (from < 0 || to < 0 || to >= state.columns.length) return state
   const columns = [...state.columns]
   ;[columns[from], columns[to]] = [columns[to], columns[from]]
+  return withColumns(state, columns)
+}
+
+export function reorderColumn(
+  state: BuilderState,
+  fromId: string,
+  toId: string,
+): BuilderState {
+  const from = state.columns.findIndex((c) => c.id === fromId)
+  const to = state.columns.findIndex((c) => c.id === toId)
+  if (from < 0 || to < 0 || from === to) return state
+  const columns = [...state.columns]
+  const [moved] = columns.splice(from, 1)
+  columns.splice(to, 0, moved)
   return withColumns(state, columns)
 }
 

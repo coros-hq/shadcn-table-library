@@ -283,9 +283,21 @@
   "281": "index.tsx",
   "282": "AnimatedIconsTableDemo.vue",
   "283": "ResizableTableDemo.vue",
+  "284": "index.tsx",
   "285": "demos.test.tsx",
+  "286": "index.tsx",
   "287": "vitest.config.ts",
   "288": "data-table.tsx",
+  "289": "SyncButton.vue",
   "290": "Action Plan — shad-table.dev",
-  "297": "schema.md"
+  "291": "data-table.tsx",
+  "292": "inventory-allocation-table.tsx",
+  "293": "mobile-cards-table.tsx",
+  "294": "data-table.tsx",
+  "295": "action-buttons.tsx",
+  "296": "spreadsheet-page.tsx",
+  "297": "schema.md",
+  "298": "ColumnMultiSelect.vue",
+  "299": "UtilityTableDemo.vue",
+  "300": "LogFields.vue"
 }

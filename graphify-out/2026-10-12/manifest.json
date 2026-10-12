@@ -200,8 +200,8 @@
     "semantic_hash": ""
   },
   "registry.json": {
-    "mtime": 1791806143.0783935,
-    "ast_hash": "a3591170cfe7fce1e78cb29beb1b9461",
+    "mtime": 1791806476.6892002,
+    "ast_hash": "81438268fc06f821476203000bd2faf7",
     "semantic_hash": ""
   },
   "shad-table.dev-audit/audit-data.json": {
@@ -355,8 +355,8 @@
     "semantic_hash": ""
   },
   "src/components/docs/nav-content.tsx": {
-    "mtime": 1791806143.0788138,
-    "ast_hash": "d7c6c709a54e011c5557d4d23c19273f",
+    "mtime": 1791806476.6887207,
+    "ast_hash": "5db7f8e5870a3db0b4a8dc3409ac8ec6",
     "semantic_hash": ""
   },
   "src/components/docs/reveal.tsx": {
@@ -1080,8 +1080,8 @@
     "semantic_hash": ""
   },
   "src/routeTree.gen.ts": {
-    "mtime": 1791806143.079138,
-    "ast_hash": "e8552305b12c6381ff58e3bfad9896f1",
+    "mtime": 1791806476.9676714,
+    "ast_hash": "7bc877418891032153b85a2e26dace00",
     "semantic_hash": ""
   },
   "src/router.tsx": {
@@ -1295,8 +1295,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1791806143.0777543,
-    "ast_hash": "b7d76e6481533c6f3e1a4c98009ac965",
+    "mtime": 1791806476.688867,
+    "ast_hash": "6e9caa1e6e086e08402c655b61a82037",
     "semantic_hash": ""
   },
   "public/robots.txt": {
@@ -1725,8 +1725,8 @@
     "semantic_hash": ""
   },
   "public/llms.txt": {
-    "mtime": 1791806143.0779529,
-    "ast_hash": "62c9e52b5c471781f087792f00ba4d1c",
+    "mtime": 1791806478.6207197,
+    "ast_hash": "1c58d7c99941ad68a5c2a6cee6d13c6d",
     "semantic_hash": ""
   },
   "public/r/animated-icons-table-v9.json": {
@@ -4330,8 +4330,8 @@
     "semantic_hash": ""
   },
   "src/components/crm-employees/data-table.tsx": {
-    "mtime": 1791806229.0899127,
-    "ast_hash": "121cb5cb8bb735c6163843f532249e60",
+    "mtime": 1791806343.0774455,
+    "ast_hash": "61e9b9b846665bb19d3ea6fe55c5988e",
     "semantic_hash": ""
   },
   "src/components/crm-employees/data.ts": {
@@ -4350,8 +4350,8 @@
     "semantic_hash": ""
   },
   "src/components/vue/crm-employees/DataTable.vue": {
-    "mtime": 1791806229.0902355,
-    "ast_hash": "ebbff0fbbf7cf73211154d758395d490",
+    "mtime": 1791806343.080115,
+    "ast_hash": "cc7874d92c5a6494e16c52ff8b929b09",
     "semantic_hash": ""
   },
   "src/components/vue/crm-employees/ToolbarSelect.vue": {
@@ -4372,6 +4372,66 @@
   "src/routes/crm-employees-table.tsx": {
     "mtime": 1791806114.3766882,
     "ast_hash": "7abc2c1deb087efdd276b25d98549d2f",
+    "semantic_hash": ""
+  },
+  "src/components/crm-employees-multi/columns.tsx": {
+    "mtime": 1791806423.9970453,
+    "ast_hash": "71c8e5117f5a6be822c642108d4a4e74",
+    "semantic_hash": ""
+  },
+  "src/components/crm-employees-multi/data-table.tsx": {
+    "mtime": 1791806434.044309,
+    "ast_hash": "2fc6dc168b16de73aee6124166476662",
+    "semantic_hash": ""
+  },
+  "src/components/crm-employees-multi/data.ts": {
+    "mtime": 1791806423.991239,
+    "ast_hash": "800cdf17887747162c12f42e50455ecd",
+    "semantic_hash": ""
+  },
+  "src/components/crm-employees-multi/index.tsx": {
+    "mtime": 1791806434.0445585,
+    "ast_hash": "85f0efc1199351224c14ac27af33ff1a",
+    "semantic_hash": ""
+  },
+  "src/components/crm-employees-multi/multi-select-filter.tsx": {
+    "mtime": 1791806434.420609,
+    "ast_hash": "a0bd0febbfd14b5c7fd6e35fc895bfd4",
+    "semantic_hash": ""
+  },
+  "src/components/vue/crm-employees-multi/ColumnMultiSelect.vue": {
+    "mtime": 1791806448.4921434,
+    "ast_hash": "4ede0020a26a330e13fcab1ae8a4ca9b",
+    "semantic_hash": ""
+  },
+  "src/components/vue/crm-employees-multi/CrmEmployeesMultiTableDemo.vue": {
+    "mtime": 1791806448.468591,
+    "ast_hash": "80927a5d182208f202b9e488c736b8a1",
+    "semantic_hash": ""
+  },
+  "src/components/vue/crm-employees-multi/DataTable.vue": {
+    "mtime": 1791806453.5809634,
+    "ast_hash": "6300d2b51b450ce2a59963dbd1ebf18f",
+    "semantic_hash": ""
+  },
+  "src/components/vue/crm-employees-multi/MultiSelectFilter.vue": {
+    "mtime": 1791806448.470927,
+    "ast_hash": "3c5b370a45b92147050294344add37dc",
+    "semantic_hash": ""
+  },
+  "src/components/vue/crm-employees-multi/columns.ts": {
+    "mtime": 1791806448.4862542,
+    "ast_hash": "9340118e03b2da6a1686e3cbc4963577",
+    "semantic_hash": ""
+  },
+  "src/components/vue/crm-employees-multi/data.ts": {
+    "mtime": 1791806448.4677095,
+    "ast_hash": "800cdf17887747162c12f42e50455ecd",
+    "semantic_hash": ""
+  },
+  "src/routes/crm-employees-multi-select-table.tsx": {
+    "mtime": 1791806476.8997772,
+    "ast_hash": "b9b6f0149112a9597a690f7d089ca925",
     "semantic_hash": ""
   }
 }

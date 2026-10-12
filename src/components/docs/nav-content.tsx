@@ -34,7 +34,7 @@ export interface NavGroup {
 export const topLevelLinks: NavLink[] = [
   { title: 'Data Table', to: '/data-table' },
   { title: 'v8 → v9 Migration', to: '/migrate-v9', isNew: true },
-  // { title: 'Table Builder', to: '/builder', isNew: true },
+  { title: 'Table Builder', to: '/builder', isNew: true },
 ]
 
 export const navGroups: NavGroup[] = [
