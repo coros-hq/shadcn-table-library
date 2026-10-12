@@ -1191,6 +1191,93 @@
       ]
     },
     {
+      "name": "crm-employees-table",
+      "type": "registry:block",
+      "title": "CRM Employees Table",
+      "description": "A data-dense employee directory with stacked cells, status badges, performance bars, salary formatting, search, department and status filters, sorting, row selection and pagination.",
+      "files": [
+        {
+          "path": "src/components/crm-employees/data.ts",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-table/data.ts"
+        },
+        {
+          "path": "src/components/crm-employees/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-table/columns.tsx"
+        },
+        {
+          "path": "src/components/crm-employees/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-table/data-table.tsx"
+        },
+        {
+          "path": "src/components/crm-employees/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-table/index.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "badge",
+        "button",
+        "checkbox",
+        "input",
+        "select"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^8.21.3",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "crm-employees-multi-select-table",
+      "type": "registry:block",
+      "title": "CRM Employees Table (Multi-select Filters)",
+      "description": "The CRM employees table with multi-select department and status filters, live option counts from the faceted model, a reset button, density toggle, search, sorting and pagination.",
+      "files": [
+        {
+          "path": "src/components/crm-employees-multi/data.ts",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-multi-select-table/data.ts"
+        },
+        {
+          "path": "src/components/crm-employees-multi/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-multi-select-table/columns.tsx"
+        },
+        {
+          "path": "src/components/crm-employees-multi/multi-select-filter.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-multi-select-table/multi-select-filter.tsx"
+        },
+        {
+          "path": "src/components/crm-employees-multi/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-multi-select-table/data-table.tsx"
+        },
+        {
+          "path": "src/components/crm-employees-multi/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/crm-employees-multi-select-table/index.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "badge",
+        "button",
+        "checkbox",
+        "command",
+        "input",
+        "popover",
+        "select"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^8.21.3",
+        "lucide-react"
+      ]
+    },
+    {
       "name": "inventory-allocation-table",
       "type": "registry:block",
       "title": "Inventory Allocation Table",
