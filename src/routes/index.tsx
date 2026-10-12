@@ -107,38 +107,6 @@ function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="relative border-t border-border/60">
-        <nav
-          aria-label="All components"
-          className="mx-auto grid w-full max-w-6xl gap-x-8 gap-y-8 px-6 py-12 text-xs sm:grid-cols-3 lg:grid-cols-5"
-        >
-          {categories.map((category) => (
-            <div key={category.title}>
-              <h2 className="font-medium">{category.title}</h2>
-              <ul className="mt-3 space-y-1.5 text-muted-foreground">
-                {category.links.map((link) => (
-                  <li key={link.to}>
-                    <Link to={link.to} className="hover:text-foreground">
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-          <div>
-            <h2 className="font-medium">Guides</h2>
-            <ul className="mt-3 space-y-1.5 text-muted-foreground">
-              <li>
-                <Link to="/migrate-v9" className="hover:text-foreground">
-                  v8 → v9 migration guide
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </footer>
     </div>
   )
 }
