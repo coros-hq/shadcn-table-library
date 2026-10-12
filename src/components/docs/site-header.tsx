@@ -20,12 +20,15 @@ interface SiteHeaderProps {
   onMobileNavOpenChange: (open: boolean) => void
   /** Let the page background (e.g. the homepage aurora) show through */
   transparent?: boolean
+  /** Match the wider docs content width instead of the homepage width */
+  wide?: boolean
 }
 
 export function SiteHeader({
   mobileNavOpen,
   onMobileNavOpenChange,
   transparent = false,
+  wide = false,
 }: SiteHeaderProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const version = pathname.startsWith('/v9') ? 'v9' : 'v8'
@@ -40,7 +43,12 @@ export function SiteHeader({
             : 'bg-background/80 supports-backdrop-filter:bg-background/60',
         )}
       >
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+        <div
+          className={cn(
+            'mx-auto flex h-14 items-center justify-between px-6',
+            wide ? 'max-w-[96rem]' : 'max-w-6xl',
+          )}
+        >
           <div className="flex items-center gap-1">
             <Button
               type="button"

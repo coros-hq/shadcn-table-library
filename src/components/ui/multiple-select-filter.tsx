@@ -47,7 +47,10 @@ export function MultiSelectFilter({
                       );
                     }}
                   >
-                    <Checkbox checked={isSelected} className="mr-2" />
+                    <Checkbox
+                      checked={isSelected}
+                      className="mr-2 [&_svg]:text-primary-foreground!"
+                    />
                     <span>{option.label}</span>
                     {option.count !== undefined && (
                       <span className="ml-auto text-muted-foreground text-xs">

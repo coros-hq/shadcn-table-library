@@ -110,7 +110,7 @@ export function ComponentPreview({
           this surface, not the page, so redefine it here as an opaque tint */}
       <TabsContent
         value="preview"
-        className="bg-background p-6 [--background:color-mix(in_oklch,var(--muted)_20%,var(--card))] sm:p-8"
+        className="bg-background p-4 [--background:color-mix(in_oklch,var(--muted)_20%,var(--card))] sm:p-6"
       >
         {preview}
       </TabsContent>

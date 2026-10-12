@@ -34,6 +34,7 @@ export interface NavGroup {
 export const topLevelLinks: NavLink[] = [
   { title: 'Data Table', to: '/data-table' },
   { title: 'v8 → v9 Migration', to: '/migrate-v9', isNew: true },
+  // { title: 'Table Builder', to: '/builder', isNew: true },
 ]
 
 export const navGroups: NavGroup[] = [
@@ -95,6 +96,7 @@ export const navGroups: NavGroup[] = [
       { title: 'Heatmap Table', to: '/heatmap-table' },
       { title: 'Conditional Formatting', to: '/conditional-formatting-table' },
       { title: 'Production Dashboard', to: '/production-dashboard-table' },
+      { title: 'CRM Employees', to: '/crm-employees-table', isNew: true },
     ],
   },
   {
@@ -214,7 +216,7 @@ export function NavContent({
               <SidebarGroup className="py-0.5">
                 <SidebarGroupLabel
                   asChild
-                  className="flex w-full items-center rounded-md text-sm font-medium text-muted-foreground hover:text-foreground"
+                  className="h-auto min-h-8 w-full items-center gap-2 rounded-md py-1.5 text-left text-sm font-medium text-muted-foreground hover:text-foreground"
                 >
                   <CollapsibleTrigger>
                     {group.title}

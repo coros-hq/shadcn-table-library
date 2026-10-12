@@ -11,6 +11,7 @@ Every page below has a live demo, the full source, an install command, and a ste
 
 - [Data Table](https://www.shad-table.dev/data-table): A data table for shadcn/ui and TanStack Table. A sortable, filterable, paginated table with a composable toolbar for column filters — filtering and sorting run entirely client-side via TanStack Table. Includes React and Vue (@tanstack/vue-table) source.
 - [Migrating from TanStack Table v8 to v9](https://www.shad-table.dev/migrate-v9): A practical v8 to v9 migration guide for shadcn/ui tables with before and after code for feature registration, row models, types, sortFn, state, column pinning and selection, plus a checklist.
+- [Table Builder](https://www.shad-table.dev/builder): Add and name your own columns, set filters, sorting, search, pagination and row selection for a shadcn/ui and TanStack Table, preview it live, and copy the generated code. Early prototype.
 
 ## SSR
 
@@ -59,6 +60,7 @@ Every page below has a live demo, the full source, an install command, and a ste
 - [Heatmap Table](https://www.shad-table.dev/heatmap-table): A heatmap table for shadcn/ui and TanStack Table. Revenue by region and month, with each cell's background intensity mapped to its value — spot patterns across a matrix at a glance instead of reading numbers.
 - [Conditional Formatting](https://www.shad-table.dev/conditional-formatting-table): A conditional formatting table for shadcn/ui and TanStack Table. Excel-style conditional formatting: a small rule engine highlights cells, colors text, and re-colors badges based on the row data, not just a single value.
 - [Production Dashboard](https://www.shad-table.dev/production-dashboard-table): A production dashboard table for shadcn/ui and TanStack Table. A production-line dashboard combining conditional formatting, progress bars, and sparklines on one realistic dataset — a composition of existing primitives, not a new feature.
+- [CRM Employees](https://www.shad-table.dev/crm-employees-table): A CRM employees table for shadcn/ui and TanStack Table. A data-dense employee directory with stacked name/email and role/department cells, status badges, performance bars, tenure and salary, plus search, single- or multi-select department and status filters, sorting, row selection, density toggle and pagination.
 
 ## Export / Density Variants
 

@@ -12,9 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimatedIconsTableRouteImport } from './routes/animated-icons-table'
 import { Route as AsyncActionsTableRouteImport } from './routes/async-actions-table'
+import { Route as BuilderRouteImport } from './routes/builder'
 import { Route as ColumnPinningTableRouteImport } from './routes/column-pinning-table'
 import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
 import { Route as ConditionalFormattingTableRouteImport } from './routes/conditional-formatting-table'
+import { Route as CrmEmployeesTableRouteImport } from './routes/crm-employees-table'
 import { Route as DataTableRouteImport } from './routes/data-table'
 import { Route as DeploymentsTableRouteImport } from './routes/deployments-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
@@ -98,6 +100,11 @@ const AsyncActionsTableRoute = AsyncActionsTableRouteImport.update({
   path: '/async-actions-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuilderRoute = BuilderRouteImport.update({
+  id: '/builder',
+  path: '/builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ColumnPinningTableRoute = ColumnPinningTableRouteImport.update({
   id: '/column-pinning-table',
   path: '/column-pinning-table',
@@ -114,6 +121,11 @@ const ConditionalFormattingTableRoute =
     path: '/conditional-formatting-table',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CrmEmployeesTableRoute = CrmEmployeesTableRouteImport.update({
+  id: '/crm-employees-table',
+  path: '/crm-employees-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataTableRoute = DataTableRouteImport.update({
   id: '/data-table',
   path: '/data-table',
@@ -459,9 +471,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
+  '/builder': typeof BuilderRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
+  '/crm-employees-table': typeof CrmEmployeesTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
@@ -534,9 +548,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
+  '/builder': typeof BuilderRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
+  '/crm-employees-table': typeof CrmEmployeesTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
@@ -610,9 +626,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
+  '/builder': typeof BuilderRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
+  '/crm-employees-table': typeof CrmEmployeesTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
@@ -687,9 +705,11 @@ export interface FileRouteTypes {
     | '/'
     | '/animated-icons-table'
     | '/async-actions-table'
+    | '/builder'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
+    | '/crm-employees-table'
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
@@ -762,9 +782,11 @@ export interface FileRouteTypes {
     | '/'
     | '/animated-icons-table'
     | '/async-actions-table'
+    | '/builder'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
+    | '/crm-employees-table'
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
@@ -837,9 +859,11 @@ export interface FileRouteTypes {
     | '/'
     | '/animated-icons-table'
     | '/async-actions-table'
+    | '/builder'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
+    | '/crm-employees-table'
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
@@ -913,9 +937,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimatedIconsTableRoute: typeof AnimatedIconsTableRoute
   AsyncActionsTableRoute: typeof AsyncActionsTableRoute
+  BuilderRoute: typeof BuilderRoute
   ColumnPinningTableRoute: typeof ColumnPinningTableRoute
   ComparisonTableRoute: typeof ComparisonTableRoute
   ConditionalFormattingTableRoute: typeof ConditionalFormattingTableRoute
+  CrmEmployeesTableRoute: typeof CrmEmployeesTableRoute
   DataTableRoute: typeof DataTableRoute
   DeploymentsTableRoute: typeof DeploymentsTableRoute
   EditableTableRoute: typeof EditableTableRoute
@@ -1008,6 +1034,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AsyncActionsTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/builder': {
+      id: '/builder'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof BuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/column-pinning-table': {
       id: '/column-pinning-table'
       path: '/column-pinning-table'
@@ -1027,6 +1060,13 @@ declare module '@tanstack/react-router' {
       path: '/conditional-formatting-table'
       fullPath: '/conditional-formatting-table'
       preLoaderRoute: typeof ConditionalFormattingTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm-employees-table': {
+      id: '/crm-employees-table'
+      path: '/crm-employees-table'
+      fullPath: '/crm-employees-table'
+      preLoaderRoute: typeof CrmEmployeesTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/data-table': {
@@ -1505,9 +1545,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimatedIconsTableRoute: AnimatedIconsTableRoute,
   AsyncActionsTableRoute: AsyncActionsTableRoute,
+  BuilderRoute: BuilderRoute,
   ColumnPinningTableRoute: ColumnPinningTableRoute,
   ComparisonTableRoute: ComparisonTableRoute,
   ConditionalFormattingTableRoute: ConditionalFormattingTableRoute,
+  CrmEmployeesTableRoute: CrmEmployeesTableRoute,
   DataTableRoute: DataTableRoute,
   DeploymentsTableRoute: DeploymentsTableRoute,
   EditableTableRoute: EditableTableRoute,

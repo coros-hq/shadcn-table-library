@@ -43,7 +43,7 @@ interface Category {
 const categories: Category[] = [
   {
     title: 'Data Table',
-    links: topLevelLinks.filter((link) => link.to !== '/migrate-v9'),
+    links: topLevelLinks.filter((link) => link.to !== '/migrate-v9' && link.to !== '/builder'),
   },
   ...navGroups.map((group) => ({ title: group.title, links: group.items })),
 ]

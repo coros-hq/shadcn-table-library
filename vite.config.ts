@@ -5,7 +5,7 @@ import viteReact from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { nitro } from 'nitro/vite';
 
-const searchParamRoutes = ['/server-table', '/server-filter', '/server-combined-table', '/params-filter-table', '/logs-table'];
+const searchParamRoutes = ['/server-table', '/server-filter', '/server-combined-table', '/params-filter-table', '/logs-table', '/builder'];
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 const config = defineConfig({

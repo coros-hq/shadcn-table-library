@@ -55,7 +55,7 @@ function toggle(value: string) {
             >
               <Checkbox
                 :model-value="selected.includes(option.value)"
-                class="pointer-events-none mr-2"
+                class="pointer-events-none mr-2 [&_svg]:text-primary-foreground!"
                 tabindex="-1"
               />
               <span>{{ option.label }}</span>

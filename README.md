@@ -39,7 +39,7 @@ The docs pages have a **React | Vue** toggle on the Code tab with a Vue port of 
 - **Structure / Hierarchy** — Tree Table (org chart, product variants, and a one-child-per-parent table with a details card), Grouped, Pivot, Master-Detail
 - **Interaction-heavy** — Tree Selection and Reorder, Reorderable rows, Editable, Resizable / Reorderable columns, Column Pinning, Inventory Allocation, Infinite Scroll, Excel-like spreadsheet
 - **Animated** — Animated Icons ([Iconimate](https://iconimate.app)), Live Status Indicators, Async Row Actions
-- **Dashboard / Analytics** — Summary / KPI, Comparison, Heatmap, Conditional Formatting, Production Dashboard
+- **Dashboard / Analytics** — Summary / KPI, Comparison, Heatmap, Conditional Formatting, Production Dashboard, CRM Employees
 - **Export / Density** — Density & Export, Export Configuration, Export Selected Rows
 - **Responsive** — Mobile Cards
 
