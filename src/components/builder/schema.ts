@@ -3,9 +3,18 @@ import type { Field, FieldType, FilterRule } from './filters'
 
 export type ColumnType = FieldType
 
+export type Align = 'left' | 'center' | 'right'
+export const alignments: Align[] = ['left', 'center', 'right']
+
 export interface ColumnSpec extends Field {
   type: ColumnType
+  /** Only set when the user overrides the type's default */
+  align?: Align
 }
+
+/** Numbers read best right-aligned; everything else starts left */
+export const effectiveAlign = (column: ColumnSpec): Align =>
+  column.align ?? (column.type === 'number' ? 'right' : 'left')
 
 export type FeatureId =
   'search' | 'sorting' | 'pagination' | 'selection' | 'filters'
@@ -131,6 +140,17 @@ export function renameColumn(
   )
 }
 
+export function setColumnAlign(
+  state: BuilderState,
+  id: string,
+  align: Align,
+): BuilderState {
+  return withColumns(
+    state,
+    state.columns.map((c) => (c.id === id ? { ...c, align } : c)),
+  )
+}
+
 export function changeColumnType(
   state: BuilderState,
   id: string,
@@ -208,7 +228,7 @@ export function reorderColumn(
 // ---------------------------------------------------------------------------
 
 type Compact = {
-  c: [string, string, string, string[]?][]
+  c: [string, string, string, string[]?, Align?][]
   f: string[]
   r: [string, string, string][]
 }
@@ -228,11 +248,13 @@ function fromBase64Url(value: string) {
 
 export function encodeState(state: BuilderState): string {
   const compact: Compact = {
-    c: state.columns.map((c) =>
-      c.type === 'select'
-        ? [c.id, c.name, c.type, c.options ?? []]
-        : [c.id, c.name, c.type],
-    ),
+    c: state.columns.map((c) => {
+      const options = c.type === 'select' ? (c.options ?? []) : []
+      if (c.align) return [c.id, c.name, c.type, options, c.align]
+      return c.type === 'select'
+        ? [c.id, c.name, c.type, options]
+        : [c.id, c.name, c.type]
+    }),
     f: state.features,
     r: state.filters.map((r) => [r.fieldId, r.op, r.value]),
   }
@@ -262,7 +284,7 @@ export function decodeState(value: string | undefined): BuilderState {
     const columns: ColumnSpec[] = []
     for (const entry of raw.c.slice(0, MAX_COLUMNS)) {
       if (!Array.isArray(entry)) continue
-      const [id, name, type, options] = entry as unknown[]
+      const [id, name, type, options, align] = entry as unknown[]
       if (!isString(id) || !/^[a-z_][a-z0-9_]*$/.test(id) || id === 'id')
         continue
       if (columns.some((c) => c.id === id)) continue
@@ -274,6 +296,9 @@ export function decodeState(value: string | undefined): BuilderState {
           MAX_NAME_LENGTH,
         ),
         type: type as ColumnType,
+      }
+      if (isString(align) && alignments.includes(align as Align)) {
+        column.align = align as Align
       }
       if (column.type === 'select') {
         const list = Array.isArray(options) ? options.filter(isString) : []

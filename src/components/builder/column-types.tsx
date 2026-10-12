@@ -1,6 +1,7 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { Check } from 'lucide-react'
 import { Badge } from '#/components/ui/badge'
+import { effectiveAlign } from './schema'
 import type { ColumnSpec, Row } from './schema'
 
 // Each column type exists twice, side by side: `columnDef` drives the live
@@ -22,6 +23,16 @@ export const str = (value: string) =>
   `'${value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`
 
 export function columnDef(column: ColumnSpec): ColumnDef<Row> {
+  // Alignment lives in `meta`; the table applies it to the header and cells
+  // The filter-toolbar demo augments ColumnMeta with a required `label`,
+  // which a generated table (without that augmentation) doesn't have
+  const meta = {
+    align: effectiveAlign(column),
+  } as unknown as ColumnDef<Row>['meta']
+  return { ...baseColumnDef(column), meta }
+}
+
+function baseColumnDef(column: ColumnSpec): ColumnDef<Row> {
   const get = (row: Row) => row[column.id]
 
   switch (column.type) {
@@ -30,11 +41,11 @@ export function columnDef(column: ColumnSpec): ColumnDef<Row> {
     case 'number':
       return {
         accessorKey: column.id,
-        header: () => <div className="text-right">{column.name}</div>,
+        header: column.name,
         cell: ({ row }) => (
-          <div className="text-right tabular-nums">
+          <span className="tabular-nums">
             {Number(get(row.original)).toLocaleString('en-US')}
-          </div>
+          </span>
         ),
       }
     case 'select':
@@ -69,6 +80,12 @@ export function columnDef(column: ColumnSpec): ColumnDef<Row> {
 
 /** One element of the generated `columns` array, indented for that array */
 export function columnCode(column: ColumnSpec): string {
+  const align = effectiveAlign(column)
+  const meta = align === 'left' ? '' : `\n    meta: { align: '${align}' },`
+  return baseColumnCode(column).replace(/\n  },$/, `${meta}\n  },`)
+}
+
+function baseColumnCode(column: ColumnSpec): string {
   const key = `accessorKey: ${str(column.id)},`
   const row = `row.original.${column.id}`
 
@@ -81,11 +98,11 @@ export function columnCode(column: ColumnSpec): string {
     case 'number':
       return `  {
     ${key}
-    header: () => <div className="text-right">{${str(column.name)}}</div>,
+    header: ${str(column.name)},
     cell: ({ row }) => (
-      <div className="text-right tabular-nums">
+      <span className="tabular-nums">
         {${row}.toLocaleString('en-US')}
-      </div>
+      </span>
     ),
   },`
     case 'select':

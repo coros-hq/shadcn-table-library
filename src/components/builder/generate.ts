@@ -1,7 +1,7 @@
 import { columnCode, str } from './column-types'
 import filterBarSource from './filter-bar.tsx?raw'
 import filtersSource from './filters.ts?raw'
-import { buildRows } from './schema'
+import { buildRows, effectiveAlign } from './schema'
 import type { BuilderState, ColumnSpec } from './schema'
 
 export interface GeneratedFile {
@@ -21,6 +21,24 @@ const tsType = (column: ColumnSpec) =>
 const literal = (value: string | number | boolean) =>
   typeof value === 'string' ? str(value) : String(value)
 
+const ALIGN_HELPERS = `
+const alignClass = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+} as const
+const justifyClass = {
+  left: 'justify-start',
+  center: 'justify-center',
+  right: 'justify-end',
+} as const
+type Align = keyof typeof alignClass
+
+// Alignment is set per column in \`meta: { align }\`
+const alignOf = (def: { meta?: unknown }): Align =>
+  (def.meta as { align?: Align } | undefined)?.align ?? 'left'
+`
+
 export function generate(state: BuilderState): GeneratedFile[] {
   const has = (feature: BuilderState['features'][number]) =>
     state.features.includes(feature)
@@ -28,6 +46,7 @@ export function generate(state: BuilderState): GeneratedFile[] {
   const hasType = (type: ColumnSpec['type']) =>
     columns.some((c) => c.type === type)
   const filters = has('filters') && columns.length > 0
+  const aligned = columns.some((c) => effectiveAlign(c) !== 'left')
 
   const files: GeneratedFile[] = [
     { path: `${DIR}/columns.tsx`, code: columnsFile() },
@@ -215,7 +234,7 @@ ${has('pagination') ? `import { Button } from '#/components/ui/button'\n` : ''}$
   TableHeader,
   TableRow,
 } from '#/components/ui/table'
-${filters ? `import { FilterBar } from './filter-bar'\nimport { applyRules } from './filters'\nimport type { Field, FilterRule } from './filters'\n` : ''}
+${aligned ? ALIGN_HELPERS : ''}${filters ? `import { FilterBar } from './filter-bar'\nimport { applyRules } from './filters'\nimport type { Field, FilterRule } from './filters'\n` : ''}
 interface DataTableProps<TData${filters ? ' extends Record<string, unknown>' : ''}, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]${
@@ -274,7 +293,7 @@ ${
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id}${aligned ? ' className={alignClass[alignOf(header.column.columnDef)]}' : ''}>
 ${headerBody()}
                   </TableHead>
                 ))}
@@ -289,7 +308,7 @@ ${headerBody()}
                   data-state={row.getIsSelected() ? 'selected' : undefined}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id}${aligned ? ' className={alignClass[alignOf(cell.column.columnDef)]}' : ''}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -322,7 +341,11 @@ ${footer ? footerBody() : ''}    </div>
                       <button
                         type="button"
                         onClick={header.column.getToggleSortingHandler()}
-                        className="flex w-full cursor-pointer items-center gap-2 select-none"
+                        ${
+                          aligned
+                            ? 'className={`flex w-full cursor-pointer items-center gap-2 select-none ${justifyClass[alignOf(header.column.columnDef)]}`}'
+                            : 'className="flex w-full cursor-pointer items-center gap-2 select-none"'
+                        }
                       >
                         {${plain}}
                         {header.column.getIsSorted() === 'asc' ? (

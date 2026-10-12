@@ -29,6 +29,7 @@ import { applyRules } from './filters'
 import type { FilterRule } from './filters'
 import { buildRows } from './schema'
 import type { BuilderState, Row } from './schema'
+import { alignClass, alignOf, justifyClass } from './align'
 
 const selectColumn: ColumnDef<Row> = {
   id: 'select',
@@ -142,13 +143,16 @@ export function PreviewTable({
                     header.getContext(),
                   )
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead
+                      key={header.id}
+                      className={alignClass[alignOf(header.column.columnDef)]}
+                    >
                       {header.isPlaceholder ? null : has('sorting') &&
                         header.column.getCanSort() ? (
                         <button
                           type="button"
                           onClick={header.column.getToggleSortingHandler()}
-                          className="flex w-full cursor-pointer items-center gap-2 select-none"
+                          className={`flex w-full cursor-pointer items-center gap-2 select-none ${justifyClass[alignOf(header.column.columnDef)]}`}
                         >
                           {content}
                           {header.column.getIsSorted() === 'asc' ? (
@@ -176,7 +180,10 @@ export function PreviewTable({
                   data-state={row.getIsSelected() ? 'selected' : undefined}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      className={alignClass[alignOf(cell.column.columnDef)]}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),
