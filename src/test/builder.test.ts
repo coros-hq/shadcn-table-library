@@ -1,10 +1,27 @@
 import ts from 'typescript'
 import { describe, expect, it } from 'vitest'
-import { generate, installCommand } from '#/components/builder/generate'
-import { applyRules, operators } from '#/components/builder/filters'
-import type { Field, FilterRule } from '#/components/builder/filters'
+import {
+  generate,
+  installCommand,
+  registryCommand,
+  registryItem,
+} from '#/components/builder/generate'
+import {
+  applyFacets,
+  applyRules,
+  operators,
+} from '#/components/builder/filters'
+import { emptyFacet } from '#/components/builder/filters'
+import type {
+  FacetDef,
+  FacetValue,
+  Field,
+  FilterRule,
+} from '#/components/builder/filters'
 import {
   addColumn,
+  addFacet,
+  addPreset,
   buildRows,
   changeColumnType,
   columnTypes,
@@ -15,8 +32,13 @@ import {
   makeId,
   moveColumn,
   removeColumn,
+  removeFacet,
+  removePreset,
   renameColumn,
   setColumnOptions,
+  setFacetColumn,
+  setFacetKind,
+  updatePreset,
 } from '#/components/builder/schema'
 import type { BuilderState, ColumnSpec } from '#/components/builder/schema'
 
@@ -49,28 +71,77 @@ describe('makeId', () => {
 describe('editing', () => {
   const withRule: BuilderState = {
     ...defaultState,
-    filters: [
-      { fieldId: 'budget', op: 'gt', value: '10' },
-      { fieldId: 'status', op: 'is', value: 'Done' },
+    facets: [
+      { fieldId: 'budget', kind: 'range' },
+      { fieldId: 'status', kind: 'options' },
+    ],
+    presets: [
+      {
+        id: 'p1',
+        label: 'Big',
+        rule: { fieldId: 'budget', op: 'gt', value: '10' },
+      },
+      {
+        id: 'p2',
+        label: 'Done',
+        rule: { fieldId: 'status', op: 'is', value: 'Done' },
+      },
     ],
   }
+  const facetIds = (state: BuilderState) => state.facets.map((f) => f.fieldId)
+  const presetIds = (state: BuilderState) => state.presets.map((p) => p.id)
 
   it('renames without changing the id the generated code depends on', () => {
     const next = renameColumn(withRule, 'budget', 'Spend')
     expect(next.columns.find((c) => c.id === 'budget')?.name).toBe('Spend')
-    expect(next.filters).toHaveLength(2)
+    expect(next.facets).toHaveLength(2)
+    expect(next.presets).toHaveLength(2)
   })
 
-  it('drops rules for a removed column', () => {
-    expect(
-      removeColumn(withRule, 'budget').filters.map((r) => r.fieldId),
-    ).toEqual(['status'])
+  it('drops filters for a removed column', () => {
+    const next = removeColumn(withRule, 'budget')
+    expect(facetIds(next)).toEqual(['status'])
+    expect(presetIds(next)).toEqual(['p2'])
   })
 
-  it('drops rules that no longer fit after a type change', () => {
+  it('drops filters that no longer fit after a type change', () => {
     const next = changeColumnType(withRule, 'budget', 'checkbox')
-    expect(next.filters.map((r) => r.fieldId)).toEqual(['status'])
-    expect(changeColumnType(withRule, 'status', 'text').filters).toHaveLength(1)
+    expect(facetIds(next)).toEqual(['status'])
+    expect(presetIds(next)).toEqual(['p2'])
+    const text = changeColumnType(withRule, 'status', 'text')
+    expect(facetIds(text)).toEqual(['budget'])
+    expect(presetIds(text)).toEqual(['p1'])
+  })
+
+  it('adds facets on unused columns only, with the type default kind', () => {
+    let state: BuilderState = { ...defaultState, facets: [], presets: [] }
+    state = addFacet(state)
+    expect(state.facets).toEqual([{ fieldId: 'name', kind: 'text' }])
+    state = setFacetKind(state, 0, 'options')
+    expect(state.facets[0].kind).toBe('options')
+    expect(setFacetKind(state, 0, 'range')).toBe(state)
+    state = addFacet(state)
+    expect(setFacetColumn(state, 1, 'name')).toBe(state)
+    state = setFacetColumn(state, 1, 'budget')
+    expect(state.facets[1]).toEqual({ fieldId: 'budget', kind: 'range' })
+    for (let i = 0; i < 10; i++) state = addFacet(state)
+    expect(state.facets).toHaveLength(defaultState.columns.length)
+    expect(removeFacet(state, 0).facets).toHaveLength(
+      defaultState.columns.length - 1,
+    )
+  })
+
+  it('adds, edits and removes quick filters', () => {
+    let state = addPreset({ ...defaultState, facets: [], presets: [] })
+    expect(state.presets[0].rule).toEqual({
+      fieldId: 'name',
+      op: 'contains',
+      value: '',
+    })
+    const id = state.presets[0].id
+    state = updatePreset(state, id, { label: 'Mine' })
+    expect(state.presets[0].label).toBe('Mine')
+    expect(removePreset(state, id).presets).toEqual([])
   })
 
   it('gives a column the default options when it becomes a select', () => {
@@ -85,9 +156,10 @@ describe('editing', () => {
     ).toBeUndefined()
   })
 
-  it('drops a select rule whose option was deleted', () => {
+  it('drops a select quick filter whose option was deleted', () => {
     const next = setColumnOptions(withRule, 'status', ['Todo', 'Blocked'])
-    expect(next.filters.map((r) => r.fieldId)).toEqual(['budget'])
+    expect(presetIds(next)).toEqual(['p1'])
+    expect(facetIds(next)).toEqual(['budget', 'status'])
   })
 
   it('adds uniquely named columns up to the cap', () => {
@@ -112,7 +184,15 @@ describe('URL state', () => {
         ...everyType.slice(2, 3),
       ],
       features: ['search', 'filters'],
-      filters: [{ fieldId: 'prix', op: 'gte', value: '5' }],
+      facets: [{ fieldId: 'prix', kind: 'range' }],
+      presets: [
+        {
+          id: 'p1',
+          label: 'Dear',
+          rule: { fieldId: 'prix', op: 'gte', value: '5' },
+        },
+      ],
+      pager: { style: 'arrows', sizeSelect: true },
     }
     expect(decodeState(encodeState(state))).toEqual(state)
     expect(decodeState(encodeState(defaultState))).toEqual(defaultState)
@@ -131,7 +211,7 @@ describe('URL state', () => {
     },
   )
 
-  it('drops invalid columns, features and rules instead of failing', () => {
+  it('drops invalid columns, features and filters instead of failing', () => {
     const bad = btoa(
       JSON.stringify({
         c: [
@@ -143,11 +223,18 @@ describe('URL state', () => {
           ['pick', 'Pick', 'select', []],
         ],
         f: ['search', 'nonsense'],
-        r: [
-          ['ok', 'contains', 'x'],
-          ['ok', 'gt', '5'],
-          ['ghost', 'contains', 'x'],
-          ['ok', 'contains'],
+        fs: [
+          ['ok', 'options'],
+          ['ok', 'text'],
+          ['pick', 'range'],
+          ['ghost', 'text'],
+          ['pick', 'rocket'],
+        ],
+        ps: [
+          ['a', 'Has x', 'ok', 'contains', 'x'],
+          ['b', 'Numeric on text', 'ok', 'gt', '5'],
+          ['c', 'Ghost', 'ghost', 'contains', 'x'],
+          ['d', 'Short', 'ok', 'contains'],
         ],
       }),
     )
@@ -159,8 +246,13 @@ describe('URL state', () => {
       'Option 3',
     ])
     expect(state.features).toEqual(['search'])
-    expect(state.filters).toEqual([
-      { fieldId: 'ok', op: 'contains', value: 'x' },
+    expect(state.facets).toEqual([{ fieldId: 'ok', kind: 'options' }])
+    expect(state.presets).toEqual([
+      {
+        id: 'a',
+        label: 'Has x',
+        rule: { fieldId: 'ok', op: 'contains', value: 'x' },
+      },
     ])
   })
 })
@@ -267,17 +359,60 @@ describe('generate', () => {
       {
         columns: everyType,
         features: allFeatures,
-        filters: [
-          { fieldId: 'stage', op: 'is', value: "Won't fix" },
-          { fieldId: 'amount', op: 'gt', value: '100' },
+        facets: [
+          { fieldId: 'stage', kind: 'options' },
+          { fieldId: 'amount', kind: 'range' },
+          { fieldId: 'title', kind: 'text' },
         ],
+        presets: [
+          {
+            id: 'wontfix',
+            label: "Won't fix",
+            rule: { fieldId: 'stage', op: 'is', value: "Won't fix" },
+          },
+        ],
+        pager: defaultState.pager,
       },
     ],
-    ['no columns', { columns: [], features: allFeatures, filters: [] }],
-    ['no features', { columns: everyType, features: [], filters: [] }],
+    [
+      'arrows pager with rows per page',
+      {
+        columns: everyType,
+        features: allFeatures,
+        facets: [],
+        presets: [],
+        pager: { style: 'arrows', sizeSelect: true },
+      },
+    ],
+    [
+      'no columns',
+      {
+        columns: [],
+        features: allFeatures,
+        facets: [],
+        presets: [],
+        pager: defaultState.pager,
+      },
+    ],
+    [
+      'no features',
+      {
+        columns: everyType,
+        features: [],
+        facets: [],
+        presets: [],
+        pager: defaultState.pager,
+      },
+    ],
     ...allFeatures.map((feature): [string, BuilderState] => [
       `only ${feature}`,
-      { columns: everyType, features: [feature], filters: [] },
+      {
+        columns: everyType,
+        features: [feature],
+        facets: [],
+        presets: [],
+        pager: defaultState.pager,
+      },
     ]),
   ]
 
@@ -287,15 +422,15 @@ describe('generate', () => {
     }
   })
 
-  it('writes names, quotes and default filters into the code', () => {
+  it('writes names, quotes, facets and quick filters into the code', () => {
     const files = generate(states[1][1])
     const columns = files.find((f) => f.path.endsWith('columns.tsx'))!.code
     expect(columns).toContain(`header: 'Owner\\'s "title"'`)
     expect(columns).toContain(`options: ['Open', 'Won\\'t fix']`)
     expect(columns).toContain('dateFormat')
-    const index = files.find((f) => f.path.endsWith('index.tsx'))!.code
-    expect(index).toContain(
-      `{ fieldId: 'stage', op: 'is', value: 'Won\\'t fix' },`,
+    expect(columns).toContain(`{ fieldId: 'stage', kind: 'options' },`)
+    expect(columns).toContain(
+      `rule: { fieldId: 'stage', op: 'is', value: 'Won\\'t fix' },`,
     )
     expect(files.map((f) => f.path.split('/').pop())).toEqual(
       expect.arrayContaining(['filters.ts', 'filter-bar.tsx', 'data.ts']),
@@ -305,16 +440,100 @@ describe('generate', () => {
   it('ships the filter files only when filters are on', () => {
     const names = (state: BuilderState) =>
       generate(state).map((f) => f.path.split('/').pop())
-    expect(names(states[3][1])).not.toContain('filter-bar.tsx')
+    expect(names(states[4][1])).not.toContain('filter-bar.tsx')
     expect(names({ ...defaultState, columns: [] })).not.toContain('filters.ts')
   })
 
   it('asks the shadcn CLI only for what the code imports', () => {
-    expect(installCommand({ columns: [], features: [], filters: [] })).toBe(
-      'npx shadcn@latest add table',
-    )
+    expect(
+      installCommand({
+        columns: [],
+        features: [],
+        facets: [],
+        presets: [],
+        pager: defaultState.pager,
+      }),
+    ).toBe('npx shadcn@latest add table')
     expect(installCommand(states[1][1])).toBe(
-      'npx shadcn@latest add table button input checkbox popover select badge',
+      'npx shadcn@latest add table button input checkbox popover badge',
+    )
+  })
+})
+
+describe('applyFacets', () => {
+  const rows = buildRows(everyType)
+  const ids = (facets: FacetDef[], values: Record<string, FacetValue>) =>
+    applyFacets(rows, facets, values).map((r) => r.id)
+  const value = (patch: Partial<FacetValue>): FacetValue => ({
+    ...emptyFacet,
+    ...patch,
+  })
+
+  it('returns every row until a facet is filled in', () => {
+    const facets: FacetDef[] = [{ fieldId: 'stage', kind: 'options' }]
+    expect(ids(facets, {})).toHaveLength(rows.length)
+    expect(ids(facets, { stage: value({}) })).toHaveLength(rows.length)
+  })
+
+  it('matches any chosen option, and ANDs facets together', () => {
+    const open = rows.filter((r) => r.stage === 'Open').map((r) => r.id)
+    const facets: FacetDef[] = [{ fieldId: 'stage', kind: 'options' }]
+    expect(ids(facets, { stage: value({ values: ['Open'] }) })).toEqual(open)
+    expect(
+      ids(facets, { stage: value({ values: ['Open', "Won't fix"] }) }),
+    ).toHaveLength(rows.length)
+    const both: FacetDef[] = [...facets, { fieldId: 'done', kind: 'boolean' }]
+    const done = rows.filter((r) => r.stage === 'Open' && r.done === true)
+    expect(
+      ids(both, {
+        stage: value({ values: ['Open'] }),
+        done: value({ values: ['yes'] }),
+      }),
+    ).toEqual(done.map((r) => r.id))
+  })
+
+  it('filters ranges inclusively and ignores a half-typed bound', () => {
+    const facets: FacetDef[] = [{ fieldId: 'amount', kind: 'range' }]
+    const inRange = rows.filter((r) => (r.amount as number) >= 5000)
+    expect(ids(facets, { amount: value({ min: '5000' }) })).toEqual(
+      inRange.map((r) => r.id),
+    )
+    expect(ids(facets, { amount: value({ min: '-' }) })).toHaveLength(
+      rows.length,
+    )
+  })
+
+  it('filters date ranges and text', () => {
+    const dates: FacetDef[] = [{ fieldId: 'due', kind: 'dateRange' }]
+    const after = rows.filter((r) => (r.due as string) >= '2025-07-01')
+    expect(ids(dates, { due: value({ min: '2025-07-01' }) })).toEqual(
+      after.map((r) => r.id),
+    )
+    const text: FacetDef[] = [{ fieldId: 'title', kind: 'text' }]
+    const hits = rows.filter((r) => String(r.title).includes('app'))
+    expect(ids(text, { title: value({ text: ' APP ' }) })).toEqual(
+      hits.map((r) => r.id),
+    )
+  })
+})
+
+describe('registry item', () => {
+  it('describes every generated file and what it needs', () => {
+    const item = registryItem(defaultState)
+    expect(item.files.map((f) => f.target)).toEqual(
+      generate(defaultState).map(
+        (f) => `@components/tables/my-table/${f.path.split('/').pop()}`,
+      ),
+    )
+    expect(item.registryDependencies).toEqual(
+      expect.arrayContaining(['table', 'popover', 'checkbox']),
+    )
+  })
+
+  it('points the CLI at the URL that carries the table', () => {
+    const t = encodeState(defaultState)
+    expect(registryCommand(t)).toBe(
+      `npx shadcn@latest add 'https://www.shad-table.dev/r/builder.json?t=${t}'`,
     )
   })
 })

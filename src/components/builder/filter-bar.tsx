@@ -1,186 +1,261 @@
 'use client'
 
-import { ListFilter, Plus, X } from 'lucide-react'
+import { ListFilter, X } from 'lucide-react'
 
 import { Badge } from '#/components/ui/badge'
 import { Button } from '#/components/ui/button'
+import { Checkbox } from '#/components/ui/checkbox'
 import { Input } from '#/components/ui/input'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '#/components/ui/popover'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '#/components/ui/select'
-import { needsValue, operators } from './filters'
-import type { Field, FilterRule } from './filters'
+import { emptyFacet, isFacetActive } from './filters'
+import type { FacetDef, FacetValue, Field, Preset } from './filters'
 
 interface FilterBarProps {
   fields: Field[]
-  rules: FilterRule[]
-  onChange: (rules: FilterRule[]) => void
+  facets: FacetDef[]
+  presets: Preset[]
+  /** The unfiltered rows; options and their counts are read from here */
+  data: Record<string, unknown>[]
+  values: Record<string, FacetValue>
+  onValuesChange: (values: Record<string, FacetValue>) => void
+  activePresets: string[]
+  onActivePresetsChange: (ids: string[]) => void
 }
 
-function ValueInput({
+const MAX_OPTIONS = 20
+
+function optionsFor(field: Field, data: Record<string, unknown>[]) {
+  if (field.type === 'select') return field.options ?? []
+  return [...new Set(data.map((row) => String(row[field.id] ?? '')))]
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b))
+    .slice(0, MAX_OPTIONS)
+}
+
+function summary(kind: FacetDef['kind'], value: FacetValue) {
+  switch (kind) {
+    case 'options':
+      return value.values.length > 2
+        ? `${value.values.length} selected`
+        : value.values.join(', ')
+    case 'boolean':
+      return value.values[0] === 'yes' ? 'Yes' : 'No'
+    case 'text':
+      return value.text
+    case 'range':
+    case 'dateRange':
+      return `${value.min || '…'} – ${value.max || '…'}`
+  }
+}
+
+function FacetControl({
   field,
-  rule,
+  facet,
+  value,
+  data,
   onChange,
 }: {
   field: Field
-  rule: FilterRule
-  onChange: (value: string) => void
+  facet: FacetDef
+  value: FacetValue
+  data: Record<string, unknown>[]
+  onChange: (value: FacetValue) => void
 }) {
-  if (!needsValue(field.type, rule.op)) return <div className="w-36" />
-
-  if (field.type === 'select') {
-    return (
-      <Select value={rule.value} onValueChange={onChange}>
-        <SelectTrigger className="w-36" aria-label="Filter value">
-          <SelectValue placeholder="Choose…" />
-        </SelectTrigger>
-        <SelectContent>
-          {(field.options ?? []).map((option) => (
-            <SelectItem key={option} value={option}>
-              {option}
-            </SelectItem>
+  switch (facet.kind) {
+    case 'options': {
+      const options = optionsFor(field, data)
+      const count = (option: string) =>
+        data.filter((row) => String(row[field.id]) === option).length
+      return (
+        <div className="space-y-1">
+          {options.length === 0 ? (
+            <p className="px-1 text-sm text-muted-foreground">No options.</p>
+          ) : null}
+          {options.map((option) => {
+            const checked = value.values.includes(option)
+            return (
+              <label
+                key={option}
+                className="flex cursor-pointer items-center gap-2 rounded-sm px-1 py-1.5 text-sm hover:bg-accent"
+              >
+                <Checkbox
+                  checked={checked}
+                  onCheckedChange={() =>
+                    onChange({
+                      ...value,
+                      values: checked
+                        ? value.values.filter((v) => v !== option)
+                        : [...value.values, option],
+                    })
+                  }
+                />
+                <span className="flex-1 truncate">{option}</span>
+                <span className="text-xs text-muted-foreground tabular-nums">
+                  {count(option)}
+                </span>
+              </label>
+            )
+          })}
+        </div>
+      )
+    }
+    case 'boolean':
+      return (
+        <div className="flex gap-1">
+          {(['yes', 'no'] as const).map((choice) => (
+            <Button
+              key={choice}
+              type="button"
+              size="sm"
+              variant={value.values[0] === choice ? 'secondary' : 'outline'}
+              className="flex-1 capitalize"
+              onClick={() =>
+                onChange({
+                  ...value,
+                  values: value.values[0] === choice ? [] : [choice],
+                })
+              }
+            >
+              {choice}
+            </Button>
           ))}
-        </SelectContent>
-      </Select>
-    )
+        </div>
+      )
+    case 'text':
+      return (
+        <Input
+          value={value.text}
+          placeholder={`Search ${field.name.toLowerCase()}…`}
+          aria-label={`Search ${field.name}`}
+          onChange={(e) => onChange({ ...value, text: e.target.value })}
+        />
+      )
+    case 'range':
+    case 'dateRange': {
+      const type = facet.kind === 'range' ? 'number' : 'date'
+      return (
+        <div className="grid grid-cols-2 gap-2">
+          <Input
+            type={type}
+            value={value.min}
+            placeholder="Min"
+            aria-label={`${field.name} from`}
+            onChange={(e) => onChange({ ...value, min: e.target.value })}
+          />
+          <Input
+            type={type}
+            value={value.max}
+            placeholder="Max"
+            aria-label={`${field.name} to`}
+            onChange={(e) => onChange({ ...value, max: e.target.value })}
+          />
+        </div>
+      )
+    }
   }
-
-  return (
-    <Input
-      type={
-        field.type === 'number'
-          ? 'number'
-          : field.type === 'date'
-            ? 'date'
-            : 'text'
-      }
-      value={rule.value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder="Value"
-      aria-label="Filter value"
-      className="w-36"
-    />
-  )
 }
 
-export function FilterBar({ fields, rules, onChange }: FilterBarProps) {
-  function update(index: number, patch: Partial<FilterRule>) {
-    onChange(
-      rules.map((rule, i) => (i === index ? { ...rule, ...patch } : rule)),
-    )
-  }
-
-  function add() {
-    if (fields.length === 0) return
-    const field = fields[0]
-    onChange([
-      ...rules,
-      { fieldId: field.id, op: operators[field.type][0].op, value: '' },
-    ])
-  }
+export function FilterBar({
+  fields,
+  facets,
+  presets,
+  data,
+  values,
+  onValuesChange,
+  activePresets,
+  onActivePresetsChange,
+}: FilterBarProps) {
+  const anyActive =
+    activePresets.length > 0 ||
+    facets.some((f) => isFacetActive(f.kind, values[f.fieldId]))
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="outline" size="sm">
-          <ListFilter className="h-4 w-4" />
-          Filter
-          {rules.length > 0 ? (
-            <Badge variant="secondary" className="ml-1">
-              {rules.length}
-            </Badge>
-          ) : null}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent
-        align="start"
-        className="w-auto max-w-[calc(100vw-2rem)] space-y-3 p-3"
-      >
-        {rules.length === 0 ? (
-          <p className="text-sm text-muted-foreground">
-            No filters yet. Rows must match every filter you add.
-          </p>
-        ) : null}
-        {rules.map((rule, index) => {
-          const field = fields.find((f) => f.id === rule.fieldId)
-          if (!field) return null
-          return (
-            <div key={index} className="flex flex-wrap items-center gap-2">
-              <Select
-                value={rule.fieldId}
-                onValueChange={(fieldId) => {
-                  const next = fields.find((f) => f.id === fieldId)
-                  if (!next) return
-                  update(index, {
-                    fieldId,
-                    op: operators[next.type][0].op,
-                    value: '',
-                  })
-                }}
-              >
-                <SelectTrigger className="w-36" aria-label="Filter column">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {fields.map((f) => (
-                    <SelectItem key={f.id} value={f.id}>
-                      {f.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select
-                value={rule.op}
-                onValueChange={(op) =>
-                  update(index, { op: op as FilterRule['op'] })
-                }
-              >
-                <SelectTrigger className="w-36" aria-label="Filter operator">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {operators[field.type].map((o) => (
-                    <SelectItem key={o.op} value={o.op}>
-                      {o.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <ValueInput
-                field={field}
-                rule={rule}
-                onChange={(value) => update(index, { value })}
-              />
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Remove filter"
-                onClick={() => onChange(rules.filter((_, i) => i !== index))}
-              >
-                <X className="h-4 w-4" />
+    <>
+      {presets.map((preset) => {
+        const active = activePresets.includes(preset.id)
+        return (
+          <Button
+            key={preset.id}
+            type="button"
+            size="sm"
+            variant={active ? 'secondary' : 'outline'}
+            aria-pressed={active}
+            onClick={() =>
+              onActivePresetsChange(
+                active
+                  ? activePresets.filter((id) => id !== preset.id)
+                  : [...activePresets, preset.id],
+              )
+            }
+          >
+            {preset.label}
+          </Button>
+        )
+      })}
+      {facets.map((facet) => {
+        const field = fields.find((f) => f.id === facet.fieldId)
+        if (!field) return null
+        const value = values[facet.fieldId] ?? emptyFacet
+        const active = isFacetActive(facet.kind, value)
+        return (
+          <Popover key={facet.fieldId}>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="sm" className="border-dashed">
+                <ListFilter className="h-4 w-4" />
+                {field.name}
+                {active ? (
+                  <Badge
+                    variant="secondary"
+                    className="ml-1 max-w-32 truncate font-normal"
+                  >
+                    {summary(facet.kind, value)}
+                  </Badge>
+                ) : null}
               </Button>
-            </div>
-          )
-        })}
+            </PopoverTrigger>
+            <PopoverContent align="start" className="w-60 space-y-2 p-2">
+              <FacetControl
+                field={field}
+                facet={facet}
+                value={value}
+                data={data}
+                onChange={(next) =>
+                  onValuesChange({ ...values, [facet.fieldId]: next })
+                }
+              />
+              {active ? (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full"
+                  onClick={() =>
+                    onValuesChange({ ...values, [facet.fieldId]: emptyFacet })
+                  }
+                >
+                  Clear
+                </Button>
+              ) : null}
+            </PopoverContent>
+          </Popover>
+        )
+      })}
+      {anyActive ? (
         <Button
           variant="ghost"
           size="sm"
-          onClick={add}
-          disabled={fields.length === 0}
+          onClick={() => {
+            onValuesChange({})
+            onActivePresetsChange([])
+          }}
         >
-          <Plus className="h-4 w-4" />
-          Add filter
+          Reset
+          <X className="h-4 w-4" />
         </Button>
-      </PopoverContent>
-    </Popover>
+      ) : null}
+    </>
   )
 }

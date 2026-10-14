@@ -22,6 +22,8 @@ interface ComponentPreviewProps {
   vueFiles?: ComponentPreviewFile[]
   // Install commands shown under the Vue code (derived from the Vue sources' imports)
   vueDeps?: { npm: string[]; shadcn: string[]; valueUpdater?: boolean }
+  // Drops the card and control shadows for a flat look
+  flat?: boolean
 }
 
 type Framework = 'react' | 'vue'
@@ -58,6 +60,7 @@ export function ComponentPreview({
   files: reactFiles,
   vueFiles,
   vueDeps,
+  flat,
 }: ComponentPreviewProps) {
   // Start on React so server and client markup match, then apply the saved choice
   const [framework, setFramework] = React.useState<Framework>('react')
@@ -78,7 +81,9 @@ export function ComponentPreview({
     // Preview and code share one card; the toggle lives in its top bar
     <Tabs
       defaultValue="preview"
-      className="gap-0 overflow-hidden rounded-xl border bg-card shadow-sm"
+      className={`gap-0 overflow-hidden rounded-xl border bg-card ${
+        flat ? 'shadow-none [&_*]:shadow-none' : 'shadow-sm'
+      }`}
     >
       <div className="flex items-center border-b px-2 py-1.5">
         <TabsList className="h-auto gap-1 bg-transparent p-0">

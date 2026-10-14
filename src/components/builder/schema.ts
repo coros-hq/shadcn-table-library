@@ -1,5 +1,12 @@
-import { needsValue, operators } from './filters'
-import type { Field, FieldType, FilterRule } from './filters'
+import { facetKinds, needsValue, operators } from './filters'
+import type {
+  FacetDef,
+  FacetKind,
+  Field,
+  FieldType,
+  FilterRule,
+  Preset,
+} from './filters'
 
 export type ColumnType = FieldType
 
@@ -19,15 +26,33 @@ export const effectiveAlign = (column: ColumnSpec): Align =>
 export type FeatureId =
   'search' | 'sorting' | 'pagination' | 'selection' | 'filters'
 
+export type PagerStyle = 'text' | 'arrows'
+export const pagerStyles: { value: PagerStyle; label: string }[] = [
+  { value: 'text', label: 'Text' },
+  { value: 'arrows', label: 'Arrows' },
+]
+export const PAGE_SIZES = [5, 10, 20, 50]
+
+export interface PagerSpec {
+  style: PagerStyle
+  /** Adds a "Rows per page" select */
+  sizeSelect: boolean
+}
+
 export interface BuilderState {
   columns: ColumnSpec[]
   features: FeatureId[]
-  filters: FilterRule[]
+  /** One toolbar control per column */
+  facets: FacetDef[]
+  /** Named one-click shortcuts */
+  presets: Preset[]
+  pager: PagerSpec
 }
 
 export const MAX_COLUMNS = 20
 export const MAX_NAME_LENGTH = 40
 export const MAX_OPTIONS = 12
+export const MAX_PRESETS = 6
 
 export const columnTypes: { value: ColumnType; label: string }[] = [
   { value: 'text', label: 'Text' },
@@ -43,7 +68,7 @@ export const featureBlocks: {
   hint: string
 }[] = [
   { id: 'search', label: 'Search', hint: 'Global text filter' },
-  { id: 'filters', label: 'Filters', hint: 'Notion-style filter rules' },
+  { id: 'filters', label: 'Filters', hint: 'Per-column and quick filters' },
   { id: 'sorting', label: 'Sorting', hint: 'Click a header to sort' },
   { id: 'pagination', label: 'Pagination', hint: '5 rows per page' },
   { id: 'selection', label: 'Row selection', hint: 'Checkbox column' },
@@ -66,7 +91,12 @@ export const defaultState: BuilderState = {
     { id: 'done', name: 'Done', type: 'checkbox' },
   ],
   features: ['search', 'filters', 'sorting', 'pagination'],
-  filters: [],
+  facets: [
+    { fieldId: 'status', kind: 'options' },
+    { fieldId: 'budget', kind: 'range' },
+  ],
+  presets: [],
+  pager: { style: 'text', sizeSelect: false },
 }
 
 const defaultOptions = () => ['Option 1', 'Option 2', 'Option 3']
@@ -92,22 +122,41 @@ export function makeId(name: string, taken: string[]) {
   return id
 }
 
-function pruneRules(columns: ColumnSpec[], rules: FilterRule[]): FilterRule[] {
-  return rules.filter((rule) => {
-    const column = columns.find((c) => c.id === rule.fieldId)
-    if (!column) return false
-    if (!operators[column.type].some((o) => o.op === rule.op)) return false
-    return !(
-      column.type === 'select' &&
-      needsValue(column.type, rule.op) &&
-      rule.value !== '' &&
-      !(column.options ?? []).includes(rule.value)
-    )
+function ruleFits(columns: ColumnSpec[], rule: FilterRule) {
+  const column = columns.find((c) => c.id === rule.fieldId)
+  if (!column) return false
+  if (!operators[column.type].some((o) => o.op === rule.op)) return false
+  return !(
+    column.type === 'select' &&
+    needsValue(column.type, rule.op) &&
+    rule.value !== '' &&
+    !(column.options ?? []).includes(rule.value)
+  )
+}
+
+/** One facet per column, and only a control kind the column type supports */
+function pruneFacets(columns: ColumnSpec[], facets: FacetDef[]): FacetDef[] {
+  const seen = new Set<string>()
+  return facets.filter((facet) => {
+    const column = columns.find((c) => c.id === facet.fieldId)
+    if (!column || seen.has(facet.fieldId)) return false
+    if (!facetKinds[column.type].includes(facet.kind)) return false
+    seen.add(facet.fieldId)
+    return true
   })
 }
 
+function prunePresets(columns: ColumnSpec[], presets: Preset[]): Preset[] {
+  return presets.filter((p) => ruleFits(columns, p.rule))
+}
+
 function withColumns(state: BuilderState, columns: ColumnSpec[]) {
-  return { ...state, columns, filters: pruneRules(columns, state.filters) }
+  return {
+    ...state,
+    columns,
+    facets: pruneFacets(columns, state.facets),
+    presets: prunePresets(columns, state.presets),
+  }
 }
 
 export function addColumn(state: BuilderState): BuilderState {
@@ -165,10 +214,14 @@ export function changeColumnType(
       ? { ...rest, type, options: defaultOptions() }
       : { ...rest, type }
   })
-  // A rule written for one type means nothing for another, even when the
-  // operator name happens to exist in both ("is" for text and select).
+  // A facet or preset written for one type means nothing for another, even
+  // when the operator name happens to exist in both ("is" for text and select).
   return withColumns(
-    { ...state, filters: state.filters.filter((r) => r.fieldId !== id) },
+    {
+      ...state,
+      facets: state.facets.filter((f) => f.fieldId !== id),
+      presets: state.presets.filter((p) => p.rule.fieldId !== id),
+    },
     columns,
   )
 }
@@ -187,6 +240,91 @@ export function setColumnOptions(
         : c,
     ),
   )
+}
+
+export function addFacet(state: BuilderState): BuilderState {
+  const used = new Set(state.facets.map((f) => f.fieldId))
+  const column = state.columns.find((c) => !used.has(c.id))
+  if (!column) return state
+  const facet: FacetDef = {
+    fieldId: column.id,
+    kind: facetKinds[column.type][0],
+  }
+  return { ...state, facets: [...state.facets, facet] }
+}
+
+/** Points a facet at another column, falling back to that type's default control */
+export function setFacetColumn(
+  state: BuilderState,
+  index: number,
+  fieldId: string,
+): BuilderState {
+  const column = state.columns.find((c) => c.id === fieldId)
+  const taken = state.facets.some(
+    (f, i) => i !== index && f.fieldId === fieldId,
+  )
+  if (!column || taken || !state.facets[index]) return state
+  const facets = state.facets.map((f, i) =>
+    i === index ? { fieldId, kind: facetKinds[column.type][0] } : f,
+  )
+  return { ...state, facets }
+}
+
+export function setFacetKind(
+  state: BuilderState,
+  index: number,
+  kind: FacetKind,
+): BuilderState {
+  const facet = state.facets[index]
+  const column = state.columns.find((c) => c.id === facet?.fieldId)
+  if (!facet || !column || !facetKinds[column.type].includes(kind)) return state
+  return {
+    ...state,
+    facets: state.facets.map((f, i) => (i === index ? { ...f, kind } : f)),
+  }
+}
+
+export function removeFacet(state: BuilderState, index: number): BuilderState {
+  return { ...state, facets: state.facets.filter((_, i) => i !== index) }
+}
+
+export function addPreset(state: BuilderState): BuilderState {
+  const column = state.columns[0]
+  if (!column || state.presets.length >= MAX_PRESETS) return state
+  let n = state.presets.length + 1
+  const taken = new Set(state.presets.map((p) => p.id))
+  while (taken.has(`preset_${n}`)) n++
+  const preset: Preset = {
+    id: `preset_${n}`,
+    label: `Quick filter ${n}`,
+    rule: { fieldId: column.id, op: operators[column.type][0].op, value: '' },
+  }
+  return { ...state, presets: [...state.presets, preset] }
+}
+
+export function updatePreset(
+  state: BuilderState,
+  id: string,
+  patch: { label?: string; rule?: FilterRule },
+): BuilderState {
+  return {
+    ...state,
+    presets: state.presets.map((p) =>
+      p.id === id
+        ? {
+            ...p,
+            ...(patch.label !== undefined && {
+              label: patch.label.slice(0, MAX_NAME_LENGTH),
+            }),
+            ...(patch.rule && { rule: patch.rule }),
+          }
+        : p,
+    ),
+  }
+}
+
+export function removePreset(state: BuilderState, id: string): BuilderState {
+  return { ...state, presets: state.presets.filter((p) => p.id !== id) }
 }
 
 export function removeColumn(state: BuilderState, id: string): BuilderState {
@@ -230,7 +368,10 @@ export function reorderColumn(
 type Compact = {
   c: [string, string, string, string[]?, Align?][]
   f: string[]
-  r: [string, string, string][]
+  fs: [string, FacetKind][]
+  ps: [string, string, string, string, string][]
+  /** Only present when it differs from the default pager */
+  p?: [PagerStyle, 0 | 1]
 }
 
 function toBase64Url(text: string) {
@@ -256,7 +397,17 @@ export function encodeState(state: BuilderState): string {
         : [c.id, c.name, c.type]
     }),
     f: state.features,
-    r: state.filters.map((r) => [r.fieldId, r.op, r.value]),
+    fs: state.facets.map((f) => [f.fieldId, f.kind]),
+    ps: state.presets.map((p) => [
+      p.id,
+      p.label,
+      p.rule.fieldId,
+      p.rule.op,
+      p.rule.value,
+    ]),
+  }
+  if (state.pager.style !== 'text' || state.pager.sizeSelect) {
+    compact.p = [state.pager.style, state.pager.sizeSelect ? 1 : 0]
   }
   return toBase64Url(JSON.stringify(compact))
 }
@@ -271,13 +422,11 @@ export function decodeState(value: string | undefined): BuilderState {
     const raw = JSON.parse(fromBase64Url(value)) as {
       c?: unknown
       f?: unknown
-      r?: unknown
+      fs?: unknown
+      ps?: unknown
+      p?: unknown
     }
-    if (
-      !Array.isArray(raw.c) ||
-      !Array.isArray(raw.f) ||
-      !Array.isArray(raw.r)
-    ) {
+    if (!Array.isArray(raw.c) || !Array.isArray(raw.f)) {
       return defaultState
     }
 
@@ -312,13 +461,46 @@ export function decodeState(value: string | undefined): BuilderState {
     const features = featureIds.filter((id) =>
       (raw.f as unknown[]).includes(id),
     )
-    const rules = (raw.r as unknown[]).flatMap((entry) =>
-      Array.isArray(entry) && entry.length === 3 && entry.every(isString)
-        ? [{ fieldId: entry[0], op: entry[1], value: entry[2].slice(0, 100) }]
-        : [],
-    ) as FilterRule[]
+    const facetKindIds = Object.values(facetKinds).flat()
+    const facets = pruneFacets(
+      columns,
+      (Array.isArray(raw.fs) ? (raw.fs as unknown[]) : []).flatMap((entry) =>
+        Array.isArray(entry) &&
+        isString(entry[0]) &&
+        isString(entry[1]) &&
+        facetKindIds.includes(entry[1] as FacetKind)
+          ? [{ fieldId: entry[0], kind: entry[1] as FacetKind }]
+          : [],
+      ),
+    )
+    const presets = prunePresets(
+      columns,
+      (Array.isArray(raw.ps) ? (raw.ps as unknown[]) : [])
+        .slice(0, MAX_PRESETS)
+        .flatMap((entry) =>
+          Array.isArray(entry) && entry.length === 5 && entry.every(isString)
+            ? [
+                {
+                  id: entry[0],
+                  label: entry[1].slice(0, MAX_NAME_LENGTH),
+                  rule: {
+                    fieldId: entry[2],
+                    op: entry[3],
+                    value: entry[4].slice(0, 100),
+                  },
+                },
+              ]
+            : [],
+        ) as Preset[],
+    ).filter((p, i, all) => all.findIndex((q) => q.id === p.id) === i)
 
-    return { columns, features, filters: pruneRules(columns, rules) }
+    const pager = { ...defaultState.pager }
+    if (Array.isArray(raw.p)) {
+      if (raw.p[0] === 'arrows') pager.style = 'arrows'
+      pager.sizeSelect = raw.p[1] === 1
+    }
+
+    return { columns, features, facets, presets, pager }
   } catch {
     return defaultState
   }

@@ -1,7 +1,7 @@
 import { columnCode, str } from './column-types'
 import filterBarSource from './filter-bar.tsx?raw'
 import filtersSource from './filters.ts?raw'
-import { buildRows, effectiveAlign } from './schema'
+import { PAGE_SIZES, buildRows, effectiveAlign } from './schema'
 import type { BuilderState, ColumnSpec } from './schema'
 
 export interface GeneratedFile {
@@ -68,7 +68,7 @@ export function generate(state: BuilderState): GeneratedFile[] {
       hasType('checkbox') && `import { Check } from 'lucide-react'`,
       hasType('select') && `import { Badge } from '#/components/ui/badge'`,
       has('selection') && `import { Checkbox } from '#/components/ui/checkbox'`,
-      filters && `import type { Field } from './filters'`,
+      filters && `import type { FacetDef, Field, Preset } from './filters'`,
       `import type { Row } from './data'`,
     ].filter(Boolean)
 
@@ -113,7 +113,31 @@ ${columns
       } },`,
   )
   .join('\n')}
-]`
+]
+
+// One control per column in the toolbar
+export const facets: FacetDef[] = [${
+          state.facets.length
+            ? `\n${state.facets
+                .map(
+                  (f) =>
+                    `  { fieldId: ${str(f.fieldId)}, kind: ${str(f.kind)} },`,
+                )
+                .join('\n')}\n`
+            : ''
+        }]
+
+// One-click shortcuts that toggle a fixed rule
+export const presets: Preset[] = [${
+          state.presets.length
+            ? `\n${state.presets
+                .map(
+                  (p) =>
+                    `  {\n    id: ${str(p.id)},\n    label: ${str(p.label)},\n    rule: { fieldId: ${str(p.rule.fieldId)}, op: ${str(p.rule.op)}, value: ${str(p.rule.value)} },\n  },`,
+                )
+                .join('\n')}\n`
+            : ''
+        }]`
       : ''
 
     return `'use client'
@@ -163,23 +187,10 @@ ${body}
   }
 
   function indexFile() {
-    const rules = state.filters
-      .map(
-        (r) =>
-          `  { fieldId: ${str(r.fieldId)}, op: ${str(r.op)}, value: ${str(r.value)} },`,
-      )
-      .join('\n')
-    return `import { columns${filters ? ', fields' : ''} } from './columns'
+    return `import { columns${filters ? ', facets, fields, presets' : ''} } from './columns'
 import { DataTable } from './data-table'
 import { rows } from './data'
-${filters ? `import type { FilterRule } from './filters'\n` : ''}${
-      filters
-        ? `
-// Filters applied when the table first renders
-const defaultFilters: FilterRule[] = [${rules ? `\n${rules}\n` : ''}]
-`
-        : ''
-    }
+
 export function MyTable() {
   return (
     <DataTable
@@ -188,7 +199,8 @@ export function MyTable() {
         filters
           ? `
       fields={fields}
-      defaultFilters={defaultFilters}`
+      facets={facets}
+      presets={presets}`
           : ''
       }
     />
@@ -214,6 +226,14 @@ export function MyTable() {
     ].filter(Boolean)
     const footer = has('pagination') || has('selection')
     const toolbar = has('search') || filters
+    const arrows = has('pagination') && state.pager.style === 'arrows'
+    const sizeSelect = has('pagination') && state.pager.sizeSelect
+    const icons = [
+      ...(has('sorting') ? ['ArrowDown', 'ArrowUp', 'ArrowUpDown'] : []),
+      ...(arrows
+        ? ['ChevronLeft', 'ChevronRight', 'ChevronsLeft', 'ChevronsRight']
+        : []),
+    ]
     const tableState = [
       has('sorting') && 'sorting',
       has('search') && 'globalFilter',
@@ -225,8 +245,18 @@ ${react.length ? `import { ${react.join(', ')} } from 'react'\n` : ''}import {
 ${tanstack.map((n) => `  ${n},`).join('\n')}
 } from '@tanstack/react-table'
 import type { ColumnDef${has('sorting') ? ', SortingState' : ''} } from '@tanstack/react-table'
-${has('sorting') ? `import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'\n` : ''}
-${has('pagination') ? `import { Button } from '#/components/ui/button'\n` : ''}${has('search') ? `import { Input } from '#/components/ui/input'\n` : ''}import {
+${icons.length ? `import { ${icons.join(', ')} } from 'lucide-react'\n` : ''}
+${has('pagination') ? `import { Button } from '#/components/ui/button'\n` : ''}${has('search') ? `import { Input } from '#/components/ui/input'\n` : ''}${
+      sizeSelect
+        ? `import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '#/components/ui/select'\n`
+        : ''
+    }import {
   Table,
   TableBody,
   TableCell,
@@ -234,32 +264,35 @@ ${has('pagination') ? `import { Button } from '#/components/ui/button'\n` : ''}$
   TableHeader,
   TableRow,
 } from '#/components/ui/table'
-${aligned ? ALIGN_HELPERS : ''}${filters ? `import { FilterBar } from './filter-bar'\nimport { applyRules } from './filters'\nimport type { Field, FilterRule } from './filters'\n` : ''}
+${aligned ? ALIGN_HELPERS : ''}${filters ? `import { FilterBar } from './filter-bar'\nimport { applyFacets, applyRules } from './filters'\nimport type { FacetDef, FacetValue, Field, Preset } from './filters'\n` : ''}
 interface DataTableProps<TData${filters ? ' extends Record<string, unknown>' : ''}, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]${
     filters
       ? `
   fields: Field[]
-  defaultFilters?: FilterRule[]`
+  facets: FacetDef[]
+  presets: Preset[]`
       : ''
   }
 }
 
 export function DataTable<TData${filters ? ' extends Record<string, unknown>' : ''}, TValue>({
   columns,
-  data,${filters ? '\n  fields,\n  defaultFilters = [],' : ''}
+  data,${filters ? '\n  fields,\n  facets,\n  presets,' : ''}
 }: DataTableProps<TData, TValue>) {
 ${has('sorting') ? `  const [sorting, setSorting] = useState<SortingState>([])\n` : ''}${has('search') ? `  const [globalFilter, setGlobalFilter] = useState('')\n` : ''}${
       filters
-        ? `  const [rules, setRules] = useState<FilterRule[]>(defaultFilters)
+        ? `  const [facetValues, setFacetValues] = useState<Record<string, FacetValue>>({})
+  const [activePresets, setActivePresets] = useState<string[]>([])
 
-  // Several rules per column don't fit TanStack's columnFilters, so rules
-  // narrow the data before the table sees it.
-  const rows = useMemo(
-    () => applyRules(data, fields, rules),
-    [data, fields, rules],
-  )
+  // Facets and quick filters narrow the data before the table sees it
+  const rows = useMemo(() => {
+    const rules = presets
+      .filter((p) => activePresets.includes(p.id))
+      .map((p) => p.rule)
+    return applyRules(applyFacets(data, facets, facetValues), fields, rules)
+  }, [data, fields, facets, presets, facetValues, activePresets])
 `
         : ''
     }
@@ -284,7 +317,20 @@ ${
         />
 `
     : ''
-}${filters ? `        <FilterBar fields={fields} rules={rules} onChange={setRules} />\n` : ''}      </div>
+}${
+        filters
+          ? `        <FilterBar
+          fields={fields}
+          facets={facets}
+          presets={presets}
+          data={data}
+          values={facetValues}
+          onValuesChange={setFacetValues}
+          activePresets={activePresets}
+          onActivePresetsChange={setActivePresets}
+        />\n`
+          : ''
+      }      </div>
 `
     : ''
 }      <div className="overflow-x-auto rounded-md border">
@@ -370,24 +416,69 @@ ${footer ? footerBody() : ''}    </div>
 `
       : `        <span />
 `
+    const arrows = state.pager.style === 'arrows'
+    const sizeSelect = state.pager.sizeSelect
+    const button = (dir: 'previous' | 'next') => `          <Button
+            variant="outline"
+            size="${arrows ? 'icon' : 'sm'}"${arrows ? '\n            className="size-8"' : ''}
+            onClick={() => table.${dir}Page()}
+            disabled={!table.getCan${dir === 'previous' ? 'Previous' : 'Next'}Page()}
+            aria-label="${dir === 'previous' ? 'Previous' : 'Next'} page"
+          >
+            ${
+              arrows
+                ? `<Chevron${dir === 'previous' ? 'Left' : 'Right'} className="h-4 w-4" />`
+                : dir === 'previous'
+                  ? 'Previous'
+                  : 'Next'
+            }
+          </Button>`
+    const edge = (dir: 'first' | 'last') =>
+      arrows
+        ? `          <Button
+            variant="outline"
+            size="icon"
+            className="size-8"
+            onClick={() => table.setPageIndex(${dir === 'first' ? '0' : 'table.getPageCount() - 1'})}
+            disabled={!table.getCan${dir === 'first' ? 'Previous' : 'Next'}Page()}
+            aria-label="${dir === 'first' ? 'First' : 'Last'} page"
+          >
+            <Chevrons${dir === 'first' ? 'Left' : 'Right'} className="h-4 w-4" />
+          </Button>
+`
+        : ''
     const pager = has('pagination')
-      ? `        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
+      ? `        <div className="flex items-center gap-4">
+${
+  sizeSelect
+    ? `          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">Rows per page</span>
+            <Select
+              value={String(table.getState().pagination.pageSize)}
+              onValueChange={(value) => table.setPageSize(Number(value))}
+            >
+              <SelectTrigger size="sm" aria-label="Rows per page">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+${PAGE_SIZES.map((n) => `                <SelectItem value="${n}">${n}</SelectItem>`).join('\n')}
+              </SelectContent>
+            </Select>
+          </div>
+`
+    : ''
+}${
+          arrows
+            ? `          <span className="text-sm text-muted-foreground">
+            Page {table.getState().pagination.pageIndex + 1} of{' '}
+            {Math.max(table.getPageCount(), 1)}
+          </span>
+`
+            : ''
+        }          <div className="flex items-center gap-2">
+${edge('first')}${button('previous')}
+${button('next')}
+${edge('last')}          </div>
         </div>
 `
       : ''
@@ -397,16 +488,50 @@ ${summary}${pager}      </div>
   }
 }
 
-/** The shadcn components the generated code imports, as one CLI command */
-export function installCommand(state: BuilderState) {
+/** The shadcn components the generated code imports */
+export function registryDependencies(state: BuilderState) {
   const parts = ['table']
   const filters = state.features.includes('filters') && state.columns.length > 0
   if (state.features.includes('pagination') || filters) parts.push('button')
   if (state.features.includes('search') || filters) parts.push('input')
-  if (state.features.includes('selection')) parts.push('checkbox')
-  if (filters) parts.push('popover', 'select')
+  if (state.features.includes('selection') || filters) parts.push('checkbox')
+  if (filters) parts.push('popover')
+  if (state.features.includes('pagination') && state.pager.sizeSelect) {
+    parts.push('select')
+  }
   if (filters || state.columns.some((c) => c.type === 'select')) {
     parts.push('badge')
   }
-  return `npx shadcn@latest add ${[...new Set(parts)].join(' ')}`
+  return [...new Set(parts)]
+}
+
+/** The shadcn components the generated code imports, as one CLI command */
+export function installCommand(state: BuilderState) {
+  return `npx shadcn@latest add ${registryDependencies(state).join(' ')}`
+}
+
+export const REGISTRY_ORIGIN = 'https://www.shad-table.dev'
+
+/** One command that drops the whole table, and what it needs, into a project */
+export function registryCommand(encodedState: string) {
+  return `npx shadcn@latest add '${REGISTRY_ORIGIN}/r/builder.json?t=${encodedState}'`
+}
+
+/** The table as a shadcn registry item, served at /r/builder.json */
+export function registryItem(state: BuilderState) {
+  return {
+    $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+    name: 'my-table',
+    title: 'My Table',
+    description: `A TanStack Table with ${state.columns.length} columns, built with the ShadTable builder.`,
+    type: 'registry:block',
+    dependencies: ['@tanstack/react-table@^8.21.3', 'lucide-react'],
+    registryDependencies: registryDependencies(state),
+    files: generate(state).map((file) => ({
+      path: file.path,
+      content: file.code,
+      type: 'registry:component',
+      target: `@components/tables/my-table/${file.path.split('/').pop()}`,
+    })),
+  }
 }

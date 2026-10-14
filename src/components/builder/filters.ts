@@ -144,3 +144,113 @@ export function applyRules<T extends Record<string, unknown>>(
     active.every(({ rule, field }) => matches(row[field.id], rule, field.type)),
   )
 }
+
+// ---------------------------------------------------------------------------
+// Facets: one control per column in the toolbar (a dropdown of options, a
+// min/max range, ...). Each facet narrows the rows on its own; all of them and
+// every active quick filter must match.
+// ---------------------------------------------------------------------------
+
+export type FacetKind = 'options' | 'text' | 'range' | 'dateRange' | 'boolean'
+
+/** The control kinds a column type supports; the first is the default */
+export const facetKinds: Record<FieldType, FacetKind[]> = {
+  text: ['text', 'options'],
+  number: ['range'],
+  select: ['options'],
+  date: ['dateRange'],
+  checkbox: ['boolean'],
+}
+
+export const facetKindLabels: Record<FacetKind, string> = {
+  options: 'Options',
+  text: 'Search',
+  range: 'Range',
+  dateRange: 'Date range',
+  boolean: 'Yes / no',
+}
+
+export interface FacetDef {
+  fieldId: string
+  kind: FacetKind
+}
+
+/** A named shortcut that toggles one fixed rule, like "High budget" */
+export interface Preset {
+  id: string
+  label: string
+  rule: FilterRule
+}
+
+/** What the user has entered into one facet; each kind reads what it needs */
+export interface FacetValue {
+  /** `options`: the chosen options. `boolean`: ['yes'] or ['no'] */
+  values: string[]
+  /** `text` */
+  text: string
+  /** `range` and `dateRange` bounds, inclusive */
+  min: string
+  max: string
+}
+
+export const emptyFacet: FacetValue = { values: [], text: '', min: '', max: '' }
+
+export function isFacetActive(kind: FacetKind, value: FacetValue | undefined) {
+  if (!value) return false
+  switch (kind) {
+    case 'options':
+    case 'boolean':
+      return value.values.length > 0
+    case 'text':
+      return value.text.trim() !== ''
+    case 'range':
+    case 'dateRange':
+      return value.min !== '' || value.max !== ''
+  }
+}
+
+function matchesFacet(cell: unknown, kind: FacetKind, value: FacetValue) {
+  switch (kind) {
+    case 'options':
+      return value.values.includes(String(cell))
+    case 'boolean':
+      return value.values[0] === 'yes' ? cell === true : cell !== true
+    case 'text':
+      return String(cell ?? '')
+        .toLowerCase()
+        .includes(value.text.trim().toLowerCase())
+    case 'range': {
+      const n = Number(cell)
+      if (value.min !== '' && !Number.isNaN(Number(value.min))) {
+        if (n < Number(value.min)) return false
+      }
+      if (value.max !== '' && !Number.isNaN(Number(value.max))) {
+        if (n > Number(value.max)) return false
+      }
+      return true
+    }
+    case 'dateRange': {
+      // ISO dates (YYYY-MM-DD) compare correctly as strings
+      const text = String(cell ?? '')
+      return (
+        (value.min === '' || text >= value.min) &&
+        (value.max === '' || text <= value.max)
+      )
+    }
+  }
+}
+
+/** Keeps the rows that pass every facet the user has filled in */
+export function applyFacets<T extends Record<string, unknown>>(
+  rows: T[],
+  facets: FacetDef[],
+  values: Record<string, FacetValue>,
+): T[] {
+  const active = facets.filter((f) => isFacetActive(f.kind, values[f.fieldId]))
+  if (active.length === 0) return rows
+  return rows.filter((row) =>
+    active.every((f) =>
+      matchesFacet(row[f.fieldId], f.kind, values[f.fieldId]),
+    ),
+  )
+}

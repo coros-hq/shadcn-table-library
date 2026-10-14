@@ -8,10 +8,11 @@ import { Label } from '#/components/ui/label'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
-import { decodeState, encodeState, featureBlocks } from './schema'
+import { decodeState, encodeState, featureBlocks, pagerStyles } from './schema'
 import type { BuilderState, FeatureId } from './schema'
-import { generate, installCommand } from './generate'
+import { generate, registryCommand } from './generate'
 import { PreviewTable } from './preview-table'
+import { FiltersEditor } from './filters-editor'
 import { SchemaEditor } from './schema-editor'
 
 function toggle<T>(list: T[], item: T) {
@@ -34,7 +35,7 @@ function Block({
   return (
     <Label
       htmlFor={id}
-      className="flex cursor-pointer items-start gap-3 rounded-md border bg-background px-3 py-2 font-normal has-[[data-state=checked]]:border-primary/40 has-[[data-state=checked]]:bg-primary/5"
+      className="flex cursor-pointer items-start gap-2.5 py-1 font-normal"
     >
       <Checkbox
         id={id}
@@ -42,8 +43,8 @@ function Block({
         onCheckedChange={onChange}
         className="mt-0.5"
       />
-      <span className="space-y-0.5">
-        <span className="block text-sm">{label}</span>
+      <span className="space-y-0">
+        <span className="block text-sm leading-tight">{label}</span>
         <span className="block text-xs text-muted-foreground">{hint}</span>
       </span>
     </Label>
@@ -170,89 +171,134 @@ export function BuilderPage() {
           </p>
         </div>
 
-        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] xl:grid-cols-[minmax(0,30rem)_minmax(0,1fr)]">
-          <div className="space-y-6 rounded-xl border bg-card p-4 sm:p-6 lg:sticky lg:top-20 lg:max-h-[calc(100svh-6rem)] lg:overflow-y-auto">
-            <div className="flex items-center justify-between gap-2">
-              <h2 className="text-sm font-medium">Schema</h2>
-              <div className="flex items-center gap-1">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  disabled={!canUndo}
-                  onClick={undo}
-                  aria-label="Undo"
-                >
-                  <Undo2 className="h-3.5 w-3.5" />
-                  Undo
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  disabled={!canRedo}
-                  onClick={redo}
-                  aria-label="Redo"
-                >
-                  <Redo2 className="h-3.5 w-3.5" />
-                  Redo
-                </Button>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
+          {/* On desktop the card is pinned to the row height set by the preview, so it scrolls inside */}
+          <div className="relative lg:min-h-[32rem]">
+            <div className="space-y-4 rounded-xl border bg-card p-3 sm:p-4 lg:absolute lg:inset-0 lg:overflow-y-auto">
+              <div className="flex items-center justify-between gap-2">
+                <h2 className="text-sm font-medium">Schema</h2>
+                <div className="flex items-center gap-1">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={!canUndo}
+                    onClick={undo}
+                    aria-label="Undo"
+                  >
+                    <Undo2 className="h-3.5 w-3.5" />
+                    Undo
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={!canRedo}
+                    onClick={redo}
+                    aria-label="Redo"
+                  >
+                    <Redo2 className="h-3.5 w-3.5" />
+                    Redo
+                  </Button>
+                </div>
               </div>
-            </div>
-            <SchemaEditor state={state} onChange={setState} />
-            <fieldset className="space-y-3">
-              <legend className="text-sm font-medium">Features</legend>
-              <div className="grid gap-2">
-                {featureBlocks.map((f) => (
+              <SchemaEditor state={state} onChange={setState} />
+              <fieldset className="space-y-2">
+                <legend className="mb-2 text-sm font-medium">Features</legend>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {featureBlocks.map((f) => (
+                    <Block
+                      key={f.id}
+                      id={`feat-${f.id}`}
+                      label={f.label}
+                      hint={f.hint}
+                      checked={state.features.includes(f.id)}
+                      onChange={() =>
+                        setState({
+                          ...state,
+                          features: toggle<FeatureId>(state.features, f.id),
+                        })
+                      }
+                    />
+                  ))}
+                </div>
+              </fieldset>
+              {state.features.includes('filters') ? (
+                <FiltersEditor state={state} onChange={setState} />
+              ) : null}
+              {state.features.includes('pagination') ? (
+                <fieldset className="space-y-2">
+                  <legend className="mb-2 text-sm font-medium">
+                    Pagination
+                  </legend>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm">Buttons</span>
+                    <div className="inline-flex rounded-md border p-0.5">
+                      {pagerStyles.map((p) => (
+                        <button
+                          key={p.value}
+                          type="button"
+                          aria-pressed={state.pager.style === p.value}
+                          onClick={() =>
+                            setState({
+                              ...state,
+                              pager: { ...state.pager, style: p.value },
+                            })
+                          }
+                          className="h-7 rounded px-3 text-xs text-muted-foreground aria-pressed:bg-muted aria-pressed:text-foreground"
+                        >
+                          {p.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                   <Block
-                    key={f.id}
-                    id={`feat-${f.id}`}
-                    label={f.label}
-                    hint={f.hint}
-                    checked={state.features.includes(f.id)}
+                    id="pager-size"
+                    label="Rows per page"
+                    hint="Select to change the page size"
+                    checked={state.pager.sizeSelect}
                     onChange={() =>
                       setState({
                         ...state,
-                        features: toggle<FeatureId>(state.features, f.id),
+                        pager: {
+                          ...state.pager,
+                          sizeSelect: !state.pager.sizeSelect,
+                        },
                       })
                     }
                   />
-                ))}
+                </fieldset>
+              ) : null}
+              <div className="flex flex-col gap-2 border-t pt-3">
+                <p className="text-xs text-muted-foreground">
+                  Your table lives in the URL, so you can share it.
+                </p>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={copyLink}
+                >
+                  {copied ? (
+                    <Check className="h-3.5 w-3.5" />
+                  ) : (
+                    <Link2 className="h-3.5 w-3.5" />
+                  )}
+                  {copied ? 'Copied' : 'Copy link'}
+                </Button>
               </div>
-            </fieldset>
-            <div className="flex flex-col gap-3 border-t pt-4">
-              <p className="text-sm text-muted-foreground">
-                Filters you add in the preview become the defaults in the code.
-                Your table lives in the URL, so you can share it.
-              </p>
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={copyLink}
-              >
-                {copied ? (
-                  <Check className="h-3.5 w-3.5" />
-                ) : (
-                  <Link2 className="h-3.5 w-3.5" />
-                )}
-                {copied ? 'Copied' : 'Copy link'}
-              </Button>
             </div>
           </div>
 
           <div className="min-w-0 space-y-4">
-            <InstallCommand name="" command={installCommand(state)} />
+            <InstallCommand name="" command={registryCommand(encoded)} />
 
             <ComponentPreview
+              flat
               // Row models are cached by TanStack on first use, so a different
               // feature set needs a fresh table rather than an updated one
               preview={
-                <PreviewTable
-                  key={state.features.join()}
-                  state={state}
-                  onFiltersChange={(filters) => setState({ ...state, filters })}
-                />
+                <PreviewTable key={state.features.join()} state={state} />
               }
               files={files}
             />

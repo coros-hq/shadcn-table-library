@@ -3,6 +3,7 @@ import {
   AlignLeft,
   AlignRight,
   Calendar,
+  ChevronRight,
   GripVertical,
   Hash,
   List,
@@ -98,8 +99,8 @@ export function SchemaEditor({
   }
 
   return (
-    <fieldset className="space-y-3">
-      <legend className="text-sm font-medium">Columns</legend>
+    <fieldset className="space-y-2">
+      <legend className="mb-2 text-sm font-medium">Columns</legend>
       {columns.length === 0 ? (
         <p className="rounded-md border border-dashed px-3 py-6 text-center text-sm text-muted-foreground">
           No columns yet. Add one to start building.
@@ -115,7 +116,7 @@ export function SchemaEditor({
           items={columns.map((c) => c.id)}
           strategy={verticalListSortingStrategy}
         >
-          <ul className="space-y-2">
+          <ul className="divide-y overflow-hidden rounded-md border bg-background">
             {columns.map((column, index) => (
               <ColumnRow
                 key={column.id}
@@ -132,6 +133,7 @@ export function SchemaEditor({
         type="button"
         variant="outline"
         size="sm"
+        className="shadow-none"
         disabled={columns.length >= MAX_COLUMNS}
         onClick={() => onChange(addColumn(state))}
       >
@@ -165,22 +167,23 @@ function ColumnRow({
   const Icon = typeIcon[column.type]
   const align = effectiveAlign(column)
   const AlignIcon = alignIcon[align]
+  const [open, setOpen] = useState(false)
 
   return (
     <li
       ref={setNodeRef}
       style={{ transform: CSS.Translate.toString(transform), transition }}
-      className={`space-y-2 rounded-md border bg-background p-2 ${
-        isDragging ? 'relative z-10 shadow-md' : ''
+      className={`space-y-1.5 bg-background p-1.5 ${
+        isDragging ? 'relative z-10 ring-1 ring-border' : ''
       }`}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <Button
           ref={setActivatorNodeRef}
           type="button"
           variant="ghost"
           size="icon"
-          className="h-9 w-8 shrink-0 cursor-grab touch-none text-muted-foreground active:cursor-grabbing"
+          className="h-8 w-6 shrink-0 cursor-grab touch-none text-muted-foreground active:cursor-grabbing"
           aria-label={`Drag to reorder ${column.name}`}
           {...attributes}
           {...listeners}
@@ -194,11 +197,12 @@ function ColumnRow({
           }
         >
           <SelectTrigger
-            className="w-36 shrink-0"
+            size="sm"
+            className="w-36 shrink-0 gap-2 px-2.5 text-sm shadow-none"
             aria-label={`Type of ${column.name}`}
           >
             <span className="flex items-center gap-2">
-              <Icon className="h-4 w-4 text-muted-foreground" />
+              <Icon className="h-3.5 w-3.5 text-muted-foreground" />
               <SelectValue />
             </span>
           </SelectTrigger>
@@ -217,7 +221,7 @@ function ColumnRow({
           onChange={(e) =>
             onChange(renameColumn(state, column.id, e.target.value))
           }
-          className="min-w-0 flex-1"
+          className="h-8 min-w-0 flex-1 shadow-none px-2 text-sm"
         />
         <Select
           value={align}
@@ -226,7 +230,8 @@ function ColumnRow({
           }
         >
           <SelectTrigger
-            className="w-9 shrink-0 justify-center px-0 [&>svg:last-child]:hidden"
+            size="sm"
+            className="w-8 shrink-0 shadow-none justify-center px-0 [&>svg:last-child]:hidden"
             aria-label={`Alignment of ${column.name}`}
             title="Content alignment"
           >
@@ -252,7 +257,7 @@ function ColumnRow({
           type="button"
           variant="ghost"
           size="icon"
-          className="shrink-0"
+          className="h-8 w-8 shrink-0"
           aria-label={`Remove ${column.name}`}
           onClick={() => onChange(removeColumn(state, column.id))}
         >
@@ -260,14 +265,30 @@ function ColumnRow({
         </Button>
       </div>
       {column.type === 'select' ? (
-        <div className="pl-8">
-          <OptionsList
-            value={column.options ?? []}
-            label={`Options for ${column.name}`}
-            onCommit={(options) =>
-              onChange(setColumnOptions(state, column.id, options))
-            }
-          />
+        <div className="pl-6">
+          <button
+            type="button"
+            aria-expanded={open}
+            onClick={() => setOpen(!open)}
+            className="flex h-7 w-full items-center gap-1 rounded-md px-1 text-xs text-muted-foreground hover:bg-accent hover:text-foreground"
+          >
+            <ChevronRight
+              className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-90' : ''}`}
+            />
+            Options
+            <span className="ml-auto rounded-full bg-muted px-1.5 tabular-nums">
+              {column.options?.length ?? 0}
+            </span>
+          </button>
+          {open ? (
+            <OptionsList
+              value={column.options ?? []}
+              label={`Options for ${column.name}`}
+              onCommit={(options) =>
+                onChange(setColumnOptions(state, column.id, options))
+              }
+            />
+          ) : null}
         </div>
       ) : null}
     </li>
@@ -327,7 +348,7 @@ function OptionsList({
   }
 
   return (
-    <div className="w-full space-y-1.5" role="group" aria-label={label}>
+    <div className="w-full space-y-1" role="group" aria-label={label}>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
@@ -364,6 +385,7 @@ function OptionsList({
         type="button"
         variant="ghost"
         size="sm"
+        className="h-7 px-2 text-xs"
         disabled={rows.length >= MAX_OPTIONS}
         onClick={() => setRows([...rows, ...toRows([''])])}
       >
@@ -402,7 +424,7 @@ function OptionItem({
       ref={setNodeRef}
       style={{ transform: CSS.Translate.toString(transform), transition }}
       className={`flex items-center gap-1 rounded-md bg-background ${
-        isDragging ? 'relative z-10 shadow-md' : ''
+        isDragging ? 'relative z-10 ring-1 ring-border' : ''
       }`}
     >
       <Button
@@ -410,7 +432,7 @@ function OptionItem({
         type="button"
         variant="ghost"
         size="icon"
-        className="h-8 w-6 shrink-0 cursor-grab touch-none text-muted-foreground active:cursor-grabbing"
+        className="h-7 w-5 shrink-0 cursor-grab touch-none text-muted-foreground active:cursor-grabbing"
         aria-label={`Drag to reorder option ${index + 1}`}
         {...attributes}
         {...listeners}
@@ -429,13 +451,13 @@ function OptionItem({
             e.currentTarget.blur()
           }
         }}
-        className="h-8 flex-1"
+        className="h-7 flex-1 shadow-none px-2 text-sm"
       />
       <Button
         type="button"
         variant="ghost"
         size="icon"
-        className="h-8 w-8 shrink-0"
+        className="h-7 w-7 shrink-0"
         aria-label={`Remove option ${index + 1}`}
         onClick={onRemove}
       >

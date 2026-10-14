@@ -10,11 +10,26 @@ import {
   useReactTable,
 } from '@tanstack/react-table'
 import type { ColumnDef, SortingState } from '@tanstack/react-table'
-import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
+import {
+  ArrowDown,
+  ArrowUp,
+  ArrowUpDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from 'lucide-react'
 
 import { Button } from '#/components/ui/button'
 import { Checkbox } from '#/components/ui/checkbox'
 import { Input } from '#/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '#/components/ui/select'
 import {
   Table,
   TableBody,
@@ -25,9 +40,9 @@ import {
 } from '#/components/ui/table'
 import { columnDef } from './column-types'
 import { FilterBar } from './filter-bar'
-import { applyRules } from './filters'
-import type { FilterRule } from './filters'
-import { buildRows } from './schema'
+import { applyFacets, applyRules } from './filters'
+import type { FacetValue } from './filters'
+import { PAGE_SIZES, buildRows } from './schema'
 import type { BuilderState, Row } from './schema'
 import { alignClass, alignOf, justifyClass } from './align'
 
@@ -54,18 +69,14 @@ const selectColumn: ColumnDef<Row> = {
 }
 
 // Mirrors what generate.ts emits, so the preview is the generated table.
-export function PreviewTable({
-  state,
-  onFiltersChange,
-}: {
-  state: BuilderState
-  onFiltersChange: (filters: FilterRule[]) => void
-}) {
+export function PreviewTable({ state }: { state: BuilderState }) {
   const has = (feature: BuilderState['features'][number]) =>
     state.features.includes(feature)
   const filters = has('filters') && state.columns.length > 0
   const [sorting, setSorting] = useState<SortingState>([])
   const [globalFilter, setGlobalFilter] = useState('')
+  const [facetValues, setFacetValues] = useState<Record<string, FacetValue>>({})
+  const [activePresets, setActivePresets] = useState<string[]>([])
 
   const selection = has('selection')
   const columns = useMemo(
@@ -76,11 +87,25 @@ export function PreviewTable({
     [selection, state.columns],
   )
   const baseRows = useMemo(() => buildRows(state.columns), [state.columns])
-  const data = useMemo(
-    () =>
-      filters ? applyRules(baseRows, state.columns, state.filters) : baseRows,
-    [filters, baseRows, state.columns, state.filters],
-  )
+  const data = useMemo(() => {
+    if (!filters) return baseRows
+    const rules = state.presets
+      .filter((p) => activePresets.includes(p.id))
+      .map((p) => p.rule)
+    return applyRules(
+      applyFacets(baseRows, state.facets, facetValues),
+      state.columns,
+      rules,
+    )
+  }, [
+    filters,
+    baseRows,
+    state.columns,
+    state.facets,
+    state.presets,
+    facetValues,
+    activePresets,
+  ])
 
   const table = useReactTable({
     data,
@@ -126,8 +151,13 @@ export function PreviewTable({
           {filters ? (
             <FilterBar
               fields={state.columns}
-              rules={state.filters}
-              onChange={onFiltersChange}
+              facets={state.facets}
+              presets={state.presets}
+              data={baseRows}
+              values={facetValues}
+              onValuesChange={setFacetValues}
+              activePresets={activePresets}
+              onActivePresetsChange={setActivePresets}
             />
           ) : null}
         </div>
@@ -218,23 +248,89 @@ export function PreviewTable({
             <span />
           )}
           {has('pagination') ? (
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
-              >
-                Previous
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
-              >
-                Next
-              </Button>
+            <div className="flex items-center gap-4">
+              {state.pager.sizeSelect ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">
+                    Rows per page
+                  </span>
+                  <Select
+                    value={String(table.getState().pagination.pageSize)}
+                    onValueChange={(value) => table.setPageSize(Number(value))}
+                  >
+                    <SelectTrigger size="sm" aria-label="Rows per page">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {PAGE_SIZES.map((size) => (
+                        <SelectItem key={size} value={String(size)}>
+                          {size}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              ) : null}
+              {state.pager.style === 'arrows' ? (
+                <span className="text-sm text-muted-foreground">
+                  Page {table.getState().pagination.pageIndex + 1} of{' '}
+                  {Math.max(table.getPageCount(), 1)}
+                </span>
+              ) : null}
+              <div className="flex items-center gap-2">
+                {state.pager.style === 'arrows' ? (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="size-8"
+                    onClick={() => table.setPageIndex(0)}
+                    disabled={!table.getCanPreviousPage()}
+                    aria-label="First page"
+                  >
+                    <ChevronsLeft className="h-4 w-4" />
+                  </Button>
+                ) : null}
+                <Button
+                  variant="outline"
+                  size={state.pager.style === 'arrows' ? 'icon' : 'sm'}
+                  className={state.pager.style === 'arrows' ? 'size-8' : ''}
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                  aria-label="Previous page"
+                >
+                  {state.pager.style === 'arrows' ? (
+                    <ChevronLeft className="h-4 w-4" />
+                  ) : (
+                    'Previous'
+                  )}
+                </Button>
+                <Button
+                  variant="outline"
+                  size={state.pager.style === 'arrows' ? 'icon' : 'sm'}
+                  className={state.pager.style === 'arrows' ? 'size-8' : ''}
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                  aria-label="Next page"
+                >
+                  {state.pager.style === 'arrows' ? (
+                    <ChevronRight className="h-4 w-4" />
+                  ) : (
+                    'Next'
+                  )}
+                </Button>
+                {state.pager.style === 'arrows' ? (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="size-8"
+                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                    disabled={!table.getCanNextPage()}
+                    aria-label="Last page"
+                  >
+                    <ChevronsRight className="h-4 w-4" />
+                  </Button>
+                ) : null}
+              </div>
             </div>
           ) : null}
         </div>

@@ -48,6 +48,7 @@ import { Route as TreeReorderRouteImport } from './routes/tree-reorder'
 import { Route as TreeSelectRouteImport } from './routes/tree-select'
 import { Route as TreeTableRouteImport } from './routes/tree-table'
 import { Route as UtilityTableRouteImport } from './routes/utility-table'
+import { Route as RBuilderDotjsonRouteImport } from './routes/r.builder[.]json'
 import { Route as V9IndexRouteImport } from './routes/v9/index'
 import { Route as V9AnimatedIconsTableRouteImport } from './routes/v9/animated-icons-table'
 import { Route as V9AsyncActionsTableRouteImport } from './routes/v9/async-actions-table'
@@ -283,6 +284,11 @@ const UtilityTableRoute = UtilityTableRouteImport.update({
   path: '/utility-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RBuilderDotjsonRoute = RBuilderDotjsonRouteImport.update({
+  id: '/r/builder.json',
+  path: '/r/builder.json',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const V9IndexRoute = V9IndexRouteImport.update({
   id: '/v9/',
   path: '/v9/',
@@ -507,6 +513,7 @@ export interface FileRoutesByFullPath {
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
   '/utility-table': typeof UtilityTableRoute
+  '/r/builder.json': typeof RBuilderDotjsonRoute
   '/v9/animated-icons-table': typeof V9AnimatedIconsTableRoute
   '/v9/async-actions-table': typeof V9AsyncActionsTableRoute
   '/v9/column-pinning-table': typeof V9ColumnPinningTableRoute
@@ -584,6 +591,7 @@ export interface FileRoutesByTo {
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
   '/utility-table': typeof UtilityTableRoute
+  '/r/builder.json': typeof RBuilderDotjsonRoute
   '/v9/animated-icons-table': typeof V9AnimatedIconsTableRoute
   '/v9/async-actions-table': typeof V9AsyncActionsTableRoute
   '/v9/column-pinning-table': typeof V9ColumnPinningTableRoute
@@ -662,6 +670,7 @@ export interface FileRoutesById {
   '/tree-select': typeof TreeSelectRoute
   '/tree-table': typeof TreeTableRoute
   '/utility-table': typeof UtilityTableRoute
+  '/r/builder.json': typeof RBuilderDotjsonRoute
   '/v9/animated-icons-table': typeof V9AnimatedIconsTableRoute
   '/v9/async-actions-table': typeof V9AsyncActionsTableRoute
   '/v9/column-pinning-table': typeof V9ColumnPinningTableRoute
@@ -741,6 +750,7 @@ export interface FileRouteTypes {
     | '/tree-select'
     | '/tree-table'
     | '/utility-table'
+    | '/r/builder.json'
     | '/v9/animated-icons-table'
     | '/v9/async-actions-table'
     | '/v9/column-pinning-table'
@@ -818,6 +828,7 @@ export interface FileRouteTypes {
     | '/tree-select'
     | '/tree-table'
     | '/utility-table'
+    | '/r/builder.json'
     | '/v9/animated-icons-table'
     | '/v9/async-actions-table'
     | '/v9/column-pinning-table'
@@ -895,6 +906,7 @@ export interface FileRouteTypes {
     | '/tree-select'
     | '/tree-table'
     | '/utility-table'
+    | '/r/builder.json'
     | '/v9/animated-icons-table'
     | '/v9/async-actions-table'
     | '/v9/column-pinning-table'
@@ -973,6 +985,7 @@ export interface RootRouteChildren {
   TreeSelectRoute: typeof TreeSelectRoute
   TreeTableRoute: typeof TreeTableRoute
   UtilityTableRoute: typeof UtilityTableRoute
+  RBuilderDotjsonRoute: typeof RBuilderDotjsonRoute
   V9AnimatedIconsTableRoute: typeof V9AnimatedIconsTableRoute
   V9AsyncActionsTableRoute: typeof V9AsyncActionsTableRoute
   V9ColumnPinningTableRoute: typeof V9ColumnPinningTableRoute
@@ -1286,6 +1299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UtilityTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/r/builder.json': {
+      id: '/r/builder.json'
+      path: '/r/builder.json'
+      fullPath: '/r/builder.json'
+      preLoaderRoute: typeof RBuilderDotjsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/v9/': {
       id: '/v9/'
       path: '/v9'
@@ -1581,6 +1601,7 @@ const rootRouteChildren: RootRouteChildren = {
   TreeSelectRoute: TreeSelectRoute,
   TreeTableRoute: TreeTableRoute,
   UtilityTableRoute: UtilityTableRoute,
+  RBuilderDotjsonRoute: RBuilderDotjsonRoute,
   V9AnimatedIconsTableRoute: V9AnimatedIconsTableRoute,
   V9AsyncActionsTableRoute: V9AsyncActionsTableRoute,
   V9ColumnPinningTableRoute: V9ColumnPinningTableRoute,
