@@ -20,6 +20,8 @@ import { Route as CrmEmployeesTableRouteImport } from './routes/crm-employees-ta
 import { Route as DataTableRouteImport } from './routes/data-table'
 import { Route as DeploymentsTableRouteImport } from './routes/deployments-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
+import { Route as EmptyStateTableRouteImport } from './routes/empty-state-table'
+import { Route as ErrorStateTableRouteImport } from './routes/error-state-table'
 import { Route as ExportConfigTableRouteImport } from './routes/export-config-table'
 import { Route as ExportSelectedTableRouteImport } from './routes/export-selected-table'
 import { Route as FilterStateShapeTableRouteImport } from './routes/filter-state-shape-table'
@@ -30,6 +32,7 @@ import { Route as InfiniteScrollTableRouteImport } from './routes/infinite-scrol
 import { Route as InventoryAllocationTableRouteImport } from './routes/inventory-allocation-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
 import { Route as LiveStatusTableRouteImport } from './routes/live-status-table'
+import { Route as LoadingStateTableRouteImport } from './routes/loading-state-table'
 import { Route as LogsTableRouteImport } from './routes/logs-table'
 import { Route as MasterDetailRouteImport } from './routes/master-detail'
 import { Route as MigrateV9RouteImport } from './routes/migrate-v9'
@@ -142,6 +145,16 @@ const EditableTableRoute = EditableTableRouteImport.update({
   path: '/editable-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmptyStateTableRoute = EmptyStateTableRouteImport.update({
+  id: '/empty-state-table',
+  path: '/empty-state-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ErrorStateTableRoute = ErrorStateTableRouteImport.update({
+  id: '/error-state-table',
+  path: '/error-state-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExportConfigTableRoute = ExportConfigTableRouteImport.update({
   id: '/export-config-table',
   path: '/export-config-table',
@@ -191,6 +204,11 @@ const KpiTableRoute = KpiTableRouteImport.update({
 const LiveStatusTableRoute = LiveStatusTableRouteImport.update({
   id: '/live-status-table',
   path: '/live-status-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoadingStateTableRoute = LoadingStateTableRouteImport.update({
+  id: '/loading-state-table',
+  path: '/loading-state-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LogsTableRoute = LogsTableRouteImport.update({
@@ -485,6 +503,8 @@ export interface FileRoutesByFullPath {
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/empty-state-table': typeof EmptyStateTableRoute
+  '/error-state-table': typeof ErrorStateTableRoute
   '/export-config-table': typeof ExportConfigTableRoute
   '/export-selected-table': typeof ExportSelectedTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
@@ -495,6 +515,7 @@ export interface FileRoutesByFullPath {
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
+  '/loading-state-table': typeof LoadingStateTableRoute
   '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/migrate-v9': typeof MigrateV9Route
@@ -563,6 +584,8 @@ export interface FileRoutesByTo {
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/empty-state-table': typeof EmptyStateTableRoute
+  '/error-state-table': typeof ErrorStateTableRoute
   '/export-config-table': typeof ExportConfigTableRoute
   '/export-selected-table': typeof ExportSelectedTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
@@ -573,6 +596,7 @@ export interface FileRoutesByTo {
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
+  '/loading-state-table': typeof LoadingStateTableRoute
   '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/migrate-v9': typeof MigrateV9Route
@@ -642,6 +666,8 @@ export interface FileRoutesById {
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
+  '/empty-state-table': typeof EmptyStateTableRoute
+  '/error-state-table': typeof ErrorStateTableRoute
   '/export-config-table': typeof ExportConfigTableRoute
   '/export-selected-table': typeof ExportSelectedTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
@@ -652,6 +678,7 @@ export interface FileRoutesById {
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
+  '/loading-state-table': typeof LoadingStateTableRoute
   '/logs-table': typeof LogsTableRoute
   '/master-detail': typeof MasterDetailRoute
   '/migrate-v9': typeof MigrateV9Route
@@ -722,6 +749,8 @@ export interface FileRouteTypes {
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
+    | '/empty-state-table'
+    | '/error-state-table'
     | '/export-config-table'
     | '/export-selected-table'
     | '/filter-state-shape-table'
@@ -732,6 +761,7 @@ export interface FileRouteTypes {
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
+    | '/loading-state-table'
     | '/logs-table'
     | '/master-detail'
     | '/migrate-v9'
@@ -800,6 +830,8 @@ export interface FileRouteTypes {
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
+    | '/empty-state-table'
+    | '/error-state-table'
     | '/export-config-table'
     | '/export-selected-table'
     | '/filter-state-shape-table'
@@ -810,6 +842,7 @@ export interface FileRouteTypes {
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
+    | '/loading-state-table'
     | '/logs-table'
     | '/master-detail'
     | '/migrate-v9'
@@ -878,6 +911,8 @@ export interface FileRouteTypes {
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
+    | '/empty-state-table'
+    | '/error-state-table'
     | '/export-config-table'
     | '/export-selected-table'
     | '/filter-state-shape-table'
@@ -888,6 +923,7 @@ export interface FileRouteTypes {
     | '/inventory-allocation-table'
     | '/kpi-table'
     | '/live-status-table'
+    | '/loading-state-table'
     | '/logs-table'
     | '/master-detail'
     | '/migrate-v9'
@@ -957,6 +993,8 @@ export interface RootRouteChildren {
   DataTableRoute: typeof DataTableRoute
   DeploymentsTableRoute: typeof DeploymentsTableRoute
   EditableTableRoute: typeof EditableTableRoute
+  EmptyStateTableRoute: typeof EmptyStateTableRoute
+  ErrorStateTableRoute: typeof ErrorStateTableRoute
   ExportConfigTableRoute: typeof ExportConfigTableRoute
   ExportSelectedTableRoute: typeof ExportSelectedTableRoute
   FilterStateShapeTableRoute: typeof FilterStateShapeTableRoute
@@ -967,6 +1005,7 @@ export interface RootRouteChildren {
   InventoryAllocationTableRoute: typeof InventoryAllocationTableRoute
   KpiTableRoute: typeof KpiTableRoute
   LiveStatusTableRoute: typeof LiveStatusTableRoute
+  LoadingStateTableRoute: typeof LoadingStateTableRoute
   LogsTableRoute: typeof LogsTableRoute
   MasterDetailRoute: typeof MasterDetailRoute
   MigrateV9Route: typeof MigrateV9Route
@@ -1103,6 +1142,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditableTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/empty-state-table': {
+      id: '/empty-state-table'
+      path: '/empty-state-table'
+      fullPath: '/empty-state-table'
+      preLoaderRoute: typeof EmptyStateTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/error-state-table': {
+      id: '/error-state-table'
+      path: '/error-state-table'
+      fullPath: '/error-state-table'
+      preLoaderRoute: typeof ErrorStateTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/export-config-table': {
       id: '/export-config-table'
       path: '/export-config-table'
@@ -1171,6 +1224,13 @@ declare module '@tanstack/react-router' {
       path: '/live-status-table'
       fullPath: '/live-status-table'
       preLoaderRoute: typeof LiveStatusTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loading-state-table': {
+      id: '/loading-state-table'
+      path: '/loading-state-table'
+      fullPath: '/loading-state-table'
+      preLoaderRoute: typeof LoadingStateTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/logs-table': {
@@ -1573,6 +1633,8 @@ const rootRouteChildren: RootRouteChildren = {
   DataTableRoute: DataTableRoute,
   DeploymentsTableRoute: DeploymentsTableRoute,
   EditableTableRoute: EditableTableRoute,
+  EmptyStateTableRoute: EmptyStateTableRoute,
+  ErrorStateTableRoute: ErrorStateTableRoute,
   ExportConfigTableRoute: ExportConfigTableRoute,
   ExportSelectedTableRoute: ExportSelectedTableRoute,
   FilterStateShapeTableRoute: FilterStateShapeTableRoute,
@@ -1583,6 +1645,7 @@ const rootRouteChildren: RootRouteChildren = {
   InventoryAllocationTableRoute: InventoryAllocationTableRoute,
   KpiTableRoute: KpiTableRoute,
   LiveStatusTableRoute: LiveStatusTableRoute,
+  LoadingStateTableRoute: LoadingStateTableRoute,
   LogsTableRoute: LogsTableRoute,
   MasterDetailRoute: MasterDetailRoute,
   MigrateV9Route: MigrateV9Route,

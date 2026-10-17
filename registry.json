@@ -461,6 +461,47 @@
       "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
+      "name": "loading-state-table",
+      "type": "registry:block",
+      "title": "Loading State Table",
+      "description": "Skeleton placeholder rows that match the column layout for first loads, plus a dimmed refetch state that keeps existing rows on screen.",
+      "files": [
+        { "path": "src/components/loading-state/data.ts", "type": "registry:component", "target": "@components/tables/loading-state-table/data.ts" },
+        { "path": "src/components/loading-state/data-table.tsx", "type": "registry:component", "target": "@components/tables/loading-state-table/data-table.tsx" },
+        { "path": "src/components/loading-state/index.tsx", "type": "registry:component", "target": "@components/tables/loading-state-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button", "skeleton"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "empty-state-table",
+      "type": "registry:block",
+      "title": "Empty State Table",
+      "description": "Reusable EmptyState component with a first-use state (call to action) and a no-results state (clear search) rendered inside the table body.",
+      "files": [
+        { "path": "src/components/empty-state/data.ts", "type": "registry:component", "target": "@components/tables/empty-state-table/data.ts" },
+        { "path": "src/components/empty-state/empty-state.tsx", "type": "registry:component", "target": "@components/tables/empty-state-table/empty-state.tsx" },
+        { "path": "src/components/empty-state/data-table.tsx", "type": "registry:component", "target": "@components/tables/empty-state-table/data-table.tsx" },
+        { "path": "src/components/empty-state/index.tsx", "type": "registry:component", "target": "@components/tables/empty-state-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button", "input"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "error-state-table",
+      "type": "registry:block",
+      "title": "Error State Table",
+      "description": "Reusable ErrorState component with a panel variant for empty tables and a banner variant over stale rows, both with a retry button and retrying state.",
+      "files": [
+        { "path": "src/components/error-state/data.ts", "type": "registry:component", "target": "@components/tables/error-state-table/data.ts" },
+        { "path": "src/components/error-state/error-state.tsx", "type": "registry:component", "target": "@components/tables/error-state-table/error-state.tsx" },
+        { "path": "src/components/error-state/data-table.tsx", "type": "registry:component", "target": "@components/tables/error-state-table/data-table.tsx" },
+        { "path": "src/components/error-state/index.tsx", "type": "registry:component", "target": "@components/tables/error-state-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
       "name": "inventory-allocation-table",
       "type": "registry:block",
       "title": "Inventory Allocation Table",

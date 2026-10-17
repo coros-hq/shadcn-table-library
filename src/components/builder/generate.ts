@@ -38,6 +38,13 @@ type Align = keyof typeof alignClass
 const alignOf = (def: { meta?: unknown }): Align =>
   (def.meta as { align?: Align } | undefined)?.align ?? 'left'
 `
+const SKELETON_ALIGN = `
+const skeletonClass = {
+  left: '',
+  center: 'mx-auto',
+  right: 'ml-auto',
+} as const
+`
 
 export function generate(state: BuilderState): GeneratedFile[] {
   const has = (feature: BuilderState['features'][number]) =>
@@ -47,6 +54,8 @@ export function generate(state: BuilderState): GeneratedFile[] {
     columns.some((c) => c.type === type)
   const filters = has('filters') && columns.length > 0
   const aligned = columns.some((c) => effectiveAlign(c) !== 'left')
+  const { states } = state
+  const skeleton = states.loadingStyle === 'skeleton'
 
   const files: GeneratedFile[] = [
     { path: `${DIR}/columns.tsx`, code: columnsFile() },
@@ -192,10 +201,14 @@ import { DataTable } from './data-table'
 import { rows } from './data'
 
 export function MyTable() {
+  // Set this while your data is being fetched
+  const isLoading = false
+
   return (
     <DataTable
       columns={columns}
-      data={rows}${
+      data={rows}
+      isLoading={isLoading}${
         filters
           ? `
       fields={fields}
@@ -229,6 +242,7 @@ export function MyTable() {
     const arrows = has('pagination') && state.pager.style === 'arrows'
     const sizeSelect = has('pagination') && state.pager.sizeSelect
     const icons = [
+      ...(skeleton ? [] : ['LoaderCircle']),
       ...(has('sorting') ? ['ArrowDown', 'ArrowUp', 'ArrowUpDown'] : []),
       ...(arrows
         ? ['ChevronLeft', 'ChevronRight', 'ChevronsLeft', 'ChevronsRight']
@@ -256,7 +270,7 @@ ${has('pagination') ? `import { Button } from '#/components/ui/button'\n` : ''}$
   SelectValue,
 } from '#/components/ui/select'\n`
         : ''
-    }import {
+    }${skeleton ? `import { Skeleton } from '#/components/ui/skeleton'\n` : ''}import {
   Table,
   TableBody,
   TableCell,
@@ -264,10 +278,12 @@ ${has('pagination') ? `import { Button } from '#/components/ui/button'\n` : ''}$
   TableHeader,
   TableRow,
 } from '#/components/ui/table'
-${aligned ? ALIGN_HELPERS : ''}${filters ? `import { FilterBar } from './filter-bar'\nimport { applyFacets, applyRules } from './filters'\nimport type { FacetDef, FacetValue, Field, Preset } from './filters'\n` : ''}
+${aligned ? ALIGN_HELPERS : ''}${aligned && skeleton ? SKELETON_ALIGN : ''}${filters ? `import { FilterBar } from './filter-bar'\nimport { applyFacets, applyRules } from './filters'\nimport type { FacetDef, FacetValue, Field, Preset } from './filters'\n` : ''}
 interface DataTableProps<TData${filters ? ' extends Record<string, unknown>' : ''}, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]${
+  data: TData[]
+  /** Shows the loading state instead of rows */
+  isLoading?: boolean${
     filters
       ? `
   fields: Field[]
@@ -279,7 +295,8 @@ interface DataTableProps<TData${filters ? ' extends Record<string, unknown>' : '
 
 export function DataTable<TData${filters ? ' extends Record<string, unknown>' : ''}, TValue>({
   columns,
-  data,${filters ? '\n  fields,\n  facets,\n  presets,' : ''}
+  data,
+  isLoading = false,${filters ? '\n  fields,\n  facets,\n  presets,' : ''}
 }: DataTableProps<TData, TValue>) {
 ${has('sorting') ? `  const [sorting, setSorting] = useState<SortingState>([])\n` : ''}${has('search') ? `  const [globalFilter, setGlobalFilter] = useState('')\n` : ''}${
       filters
@@ -333,7 +350,7 @@ ${
       }      </div>
 `
     : ''
-}      <div className="overflow-x-auto rounded-md border">
+}      <div className="overflow-x-auto rounded-md border" aria-busy={isLoading}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -347,7 +364,8 @@ ${headerBody()}
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.length ? (
+${loadingBody()}
+            ) : table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -363,7 +381,7 @@ ${headerBody()}
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
+${emptyBody()}
                 </TableCell>
               </TableRow>
             )}
@@ -374,6 +392,62 @@ ${footer ? footerBody() : ''}    </div>
   )
 }
 `
+  }
+
+  function emptyBody() {
+    const { emptyTitle, emptyDescription } = states
+    const title = emptyTitle.trim()
+      ? `                  <p className="text-sm font-medium">{${str(emptyTitle)}}</p>\n`
+      : ''
+    const description = emptyDescription.trim()
+      ? `                  <p className="text-sm text-muted-foreground">\n                    {${str(emptyDescription)}}\n                  </p>\n`
+      : ''
+    // A cell with nothing in it would read as a broken table
+    return (
+      (title + description).trimEnd() ||
+      `                  <p className="text-sm text-muted-foreground">No results.</p>`
+    )
+  }
+
+  function loadingBody() {
+    if (!skeleton) {
+      return `            {isLoading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={table.getVisibleLeafColumns().length}
+                  className="h-24 text-center"
+                >
+                  <div
+                    role="status"
+                    className="flex items-center justify-center gap-2 text-sm text-muted-foreground"
+                  >
+                    <LoaderCircle className="size-4 animate-spin" />
+                    {${str(states.loadingMessage)}}
+                  </div>
+                </TableCell>
+              </TableRow>`
+    }
+    const message = states.loadingMessage.trim()
+      ? `                  {rowIndex === 0 && index === 0 ? (
+                    <span role="status" className="sr-only">
+                      {${str(states.loadingMessage)}}
+                    </span>
+                  ) : null}\n`
+      : ''
+    return `            {isLoading ? (
+              Array.from({ length: ${states.loadingRows} }, (_, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  {table.getVisibleLeafColumns().map((column, index) => (
+                    <TableCell key={column.id}>
+${message}                      <Skeleton className=${
+      aligned
+        ? '{`h-4 w-3/4 ${skeletonClass[alignOf(column.columnDef)]}`}'
+        : '"h-4 w-3/4"'
+    } />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))`
   }
 
   function headerBody() {
@@ -502,6 +576,7 @@ export function registryDependencies(state: BuilderState) {
   if (filters || state.columns.some((c) => c.type === 'select')) {
     parts.push('badge')
   }
+  if (state.states.loadingStyle === 'skeleton') parts.push('skeleton')
   return [...new Set(parts)]
 }
 

@@ -14,6 +14,14 @@ import { generate, registryCommand } from './generate'
 import { PreviewTable } from './preview-table'
 import { FiltersEditor } from './filters-editor'
 import { SchemaEditor } from './schema-editor'
+import { StatesEditor } from './states-editor'
+import type { PreviewView } from './states-editor'
+
+const previewViews: { value: PreviewView; label: string }[] = [
+  { value: 'data', label: 'Data' },
+  { value: 'loading', label: 'Loading' },
+  { value: 'empty', label: 'Empty' },
+]
 
 function toggle<T>(list: T[], item: T) {
   return list.includes(item) ? list.filter((x) => x !== item) : [...list, item]
@@ -131,6 +139,7 @@ export function BuilderPage() {
     canRedo,
   } = useHistory(() => decodeState(search.t))
   const [copied, setCopied] = useState(false)
+  const [view, setView] = useState<PreviewView>('data')
   const encoded = useMemo(() => encodeState(state), [state])
 
   const first = useRef(true)
@@ -223,6 +232,11 @@ export function BuilderPage() {
                   ))}
                 </div>
               </fieldset>
+              <StatesEditor
+                state={state}
+                onChange={setState}
+                onPreview={setView}
+              />
               {state.features.includes('filters') ? (
                 <FiltersEditor state={state} onChange={setState} />
               ) : null}
@@ -298,7 +312,26 @@ export function BuilderPage() {
               // Row models are cached by TanStack on first use, so a different
               // feature set needs a fresh table rather than an updated one
               preview={
-                <PreviewTable key={state.features.join()} state={state} />
+                <div className="space-y-3">
+                  <div className="inline-flex rounded-md border p-0.5">
+                    {previewViews.map((v) => (
+                      <button
+                        key={v.value}
+                        type="button"
+                        aria-pressed={view === v.value}
+                        onClick={() => setView(v.value)}
+                        className="h-7 rounded px-3 text-xs text-muted-foreground aria-pressed:bg-muted aria-pressed:text-foreground"
+                      >
+                        {v.label}
+                      </button>
+                    ))}
+                  </div>
+                  <PreviewTable
+                    key={state.features.join()}
+                    state={state}
+                    view={view}
+                  />
+                </div>
               }
               files={files}
             />

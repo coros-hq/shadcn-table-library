@@ -18,11 +18,13 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  LoaderCircle,
 } from 'lucide-react'
 
 import { Button } from '#/components/ui/button'
 import { Checkbox } from '#/components/ui/checkbox'
 import { Input } from '#/components/ui/input'
+import { Skeleton } from '#/components/ui/skeleton'
 import {
   Select,
   SelectContent,
@@ -45,6 +47,9 @@ import type { FacetValue } from './filters'
 import { PAGE_SIZES, buildRows } from './schema'
 import type { BuilderState, Row } from './schema'
 import { alignClass, alignOf, justifyClass } from './align'
+import type { PreviewView } from './states-editor'
+
+const skeletonClass = { left: '', center: 'mx-auto', right: 'ml-auto' } as const
 
 const selectColumn: ColumnDef<Row> = {
   id: 'select',
@@ -69,7 +74,14 @@ const selectColumn: ColumnDef<Row> = {
 }
 
 // Mirrors what generate.ts emits, so the preview is the generated table.
-export function PreviewTable({ state }: { state: BuilderState }) {
+export function PreviewTable({
+  state,
+  view = 'data',
+}: {
+  state: BuilderState
+  /** Forces the loading or empty state so it can be seen without real data */
+  view?: PreviewView
+}) {
   const has = (feature: BuilderState['features'][number]) =>
     state.features.includes(feature)
   const filters = has('filters') && state.columns.length > 0
@@ -88,6 +100,7 @@ export function PreviewTable({ state }: { state: BuilderState }) {
   )
   const baseRows = useMemo(() => buildRows(state.columns), [state.columns])
   const data = useMemo(() => {
+    if (view === 'empty') return []
     if (!filters) return baseRows
     const rules = state.presets
       .filter((p) => activePresets.includes(p.id))
@@ -98,6 +111,7 @@ export function PreviewTable({ state }: { state: BuilderState }) {
       rules,
     )
   }, [
+    view,
     filters,
     baseRows,
     state.columns,
@@ -126,6 +140,8 @@ export function PreviewTable({ state }: { state: BuilderState }) {
   })
 
   const footer = has('pagination') || has('selection')
+  const { states } = state
+  const isLoading = view === 'loading'
 
   // Rows with no cells would render as blank lines
   if (state.columns.length === 0) {
@@ -162,7 +178,7 @@ export function PreviewTable({ state }: { state: BuilderState }) {
           ) : null}
         </div>
       ) : null}
-      <div className="overflow-x-auto rounded-md border">
+      <div className="overflow-x-auto rounded-md border" aria-busy={isLoading}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -203,7 +219,43 @@ export function PreviewTable({ state }: { state: BuilderState }) {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.length ? (
+            {isLoading ? (
+              states.loadingStyle === 'skeleton' ? (
+                Array.from({ length: states.loadingRows }, (_, rowIndex) => (
+                  <TableRow key={rowIndex}>
+                    {table.getVisibleLeafColumns().map((column, index) => (
+                      <TableCell key={column.id}>
+                        {rowIndex === 0 &&
+                        index === 0 &&
+                        states.loadingMessage.trim() ? (
+                          <span role="status" className="sr-only">
+                            {states.loadingMessage}
+                          </span>
+                        ) : null}
+                        <Skeleton
+                          className={`h-4 w-3/4 ${skeletonClass[alignOf(column.columnDef)]}`}
+                        />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={table.getVisibleLeafColumns().length}
+                    className="h-24 text-center"
+                  >
+                    <div
+                      role="status"
+                      className="flex items-center justify-center gap-2 text-sm text-muted-foreground"
+                    >
+                      <LoaderCircle className="size-4 animate-spin" />
+                      {states.loadingMessage}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              )
+            ) : table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -228,9 +280,23 @@ export function PreviewTable({ state }: { state: BuilderState }) {
                   colSpan={Math.max(columns.length, 1)}
                   className="h-24 text-center"
                 >
-                  {state.columns.length
-                    ? 'No results.'
-                    : 'Add a column to get started.'}
+                  {states.emptyTitle.trim() ||
+                  states.emptyDescription.trim() ? (
+                    <>
+                      {states.emptyTitle.trim() ? (
+                        <p className="text-sm font-medium">
+                          {states.emptyTitle}
+                        </p>
+                      ) : null}
+                      {states.emptyDescription.trim() ? (
+                        <p className="text-sm text-muted-foreground">
+                          {states.emptyDescription}
+                        </p>
+                      ) : null}
+                    </>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">No results.</p>
+                  )}
                 </TableCell>
               </TableRow>
             )}

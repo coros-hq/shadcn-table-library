@@ -68,6 +68,12 @@ Every page below has a live demo, the full source, an install command, and a ste
 - [Export Configuration](https://www.shad-table.dev/export-config-table): A table with configurable CSV and Excel export for shadcn/ui and TanStack Table. A table whose Export button opens a dialog: filter by status, region, and date, pick columns and CSV or Excel, and see a live count of matching rows before downloading.
 - [Export Selected Rows](https://www.shad-table.dev/export-selected-table): A table that exports selected rows for shadcn/ui and TanStack Table. A table with row checkboxes that exports only the selected rows to CSV or Excel. Selection persists across pages, with a page-level select-all and a "Select all" shortcut.
 
+## States
+
+- [Loading State Table](https://www.shad-table.dev/loading-state-table): A loading state table for shadcn/ui and TanStack Table. Skeleton rows that match the column layout for first loads, and a dimmed refetch state that keeps existing rows visible.
+- [Empty State Table](https://www.shad-table.dev/empty-state-table): An empty state table for shadcn/ui and TanStack Table. A first-use empty state with a call to action and a no-results state with a clear-search action.
+- [Error State Table](https://www.shad-table.dev/error-state-table): An error state table for shadcn/ui and TanStack Table. A full error panel with retry when nothing loaded, and a banner over stale rows when a refresh fails.
+
 ## Responsive
 
 - [Mobile Cards Table](https://www.shad-table.dev/mobile-cards-table): A responsive table that becomes cards on mobile for shadcn/ui and TanStack Table. A data table that transforms into stacked cards below a container-query breakpoint using pure CSS display overrides — no separate mobile component, no JS media query, no viewport dependency.

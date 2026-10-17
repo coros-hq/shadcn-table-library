@@ -41,6 +41,7 @@ The docs pages have a **React | Vue** toggle on the Code tab with a Vue port of 
 - **Animated** — Animated Icons ([Iconimate](https://iconimate.app)), Live Status Indicators, Async Row Actions
 - **Dashboard / Analytics** — Summary / KPI, Comparison, Heatmap, Conditional Formatting, Production Dashboard, CRM Employees
 - **Export / Density** — Density & Export, Export Configuration, Export Selected Rows
+- **States** — Loading (skeleton rows, refetch dimming), Empty (first-use, no results), Error (panel, stale-data banner, retry)
 - **Responsive** — Mobile Cards
 
 New and recently changed pages carry a **New** badge in the docs sidebar, and so does the group that contains them.

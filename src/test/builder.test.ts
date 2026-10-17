@@ -193,9 +193,32 @@ describe('URL state', () => {
         },
       ],
       pager: { style: 'arrows', sizeSelect: true },
+      states: {
+        emptyTitle: 'Aucun résultat',
+        emptyDescription: '',
+        loadingStyle: 'spinner',
+        loadingRows: 8,
+        loadingMessage: 'Chargement…',
+      },
     }
     expect(decodeState(encodeState(state))).toEqual(state)
     expect(decodeState(encodeState(defaultState))).toEqual(defaultState)
+  })
+
+  it('ignores malformed state messages', () => {
+    const bad = btoa(
+      JSON.stringify({
+        c: [],
+        f: [],
+        s: [1, 'x', 'bogus', 7, 'y'.repeat(500)],
+      }),
+    )
+    const { states } = decodeState(bad)
+    expect(states.emptyTitle).toBe(defaultState.states.emptyTitle)
+    expect(states.emptyDescription).toBe('x')
+    expect(states.loadingStyle).toBe('skeleton')
+    expect(states.loadingRows).toBe(5)
+    expect(states.loadingMessage).toHaveLength(120)
   })
 
   it('stays a short, URL-safe token', () => {
@@ -372,6 +395,7 @@ describe('generate', () => {
           },
         ],
         pager: defaultState.pager,
+        states: defaultState.states,
       },
     ],
     [
@@ -382,6 +406,7 @@ describe('generate', () => {
         facets: [],
         presets: [],
         pager: { style: 'arrows', sizeSelect: true },
+        states: defaultState.states,
       },
     ],
     [
@@ -392,6 +417,7 @@ describe('generate', () => {
         facets: [],
         presets: [],
         pager: defaultState.pager,
+        states: defaultState.states,
       },
     ],
     [
@@ -402,6 +428,27 @@ describe('generate', () => {
         facets: [],
         presets: [],
         pager: defaultState.pager,
+        states: defaultState.states,
+      },
+    ],
+    [
+      'spinner loading with blank empty message, aligned columns',
+      {
+        ...defaultState,
+        columns: everyType.map((c) => ({ ...c, align: 'right' as const })),
+        states: {
+          ...defaultState.states,
+          emptyTitle: '',
+          emptyDescription: '',
+          loadingStyle: 'spinner',
+        },
+      },
+    ],
+    [
+      'aligned columns with skeleton loading',
+      {
+        ...defaultState,
+        columns: everyType.map((c) => ({ ...c, align: 'center' as const })),
       },
     ],
     ...allFeatures.map((feature): [string, BuilderState] => [
@@ -412,6 +459,7 @@ describe('generate', () => {
         facets: [],
         presets: [],
         pager: defaultState.pager,
+        states: defaultState.states,
       },
     ]),
   ]
@@ -437,6 +485,40 @@ describe('generate', () => {
     )
   })
 
+  it('writes the empty and loading messages into the code', () => {
+    const code = (state: BuilderState) =>
+      generate(state).find((f) => f.path.endsWith('data-table.tsx'))!.code
+    const custom = {
+      ...defaultState,
+      states: {
+        ...defaultState.states,
+        emptyTitle: "Nothing's here",
+        emptyDescription: 'Add a row',
+        loadingRows: 8,
+        loadingMessage: 'Fetching',
+      },
+    }
+    const skeleton = code(custom)
+    expect(skeleton).toContain(`{'Nothing\\'s here'}`)
+    expect(skeleton).toContain(`{'Add a row'}`)
+    expect(skeleton).toContain('length: 8')
+    expect(skeleton).toContain(`{'Fetching'}`)
+    expect(skeleton).toContain('Skeleton')
+
+    const spinner = code({
+      ...custom,
+      states: { ...custom.states, loadingStyle: 'spinner' },
+    })
+    expect(spinner).toContain('LoaderCircle')
+    expect(spinner).not.toContain('Skeleton')
+    expect(
+      installCommand({
+        ...custom,
+        states: { ...custom.states, loadingStyle: 'spinner' },
+      }),
+    ).not.toContain('skeleton')
+  })
+
   it('ships the filter files only when filters are on', () => {
     const names = (state: BuilderState) =>
       generate(state).map((f) => f.path.split('/').pop())
@@ -452,10 +534,11 @@ describe('generate', () => {
         facets: [],
         presets: [],
         pager: defaultState.pager,
+        states: defaultState.states,
       }),
-    ).toBe('npx shadcn@latest add table')
+    ).toBe('npx shadcn@latest add table skeleton')
     expect(installCommand(states[1][1])).toBe(
-      'npx shadcn@latest add table button input checkbox popover badge',
+      'npx shadcn@latest add table button input checkbox popover badge skeleton',
     )
   })
 })

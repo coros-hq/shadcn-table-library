@@ -39,6 +39,25 @@ export interface PagerSpec {
   sizeSelect: boolean
 }
 
+export type LoadingStyle = 'skeleton' | 'spinner'
+export const loadingStyles: { value: LoadingStyle; label: string }[] = [
+  { value: 'skeleton', label: 'Skeleton' },
+  { value: 'spinner', label: 'Spinner' },
+]
+export const SKELETON_ROWS = [3, 5, 8, 10]
+export const MAX_MESSAGE_LENGTH = 120
+
+/** What the table shows when it has no rows, and while rows are on the way */
+export interface StatesSpec {
+  emptyTitle: string
+  emptyDescription: string
+  loadingStyle: LoadingStyle
+  /** Placeholder rows, for the skeleton style */
+  loadingRows: number
+  /** Shown next to the spinner, and announced to screen readers */
+  loadingMessage: string
+}
+
 export interface BuilderState {
   columns: ColumnSpec[]
   features: FeatureId[]
@@ -47,6 +66,7 @@ export interface BuilderState {
   /** Named one-click shortcuts */
   presets: Preset[]
   pager: PagerSpec
+  states: StatesSpec
 }
 
 export const MAX_COLUMNS = 20
@@ -97,6 +117,13 @@ export const defaultState: BuilderState = {
   ],
   presets: [],
   pager: { style: 'text', sizeSelect: false },
+  states: {
+    emptyTitle: 'No results',
+    emptyDescription: 'Try changing your search or filters.',
+    loadingStyle: 'skeleton',
+    loadingRows: 5,
+    loadingMessage: 'Loading...',
+  },
 }
 
 const defaultOptions = () => ['Option 1', 'Option 2', 'Option 3']
@@ -242,6 +269,22 @@ export function setColumnOptions(
   )
 }
 
+export function setStates(
+  state: BuilderState,
+  patch: Partial<StatesSpec>,
+): BuilderState {
+  const next = { ...state.states, ...patch }
+  return {
+    ...state,
+    states: {
+      ...next,
+      emptyTitle: next.emptyTitle.slice(0, MAX_MESSAGE_LENGTH),
+      emptyDescription: next.emptyDescription.slice(0, MAX_MESSAGE_LENGTH),
+      loadingMessage: next.loadingMessage.slice(0, MAX_MESSAGE_LENGTH),
+    },
+  }
+}
+
 export function addFacet(state: BuilderState): BuilderState {
   const used = new Set(state.facets.map((f) => f.fieldId))
   const column = state.columns.find((c) => !used.has(c.id))
@@ -372,6 +415,8 @@ type Compact = {
   ps: [string, string, string, string, string][]
   /** Only present when it differs from the default pager */
   p?: [PagerStyle, 0 | 1]
+  /** Only present when it differs from the default messages */
+  s?: [string, string, LoadingStyle, number, string]
 }
 
 function toBase64Url(text: string) {
@@ -409,6 +454,16 @@ export function encodeState(state: BuilderState): string {
   if (state.pager.style !== 'text' || state.pager.sizeSelect) {
     compact.p = [state.pager.style, state.pager.sizeSelect ? 1 : 0]
   }
+  const t = state.states
+  if (JSON.stringify(t) !== JSON.stringify(defaultState.states)) {
+    compact.s = [
+      t.emptyTitle,
+      t.emptyDescription,
+      t.loadingStyle,
+      t.loadingRows,
+      t.loadingMessage,
+    ]
+  }
   return toBase64Url(JSON.stringify(compact))
 }
 
@@ -425,6 +480,7 @@ export function decodeState(value: string | undefined): BuilderState {
       fs?: unknown
       ps?: unknown
       p?: unknown
+      s?: unknown
     }
     if (!Array.isArray(raw.c) || !Array.isArray(raw.f)) {
       return defaultState
@@ -500,7 +556,28 @@ export function decodeState(value: string | undefined): BuilderState {
       pager.sizeSelect = raw.p[1] === 1
     }
 
-    return { columns, features, facets, presets, pager }
+    const states = { ...defaultState.states }
+    if (Array.isArray(raw.s)) {
+      const [title, description, style, rows, message] = raw.s as unknown[]
+      if (isString(title)) states.emptyTitle = title
+      if (isString(description)) states.emptyDescription = description
+      if (style === 'skeleton' || style === 'spinner') {
+        states.loadingStyle = style
+      }
+      if (typeof rows === 'number' && SKELETON_ROWS.includes(rows)) {
+        states.loadingRows = rows
+      }
+      if (isString(message)) states.loadingMessage = message
+    }
+
+    return {
+      columns,
+      features,
+      facets,
+      presets,
+      pager,
+      states: setStates({ ...defaultState, states }, {}).states,
+    }
   } catch {
     return defaultState
   }

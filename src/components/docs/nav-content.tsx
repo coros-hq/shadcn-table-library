@@ -108,6 +108,14 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
+    title: 'States',
+    items: [
+      { title: 'Loading State', to: '/loading-state-table', isNew: true },
+      { title: 'Empty State', to: '/empty-state-table', isNew: true },
+      { title: 'Error State', to: '/error-state-table', isNew: true },
+    ],
+  },
+  {
     title: 'Responsive',
     items: [{ title: 'Mobile Cards Table', to: '/mobile-cards-table' }],
   },
