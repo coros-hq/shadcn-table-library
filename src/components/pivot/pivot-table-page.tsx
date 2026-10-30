@@ -11,6 +11,11 @@ import vuePivotPivotTableDemoSource from '#/components/vue/pivot/PivotTableDemo.
 import vuePivotPivotTableSource from '#/components/vue/pivot/PivotTable.vue?raw'
 import vuePivotdataSource from '#/components/vue/pivot/data.ts?raw'
 import vuePivotpivotSource from '#/components/vue/pivot/pivot.ts?raw'
+import sveltePivotPivotTableDemoSource from '#/components/svelte/pivot/PivotTableDemo.svelte?raw'
+import sveltePivotPivotTableSource from '#/components/svelte/pivot/PivotTable.svelte?raw'
+import sveltePivotdataSource from '#/components/svelte/pivot/data.ts?raw'
+import sveltePivotpivotSource from '#/components/svelte/pivot/pivot.ts?raw'
+import svelteBoldcellSource from '#/components/svelte/pivot/BoldCell.svelte?raw'
 
 const files = [
   { path: 'src/components/pivot/pivot.ts', code: pivotSource },
@@ -35,6 +40,35 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['select', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/pivot/PivotTableDemo.svelte',
+    code: sveltePivotPivotTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/pivot/PivotTable.svelte',
+    code: sveltePivotPivotTableSource,
+  },
+  {
+    path: 'src/lib/components/pivot/data.ts',
+    code: sveltePivotdataSource,
+  },
+  {
+    path: 'src/lib/components/pivot/pivot.ts',
+    code: sveltePivotpivotSource,
+  },
+  {
+    path: 'src/lib/components/pivot/BoldCell.svelte',
+    code: svelteBoldcellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -141,6 +175,8 @@ export function PivotTablePage() {
           preview={<PivotTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

@@ -12,6 +12,14 @@ import vueErrorStateSource from '#/components/vue/error-state/ErrorState.vue?raw
 import vueDataTableSource from '#/components/vue/error-state/DataTable.vue?raw'
 import vueColumnsSource from '#/components/vue/error-state/columns.ts?raw'
 import vueDataSource from '#/components/vue/error-state/data.ts?raw'
+import svelteErrorStateTableDemoSource from '#/components/svelte/error-state/ErrorStateTableDemo.svelte?raw'
+import svelteErrorStateSource from '#/components/svelte/error-state/ErrorState.svelte?raw'
+import svelteDataTableSource from '#/components/svelte/error-state/DataTable.svelte?raw'
+import svelteColumnsSource from '#/components/svelte/error-state/columns.ts?raw'
+import svelteDataSource from '#/components/svelte/error-state/data.ts?raw'
+import svelteAmountcellSource from '#/components/svelte/error-state/AmountCell.svelte?raw'
+import svelteCustomercellSource from '#/components/svelte/error-state/CustomerCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/error-state/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/error-state/data.ts', code: dataSource },
@@ -43,6 +51,47 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'button', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/error-state/ErrorStateTableDemo.svelte',
+    code: svelteErrorStateTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/error-state/ErrorState.svelte',
+    code: svelteErrorStateSource,
+  },
+  {
+    path: 'src/lib/components/error-state/DataTable.svelte',
+    code: svelteDataTableSource,
+  },
+  {
+    path: 'src/lib/components/error-state/columns.ts',
+    code: svelteColumnsSource,
+  },
+  {
+    path: 'src/lib/components/error-state/data.ts',
+    code: svelteDataSource,
+  },
+  {
+    path: 'src/lib/components/error-state/AmountCell.svelte',
+    code: svelteAmountcellSource,
+  },
+  {
+    path: 'src/lib/components/error-state/CustomerCell.svelte',
+    code: svelteCustomercellSource,
+  },
+  {
+    path: 'src/lib/components/error-state/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -107,6 +156,8 @@ export function ErrorStateTablePage() {
           preview={<ErrorStateTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

@@ -33,6 +33,40 @@ import vueDetailDataSource from '#/components/vue/tree/detail/data.ts?raw'
 import vueTreeTreeTableDemoSource from '#/components/vue/tree/TreeTableDemo.vue?raw'
 import vueTreecolumnsSource from '#/components/vue/tree/columns.ts?raw'
 import vueTreeTreeDataTableSource from '#/components/vue/tree/TreeDataTable.vue?raw'
+import svelteTreeTreetabledemoSource from '#/components/svelte/tree/TreeTableDemo.svelte?raw'
+import svelteTreeColumnsSource from '#/components/svelte/tree/columns.ts?raw'
+import svelteTreeTreedatatableSource from '#/components/svelte/tree/TreeDataTable.svelte?raw'
+import svelteTreeNamecellSource from '#/components/svelte/tree/NameCell.svelte?raw'
+import svelteTreeVariantsVariantstabledemoSource from '#/components/svelte/tree/variants/VariantsTableDemo.svelte?raw'
+import svelteTreeVariantsVariantstableSource from '#/components/svelte/tree/variants/VariantsTable.svelte?raw'
+import svelteTreeVariantsProductactionsSource from '#/components/svelte/tree/variants/ProductActions.svelte?raw'
+import svelteTreeVariantsColumnsSource from '#/components/svelte/tree/variants/columns.ts?raw'
+import svelteTreeVariantsDataSource from '#/components/svelte/tree/variants/data.ts?raw'
+import svelteTreeVariantsThumbnailcellSource from '#/components/svelte/tree/variants/ThumbnailCell.svelte?raw'
+import svelteTreeVariantsNamecellSource from '#/components/svelte/tree/variants/NameCell.svelte?raw'
+import svelteTreeVariantsSkucellSource from '#/components/svelte/tree/variants/SkuCell.svelte?raw'
+import svelteTreeVariantsStockcellSource from '#/components/svelte/tree/variants/StockCell.svelte?raw'
+import svelteTreeVariantsReservedcellSource from '#/components/svelte/tree/variants/ReservedCell.svelte?raw'
+import svelteTreeVariantsUpdatedcellSource from '#/components/svelte/tree/variants/UpdatedCell.svelte?raw'
+import svelteTreeVariantsSelectcheckboxSource from '#/components/svelte/tree/variants/SelectCheckbox.svelte?raw'
+import svelteTreeDetailDetailpaneltabledemoSource from '#/components/svelte/tree/detail/DetailPanelTableDemo.svelte?raw'
+import svelteTreeDetailDetailpaneltableSource from '#/components/svelte/tree/detail/DetailPanelTable.svelte?raw'
+import svelteTreeDetailShipmentcardSource from '#/components/svelte/tree/detail/ShipmentCard.svelte?raw'
+import svelteTreeDetailColumnsSource from '#/components/svelte/tree/detail/columns.ts?raw'
+import svelteTreeDetailDataSource from '#/components/svelte/tree/detail/data.ts?raw'
+import svelteTreeDetailItemcellSource from '#/components/svelte/tree/detail/ItemCell.svelte?raw'
+import svelteTreeDetailDetailscellSource from '#/components/svelte/tree/detail/DetailsCell.svelte?raw'
+import svelteTreeDetailStatusbadgeSource from '#/components/svelte/tree/detail/StatusBadge.svelte?raw'
+import svelteTreeDetailAmountcellSource from '#/components/svelte/tree/detail/AmountCell.svelte?raw'
+import svelteTreeDetailDatecellSource from '#/components/svelte/tree/detail/DateCell.svelte?raw'
+import svelteTreeDetailOpenchevronSource from '#/components/svelte/tree/detail/OpenChevron.svelte?raw'
+
+// Svelte projects keep their shadcn files under src/lib
+const inLib = (files: { path: string; code: string }[]) =>
+  files.map((file) => ({
+    ...file,
+    path: file.path.replace('src/components/', 'src/lib/components/'),
+  }))
 
 const files = [
   { path: 'src/components/tree/columns.tsx', code: columnsSource },
@@ -51,6 +85,28 @@ const vueFiles = [
     code: vueTreeTreeDataTableSource,
   },
 ]
+
+const svelteFiles = inLib([
+  {
+    path: 'src/components/tree/TreeTableDemo.svelte',
+    code: svelteTreeTreetabledemoSource,
+  },
+  { path: 'src/components/tree/columns.ts', code: svelteTreeColumnsSource },
+  {
+    path: 'src/components/tree/TreeDataTable.svelte',
+    code: svelteTreeTreedatatableSource,
+  },
+  {
+    path: 'src/components/tree/NameCell.svelte',
+    code: svelteTreeNamecellSource,
+  },
+])
+
+const svelteFilesDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['input', 'table'],
+  adapter: true,
+}
 
 const vueDeps = {
   npm: ['@lucide/vue'],
@@ -170,6 +226,63 @@ const variantsVueFiles = [
   { path: 'src/components/tree/variants/data.ts', code: vueVariantsDataSource },
 ]
 
+const variantsSvelteFiles = inLib([
+  {
+    path: 'src/components/tree/variants/VariantsTableDemo.svelte',
+    code: svelteTreeVariantsVariantstabledemoSource,
+  },
+  {
+    path: 'src/components/tree/variants/VariantsTable.svelte',
+    code: svelteTreeVariantsVariantstableSource,
+  },
+  {
+    path: 'src/components/tree/variants/ProductActions.svelte',
+    code: svelteTreeVariantsProductactionsSource,
+  },
+  {
+    path: 'src/components/tree/variants/columns.ts',
+    code: svelteTreeVariantsColumnsSource,
+  },
+  {
+    path: 'src/components/tree/variants/data.ts',
+    code: svelteTreeVariantsDataSource,
+  },
+  {
+    path: 'src/components/tree/variants/ThumbnailCell.svelte',
+    code: svelteTreeVariantsThumbnailcellSource,
+  },
+  {
+    path: 'src/components/tree/variants/NameCell.svelte',
+    code: svelteTreeVariantsNamecellSource,
+  },
+  {
+    path: 'src/components/tree/variants/SkuCell.svelte',
+    code: svelteTreeVariantsSkucellSource,
+  },
+  {
+    path: 'src/components/tree/variants/StockCell.svelte',
+    code: svelteTreeVariantsStockcellSource,
+  },
+  {
+    path: 'src/components/tree/variants/ReservedCell.svelte',
+    code: svelteTreeVariantsReservedcellSource,
+  },
+  {
+    path: 'src/components/tree/variants/UpdatedCell.svelte',
+    code: svelteTreeVariantsUpdatedcellSource,
+  },
+  {
+    path: 'src/components/tree/variants/SelectCheckbox.svelte',
+    code: svelteTreeVariantsSelectcheckboxSource,
+  },
+])
+
+const variantsSvelteFilesDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'checkbox', 'table'],
+  adapter: true,
+}
+
 const detailVueFiles = [
   {
     path: 'src/components/tree/detail/DetailPanelTableDemo.vue',
@@ -189,6 +302,59 @@ const detailVueFiles = [
   },
   { path: 'src/components/tree/detail/data.ts', code: vueDetailDataSource },
 ]
+
+const detailSvelteFiles = inLib([
+  {
+    path: 'src/components/tree/detail/DetailPanelTableDemo.svelte',
+    code: svelteTreeDetailDetailpaneltabledemoSource,
+  },
+  {
+    path: 'src/components/tree/detail/DetailPanelTable.svelte',
+    code: svelteTreeDetailDetailpaneltableSource,
+  },
+  {
+    path: 'src/components/tree/detail/ShipmentCard.svelte',
+    code: svelteTreeDetailShipmentcardSource,
+  },
+  {
+    path: 'src/components/tree/detail/columns.ts',
+    code: svelteTreeDetailColumnsSource,
+  },
+  {
+    path: 'src/components/tree/detail/data.ts',
+    code: svelteTreeDetailDataSource,
+  },
+  {
+    path: 'src/components/tree/detail/ItemCell.svelte',
+    code: svelteTreeDetailItemcellSource,
+  },
+  {
+    path: 'src/components/tree/detail/DetailsCell.svelte',
+    code: svelteTreeDetailDetailscellSource,
+  },
+  {
+    path: 'src/components/tree/detail/StatusBadge.svelte',
+    code: svelteTreeDetailStatusbadgeSource,
+  },
+  {
+    path: 'src/components/tree/detail/AmountCell.svelte',
+    code: svelteTreeDetailAmountcellSource,
+  },
+  {
+    path: 'src/components/tree/detail/DateCell.svelte',
+    code: svelteTreeDetailDatecellSource,
+  },
+  {
+    path: 'src/components/tree/detail/OpenChevron.svelte',
+    code: svelteTreeDetailOpenchevronSource,
+  },
+])
+
+const detailSvelteFilesDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'table'],
+  adapter: true,
+}
 
 const variantsVueDeps = {
   npm: ['@lucide/vue'],
@@ -308,6 +474,8 @@ const examples = [
     files,
     steps,
     vueFiles: vueFiles,
+    svelteFiles: svelteFiles,
+    svelteDeps: svelteFilesDeps,
     vueDeps: vueDeps,
   },
   {
@@ -320,6 +488,8 @@ const examples = [
     files: variantsFiles,
     steps: variantsSteps,
     vueFiles: variantsVueFiles,
+    svelteFiles: variantsSvelteFiles,
+    svelteDeps: variantsSvelteFilesDeps,
     vueDeps: variantsVueDeps,
   },
   {
@@ -332,6 +502,8 @@ const examples = [
     files: detailFiles,
     steps: detailSteps,
     vueFiles: detailVueFiles,
+    svelteFiles: detailSvelteFiles,
+    svelteDeps: detailSvelteFilesDeps,
     vueDeps: detailVueDeps,
   },
 ]
@@ -392,6 +564,8 @@ export function TreeTablePage() {
                 preview={ex.preview}
                 files={ex.files}
                 vueFiles={ex.vueFiles}
+                svelteFiles={ex.svelteFiles}
+                svelteDeps={ex.svelteDeps}
                 vueDeps={ex.vueDeps}
               />
               <div className="space-y-2">

@@ -12,6 +12,14 @@ import vueEmptyStateSource from '#/components/vue/empty-state/EmptyState.vue?raw
 import vueDataTableSource from '#/components/vue/empty-state/DataTable.vue?raw'
 import vueColumnsSource from '#/components/vue/empty-state/columns.ts?raw'
 import vueDataSource from '#/components/vue/empty-state/data.ts?raw'
+import svelteEmptyStateTableDemoSource from '#/components/svelte/empty-state/EmptyStateTableDemo.svelte?raw'
+import svelteEmptyStateSource from '#/components/svelte/empty-state/EmptyState.svelte?raw'
+import svelteDataTableSource from '#/components/svelte/empty-state/DataTable.svelte?raw'
+import svelteColumnsSource from '#/components/svelte/empty-state/columns.ts?raw'
+import svelteDataSource from '#/components/svelte/empty-state/data.ts?raw'
+import svelteAmountcellSource from '#/components/svelte/empty-state/AmountCell.svelte?raw'
+import svelteCustomercellSource from '#/components/svelte/empty-state/CustomerCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/empty-state/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/empty-state/data.ts', code: dataSource },
@@ -44,6 +52,47 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'button', 'input', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/empty-state/EmptyStateTableDemo.svelte',
+    code: svelteEmptyStateTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/empty-state/EmptyState.svelte',
+    code: svelteEmptyStateSource,
+  },
+  {
+    path: 'src/lib/components/empty-state/DataTable.svelte',
+    code: svelteDataTableSource,
+  },
+  {
+    path: 'src/lib/components/empty-state/columns.ts',
+    code: svelteColumnsSource,
+  },
+  {
+    path: 'src/lib/components/empty-state/data.ts',
+    code: svelteDataSource,
+  },
+  {
+    path: 'src/lib/components/empty-state/AmountCell.svelte',
+    code: svelteAmountcellSource,
+  },
+  {
+    path: 'src/lib/components/empty-state/CustomerCell.svelte',
+    code: svelteCustomercellSource,
+  },
+  {
+    path: 'src/lib/components/empty-state/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'input', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -113,6 +162,8 @@ export function EmptyStateTablePage() {
           preview={<EmptyStateTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

@@ -14,6 +14,12 @@ import vueSsrCombinedExampleDataTableSource from '#/components/vue/ssr/combined-
 import vueSsrCombinedExampledataSource from '#/components/vue/ssr/data.ts?raw'
 import vueSsrCombinedExampleuseServerQuerySource from '#/components/vue/ssr/useServerQuery.ts?raw'
 import vueSsrCombinedExampleuseUrlSearchSource from '#/components/vue/ssr/useUrlSearch.ts?raw'
+import svelteSsrCombinedExampleServerCombinedDemoSource from '#/components/svelte/ssr/combined-example/ServerCombinedDemo.svelte?raw'
+import svelteSsrCombinedExamplecolumnsSource from '#/components/svelte/ssr/combined-example/columns.ts?raw'
+import svelteSsrCombinedExampleDataTableSource from '#/components/svelte/ssr/combined-example/DataTable.svelte?raw'
+import svelteSsrCombinedExampledataSource from '#/components/svelte/ssr/data.ts?raw'
+import svelteSsrCombinedExampleuseServerQuerySource from '#/components/svelte/ssr/useServerQuery.svelte.ts?raw'
+import svelteSsrCombinedExampleuseUrlSearchSource from '#/components/svelte/ssr/useUrlSearch.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -56,6 +62,39 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['button', 'select', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/ssr/combined-example/ServerCombinedDemo.svelte',
+    code: svelteSsrCombinedExampleServerCombinedDemoSource,
+  },
+  {
+    path: 'src/lib/components/ssr/combined-example/columns.ts',
+    code: svelteSsrCombinedExamplecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/ssr/combined-example/DataTable.svelte',
+    code: svelteSsrCombinedExampleDataTableSource,
+  },
+  {
+    path: 'src/lib/components/ssr/data.ts',
+    code: svelteSsrCombinedExampledataSource,
+  },
+  {
+    path: 'src/lib/components/ssr/useServerQuery.svelte.ts',
+    code: svelteSsrCombinedExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/lib/components/ssr/useUrlSearch.svelte.ts',
+    code: svelteSsrCombinedExampleuseUrlSearchSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -171,6 +210,8 @@ export function ServerCombinedTablePage() {
           preview={<ServerCombinedDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

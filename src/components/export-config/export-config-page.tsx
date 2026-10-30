@@ -18,6 +18,16 @@ import vueExportConfigExportDialogSource from '#/components/vue/export-config/Ex
 import vueExportConfigdataSource from '#/components/vue/export-config/data.ts?raw'
 import vueExportConfigexportconfigSource from '#/components/vue/export-config/export-config.ts?raw'
 import vueExportConfigexportSource from '#/components/vue/export-config/export.ts?raw'
+import svelteExportConfigExportConfigDemoSource from '#/components/svelte/export-config/ExportConfigDemo.svelte?raw'
+import svelteExportConfigcolumnsSource from '#/components/svelte/export-config/columns.ts?raw'
+import svelteExportConfigCheckboxGroupSource from '#/components/svelte/export-config/CheckboxGroup.svelte?raw'
+import svelteExportConfigExportConfigTableSource from '#/components/svelte/export-config/ExportConfigTable.svelte?raw'
+import svelteExportConfigExportDialogSource from '#/components/svelte/export-config/ExportDialog.svelte?raw'
+import svelteExportConfigdataSource from '#/components/svelte/export-config/data.ts?raw'
+import svelteExportConfigexportconfigSource from '#/components/svelte/export-config/export-config.ts?raw'
+import svelteExportConfigexportSource from '#/components/svelte/export-config/export.ts?raw'
+import svelteAmountcellSource from '#/components/svelte/export-config/AmountCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/export-config/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/export-config/data-table.tsx', code: tableSource },
@@ -70,6 +80,55 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'button', 'checkbox', 'dialog', 'label', 'select', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/export-config/ExportConfigDemo.svelte',
+    code: svelteExportConfigExportConfigDemoSource,
+  },
+  {
+    path: 'src/lib/components/export-config/columns.ts',
+    code: svelteExportConfigcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/export-config/CheckboxGroup.svelte',
+    code: svelteExportConfigCheckboxGroupSource,
+  },
+  {
+    path: 'src/lib/components/export-config/ExportConfigTable.svelte',
+    code: svelteExportConfigExportConfigTableSource,
+  },
+  {
+    path: 'src/lib/components/export-config/ExportDialog.svelte',
+    code: svelteExportConfigExportDialogSource,
+  },
+  {
+    path: 'src/lib/components/export-config/data.ts',
+    code: svelteExportConfigdataSource,
+  },
+  {
+    path: 'src/lib/components/export-config/export-config.ts',
+    code: svelteExportConfigexportconfigSource,
+  },
+  {
+    path: 'src/lib/components/export-config/export.ts',
+    code: svelteExportConfigexportSource,
+  },
+  {
+    path: 'src/lib/components/export-config/AmountCell.svelte',
+    code: svelteAmountcellSource,
+  },
+  {
+    path: 'src/lib/components/export-config/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'checkbox', 'dialog', 'label', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -140,6 +199,8 @@ export function ExportConfigPage() {
           preview={<ExportConfigDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

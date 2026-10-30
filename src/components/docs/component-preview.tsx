@@ -8,6 +8,10 @@ import {
   TabsTrigger,
 } from '#/components/ui/tabs.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import svelteAdapterSource from '#/components/svelte/shared/data-table/data-table.svelte.ts?raw'
+import svelteFlexRenderSource from '#/components/svelte/shared/data-table/flex-render.svelte?raw'
+import svelteIndexSource from '#/components/svelte/shared/data-table/index.ts?raw'
+import svelteRenderHelpersSource from '#/components/svelte/shared/data-table/render-helpers.ts?raw'
 
 export interface ComponentPreviewFile {
   path: string
@@ -22,11 +26,15 @@ interface ComponentPreviewProps {
   vueFiles?: ComponentPreviewFile[]
   // Install commands shown under the Vue code (derived from the Vue sources' imports)
   vueDeps?: { npm: string[]; shadcn: string[]; valueUpdater?: boolean }
+  // Optional Svelte 5 port of the same example; adds Svelte to the framework toggle
+  svelteFiles?: ComponentPreviewFile[]
+  // Install commands shown under the Svelte code; `adapter` adds the table-core helper files
+  svelteDeps?: { npm: string[]; shadcn: string[]; adapter?: boolean }
   // Drops the card and control shadows for a flat look
   flat?: boolean
 }
 
-type Framework = 'react' | 'vue'
+type Framework = 'react' | 'vue' | 'svelte'
 
 // Bridges TanStack's updater callbacks to Vue refs; shadcn-vue's Data Table guide uses the same helper
 const VALUE_UPDATER = `import type { Updater } from '@tanstack/vue-table'
@@ -42,11 +50,33 @@ export function valueUpdater<T extends Updater<any>>(
       : updaterOrValue
 }`
 
+// @tanstack/svelte-table v8 only supports Svelte 3/4, so Svelte 5 code drives
+// @tanstack/table-core through this adapter (the same one shadcn-svelte ships)
+const SVELTE_ADAPTER_FILES: ComponentPreviewFile[] = [
+  {
+    path: 'src/lib/components/ui/data-table/data-table.svelte.ts',
+    code: svelteAdapterSource,
+  },
+  {
+    path: 'src/lib/components/ui/data-table/flex-render.svelte',
+    code: svelteFlexRenderSource,
+  },
+  {
+    path: 'src/lib/components/ui/data-table/render-helpers.ts',
+    code: svelteRenderHelpersSource,
+  },
+  {
+    path: 'src/lib/components/ui/data-table/index.ts',
+    code: svelteIndexSource,
+  },
+]
+
 const FRAMEWORK_KEY = 'shad-table:framework'
 
 function readFramework(): Framework {
   try {
-    return localStorage.getItem(FRAMEWORK_KEY) === 'vue' ? 'vue' : 'react'
+    const saved = localStorage.getItem(FRAMEWORK_KEY)
+    return saved === 'vue' || saved === 'svelte' ? saved : 'react'
   } catch {
     return 'react'
   }
@@ -60,6 +90,8 @@ export function ComponentPreview({
   files: reactFiles,
   vueFiles,
   vueDeps,
+  svelteFiles,
+  svelteDeps,
   flat,
 }: ComponentPreviewProps) {
   // Start on React so server and client markup match, then apply the saved choice
@@ -75,7 +107,17 @@ export function ComponentPreview({
     }
   }
 
-  const files = vueFiles && framework === 'vue' ? vueFiles : reactFiles
+  // A saved choice may not exist on this page; fall back to React
+  const active: Framework =
+    (framework === 'vue' && vueFiles) || (framework === 'svelte' && svelteFiles)
+      ? framework
+      : 'react'
+  const files =
+    active === 'vue'
+      ? vueFiles!
+      : active === 'svelte'
+        ? svelteFiles!
+        : reactFiles
 
   return (
     // Preview and code share one card; the toggle lives in its top bar
@@ -94,9 +136,9 @@ export function ComponentPreview({
             <Code2 className="size-3.5" /> Code
           </TabsTrigger>
         </TabsList>
-        {vueFiles ? (
+        {vueFiles || svelteFiles ? (
           <Tabs
-            value={framework}
+            value={active}
             onValueChange={changeFramework}
             className="ml-auto"
           >
@@ -104,9 +146,16 @@ export function ComponentPreview({
               <TabsTrigger value="react" className={barTrigger}>
                 React
               </TabsTrigger>
-              <TabsTrigger value="vue" className={barTrigger}>
-                Vue
-              </TabsTrigger>
+              {vueFiles ? (
+                <TabsTrigger value="vue" className={barTrigger}>
+                  Vue
+                </TabsTrigger>
+              ) : null}
+              {svelteFiles ? (
+                <TabsTrigger value="svelte" className={barTrigger}>
+                  Svelte
+                </TabsTrigger>
+              ) : null}
             </TabsList>
           </Tabs>
         ) : null}
@@ -120,7 +169,7 @@ export function ComponentPreview({
         {preview}
       </TabsContent>
       <TabsContent value="code">
-        <Tabs key={framework} defaultValue={files[0]?.path} className="gap-0">
+        <Tabs key={active} defaultValue={files[0]?.path} className="gap-0">
           <TabsList className="h-auto w-full justify-start overflow-x-auto rounded-none border-b bg-transparent p-0">
             {files.map((file) => (
               <TabsTrigger
@@ -143,7 +192,7 @@ export function ComponentPreview({
             </TabsContent>
           ))}
         </Tabs>
-        {vueFiles && framework === 'vue' && vueDeps ? (
+        {vueFiles && active === 'vue' && vueDeps ? (
           <CodeBlock
             filename="Install (Vue)"
             language="bash"
@@ -158,12 +207,51 @@ export function ComponentPreview({
             className="rounded-none border-0 border-t"
           />
         ) : null}
-        {vueFiles && framework === 'vue' && vueDeps?.valueUpdater ? (
+        {vueFiles && active === 'vue' && vueDeps?.valueUpdater ? (
           <CodeBlock
             filename="src/lib/utils.ts (add this helper)"
             code={VALUE_UPDATER}
             className="rounded-none border-0 border-t"
           />
+        ) : null}
+        {svelteFiles && active === 'svelte' && svelteDeps ? (
+          <CodeBlock
+            filename="Install (Svelte)"
+            language="bash"
+            code={[
+              `npm i ${['@tanstack/table-core@^8', ...svelteDeps.npm].join(' ')}`,
+              svelteDeps.shadcn.length
+                ? `npx shadcn-svelte@latest add ${svelteDeps.shadcn.join(' ')}`
+                : null,
+            ]
+              .filter(Boolean)
+              .join('\n')}
+            className="rounded-none border-0 border-t"
+          />
+        ) : null}
+        {svelteFiles && active === 'svelte' && svelteDeps?.adapter ? (
+          <Tabs defaultValue={SVELTE_ADAPTER_FILES[0].path} className="gap-0">
+            <TabsList className="h-auto w-full justify-start overflow-x-auto rounded-none border-y bg-transparent p-0">
+              {SVELTE_ADAPTER_FILES.map((file) => (
+                <TabsTrigger
+                  key={file.path}
+                  value={file.path}
+                  className="flex-none rounded-none border-x-0 border-t-0 border-b-2 border-transparent px-3 py-2 font-mono text-xs font-normal text-muted-foreground data-[state=active]:border-b-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
+                >
+                  {file.path.split('/').pop()}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            {SVELTE_ADAPTER_FILES.map((file) => (
+              <TabsContent key={file.path} value={file.path}>
+                <CodeBlock
+                  filename={`${file.path} (add this helper)`}
+                  code={file.code}
+                  className="rounded-none border-0"
+                />
+              </TabsContent>
+            ))}
+          </Tabs>
         ) : null}
       </TabsContent>
     </Tabs>

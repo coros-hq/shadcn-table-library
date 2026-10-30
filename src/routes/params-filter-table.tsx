@@ -13,6 +13,10 @@ import vueParamsFilterParamsFilterTableDemoSource from '#/components/vue/params-
 import vueParamsFiltercolumnsSource from '#/components/vue/params-filter/columns.ts?raw'
 import vueParamsFilterParamsDataTableSource from '#/components/vue/params-filter/ParamsDataTable.vue?raw'
 import vueParamsFilteruseUrlFiltersSource from '#/components/vue/params-filter/useUrlFilters.ts?raw'
+import svelteParamsFilterParamsFilterTableDemoSource from '#/components/svelte/params-filter/ParamsFilterTableDemo.svelte?raw'
+import svelteParamsFiltercolumnsSource from '#/components/svelte/params-filter/columns.ts?raw'
+import svelteParamsFilterParamsDataTableSource from '#/components/svelte/params-filter/ParamsDataTable.svelte?raw'
+import svelteParamsFilteruseUrlFiltersSource from '#/components/svelte/params-filter/useUrlFilters.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/params-filter/index.tsx', code: indexSource },
@@ -53,6 +57,31 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['button', 'input', 'select', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/params-filter/ParamsFilterTableDemo.svelte',
+    code: svelteParamsFilterParamsFilterTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/params-filter/columns.ts',
+    code: svelteParamsFiltercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/params-filter/ParamsDataTable.svelte',
+    code: svelteParamsFilterParamsDataTableSource,
+  },
+  {
+    path: 'src/lib/components/params-filter/useUrlFilters.svelte.ts',
+    code: svelteParamsFilteruseUrlFiltersSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'input', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -206,6 +235,8 @@ function ParamsFilterTablePage() {
           preview={<ParamsFilterTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

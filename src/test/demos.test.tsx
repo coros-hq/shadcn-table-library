@@ -10,6 +10,7 @@ const loaders = import.meta.glob<Record<string, unknown>>(
   [
     '/src/components/**/index.tsx',
     '!/src/components/vue/**',
+    '!/src/components/svelte/**',
     '!/src/components/ui/**',
   ],
   { eager: false },

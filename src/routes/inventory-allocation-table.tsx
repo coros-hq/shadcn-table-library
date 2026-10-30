@@ -16,6 +16,18 @@ import vueInventoryAllocationBatchDetailSource from '#/components/vue/inventory-
 import vueInventoryAllocationEditableNumberCellSource from '#/components/vue/inventory-allocation/EditableNumberCell.vue?raw'
 import vueInventoryAllocationInventoryTableSource from '#/components/vue/inventory-allocation/InventoryTable.vue?raw'
 import vueInventoryAllocationformulasSource from '#/components/vue/inventory-allocation/formulas.ts?raw'
+import svelteInventoryAllocationInventoryAllocationDemoSource from '#/components/svelte/inventory-allocation/InventoryAllocationDemo.svelte?raw'
+import svelteInventoryAllocationcolumnsSource from '#/components/svelte/inventory-allocation/columns.ts?raw'
+import svelteInventoryAllocationBatchDetailSource from '#/components/svelte/inventory-allocation/BatchDetail.svelte?raw'
+import svelteInventoryAllocationEditableNumberCellSource from '#/components/svelte/inventory-allocation/EditableNumberCell.svelte?raw'
+import svelteInventoryAllocationInventoryTableSource from '#/components/svelte/inventory-allocation/InventoryTable.svelte?raw'
+import svelteInventoryAllocationformulasSource from '#/components/svelte/inventory-allocation/formulas.ts?raw'
+import svelteAllocationcellSource from '#/components/svelte/inventory-allocation/AllocationCell.svelte?raw'
+import svelteExpandercellSource from '#/components/svelte/inventory-allocation/ExpanderCell.svelte?raw'
+import svelteSkucellSource from '#/components/svelte/inventory-allocation/SkuCell.svelte?raw'
+import svelteStackedcellSource from '#/components/svelte/inventory-allocation/StackedCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/inventory-allocation/StatusBadge.svelte?raw'
+import svelteTabulartextSource from '#/components/svelte/inventory-allocation/TabularText.svelte?raw'
 
 const files = [
   { path: 'src/components/inventory-allocation/index.tsx', code: indexSource },
@@ -72,6 +84,63 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'button', 'input', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/inventory-allocation/InventoryAllocationDemo.svelte',
+    code: svelteInventoryAllocationInventoryAllocationDemoSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/columns.ts',
+    code: svelteInventoryAllocationcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/BatchDetail.svelte',
+    code: svelteInventoryAllocationBatchDetailSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/EditableNumberCell.svelte',
+    code: svelteInventoryAllocationEditableNumberCellSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/InventoryTable.svelte',
+    code: svelteInventoryAllocationInventoryTableSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/formulas.ts',
+    code: svelteInventoryAllocationformulasSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/AllocationCell.svelte',
+    code: svelteAllocationcellSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/ExpanderCell.svelte',
+    code: svelteExpandercellSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/SkuCell.svelte',
+    code: svelteSkucellSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/StackedCell.svelte',
+    code: svelteStackedcellSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+  {
+    path: 'src/lib/components/inventory-allocation/TabularText.svelte',
+    code: svelteTabulartextSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'input', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -213,6 +282,8 @@ function InventoryAllocationTablePage() {
           preview={<InventoryAllocationDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

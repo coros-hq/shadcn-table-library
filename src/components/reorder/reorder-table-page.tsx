@@ -9,6 +9,10 @@ import { ReorderableTableDemo } from './index'
 import vueReorderReorderableTableDemoSource from '#/components/vue/reorder/ReorderableTableDemo.vue?raw'
 import vueReordercolumnsSource from '#/components/vue/reorder/columns.ts?raw'
 import vueReorderReorderableTableSource from '#/components/vue/reorder/ReorderableTable.vue?raw'
+import svelteReorderReorderableTableDemoSource from '#/components/svelte/reorder/ReorderableTableDemo.svelte?raw'
+import svelteReordercolumnsSource from '#/components/svelte/reorder/columns.ts?raw'
+import svelteReorderReorderableTableSource from '#/components/svelte/reorder/ReorderableTable.svelte?raw'
+import svelteSortableSource from '#/components/svelte/reorder/sortable.ts?raw'
 
 const files = [
   { path: 'src/components/reorder/columns.tsx', code: columnsSource },
@@ -32,6 +36,31 @@ const vueDeps = {
   npm: ['@lucide/vue', 'vue-draggable-plus'],
   shadcn: ['table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/reorder/ReorderableTableDemo.svelte',
+    code: svelteReorderReorderableTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/reorder/columns.ts',
+    code: svelteReordercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/reorder/ReorderableTable.svelte',
+    code: svelteReorderReorderableTableSource,
+  },
+  {
+    path: 'src/lib/components/reorder/sortable.ts',
+    code: svelteSortableSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte', 'sortablejs', '@types/sortablejs'],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -116,6 +145,8 @@ export function ReorderableTablePage() {
           preview={<ReorderableTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

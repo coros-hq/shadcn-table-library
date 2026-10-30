@@ -10,6 +10,10 @@ import vueToolbarFilterToolbarFilterTableDemoSource from '#/components/vue/toolb
 import vueToolbarFiltercolumnsSource from '#/components/vue/toolbar-filter/columns.ts?raw'
 import vueToolbarFilterToolbarFilterDataTableSource from '#/components/vue/toolbar-filter/ToolbarFilterDataTable.vue?raw'
 import vueToolbarFilterToolbarSelectSource from '#/components/vue/toolbar-filter/ToolbarSelect.vue?raw'
+import svelteToolbarFilterToolbarFilterTableDemoSource from '#/components/svelte/toolbar-filter/ToolbarFilterTableDemo.svelte?raw'
+import svelteToolbarFiltercolumnsSource from '#/components/svelte/toolbar-filter/columns.ts?raw'
+import svelteToolbarFilterToolbarFilterDataTableSource from '#/components/svelte/toolbar-filter/ToolbarFilterDataTable.svelte?raw'
+import svelteToolbarFilterToolbarSelectSource from '#/components/svelte/toolbar-filter/ToolbarSelect.svelte?raw'
 
 const files = [
   { path: 'src/components/toolbar-filter/columns.tsx', code: columnsSource },
@@ -40,6 +44,31 @@ const vueDeps = {
   npm: [],
   shadcn: ['input', 'select', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/toolbar-filter/ToolbarFilterTableDemo.svelte',
+    code: svelteToolbarFilterToolbarFilterTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/toolbar-filter/columns.ts',
+    code: svelteToolbarFiltercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/toolbar-filter/ToolbarFilterDataTable.svelte',
+    code: svelteToolbarFilterToolbarFilterDataTableSource,
+  },
+  {
+    path: 'src/lib/components/toolbar-filter/ToolbarSelect.svelte',
+    code: svelteToolbarFilterToolbarSelectSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['input', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -113,6 +142,8 @@ export function ToolbarFilterTablePage() {
           preview={<ToolbarFilterTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

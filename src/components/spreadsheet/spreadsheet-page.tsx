@@ -13,6 +13,11 @@ import vueSpreadsheetTableSource from '#/components/vue/spreadsheet/SpreadsheetT
 import vueSpreadsheetColumnsSource from '#/components/vue/spreadsheet/columns.ts?raw'
 import vueSpreadsheetFormulaSource from '#/components/vue/spreadsheet/formula.ts?raw'
 import vueSpreadsheetDataSource from '#/components/vue/spreadsheet/data.ts?raw'
+import svelteSpreadsheetDemoSource from '#/components/svelte/spreadsheet/SpreadsheetDemo.svelte?raw'
+import svelteSpreadsheetTableSource from '#/components/svelte/spreadsheet/SpreadsheetTable.svelte?raw'
+import svelteSpreadsheetColumnsSource from '#/components/svelte/spreadsheet/columns.ts?raw'
+import svelteSpreadsheetFormulaSource from '#/components/svelte/spreadsheet/formula.ts?raw'
+import svelteSpreadsheetDataSource from '#/components/svelte/spreadsheet/data.ts?raw'
 
 const files = [
   { path: 'src/components/spreadsheet/data-table.tsx', code: tableSource },
@@ -48,6 +53,35 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/spreadsheet/SpreadsheetDemo.svelte',
+    code: svelteSpreadsheetDemoSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/SpreadsheetTable.svelte',
+    code: svelteSpreadsheetTableSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/columns.ts',
+    code: svelteSpreadsheetColumnsSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/formula.ts',
+    code: svelteSpreadsheetFormulaSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/data.ts',
+    code: svelteSpreadsheetDataSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -134,6 +168,8 @@ export function SpreadsheetPage() {
           preview={<SpreadsheetDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

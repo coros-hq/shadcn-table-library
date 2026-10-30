@@ -13,6 +13,16 @@ import vueInfiniteScrollTableSource from '#/components/vue/infinite-scroll/Infin
 import vueInfiniteScrollColumnsSource from '#/components/vue/infinite-scroll/columns.ts?raw'
 import vueInfiniteScrollHookSource from '#/components/vue/infinite-scroll/use-infinite-rows.ts?raw'
 import vueInfiniteScrollDataSource from '#/components/vue/infinite-scroll/data.ts?raw'
+import svelteInfiniteScrollDemoSource from '#/components/svelte/infinite-scroll/InfiniteScrollDemo.svelte?raw'
+import svelteInfiniteScrollTableSource from '#/components/svelte/infinite-scroll/InfiniteScrollTable.svelte?raw'
+import svelteInfiniteScrollColumnsSource from '#/components/svelte/infinite-scroll/columns.ts?raw'
+import svelteInfiniteScrollHookSource from '#/components/svelte/infinite-scroll/use-infinite-rows.svelte.ts?raw'
+import svelteInfiniteScrollDataSource from '#/components/svelte/infinite-scroll/data.ts?raw'
+import svelteCustomercellSource from '#/components/svelte/infinite-scroll/CustomerCell.svelte?raw'
+import svelteDatecellSource from '#/components/svelte/infinite-scroll/DateCell.svelte?raw'
+import svelteMoneycellSource from '#/components/svelte/infinite-scroll/MoneyCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/infinite-scroll/StatusBadge.svelte?raw'
+import svelteTransactionidSource from '#/components/svelte/infinite-scroll/TransactionId.svelte?raw'
 
 const files = [
   { path: 'src/components/infinite-scroll/data-table.tsx', code: tableSource },
@@ -51,6 +61,55 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['badge', 'button', 'skeleton', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/infinite-scroll/InfiniteScrollDemo.svelte',
+    code: svelteInfiniteScrollDemoSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/InfiniteScrollTable.svelte',
+    code: svelteInfiniteScrollTableSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/columns.ts',
+    code: svelteInfiniteScrollColumnsSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/use-infinite-rows.svelte.ts',
+    code: svelteInfiniteScrollHookSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/data.ts',
+    code: svelteInfiniteScrollDataSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/CustomerCell.svelte',
+    code: svelteCustomercellSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/DateCell.svelte',
+    code: svelteDatecellSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/MoneyCell.svelte',
+    code: svelteMoneycellSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/TransactionId.svelte',
+    code: svelteTransactionidSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['badge', 'button', 'skeleton', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -130,6 +189,8 @@ export function InfiniteScrollPage() {
           preview={<InfiniteScrollDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

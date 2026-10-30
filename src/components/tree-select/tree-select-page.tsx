@@ -9,6 +9,11 @@ import { TreeSelectDemo } from './index'
 import vueTreeSelectTreeSelectDemoSource from '#/components/vue/tree-select/TreeSelectDemo.vue?raw'
 import vueTreeSelectcolumnsSource from '#/components/vue/tree-select/columns.ts?raw'
 import vueTreeSelectTreeSelectDataTableSource from '#/components/vue/tree-select/TreeSelectDataTable.vue?raw'
+import svelteTreeSelectTreeSelectDemoSource from '#/components/svelte/tree-select/TreeSelectDemo.svelte?raw'
+import svelteTreeSelectcolumnsSource from '#/components/svelte/tree-select/columns.ts?raw'
+import svelteTreeSelectTreeSelectDataTableSource from '#/components/svelte/tree-select/TreeSelectDataTable.svelte?raw'
+import svelteNamecellSource from '#/components/svelte/tree-select/NameCell.svelte?raw'
+import svelteSelectcheckboxSource from '#/components/svelte/tree-select/SelectCheckbox.svelte?raw'
 
 const files = [
   { path: 'src/components/tree-select/columns.tsx', code: columnsSource },
@@ -35,6 +40,35 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['checkbox', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/tree-select/TreeSelectDemo.svelte',
+    code: svelteTreeSelectTreeSelectDemoSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/columns.ts',
+    code: svelteTreeSelectcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/TreeSelectDataTable.svelte',
+    code: svelteTreeSelectTreeSelectDataTableSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/NameCell.svelte',
+    code: svelteNamecellSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/SelectCheckbox.svelte',
+    code: svelteSelectcheckboxSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['checkbox', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -121,6 +155,8 @@ export function TreeSelectPage() {
           preview={<TreeSelectDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

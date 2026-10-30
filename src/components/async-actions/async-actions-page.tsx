@@ -18,6 +18,23 @@ import vueAsyncActionssharediconsArchiveIconSource from '#/components/vue/shared
 import vueAsyncActionssharediconsuseIconAnimationSource from '#/components/vue/shared/icons/useIconAnimation.ts?raw'
 import vueAsyncActionssharediconsTrashIconSource from '#/components/vue/shared/icons/TrashIcon.vue?raw'
 import vueAsyncActionssharediconsArrowsClockwiseIconSource from '#/components/vue/shared/icons/ArrowsClockwiseIcon.vue?raw'
+import svelteAsyncActionsAsyncActionsDemoSource from '#/components/svelte/async-actions/AsyncActionsDemo.svelte?raw'
+import svelteAsyncActionsArchiveButtonSource from '#/components/svelte/async-actions/ArchiveButton.svelte?raw'
+import svelteAsyncActionsAsyncActionsTableSource from '#/components/svelte/async-actions/AsyncActionsTable.svelte?raw'
+import svelteAsyncActionsDeleteButtonSource from '#/components/svelte/async-actions/DeleteButton.svelte?raw'
+import svelteAsyncActionsSyncButtonSource from '#/components/svelte/async-actions/SyncButton.svelte?raw'
+import svelteAsyncActionsactionButtonStylesSource from '#/components/svelte/async-actions/actionButtonStyles.ts?raw'
+import svelteAsyncActionsdataSource from '#/components/svelte/async-actions/data.ts?raw'
+import svelteAsyncActionssharediconsArchiveIconSource from '#/components/svelte/shared/icons/ArchiveIcon.svelte?raw'
+import svelteAsyncActionssharediconsuseIconAnimationSource from '#/components/svelte/shared/icons/useIconAnimation.svelte.ts?raw'
+import svelteAsyncActionssharediconsTrashIconSource from '#/components/svelte/shared/icons/TrashIcon.svelte?raw'
+import svelteAsyncActionssharediconsArrowsClockwiseIconSource from '#/components/svelte/shared/icons/ArrowsClockwiseIcon.svelte?raw'
+import svelteLastsyncedcellSource from '#/components/svelte/async-actions/LastSyncedCell.svelte?raw'
+import svelteRowactionsSource from '#/components/svelte/async-actions/RowActions.svelte?raw'
+import svelteSourcecellSource from '#/components/svelte/async-actions/SourceCell.svelte?raw'
+import svelteStatuscellSource from '#/components/svelte/async-actions/StatusCell.svelte?raw'
+import svelteBellringingiconSource from '#/components/svelte/shared/icons/BellRingingIcon.svelte?raw'
+import svelteStariconSource from '#/components/svelte/shared/icons/StarIcon.svelte?raw'
 
 const files = [
   { path: 'src/components/async-actions/data-table.tsx', code: tableSource },
@@ -79,6 +96,83 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['button', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/async-actions/AsyncActionsDemo.svelte',
+    code: svelteAsyncActionsAsyncActionsDemoSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/ArchiveButton.svelte',
+    code: svelteAsyncActionsArchiveButtonSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/AsyncActionsTable.svelte',
+    code: svelteAsyncActionsAsyncActionsTableSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/DeleteButton.svelte',
+    code: svelteAsyncActionsDeleteButtonSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/SyncButton.svelte',
+    code: svelteAsyncActionsSyncButtonSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/actionButtonStyles.ts',
+    code: svelteAsyncActionsactionButtonStylesSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/data.ts',
+    code: svelteAsyncActionsdataSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/ArchiveIcon.svelte',
+    code: svelteAsyncActionssharediconsArchiveIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/useIconAnimation.svelte.ts',
+    code: svelteAsyncActionssharediconsuseIconAnimationSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/TrashIcon.svelte',
+    code: svelteAsyncActionssharediconsTrashIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/ArrowsClockwiseIcon.svelte',
+    code: svelteAsyncActionssharediconsArrowsClockwiseIconSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/LastSyncedCell.svelte',
+    code: svelteLastsyncedcellSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/RowActions.svelte',
+    code: svelteRowactionsSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/SourceCell.svelte',
+    code: svelteSourcecellSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/StatusCell.svelte',
+    code: svelteStatuscellSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/BellRingingIcon.svelte',
+    code: svelteBellringingiconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/StarIcon.svelte',
+    code: svelteStariconSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['button', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -155,6 +249,8 @@ export function AsyncActionsPage() {
           preview={<AsyncActionsDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

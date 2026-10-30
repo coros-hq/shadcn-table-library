@@ -9,6 +9,11 @@ import { TreeReorderDemo } from './index'
 import vueTreeReorderTreeReorderDemoSource from '#/components/vue/tree-reorder/TreeReorderDemo.vue?raw'
 import vueTreeReordercolumnsSource from '#/components/vue/tree-reorder/columns.ts?raw'
 import vueTreeReorderTreeReorderDataTableSource from '#/components/vue/tree-reorder/TreeReorderDataTable.vue?raw'
+import svelteTreeReorderTreeReorderDemoSource from '#/components/svelte/tree-reorder/TreeReorderDemo.svelte?raw'
+import svelteTreeReordercolumnsSource from '#/components/svelte/tree-reorder/columns.ts?raw'
+import svelteTreeReorderTreeReorderDataTableSource from '#/components/svelte/tree-reorder/TreeReorderDataTable.svelte?raw'
+import svelteNamecellSource from '#/components/svelte/tree-reorder/NameCell.svelte?raw'
+import svelteSortableSource from '#/components/svelte/tree-reorder/sortable.ts?raw'
 
 const files = [
   { path: 'src/components/tree-reorder/columns.tsx', code: columnsSource },
@@ -35,6 +40,35 @@ const vueDeps = {
   npm: ['@lucide/vue', 'vue-draggable-plus'],
   shadcn: ['table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/tree-reorder/TreeReorderDemo.svelte',
+    code: svelteTreeReorderTreeReorderDemoSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/columns.ts',
+    code: svelteTreeReordercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/TreeReorderDataTable.svelte',
+    code: svelteTreeReorderTreeReorderDataTableSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/NameCell.svelte',
+    code: svelteNamecellSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/sortable.ts',
+    code: svelteSortableSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte', 'sortablejs', '@types/sortablejs'],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -120,6 +154,8 @@ export function TreeReorderPage() {
           preview={<TreeReorderDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

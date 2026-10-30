@@ -9,6 +9,10 @@ import vueBasicTableSource from '#/components/vue/basic/BasicTable.vue?raw'
 import vueDataTableSource from '#/components/vue/basic/DataTable.vue?raw'
 import vueDataTableFilterSource from '#/components/vue/basic/DataTableFilter.vue?raw'
 import vueColumnsSource from '#/components/vue/basic/columns.ts?raw'
+import svelteBasicTableSource from '#/components/svelte/basic/BasicTable.svelte?raw'
+import svelteColumnsSource from '#/components/svelte/basic/columns.ts?raw'
+import svelteDataTableSource from '#/components/svelte/basic/DataTable.svelte?raw'
+import svelteDataTableFilterSource from '#/components/svelte/basic/DataTableFilter.svelte?raw'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
@@ -87,6 +91,31 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['table', 'input', 'select', 'button'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/basic/BasicTable.svelte',
+    code: svelteBasicTableSource,
+  },
+  {
+    path: 'src/lib/components/basic/columns.ts',
+    code: svelteColumnsSource,
+  },
+  {
+    path: 'src/lib/components/basic/DataTable.svelte',
+    code: svelteDataTableSource,
+  },
+  {
+    path: 'src/lib/components/basic/DataTableFilter.svelte',
+    code: svelteDataTableFilterSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'input', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -180,6 +209,8 @@ function Home() {
           preview={<BasicTableUsage />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

@@ -11,6 +11,11 @@ import vueMasterDetailMasterDetailDemoSource from '#/components/vue/master-detai
 import vueMasterDetailcolumnsSource from '#/components/vue/master-detail/columns.ts?raw'
 import vueMasterDetailMasterDetailTableSource from '#/components/vue/master-detail/MasterDetailTable.vue?raw'
 import vueMasterDetailOrderDetailSource from '#/components/vue/master-detail/OrderDetail.vue?raw'
+import svelteMasterDetailMasterDetailDemoSource from '#/components/svelte/master-detail/MasterDetailDemo.svelte?raw'
+import svelteMasterDetailcolumnsSource from '#/components/svelte/master-detail/columns.ts?raw'
+import svelteMasterDetailMasterDetailTableSource from '#/components/svelte/master-detail/MasterDetailTable.svelte?raw'
+import svelteMasterDetailOrderDetailSource from '#/components/svelte/master-detail/OrderDetail.svelte?raw'
+import svelteExpandercellSource from '#/components/svelte/master-detail/ExpanderCell.svelte?raw'
 
 const files = [
   { path: 'src/components/master-detail/columns.tsx', code: columnsSource },
@@ -44,6 +49,35 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/master-detail/MasterDetailDemo.svelte',
+    code: svelteMasterDetailMasterDetailDemoSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/columns.ts',
+    code: svelteMasterDetailcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/MasterDetailTable.svelte',
+    code: svelteMasterDetailMasterDetailTableSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/OrderDetail.svelte',
+    code: svelteMasterDetailOrderDetailSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/ExpanderCell.svelte',
+    code: svelteExpandercellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -135,6 +169,8 @@ export function MasterDetailPage() {
           preview={<MasterDetailDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

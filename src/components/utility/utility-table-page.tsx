@@ -11,6 +11,10 @@ import vueUtilityUtilityTableDemoSource from '#/components/vue/utility/UtilityTa
 import vueUtilitycolumnsSource from '#/components/vue/utility/columns.ts?raw'
 import vueUtilityUtilityTableSource from '#/components/vue/utility/UtilityTable.vue?raw'
 import vueUtilityexportSource from '#/components/vue/utility/export.ts?raw'
+import svelteUtilityUtilityTableDemoSource from '#/components/svelte/utility/UtilityTableDemo.svelte?raw'
+import svelteUtilitycolumnsSource from '#/components/svelte/utility/columns.ts?raw'
+import svelteUtilityUtilityTableSource from '#/components/svelte/utility/UtilityTable.svelte?raw'
+import svelteUtilityexportSource from '#/components/svelte/utility/export.ts?raw'
 
 const files = [
   { path: 'src/components/utility/columns.tsx', code: columnsSource },
@@ -35,6 +39,31 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['button', 'select', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/utility/UtilityTableDemo.svelte',
+    code: svelteUtilityUtilityTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/utility/columns.ts',
+    code: svelteUtilitycolumnsSource,
+  },
+  {
+    path: 'src/lib/components/utility/UtilityTable.svelte',
+    code: svelteUtilityUtilityTableSource,
+  },
+  {
+    path: 'src/lib/components/utility/export.ts',
+    code: svelteUtilityexportSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -120,6 +149,8 @@ export function UtilityTablePage() {
           preview={<UtilityTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

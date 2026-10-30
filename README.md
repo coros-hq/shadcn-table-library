@@ -50,6 +50,10 @@ The v8 items pin `@tanstack/react-table@^8.21.3` and the v9 items pin `^9`, so i
 
 The docs pages have a **React | Vue** toggle on the Code tab with a Vue port of each example, written for `@tanstack/vue-table@^8` and [shadcn-vue](https://www.shadcn-vue.com). The Vue code is source only: there is no live Vue preview and no Vue registry items yet.
 
+## Svelte
+
+The same toggle also offers **Svelte**: a Svelte 5 port of each v8 example, written for [shadcn-svelte](https://www.shadcn-svelte.com) and `@tanstack/table-core@^8`. `@tanstack/svelte-table` v8 only supports Svelte 3 and 4, so the ports drive table-core through a small runes adapter (`createSvelteTable`, `FlexRender`, `renderComponent`) that each Code tab shows next to the install commands. The Svelte code is source only: there is no live Svelte preview and no Svelte registry items yet.
+
 ## What's included
 
 - **Data Table** — sortable, filterable, paginated, entirely client-side

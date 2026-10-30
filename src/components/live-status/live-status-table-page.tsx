@@ -11,6 +11,13 @@ import vueLiveStatusLiveStatusTableDemoSource from '#/components/vue/live-status
 import vueLiveStatuscolumnsSource from '#/components/vue/live-status/columns.ts?raw'
 import vueLiveStatusLiveStatusTableSource from '#/components/vue/live-status/LiveStatusTable.vue?raw'
 import vueLiveStatusStatusIndicatorSource from '#/components/vue/live-status/StatusIndicator.vue?raw'
+import svelteLiveStatusLiveStatusTableDemoSource from '#/components/svelte/live-status/LiveStatusTableDemo.svelte?raw'
+import svelteLiveStatuscolumnsSource from '#/components/svelte/live-status/columns.ts?raw'
+import svelteLiveStatusLiveStatusTableSource from '#/components/svelte/live-status/LiveStatusTable.svelte?raw'
+import svelteLiveStatusStatusIndicatorSource from '#/components/svelte/live-status/StatusIndicator.svelte?raw'
+import svelteLatencycellSource from '#/components/svelte/live-status/LatencyCell.svelte?raw'
+import svelteServicecellSource from '#/components/svelte/live-status/ServiceCell.svelte?raw'
+import svelteUptimecellSource from '#/components/svelte/live-status/UptimeCell.svelte?raw'
 
 const files = [
   { path: 'src/components/live-status/columns.tsx', code: columnsSource },
@@ -44,6 +51,43 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/live-status/LiveStatusTableDemo.svelte',
+    code: svelteLiveStatusLiveStatusTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/live-status/columns.ts',
+    code: svelteLiveStatuscolumnsSource,
+  },
+  {
+    path: 'src/lib/components/live-status/LiveStatusTable.svelte',
+    code: svelteLiveStatusLiveStatusTableSource,
+  },
+  {
+    path: 'src/lib/components/live-status/StatusIndicator.svelte',
+    code: svelteLiveStatusStatusIndicatorSource,
+  },
+  {
+    path: 'src/lib/components/live-status/LatencyCell.svelte',
+    code: svelteLatencycellSource,
+  },
+  {
+    path: 'src/lib/components/live-status/ServiceCell.svelte',
+    code: svelteServicecellSource,
+  },
+  {
+    path: 'src/lib/components/live-status/UptimeCell.svelte',
+    code: svelteUptimecellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -117,6 +161,8 @@ export function LiveStatusTablePage() {
           preview={<LiveStatusTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

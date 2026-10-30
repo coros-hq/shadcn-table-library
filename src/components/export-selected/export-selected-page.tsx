@@ -13,6 +13,14 @@ import vueExportSelectedcolumnsSource from '#/components/vue/export-selected/col
 import vueExportSelectedExportSelectedTableSource from '#/components/vue/export-selected/ExportSelectedTable.vue?raw'
 import vueExportSelecteddataSource from '#/components/vue/export-selected/data.ts?raw'
 import vueExportSelectedexportSource from '#/components/vue/export-selected/export.ts?raw'
+import svelteExportSelectedExportSelectedDemoSource from '#/components/svelte/export-selected/ExportSelectedDemo.svelte?raw'
+import svelteExportSelectedcolumnsSource from '#/components/svelte/export-selected/columns.ts?raw'
+import svelteExportSelectedExportSelectedTableSource from '#/components/svelte/export-selected/ExportSelectedTable.svelte?raw'
+import svelteExportSelecteddataSource from '#/components/svelte/export-selected/data.ts?raw'
+import svelteExportSelectedexportSource from '#/components/svelte/export-selected/export.ts?raw'
+import svelteMrrcellSource from '#/components/svelte/export-selected/MrrCell.svelte?raw'
+import sveltePlanbadgeSource from '#/components/svelte/export-selected/PlanBadge.svelte?raw'
+import svelteSelectcheckboxSource from '#/components/svelte/export-selected/SelectCheckbox.svelte?raw'
 
 const files = [
   { path: 'src/components/export-selected/data-table.tsx', code: tableSource },
@@ -49,6 +57,47 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'button', 'checkbox', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/export-selected/ExportSelectedDemo.svelte',
+    code: svelteExportSelectedExportSelectedDemoSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/columns.ts',
+    code: svelteExportSelectedcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/ExportSelectedTable.svelte',
+    code: svelteExportSelectedExportSelectedTableSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/data.ts',
+    code: svelteExportSelecteddataSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/export.ts',
+    code: svelteExportSelectedexportSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/MrrCell.svelte',
+    code: svelteMrrcellSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/PlanBadge.svelte',
+    code: sveltePlanbadgeSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/SelectCheckbox.svelte',
+    code: svelteSelectcheckboxSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'checkbox', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -113,6 +162,8 @@ export function ExportSelectedPage() {
           preview={<ExportSelectedDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

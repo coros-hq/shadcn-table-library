@@ -13,6 +13,13 @@ import vueKpicolumnsSource from '#/components/vue/kpi/columns.ts?raw'
 import vueKpiKpiTableSource from '#/components/vue/kpi/KpiTable.vue?raw'
 import vueKpiSparklineSource from '#/components/vue/kpi/Sparkline.vue?raw'
 import vueKpikpiSource from '#/components/vue/kpi/kpi.ts?raw'
+import svelteKpiKpiTableDemoSource from '#/components/svelte/kpi/KpiTableDemo.svelte?raw'
+import svelteKpicolumnsSource from '#/components/svelte/kpi/columns.ts?raw'
+import svelteKpiKpiTableSource from '#/components/svelte/kpi/KpiTable.svelte?raw'
+import svelteKpiSparklineSource from '#/components/svelte/kpi/Sparkline.svelte?raw'
+import svelteKpikpiSource from '#/components/svelte/kpi/kpi.ts?raw'
+import svelteChangecellSource from '#/components/svelte/kpi/ChangeCell.svelte?raw'
+import svelteMetriclabelSource from '#/components/svelte/kpi/MetricLabel.svelte?raw'
 
 const files = [
   { path: 'src/components/kpi/kpi.ts', code: kpiSource },
@@ -36,6 +43,43 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/kpi/KpiTableDemo.svelte',
+    code: svelteKpiKpiTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/kpi/columns.ts',
+    code: svelteKpicolumnsSource,
+  },
+  {
+    path: 'src/lib/components/kpi/KpiTable.svelte',
+    code: svelteKpiKpiTableSource,
+  },
+  {
+    path: 'src/lib/components/kpi/Sparkline.svelte',
+    code: svelteKpiSparklineSource,
+  },
+  {
+    path: 'src/lib/components/kpi/kpi.ts',
+    code: svelteKpikpiSource,
+  },
+  {
+    path: 'src/lib/components/kpi/ChangeCell.svelte',
+    code: svelteChangecellSource,
+  },
+  {
+    path: 'src/lib/components/kpi/MetricLabel.svelte',
+    code: svelteMetriclabelSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -133,6 +177,8 @@ export function KpiTablePage() {
           preview={<KpiTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

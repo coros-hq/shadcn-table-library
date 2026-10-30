@@ -14,6 +14,12 @@ import vueSsrPaginationExampleDataTableSource from '#/components/vue/ssr/paginat
 import vueSsrPaginationExampledataSource from '#/components/vue/ssr/data.ts?raw'
 import vueSsrPaginationExampleuseServerQuerySource from '#/components/vue/ssr/useServerQuery.ts?raw'
 import vueSsrPaginationExampleuseUrlSearchSource from '#/components/vue/ssr/useUrlSearch.ts?raw'
+import svelteSsrPaginationExampleServerPaginationDemoSource from '#/components/svelte/ssr/pagination-example/ServerPaginationDemo.svelte?raw'
+import svelteSsrPaginationExamplecolumnsSource from '#/components/svelte/ssr/pagination-example/columns.ts?raw'
+import svelteSsrPaginationExampleDataTableSource from '#/components/svelte/ssr/pagination-example/DataTable.svelte?raw'
+import svelteSsrPaginationExampledataSource from '#/components/svelte/ssr/data.ts?raw'
+import svelteSsrPaginationExampleuseServerQuerySource from '#/components/svelte/ssr/useServerQuery.svelte.ts?raw'
+import svelteSsrPaginationExampleuseUrlSearchSource from '#/components/svelte/ssr/useUrlSearch.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -60,6 +66,39 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['button', 'select', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/ssr/pagination-example/ServerPaginationDemo.svelte',
+    code: svelteSsrPaginationExampleServerPaginationDemoSource,
+  },
+  {
+    path: 'src/lib/components/ssr/pagination-example/columns.ts',
+    code: svelteSsrPaginationExamplecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/ssr/pagination-example/DataTable.svelte',
+    code: svelteSsrPaginationExampleDataTableSource,
+  },
+  {
+    path: 'src/lib/components/ssr/data.ts',
+    code: svelteSsrPaginationExampledataSource,
+  },
+  {
+    path: 'src/lib/components/ssr/useServerQuery.svelte.ts',
+    code: svelteSsrPaginationExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/lib/components/ssr/useUrlSearch.svelte.ts',
+    code: svelteSsrPaginationExampleuseUrlSearchSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -158,6 +197,8 @@ export function ServerTablePage() {
           preview={<ServerPaginationDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

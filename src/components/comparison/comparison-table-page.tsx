@@ -11,6 +11,12 @@ import vueComparisonComparisonTableDemoSource from '#/components/vue/comparison/
 import vueComparisonComparisonTableSource from '#/components/vue/comparison/ComparisonTable.vue?raw'
 import vueComparisoncomparisonSource from '#/components/vue/comparison/comparison.ts?raw'
 import vueComparisondataSource from '#/components/vue/comparison/data.ts?raw'
+import svelteComparisonComparisonTableDemoSource from '#/components/svelte/comparison/ComparisonTableDemo.svelte?raw'
+import svelteComparisonComparisonTableSource from '#/components/svelte/comparison/ComparisonTable.svelte?raw'
+import svelteComparisoncomparisonSource from '#/components/svelte/comparison/comparison.ts?raw'
+import svelteComparisondataSource from '#/components/svelte/comparison/data.ts?raw'
+import svelteFeaturelabelSource from '#/components/svelte/comparison/FeatureLabel.svelte?raw'
+import svelteFeaturevaluecellSource from '#/components/svelte/comparison/FeatureValueCell.svelte?raw'
 
 const files = [
   { path: 'src/components/comparison/comparison.ts', code: comparisonSource },
@@ -38,6 +44,39 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['button', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/comparison/ComparisonTableDemo.svelte',
+    code: svelteComparisonComparisonTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/comparison/ComparisonTable.svelte',
+    code: svelteComparisonComparisonTableSource,
+  },
+  {
+    path: 'src/lib/components/comparison/comparison.ts',
+    code: svelteComparisoncomparisonSource,
+  },
+  {
+    path: 'src/lib/components/comparison/data.ts',
+    code: svelteComparisondataSource,
+  },
+  {
+    path: 'src/lib/components/comparison/FeatureLabel.svelte',
+    code: svelteFeaturelabelSource,
+  },
+  {
+    path: 'src/lib/components/comparison/FeatureValueCell.svelte',
+    code: svelteFeaturevaluecellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -141,6 +180,8 @@ export function ComparisonTablePage() {
           preview={<ComparisonTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

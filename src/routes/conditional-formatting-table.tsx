@@ -12,6 +12,13 @@ import vueConditionalFormattingConditionalFormattingTableDemoSource from '#/comp
 import vueConditionalFormattingcolumnsSource from '#/components/vue/conditional-formatting/columns.ts?raw'
 import vueConditionalFormattingDataTableSource from '#/components/vue/conditional-formatting/DataTable.vue?raw'
 import vueConditionalFormattingrulesSource from '#/components/vue/conditional-formatting/rules.ts?raw'
+import svelteConditionalFormattingConditionalFormattingTableDemoSource from '#/components/svelte/conditional-formatting/ConditionalFormattingTableDemo.svelte?raw'
+import svelteConditionalFormattingcolumnsSource from '#/components/svelte/conditional-formatting/columns.ts?raw'
+import svelteConditionalFormattingDataTableSource from '#/components/svelte/conditional-formatting/DataTable.svelte?raw'
+import svelteConditionalFormattingrulesSource from '#/components/svelte/conditional-formatting/rules.ts?raw'
+import svelteMargincellSource from '#/components/svelte/conditional-formatting/MarginCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/conditional-formatting/StatusBadge.svelte?raw'
+import svelteStockcellSource from '#/components/svelte/conditional-formatting/StockCell.svelte?raw'
 
 const files = [
   {
@@ -52,6 +59,43 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/conditional-formatting/ConditionalFormattingTableDemo.svelte',
+    code: svelteConditionalFormattingConditionalFormattingTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/columns.ts',
+    code: svelteConditionalFormattingcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/DataTable.svelte',
+    code: svelteConditionalFormattingDataTableSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/rules.ts',
+    code: svelteConditionalFormattingrulesSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/MarginCell.svelte',
+    code: svelteMargincellSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/StockCell.svelte',
+    code: svelteStockcellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -186,6 +230,8 @@ function ConditionalFormattingTablePage() {
           preview={<ConditionalFormattingTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

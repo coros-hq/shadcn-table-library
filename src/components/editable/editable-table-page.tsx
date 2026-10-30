@@ -9,6 +9,10 @@ import { EditableTableDemo } from './index'
 import vueEditableEditableTableDemoSource from '#/components/vue/editable/EditableTableDemo.vue?raw'
 import vueEditablecolumnsSource from '#/components/vue/editable/columns.ts?raw'
 import vueEditableEditableTableSource from '#/components/vue/editable/EditableTable.vue?raw'
+import svelteEditableEditableTableDemoSource from '#/components/svelte/editable/EditableTableDemo.svelte?raw'
+import svelteEditablecolumnsSource from '#/components/svelte/editable/columns.ts?raw'
+import svelteEditableEditableTableSource from '#/components/svelte/editable/EditableTable.svelte?raw'
+import svelteEditablecellSource from '#/components/svelte/editable/EditableCell.svelte?raw'
 
 const files = [
   { path: 'src/components/editable/columns.tsx', code: columnsSource },
@@ -34,6 +38,31 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['button', 'input', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/editable/EditableTableDemo.svelte',
+    code: svelteEditableEditableTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/editable/columns.ts',
+    code: svelteEditablecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/editable/EditableTable.svelte',
+    code: svelteEditableEditableTableSource,
+  },
+  {
+    path: 'src/lib/components/editable/EditableCell.svelte',
+    code: svelteEditablecellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'input', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -122,6 +151,8 @@ export function EditableTablePage() {
           preview={<EditableTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

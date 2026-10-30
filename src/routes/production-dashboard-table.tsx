@@ -16,6 +16,15 @@ import vueProductionDashboardDataTableSource from '#/components/vue/production-d
 import vueProductionDashboardProgressBarSource from '#/components/vue/production-dashboard/ProgressBar.vue?raw'
 import vueProductionDashboardSparklineSource from '#/components/vue/production-dashboard/Sparkline.vue?raw'
 import vueProductionDashboardrulesSource from '#/components/vue/production-dashboard/rules.ts?raw'
+import svelteProductionDashboardProductionDashboardTableDemoSource from '#/components/svelte/production-dashboard/ProductionDashboardTableDemo.svelte?raw'
+import svelteProductionDashboardcolumnsSource from '#/components/svelte/production-dashboard/columns.ts?raw'
+import svelteProductionDashboardDataTableSource from '#/components/svelte/production-dashboard/DataTable.svelte?raw'
+import svelteProductionDashboardProgressBarSource from '#/components/svelte/production-dashboard/ProgressBar.svelte?raw'
+import svelteProductionDashboardSparklineSource from '#/components/svelte/production-dashboard/Sparkline.svelte?raw'
+import svelteProductionDashboardrulesSource from '#/components/svelte/production-dashboard/rules.ts?raw'
+import svelteLinecellSource from '#/components/svelte/production-dashboard/LineCell.svelte?raw'
+import svelteProgresscellSource from '#/components/svelte/production-dashboard/ProgressCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/production-dashboard/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/production-dashboard/index.tsx', code: indexSource },
@@ -69,6 +78,51 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/production-dashboard/ProductionDashboardTableDemo.svelte',
+    code: svelteProductionDashboardProductionDashboardTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/columns.ts',
+    code: svelteProductionDashboardcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/DataTable.svelte',
+    code: svelteProductionDashboardDataTableSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/ProgressBar.svelte',
+    code: svelteProductionDashboardProgressBarSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/Sparkline.svelte',
+    code: svelteProductionDashboardSparklineSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/rules.ts',
+    code: svelteProductionDashboardrulesSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/LineCell.svelte',
+    code: svelteLinecellSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/ProgressCell.svelte',
+    code: svelteProgresscellSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -186,6 +240,8 @@ function ProductionDashboardTablePage() {
           preview={<ProductionDashboardTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

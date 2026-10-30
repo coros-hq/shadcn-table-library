@@ -14,6 +14,12 @@ import vueSsrFilterExampleDataTableSource from '#/components/vue/ssr/filter-exam
 import vueSsrFilterExampledataSource from '#/components/vue/ssr/data.ts?raw'
 import vueSsrFilterExampleuseServerQuerySource from '#/components/vue/ssr/useServerQuery.ts?raw'
 import vueSsrFilterExampleuseUrlSearchSource from '#/components/vue/ssr/useUrlSearch.ts?raw'
+import svelteSsrFilterExampleServerFilterDemoSource from '#/components/svelte/ssr/filter-example/ServerFilterDemo.svelte?raw'
+import svelteSsrFilterExamplecolumnsSource from '#/components/svelte/ssr/filter-example/columns.ts?raw'
+import svelteSsrFilterExampleDataTableSource from '#/components/svelte/ssr/filter-example/DataTable.svelte?raw'
+import svelteSsrFilterExampledataSource from '#/components/svelte/ssr/data.ts?raw'
+import svelteSsrFilterExampleuseServerQuerySource from '#/components/svelte/ssr/useServerQuery.svelte.ts?raw'
+import svelteSsrFilterExampleuseUrlSearchSource from '#/components/svelte/ssr/useUrlSearch.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -57,6 +63,39 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['button', 'select', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/ssr/filter-example/ServerFilterDemo.svelte',
+    code: svelteSsrFilterExampleServerFilterDemoSource,
+  },
+  {
+    path: 'src/lib/components/ssr/filter-example/columns.ts',
+    code: svelteSsrFilterExamplecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/ssr/filter-example/DataTable.svelte',
+    code: svelteSsrFilterExampleDataTableSource,
+  },
+  {
+    path: 'src/lib/components/ssr/data.ts',
+    code: svelteSsrFilterExampledataSource,
+  },
+  {
+    path: 'src/lib/components/ssr/useServerQuery.svelte.ts',
+    code: svelteSsrFilterExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/lib/components/ssr/useUrlSearch.svelte.ts',
+    code: svelteSsrFilterExampleuseUrlSearchSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -161,6 +200,8 @@ export function ServerFilterPage() {
           preview={<ServerFilterDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

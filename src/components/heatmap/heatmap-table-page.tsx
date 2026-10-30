@@ -11,6 +11,12 @@ import vueHeatmapHeatmapTableDemoSource from '#/components/vue/heatmap/HeatmapTa
 import vueHeatmapHeatmapTableSource from '#/components/vue/heatmap/HeatmapTable.vue?raw'
 import vueHeatmapdataSource from '#/components/vue/heatmap/data.ts?raw'
 import vueHeatmapheatmapSource from '#/components/vue/heatmap/heatmap.ts?raw'
+import svelteHeatmapHeatmapTableDemoSource from '#/components/svelte/heatmap/HeatmapTableDemo.svelte?raw'
+import svelteHeatmapHeatmapTableSource from '#/components/svelte/heatmap/HeatmapTable.svelte?raw'
+import svelteHeatmapdataSource from '#/components/svelte/heatmap/data.ts?raw'
+import svelteHeatmapheatmapSource from '#/components/svelte/heatmap/heatmap.ts?raw'
+import svelteHeatcellSource from '#/components/svelte/heatmap/HeatCell.svelte?raw'
+import svelteRowlabelSource from '#/components/svelte/heatmap/RowLabel.svelte?raw'
 
 const files = [
   { path: 'src/components/heatmap/heatmap.ts', code: heatmapSource },
@@ -35,6 +41,39 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/heatmap/HeatmapTableDemo.svelte',
+    code: svelteHeatmapHeatmapTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/HeatmapTable.svelte',
+    code: svelteHeatmapHeatmapTableSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/data.ts',
+    code: svelteHeatmapdataSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/heatmap.ts',
+    code: svelteHeatmapheatmapSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/HeatCell.svelte',
+    code: svelteHeatcellSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/RowLabel.svelte',
+    code: svelteRowlabelSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -125,6 +164,8 @@ export function HeatmapTablePage() {
           preview={<HeatmapTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

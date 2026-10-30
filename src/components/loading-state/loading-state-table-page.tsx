@@ -10,6 +10,13 @@ import vueLoadingStateTableDemoSource from '#/components/vue/loading-state/Loadi
 import vueDataTableSource from '#/components/vue/loading-state/DataTable.vue?raw'
 import vueColumnsSource from '#/components/vue/loading-state/columns.ts?raw'
 import vueDataSource from '#/components/vue/loading-state/data.ts?raw'
+import svelteLoadingStateTableDemoSource from '#/components/svelte/loading-state/LoadingStateTableDemo.svelte?raw'
+import svelteDataTableSource from '#/components/svelte/loading-state/DataTable.svelte?raw'
+import svelteColumnsSource from '#/components/svelte/loading-state/columns.ts?raw'
+import svelteCustomerCellSource from '#/components/svelte/loading-state/CustomerCell.svelte?raw'
+import svelteStatusBadgeSource from '#/components/svelte/loading-state/StatusBadge.svelte?raw'
+import svelteAmountCellSource from '#/components/svelte/loading-state/AmountCell.svelte?raw'
+import svelteDataSource from '#/components/svelte/loading-state/data.ts?raw'
 
 const files = [
   { path: 'src/components/loading-state/data.ts', code: dataSource },
@@ -36,6 +43,40 @@ const vueFiles = [
 const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'button', 'skeleton', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/loading-state/LoadingStateTableDemo.svelte',
+    code: svelteLoadingStateTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/loading-state/DataTable.svelte',
+    code: svelteDataTableSource,
+  },
+  {
+    path: 'src/lib/components/loading-state/columns.ts',
+    code: svelteColumnsSource,
+  },
+  {
+    path: 'src/lib/components/loading-state/CustomerCell.svelte',
+    code: svelteCustomerCellSource,
+  },
+  {
+    path: 'src/lib/components/loading-state/StatusBadge.svelte',
+    code: svelteStatusBadgeSource,
+  },
+  {
+    path: 'src/lib/components/loading-state/AmountCell.svelte',
+    code: svelteAmountCellSource,
+  },
+  { path: 'src/lib/components/loading-state/data.ts', code: svelteDataSource },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'skeleton', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -118,6 +159,8 @@ export function LoadingStateTablePage() {
           files={files}
           vueFiles={vueFiles}
           vueDeps={vueDeps}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
         />
 
         <div className="space-y-2">

@@ -38,6 +38,37 @@ import vueLogsLogsTableSource from '#/components/vue/logs/LogsTable.vue?raw'
 import vueLogsLogsSidePanelDemoSource from '#/components/vue/logs/LogsSidePanelDemo.vue?raw'
 import vueLogsLogsSidePanelTableSource from '#/components/vue/logs/LogsSidePanelTable.vue?raw'
 import vueLogsLogPanelSource from '#/components/vue/logs/LogPanel.vue?raw'
+import svelteLogsColumnsSource from '#/components/svelte/logs/columns.ts?raw'
+import svelteLogsToolbarSource from '#/components/svelte/logs/toolbar.ts?raw'
+import svelteLogsUseLogsTableSource from '#/components/svelte/logs/use-logs-table.ts?raw'
+import svelteLogsDateRangeSource from '#/components/svelte/logs/date-range.ts?raw'
+import svelteLogsLevelStylesSource from '#/components/svelte/logs/level-styles.ts?raw'
+import svelteLogsDataSource from '#/components/svelte/logs/data.ts?raw'
+import svelteLogsLogstoolbarSource from '#/components/svelte/logs/LogsToolbar.svelte?raw'
+import svelteLogsLoadoldereventsSource from '#/components/svelte/logs/LoadOlderEvents.svelte?raw'
+import svelteLogsNoresultsSource from '#/components/svelte/logs/NoResults.svelte?raw'
+import svelteLogsLogfieldsSource from '#/components/svelte/logs/LogFields.svelte?raw'
+import svelteLogsFacetedfilterSource from '#/components/svelte/logs/FacetedFilter.svelte?raw'
+import svelteLogsDaterangefilterSource from '#/components/svelte/logs/DateRangeFilter.svelte?raw'
+import svelteLogsLeveldotSource from '#/components/svelte/logs/LevelDot.svelte?raw'
+import svelteLogsLevellabelSource from '#/components/svelte/logs/LevelLabel.svelte?raw'
+import svelteLogsHighlightSource from '#/components/svelte/logs/Highlight.svelte?raw'
+import svelteLogsTimecellSource from '#/components/svelte/logs/TimeCell.svelte?raw'
+import svelteLogsRequestcellSource from '#/components/svelte/logs/RequestCell.svelte?raw'
+import svelteLogsMessagecellSource from '#/components/svelte/logs/MessageCell.svelte?raw'
+import svelteLogsLogsdemoSource from '#/components/svelte/logs/LogsDemo.svelte?raw'
+import svelteLogsLogstableSource from '#/components/svelte/logs/LogsTable.svelte?raw'
+import svelteLogsExpandbuttonSource from '#/components/svelte/logs/ExpandButton.svelte?raw'
+import svelteLogsLogssidepaneldemoSource from '#/components/svelte/logs/LogsSidePanelDemo.svelte?raw'
+import svelteLogsLogssidepaneltableSource from '#/components/svelte/logs/LogsSidePanelTable.svelte?raw'
+import svelteLogsLogpanelSource from '#/components/svelte/logs/LogPanel.svelte?raw'
+
+// Svelte projects keep their shadcn files under src/lib
+const inLib = (files: { path: string; code: string }[]) =>
+  files.map((file) => ({
+    ...file,
+    path: file.path.replace('src/components/', 'src/lib/components/'),
+  }))
 
 const dir = 'src/components/logs'
 
@@ -81,11 +112,59 @@ const vueSharedFiles = [
   { path: `${dir}/Highlight.vue`, code: vueLogsHighlightSource },
 ]
 
+const svelteSharedFiles = inLib([
+  { path: `${dir}/columns.ts`, code: svelteLogsColumnsSource },
+  { path: `${dir}/toolbar.ts`, code: svelteLogsToolbarSource },
+  { path: `${dir}/use-logs-table.ts`, code: svelteLogsUseLogsTableSource },
+  { path: `${dir}/date-range.ts`, code: svelteLogsDateRangeSource },
+  { path: `${dir}/level-styles.ts`, code: svelteLogsLevelStylesSource },
+  { path: `${dir}/data.ts`, code: svelteLogsDataSource },
+  { path: `${dir}/LogsToolbar.svelte`, code: svelteLogsLogstoolbarSource },
+  {
+    path: `${dir}/LoadOlderEvents.svelte`,
+    code: svelteLogsLoadoldereventsSource,
+  },
+  { path: `${dir}/NoResults.svelte`, code: svelteLogsNoresultsSource },
+  { path: `${dir}/LogFields.svelte`, code: svelteLogsLogfieldsSource },
+  { path: `${dir}/FacetedFilter.svelte`, code: svelteLogsFacetedfilterSource },
+  {
+    path: `${dir}/DateRangeFilter.svelte`,
+    code: svelteLogsDaterangefilterSource,
+  },
+  { path: `${dir}/LevelDot.svelte`, code: svelteLogsLeveldotSource },
+  { path: `${dir}/LevelLabel.svelte`, code: svelteLogsLevellabelSource },
+  { path: `${dir}/Highlight.svelte`, code: svelteLogsHighlightSource },
+  { path: `${dir}/TimeCell.svelte`, code: svelteLogsTimecellSource },
+  { path: `${dir}/RequestCell.svelte`, code: svelteLogsRequestcellSource },
+  { path: `${dir}/MessageCell.svelte`, code: svelteLogsMessagecellSource },
+])
+
 const vueExpandFiles = [
   { path: `${dir}/LogsDemo.vue`, code: vueLogsLogsDemoSource },
   { path: `${dir}/LogsTable.vue`, code: vueLogsLogsTableSource },
   ...vueSharedFiles,
 ]
+
+const svelteExpandFiles = inLib([
+  { path: `${dir}/LogsDemo.svelte`, code: svelteLogsLogsdemoSource },
+  { path: `${dir}/LogsTable.svelte`, code: svelteLogsLogstableSource },
+  { path: `${dir}/ExpandButton.svelte`, code: svelteLogsExpandbuttonSource },
+  ...svelteSharedFiles,
+])
+
+const svelteExpandFilesDeps = {
+  npm: ['@internationalized/date', '@lucide/svelte'],
+  shadcn: [
+    'badge',
+    'button',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'table',
+  ],
+  adapter: true,
+}
 
 const vueSidePanelFiles = [
   {
@@ -99,6 +178,33 @@ const vueSidePanelFiles = [
   { path: `${dir}/LogPanel.vue`, code: vueLogsLogPanelSource },
   ...vueSharedFiles,
 ]
+
+const svelteSidePanelFiles = inLib([
+  {
+    path: `${dir}/LogsSidePanelDemo.svelte`,
+    code: svelteLogsLogssidepaneldemoSource,
+  },
+  {
+    path: `${dir}/LogsSidePanelTable.svelte`,
+    code: svelteLogsLogssidepaneltableSource,
+  },
+  { path: `${dir}/LogPanel.svelte`, code: svelteLogsLogpanelSource },
+  ...svelteSharedFiles,
+])
+
+const svelteSidePanelFilesDeps = {
+  npm: ['@internationalized/date', '@lucide/svelte'],
+  shadcn: [
+    'badge',
+    'button',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'table',
+  ],
+  adapter: true,
+}
 
 const vueDeps = {
   npm: ['@internationalized/date', '@lucide/vue'],
@@ -270,6 +376,8 @@ const examples = [
     preview: <LogsDemo />,
     files: expandFiles,
     vueFiles: vueExpandFiles,
+    svelteFiles: svelteExpandFiles,
+    svelteDeps: svelteExpandFilesDeps,
     steps: expandSteps,
   },
   {
@@ -281,6 +389,8 @@ const examples = [
     preview: <LogsSidePanelDemo />,
     files: sidePanelFiles,
     vueFiles: vueSidePanelFiles,
+    svelteFiles: svelteSidePanelFiles,
+    svelteDeps: svelteSidePanelFilesDeps,
     steps: sidePanelSteps,
   },
 ] as const
@@ -364,6 +474,8 @@ export function LogsPage() {
                 preview={ex.preview}
                 files={ex.files}
                 vueFiles={ex.vueFiles}
+                svelteFiles={ex.svelteFiles}
+                svelteDeps={ex.svelteDeps}
                 vueDeps={vueDeps}
               />
               <HowItWorks steps={ex.steps} />

@@ -21,6 +21,17 @@ import vueAnimatedIconssharediconsArrowsClockwiseIconSource from '#/components/v
 import vueAnimatedIconssharediconsBellRingingIconSource from '#/components/vue/shared/icons/BellRingingIcon.vue?raw'
 import vueAnimatedIconssharediconsStarIconSource from '#/components/vue/shared/icons/StarIcon.vue?raw'
 import vueAnimatedIconssharediconsTrashIconSource from '#/components/vue/shared/icons/TrashIcon.vue?raw'
+import svelteAnimatedIconsAnimatedIconsTableDemoSource from '#/components/svelte/animated-icons/AnimatedIconsTableDemo.svelte?raw'
+import svelteAnimatedIconscolumnsSource from '#/components/svelte/animated-icons/columns.ts?raw'
+import svelteAnimatedIconsAnimatedIconsTableSource from '#/components/svelte/animated-icons/AnimatedIconsTable.svelte?raw'
+import svelteAnimatedIconssharediconsArchiveIconSource from '#/components/svelte/shared/icons/ArchiveIcon.svelte?raw'
+import svelteAnimatedIconssharediconsuseIconAnimationSource from '#/components/svelte/shared/icons/useIconAnimation.svelte.ts?raw'
+import svelteAnimatedIconssharediconsArrowsClockwiseIconSource from '#/components/svelte/shared/icons/ArrowsClockwiseIcon.svelte?raw'
+import svelteAnimatedIconssharediconsBellRingingIconSource from '#/components/svelte/shared/icons/BellRingingIcon.svelte?raw'
+import svelteAnimatedIconssharediconsStarIconSource from '#/components/svelte/shared/icons/StarIcon.svelte?raw'
+import svelteAnimatedIconssharediconsTrashIconSource from '#/components/svelte/shared/icons/TrashIcon.svelte?raw'
+import svelteNamecellSource from '#/components/svelte/animated-icons/NameCell.svelte?raw'
+import svelteRowactionsSource from '#/components/svelte/animated-icons/RowActions.svelte?raw'
 
 const files = [
   { path: 'src/components/animated-icons/columns.tsx', code: columnsSource },
@@ -82,6 +93,59 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['button', 'table'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/animated-icons/AnimatedIconsTableDemo.svelte',
+    code: svelteAnimatedIconsAnimatedIconsTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/animated-icons/columns.ts',
+    code: svelteAnimatedIconscolumnsSource,
+  },
+  {
+    path: 'src/lib/components/animated-icons/AnimatedIconsTable.svelte',
+    code: svelteAnimatedIconsAnimatedIconsTableSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/ArchiveIcon.svelte',
+    code: svelteAnimatedIconssharediconsArchiveIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/useIconAnimation.svelte.ts',
+    code: svelteAnimatedIconssharediconsuseIconAnimationSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/ArrowsClockwiseIcon.svelte',
+    code: svelteAnimatedIconssharediconsArrowsClockwiseIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/BellRingingIcon.svelte',
+    code: svelteAnimatedIconssharediconsBellRingingIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/StarIcon.svelte',
+    code: svelteAnimatedIconssharediconsStarIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/TrashIcon.svelte',
+    code: svelteAnimatedIconssharediconsTrashIconSource,
+  },
+  {
+    path: 'src/lib/components/animated-icons/NameCell.svelte',
+    code: svelteNamecellSource,
+  },
+  {
+    path: 'src/lib/components/animated-icons/RowActions.svelte',
+    code: svelteRowactionsSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['button', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -178,6 +242,8 @@ export function AnimatedIconsTablePage() {
           preview={<AnimatedIconsTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

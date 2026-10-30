@@ -9,6 +9,10 @@ import { ResizableTableDemo } from './index'
 import vueResizableReorderResizableTableDemoSource from '#/components/vue/resizable-reorder/ResizableTableDemo.vue?raw'
 import vueResizableReordercolumnsSource from '#/components/vue/resizable-reorder/columns.ts?raw'
 import vueResizableReorderResizableTableSource from '#/components/vue/resizable-reorder/ResizableTable.vue?raw'
+import svelteResizableReorderResizableTableDemoSource from '#/components/svelte/resizable-reorder/ResizableTableDemo.svelte?raw'
+import svelteResizableReordercolumnsSource from '#/components/svelte/resizable-reorder/columns.ts?raw'
+import svelteResizableReorderResizableTableSource from '#/components/svelte/resizable-reorder/ResizableTable.svelte?raw'
+import svelteSortableSource from '#/components/svelte/resizable-reorder/sortable.ts?raw'
 
 const files = [
   { path: 'src/components/resizable-reorder/columns.tsx', code: columnsSource },
@@ -38,6 +42,31 @@ const vueDeps = {
   npm: ['@lucide/vue', 'vue-draggable-plus'],
   shadcn: ['button', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/resizable-reorder/ResizableTableDemo.svelte',
+    code: svelteResizableReorderResizableTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/resizable-reorder/columns.ts',
+    code: svelteResizableReordercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/resizable-reorder/ResizableTable.svelte',
+    code: svelteResizableReorderResizableTableSource,
+  },
+  {
+    path: 'src/lib/components/resizable-reorder/sortable.ts',
+    code: svelteSortableSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte', 'sortablejs', '@types/sortablejs'],
+  shadcn: ['button', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -132,6 +161,8 @@ export function ResizableTablePage() {
           preview={<ResizableTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

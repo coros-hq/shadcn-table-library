@@ -12,6 +12,11 @@ import vueMobileCardsMobileCardsTableDemoSource from '#/components/vue/mobile-ca
 import vueMobileCardscolumnsSource from '#/components/vue/mobile-cards/columns.ts?raw'
 import vueMobileCardsDataTableSource from '#/components/vue/mobile-cards/DataTable.vue?raw'
 import vueMobileCardsViewportToggleSource from '#/components/vue/mobile-cards/ViewportToggle.vue?raw'
+import svelteMobileCardsMobileCardsTableDemoSource from '#/components/svelte/mobile-cards/MobileCardsTableDemo.svelte?raw'
+import svelteMobileCardscolumnsSource from '#/components/svelte/mobile-cards/columns.ts?raw'
+import svelteMobileCardsDataTableSource from '#/components/svelte/mobile-cards/DataTable.svelte?raw'
+import svelteMobileCardsViewportToggleSource from '#/components/svelte/mobile-cards/ViewportToggle.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/mobile-cards/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/mobile-cards/index.tsx', code: indexSource },
@@ -48,6 +53,35 @@ const vueFiles = [
 const vueDeps = {
   npm: [],
   shadcn: ['badge', 'table', 'tabs'],
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/mobile-cards/MobileCardsTableDemo.svelte',
+    code: svelteMobileCardsMobileCardsTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/columns.ts',
+    code: svelteMobileCardscolumnsSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/DataTable.svelte',
+    code: svelteMobileCardsDataTableSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/ViewportToggle.svelte',
+    code: svelteMobileCardsViewportToggleSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['badge', 'table', 'tabs'],
+  adapter: true,
 }
 
 const steps = [
@@ -203,6 +237,8 @@ function MobileCardsTablePage() {
           preview={<MobileCardsTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

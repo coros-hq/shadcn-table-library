@@ -26,6 +26,38 @@ import vueMultiDataTableSource from '#/components/vue/crm-employees-multi/DataTa
 import vueMultiColumnMultiSelectSource from '#/components/vue/crm-employees-multi/ColumnMultiSelect.vue?raw'
 import vueMultiSelectSource from '#/components/vue/crm-employees-multi/MultiSelectFilter.vue?raw'
 import vueMultiDataSource from '#/components/vue/crm-employees-multi/data.ts?raw'
+import svelteCrmEmployeesCrmemployeestabledemoSource from '#/components/svelte/crm-employees/CrmEmployeesTableDemo.svelte?raw'
+import svelteCrmEmployeesColumnsSource from '#/components/svelte/crm-employees/columns.ts?raw'
+import svelteCrmEmployeesDatatableSource from '#/components/svelte/crm-employees/DataTable.svelte?raw'
+import svelteCrmEmployeesToolbarselectSource from '#/components/svelte/crm-employees/ToolbarSelect.svelte?raw'
+import svelteCrmEmployeesDataSource from '#/components/svelte/crm-employees/data.ts?raw'
+import svelteCrmEmployeesEmployeecellSource from '#/components/svelte/crm-employees/EmployeeCell.svelte?raw'
+import svelteCrmEmployeesRolecellSource from '#/components/svelte/crm-employees/RoleCell.svelte?raw'
+import svelteCrmEmployeesStatusbadgeSource from '#/components/svelte/crm-employees/StatusBadge.svelte?raw'
+import svelteCrmEmployeesHiredcellSource from '#/components/svelte/crm-employees/HiredCell.svelte?raw'
+import svelteCrmEmployeesPerformancecellSource from '#/components/svelte/crm-employees/PerformanceCell.svelte?raw'
+import svelteCrmEmployeesSalarycellSource from '#/components/svelte/crm-employees/SalaryCell.svelte?raw'
+import svelteCrmEmployeesSelectcheckboxSource from '#/components/svelte/crm-employees/SelectCheckbox.svelte?raw'
+import svelteCrmEmployeesMultiCrmemployeesmultitabledemoSource from '#/components/svelte/crm-employees-multi/CrmEmployeesMultiTableDemo.svelte?raw'
+import svelteCrmEmployeesMultiColumnsSource from '#/components/svelte/crm-employees-multi/columns.ts?raw'
+import svelteCrmEmployeesMultiDatatableSource from '#/components/svelte/crm-employees-multi/DataTable.svelte?raw'
+import svelteCrmEmployeesMultiColumnmultiselectSource from '#/components/svelte/crm-employees-multi/ColumnMultiSelect.svelte?raw'
+import svelteCrmEmployeesMultiMultiselectfilterSource from '#/components/svelte/crm-employees-multi/MultiSelectFilter.svelte?raw'
+import svelteCrmEmployeesMultiDataSource from '#/components/svelte/crm-employees-multi/data.ts?raw'
+import svelteCrmEmployeesMultiEmployeecellSource from '#/components/svelte/crm-employees-multi/EmployeeCell.svelte?raw'
+import svelteCrmEmployeesMultiRolecellSource from '#/components/svelte/crm-employees-multi/RoleCell.svelte?raw'
+import svelteCrmEmployeesMultiStatusbadgeSource from '#/components/svelte/crm-employees-multi/StatusBadge.svelte?raw'
+import svelteCrmEmployeesMultiHiredcellSource from '#/components/svelte/crm-employees-multi/HiredCell.svelte?raw'
+import svelteCrmEmployeesMultiPerformancecellSource from '#/components/svelte/crm-employees-multi/PerformanceCell.svelte?raw'
+import svelteCrmEmployeesMultiSalarycellSource from '#/components/svelte/crm-employees-multi/SalaryCell.svelte?raw'
+import svelteCrmEmployeesMultiSelectcheckboxSource from '#/components/svelte/crm-employees-multi/SelectCheckbox.svelte?raw'
+
+// Svelte projects keep their shadcn files under src/lib
+const inLib = (files: { path: string; code: string }[]) =>
+  files.map((file) => ({
+    ...file,
+    path: file.path.replace('src/components/', 'src/lib/components/'),
+  }))
 
 interface Step {
   title: string
@@ -55,6 +87,57 @@ const singleVueFiles = [
   { path: `${singleDir}/data.ts`, code: vueSingleDataSource },
 ]
 
+const singleSvelteFiles = inLib([
+  {
+    path: `${singleDir}/CrmEmployeesTableDemo.svelte`,
+    code: svelteCrmEmployeesCrmemployeestabledemoSource,
+  },
+  { path: `${singleDir}/columns.ts`, code: svelteCrmEmployeesColumnsSource },
+  {
+    path: `${singleDir}/DataTable.svelte`,
+    code: svelteCrmEmployeesDatatableSource,
+  },
+  {
+    path: `${singleDir}/ToolbarSelect.svelte`,
+    code: svelteCrmEmployeesToolbarselectSource,
+  },
+  { path: `${singleDir}/data.ts`, code: svelteCrmEmployeesDataSource },
+  {
+    path: `${singleDir}/EmployeeCell.svelte`,
+    code: svelteCrmEmployeesEmployeecellSource,
+  },
+  {
+    path: `${singleDir}/RoleCell.svelte`,
+    code: svelteCrmEmployeesRolecellSource,
+  },
+  {
+    path: `${singleDir}/StatusBadge.svelte`,
+    code: svelteCrmEmployeesStatusbadgeSource,
+  },
+  {
+    path: `${singleDir}/HiredCell.svelte`,
+    code: svelteCrmEmployeesHiredcellSource,
+  },
+  {
+    path: `${singleDir}/PerformanceCell.svelte`,
+    code: svelteCrmEmployeesPerformancecellSource,
+  },
+  {
+    path: `${singleDir}/SalaryCell.svelte`,
+    code: svelteCrmEmployeesSalarycellSource,
+  },
+  {
+    path: `${singleDir}/SelectCheckbox.svelte`,
+    code: svelteCrmEmployeesSelectcheckboxSource,
+  },
+])
+
+const singleSvelteFilesDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'checkbox', 'input', 'select', 'table'],
+  adapter: true,
+}
+
 const multiFiles = [
   { path: `${multiDir}/index.tsx`, code: multiIndexSource },
   { path: `${multiDir}/columns.tsx`, code: multiColumnsSource },
@@ -77,6 +160,73 @@ const multiVueFiles = [
   { path: `${multiDir}/MultiSelectFilter.vue`, code: vueMultiSelectSource },
   { path: `${multiDir}/data.ts`, code: vueMultiDataSource },
 ]
+
+const multiSvelteFiles = inLib([
+  {
+    path: `${multiDir}/CrmEmployeesMultiTableDemo.svelte`,
+    code: svelteCrmEmployeesMultiCrmemployeesmultitabledemoSource,
+  },
+  {
+    path: `${multiDir}/columns.ts`,
+    code: svelteCrmEmployeesMultiColumnsSource,
+  },
+  {
+    path: `${multiDir}/DataTable.svelte`,
+    code: svelteCrmEmployeesMultiDatatableSource,
+  },
+  {
+    path: `${multiDir}/ColumnMultiSelect.svelte`,
+    code: svelteCrmEmployeesMultiColumnmultiselectSource,
+  },
+  {
+    path: `${multiDir}/MultiSelectFilter.svelte`,
+    code: svelteCrmEmployeesMultiMultiselectfilterSource,
+  },
+  { path: `${multiDir}/data.ts`, code: svelteCrmEmployeesMultiDataSource },
+  {
+    path: `${multiDir}/EmployeeCell.svelte`,
+    code: svelteCrmEmployeesMultiEmployeecellSource,
+  },
+  {
+    path: `${multiDir}/RoleCell.svelte`,
+    code: svelteCrmEmployeesMultiRolecellSource,
+  },
+  {
+    path: `${multiDir}/StatusBadge.svelte`,
+    code: svelteCrmEmployeesMultiStatusbadgeSource,
+  },
+  {
+    path: `${multiDir}/HiredCell.svelte`,
+    code: svelteCrmEmployeesMultiHiredcellSource,
+  },
+  {
+    path: `${multiDir}/PerformanceCell.svelte`,
+    code: svelteCrmEmployeesMultiPerformancecellSource,
+  },
+  {
+    path: `${multiDir}/SalaryCell.svelte`,
+    code: svelteCrmEmployeesMultiSalarycellSource,
+  },
+  {
+    path: `${multiDir}/SelectCheckbox.svelte`,
+    code: svelteCrmEmployeesMultiSelectcheckboxSource,
+  },
+])
+
+const multiSvelteFilesDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: [
+    'badge',
+    'button',
+    'checkbox',
+    'command',
+    'input',
+    'popover',
+    'select',
+    'table',
+  ],
+  adapter: true,
+}
 
 const singleVueDeps = {
   npm: ['@lucide/vue'],
@@ -215,6 +365,8 @@ const examples = [
     preview: <CrmEmployeesTableDemo />,
     files: singleFiles,
     vueFiles: singleVueFiles,
+    svelteFiles: singleSvelteFiles,
+    svelteDeps: singleSvelteFilesDeps,
     vueDeps: singleVueDeps,
     steps: singleSteps,
   },
@@ -227,6 +379,8 @@ const examples = [
     preview: <CrmEmployeesMultiTableDemo />,
     files: multiFiles,
     vueFiles: multiVueFiles,
+    svelteFiles: multiSvelteFiles,
+    svelteDeps: multiSvelteFilesDeps,
     vueDeps: multiVueDeps,
     steps: multiSteps,
   },
@@ -313,6 +467,8 @@ export function CrmEmployeesPage() {
                 preview={ex.preview}
                 files={ex.files}
                 vueFiles={ex.vueFiles}
+                svelteFiles={ex.svelteFiles}
+                svelteDeps={ex.svelteDeps}
                 vueDeps={ex.vueDeps}
               />
               <HowItWorks steps={ex.steps} />

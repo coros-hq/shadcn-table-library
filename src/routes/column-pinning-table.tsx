@@ -11,6 +11,11 @@ import vueColumnPinningColumnPinningTableDemoSource from '#/components/vue/colum
 import vueColumnPinningcolumnsSource from '#/components/vue/column-pinning/columns.ts?raw'
 import vueColumnPinningDataTableSource from '#/components/vue/column-pinning/DataTable.vue?raw'
 import vueColumnPinningPinControlsSource from '#/components/vue/column-pinning/PinControls.vue?raw'
+import svelteColumnPinningColumnPinningTableDemoSource from '#/components/svelte/column-pinning/ColumnPinningTableDemo.svelte?raw'
+import svelteColumnPinningcolumnsSource from '#/components/svelte/column-pinning/columns.ts?raw'
+import svelteColumnPinningDataTableSource from '#/components/svelte/column-pinning/DataTable.svelte?raw'
+import svelteColumnPinningPinControlsSource from '#/components/svelte/column-pinning/PinControls.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/column-pinning/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/column-pinning/index.tsx', code: indexSource },
@@ -44,6 +49,35 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['badge', 'button', 'table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/column-pinning/ColumnPinningTableDemo.svelte',
+    code: svelteColumnPinningColumnPinningTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/columns.ts',
+    code: svelteColumnPinningcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/DataTable.svelte',
+    code: svelteColumnPinningDataTableSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/PinControls.svelte',
+    code: svelteColumnPinningPinControlsSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'table'],
+  adapter: true,
 }
 
 const steps = [
@@ -183,6 +217,8 @@ function ColumnPinningTablePage() {
           preview={<ColumnPinningTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 

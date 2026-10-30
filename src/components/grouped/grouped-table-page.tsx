@@ -9,6 +9,11 @@ import { GroupedTableDemo } from './index'
 import vueGroupedGroupedTableDemoSource from '#/components/vue/grouped/GroupedTableDemo.vue?raw'
 import vueGroupedcolumnsSource from '#/components/vue/grouped/columns.ts?raw'
 import vueGroupedGroupedDataTableSource from '#/components/vue/grouped/GroupedDataTable.vue?raw'
+import svelteGroupedGroupedTableDemoSource from '#/components/svelte/grouped/GroupedTableDemo.svelte?raw'
+import svelteGroupedcolumnsSource from '#/components/svelte/grouped/columns.ts?raw'
+import svelteGroupedGroupedDataTableSource from '#/components/svelte/grouped/GroupedDataTable.svelte?raw'
+import svelteAmountcellSource from '#/components/svelte/grouped/AmountCell.svelte?raw'
+import svelteCategorytoggleSource from '#/components/svelte/grouped/CategoryToggle.svelte?raw'
 
 const files = [
   { path: 'src/components/grouped/columns.tsx', code: columnsSource },
@@ -32,6 +37,35 @@ const vueDeps = {
   npm: ['@lucide/vue'],
   shadcn: ['table'],
   valueUpdater: true,
+}
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/grouped/GroupedTableDemo.svelte',
+    code: svelteGroupedGroupedTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/grouped/columns.ts',
+    code: svelteGroupedcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/grouped/GroupedDataTable.svelte',
+    code: svelteGroupedGroupedDataTableSource,
+  },
+  {
+    path: 'src/lib/components/grouped/AmountCell.svelte',
+    code: svelteAmountcellSource,
+  },
+  {
+    path: 'src/lib/components/grouped/CategoryToggle.svelte',
+    code: svelteCategorytoggleSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['table'],
+  adapter: true,
 }
 
 const steps = [
@@ -122,6 +156,8 @@ export function GroupedTablePage() {
           preview={<GroupedTableDemo />}
           files={files}
           vueFiles={vueFiles}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
           vueDeps={vueDeps}
         />
 
