@@ -1,3 +1,20 @@
+<p align="center">
+  <img src="./.github/assets/logo.svg" alt="ShadTable logo" width="72" />
+</p>
+
+<p align="center">
+  <a href="https://www.shad-table.dev/">
+    <img src="./.github/assets/banner.svg" alt="ShadTable: table components for shadcn/ui" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.shad-table.dev/">Docs</a> ·
+  <a href="./registry.json">Registry</a> ·
+  <a href="./CONTRIBUTING.md">Contributing</a> ·
+  <a href="https://www.shad-table.dev/migrate-v9">v8 → v9 migration</a>
+</p>
+
 # ShadTable
 
 A collection of 34 copy-paste table components built on [shadcn/ui](https://ui.shadcn.com) and [TanStack Table](https://tanstack.com/table). Each one demonstrates a real-world table pattern — server-side data, trees, drag-and-drop, inline editing, spreadsheets, infinite scroll, dashboards, and more. Every example has a live demo, the full source, and a "How it works" walkthrough, and is installable on its own with the `shadcn` CLI.
@@ -5,6 +22,10 @@ A collection of 34 copy-paste table components built on [shadcn/ui](https://ui.s
 Live docs: https://www.shad-table.dev/
 
 ## Install a component
+
+<p align="center">
+  <img src="./.github/assets/banner-install.svg" alt="Install one table with the shadcn CLI" />
+</p>
 
 Every example is a [shadcn registry](https://ui.shadcn.com/docs/registry) item. Copy the install command shown above any example on the docs site, or run it directly:
 

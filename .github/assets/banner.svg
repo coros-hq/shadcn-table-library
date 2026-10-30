@@ -1,0 +1,65 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F1EFFA"/>
+    </linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#1E1E1E" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="420" rx="20" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="1199" height="419" rx="19.5" stroke="#E4E4E7"/>
+
+  <g transform="translate(64 60) scale(0.52)">
+    <rect width="94" height="82" rx="10" fill="#1E1E1E"/>
+    <path d="M32.8571 63.8291V18.1687M14.3929 33.3333H79.6071M14.3929 48.6667H79.6071M22.261 63.4097C18.246 63.1819 15.1739 61.0407 14.847 58.2423C14.4353 54.7069 14 49.0653 14 41C14 32.9347 14.4353 27.2931 14.847 23.7577C15.1739 20.9593 18.246 18.8181 22.261 18.5903C27.3336 18.3034 35.428 18 47 18C58.572 18 66.6664 18.3034 71.739 18.5903C75.754 18.8181 78.8261 20.9593 79.153 23.7577C79.5647 27.2931 80 32.9347 80 41C80 49.0653 79.5647 54.7069 79.153 58.2423C78.8261 61.0407 75.754 63.1819 71.739 63.4097C66.6664 63.6966 58.572 64 47 64C35.428 64 27.3336 63.6966 22.261 63.4097Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="124" y="95" font-size="26" font-weight="600" fill="#1E1E1E">ShadTable</text>
+
+  <text x="64" y="205" font-size="62" font-weight="700" fill="#18181B" letter-spacing="-1.5">Table components</text>
+  <text x="64" y="272" font-size="62" font-weight="700" fill="#18181B" letter-spacing="-1.5">for shadcn/ui</text>
+  <text x="64" y="320" font-size="21" fill="#52525B">Copy-paste tables built on TanStack Table. Own the code.</text>
+
+  <g font-size="16" fill="#27272A">
+    <rect x="64" y="342" width="160" height="38" rx="19" fill="#fff" stroke="#D4D4D8"/>
+    <text x="144" y="366" text-anchor="middle">34 components</text>
+    <rect x="236" y="342" width="214" height="38" rx="19" fill="#fff" stroke="#D4D4D8"/>
+    <text x="343" y="366" text-anchor="middle">TanStack Table v8 + v9</text>
+    <rect x="462" y="342" width="128" height="38" rx="19" fill="#fff" stroke="#D4D4D8"/>
+    <text x="526" y="366" text-anchor="middle">React + Vue</text>
+  </g>
+
+  <g filter="url(#sh)">
+    <rect x="730" y="52" width="406" height="316" rx="16" fill="#fff" stroke="#E4E4E7"/>
+  </g>
+  <g font-size="14">
+    <text x="752" y="90" fill="#A1A1AA">Search services…</text>
+    <text x="1114" y="90" text-anchor="end" fill="#71717A">$22,550/mo</text>
+    <line x1="731" y1="108" x2="1135" y2="108" stroke="#EEE"/>
+    <text x="752" y="136" fill="#18181B" font-weight="500">Service</text>
+    <text x="990" y="136" text-anchor="end" fill="#18181B" font-weight="500">Monthly</text>
+    <text x="1114" y="136" text-anchor="end" fill="#18181B" font-weight="500">MoM</text>
+    <line x1="731" y1="154" x2="1135" y2="154" stroke="#EEE"/>
+    <rect x="731" y="155" width="404" height="42" fill="#FAFAFA"/>
+    <text x="752" y="182" fill="#18181B" font-weight="500">▾ Platform</text>
+    <text x="990" y="182" text-anchor="end" fill="#18181B" font-weight="600">$11,340</text>
+    <text x="1114" y="182" text-anchor="end" fill="#E11D48">+2%</text>
+    <line x1="731" y1="197" x2="1135" y2="197" stroke="#EEE"/>
+    <text x="768" y="224" fill="#18181B">▾ Compute</text>
+    <text x="990" y="224" text-anchor="end" fill="#18181B">$7,090</text>
+    <text x="1114" y="224" text-anchor="end" fill="#059669">-2%</text>
+    <line x1="731" y1="239" x2="1135" y2="239" stroke="#EEE"/>
+    <text x="800" y="266" fill="#71717A" font-family="ui-monospace, Menlo, Consolas, monospace">api-gateway</text>
+    <text x="990" y="266" text-anchor="end" fill="#71717A" font-family="ui-monospace, Menlo, Consolas, monospace">$4,210</text>
+    <text x="1114" y="266" text-anchor="end" fill="#E11D48">+3%</text>
+    <line x1="731" y1="281" x2="1135" y2="281" stroke="#EEE"/>
+    <text x="800" y="308" fill="#71717A" font-family="ui-monospace, Menlo, Consolas, monospace">workers</text>
+    <text x="990" y="308" text-anchor="end" fill="#71717A" font-family="ui-monospace, Menlo, Consolas, monospace">$2,880</text>
+    <text x="1114" y="308" text-anchor="end" fill="#059669">-8%</text>
+    <line x1="731" y1="323" x2="1135" y2="323" stroke="#EEE"/>
+    <text x="752" y="350" fill="#18181B" font-weight="500">▸ Product</text>
+    <text x="990" y="350" text-anchor="end" fill="#18181B" font-weight="600">$3,760</text>
+    <text x="1114" y="350" text-anchor="end" fill="#E11D48">+7%</text>
+  </g>
+</svg>
