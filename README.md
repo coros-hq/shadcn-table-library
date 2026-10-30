@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="./.github/assets/logo.svg" alt="ShadTable logo" width="72" />
-</p>
+
 
 <p align="center">
   <a href="https://www.shad-table.dev/">
