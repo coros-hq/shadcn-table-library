@@ -13,10 +13,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimatedIconsTableRouteImport } from './routes/animated-icons-table'
 import { Route as AsyncActionsTableRouteImport } from './routes/async-actions-table'
 import { Route as BuilderRouteImport } from './routes/builder'
+import { Route as ChangeReviewTableRouteImport } from './routes/change-review-table'
 import { Route as ColumnPinningTableRouteImport } from './routes/column-pinning-table'
 import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
 import { Route as ConditionalFormattingTableRouteImport } from './routes/conditional-formatting-table'
 import { Route as CrmEmployeesTableRouteImport } from './routes/crm-employees-table'
+import { Route as CsvImportTableRouteImport } from './routes/csv-import-table'
 import { Route as DataTableRouteImport } from './routes/data-table'
 import { Route as DeploymentsTableRouteImport } from './routes/deployments-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
@@ -38,6 +40,7 @@ import { Route as MasterDetailRouteImport } from './routes/master-detail'
 import { Route as MigrateV9RouteImport } from './routes/migrate-v9'
 import { Route as MobileCardsTableRouteImport } from './routes/mobile-cards-table'
 import { Route as ParamsFilterTableRouteImport } from './routes/params-filter-table'
+import { Route as PermissionsMatrixTableRouteImport } from './routes/permissions-matrix-table'
 import { Route as PivotTableRouteImport } from './routes/pivot-table'
 import { Route as ProductionDashboardTableRouteImport } from './routes/production-dashboard-table'
 import { Route as ReorderTableRouteImport } from './routes/reorder-table'
@@ -109,6 +112,11 @@ const BuilderRoute = BuilderRouteImport.update({
   path: '/builder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChangeReviewTableRoute = ChangeReviewTableRouteImport.update({
+  id: '/change-review-table',
+  path: '/change-review-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ColumnPinningTableRoute = ColumnPinningTableRouteImport.update({
   id: '/column-pinning-table',
   path: '/column-pinning-table',
@@ -128,6 +136,11 @@ const ConditionalFormattingTableRoute =
 const CrmEmployeesTableRoute = CrmEmployeesTableRouteImport.update({
   id: '/crm-employees-table',
   path: '/crm-employees-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CsvImportTableRoute = CsvImportTableRouteImport.update({
+  id: '/csv-import-table',
+  path: '/csv-import-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DataTableRoute = DataTableRouteImport.update({
@@ -234,6 +247,11 @@ const MobileCardsTableRoute = MobileCardsTableRouteImport.update({
 const ParamsFilterTableRoute = ParamsFilterTableRouteImport.update({
   id: '/params-filter-table',
   path: '/params-filter-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PermissionsMatrixTableRoute = PermissionsMatrixTableRouteImport.update({
+  id: '/permissions-matrix-table',
+  path: '/permissions-matrix-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PivotTableRoute = PivotTableRouteImport.update({
@@ -496,10 +514,12 @@ export interface FileRoutesByFullPath {
   '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
   '/builder': typeof BuilderRoute
+  '/change-review-table': typeof ChangeReviewTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/crm-employees-table': typeof CrmEmployeesTableRoute
+  '/csv-import-table': typeof CsvImportTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
@@ -521,6 +541,7 @@ export interface FileRoutesByFullPath {
   '/migrate-v9': typeof MigrateV9Route
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
+  '/permissions-matrix-table': typeof PermissionsMatrixTableRoute
   '/pivot-table': typeof PivotTableRoute
   '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
@@ -577,10 +598,12 @@ export interface FileRoutesByTo {
   '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
   '/builder': typeof BuilderRoute
+  '/change-review-table': typeof ChangeReviewTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/crm-employees-table': typeof CrmEmployeesTableRoute
+  '/csv-import-table': typeof CsvImportTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
@@ -602,6 +625,7 @@ export interface FileRoutesByTo {
   '/migrate-v9': typeof MigrateV9Route
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
+  '/permissions-matrix-table': typeof PermissionsMatrixTableRoute
   '/pivot-table': typeof PivotTableRoute
   '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
@@ -659,10 +683,12 @@ export interface FileRoutesById {
   '/animated-icons-table': typeof AnimatedIconsTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
   '/builder': typeof BuilderRoute
+  '/change-review-table': typeof ChangeReviewTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
   '/crm-employees-table': typeof CrmEmployeesTableRoute
+  '/csv-import-table': typeof CsvImportTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
   '/editable-table': typeof EditableTableRoute
@@ -684,6 +710,7 @@ export interface FileRoutesById {
   '/migrate-v9': typeof MigrateV9Route
   '/mobile-cards-table': typeof MobileCardsTableRoute
   '/params-filter-table': typeof ParamsFilterTableRoute
+  '/permissions-matrix-table': typeof PermissionsMatrixTableRoute
   '/pivot-table': typeof PivotTableRoute
   '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
@@ -742,10 +769,12 @@ export interface FileRouteTypes {
     | '/animated-icons-table'
     | '/async-actions-table'
     | '/builder'
+    | '/change-review-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
     | '/crm-employees-table'
+    | '/csv-import-table'
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
@@ -767,6 +796,7 @@ export interface FileRouteTypes {
     | '/migrate-v9'
     | '/mobile-cards-table'
     | '/params-filter-table'
+    | '/permissions-matrix-table'
     | '/pivot-table'
     | '/production-dashboard-table'
     | '/reorder-table'
@@ -823,10 +853,12 @@ export interface FileRouteTypes {
     | '/animated-icons-table'
     | '/async-actions-table'
     | '/builder'
+    | '/change-review-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
     | '/crm-employees-table'
+    | '/csv-import-table'
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
@@ -848,6 +880,7 @@ export interface FileRouteTypes {
     | '/migrate-v9'
     | '/mobile-cards-table'
     | '/params-filter-table'
+    | '/permissions-matrix-table'
     | '/pivot-table'
     | '/production-dashboard-table'
     | '/reorder-table'
@@ -904,10 +937,12 @@ export interface FileRouteTypes {
     | '/animated-icons-table'
     | '/async-actions-table'
     | '/builder'
+    | '/change-review-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
     | '/crm-employees-table'
+    | '/csv-import-table'
     | '/data-table'
     | '/deployments-table'
     | '/editable-table'
@@ -929,6 +964,7 @@ export interface FileRouteTypes {
     | '/migrate-v9'
     | '/mobile-cards-table'
     | '/params-filter-table'
+    | '/permissions-matrix-table'
     | '/pivot-table'
     | '/production-dashboard-table'
     | '/reorder-table'
@@ -986,10 +1022,12 @@ export interface RootRouteChildren {
   AnimatedIconsTableRoute: typeof AnimatedIconsTableRoute
   AsyncActionsTableRoute: typeof AsyncActionsTableRoute
   BuilderRoute: typeof BuilderRoute
+  ChangeReviewTableRoute: typeof ChangeReviewTableRoute
   ColumnPinningTableRoute: typeof ColumnPinningTableRoute
   ComparisonTableRoute: typeof ComparisonTableRoute
   ConditionalFormattingTableRoute: typeof ConditionalFormattingTableRoute
   CrmEmployeesTableRoute: typeof CrmEmployeesTableRoute
+  CsvImportTableRoute: typeof CsvImportTableRoute
   DataTableRoute: typeof DataTableRoute
   DeploymentsTableRoute: typeof DeploymentsTableRoute
   EditableTableRoute: typeof EditableTableRoute
@@ -1011,6 +1049,7 @@ export interface RootRouteChildren {
   MigrateV9Route: typeof MigrateV9Route
   MobileCardsTableRoute: typeof MobileCardsTableRoute
   ParamsFilterTableRoute: typeof ParamsFilterTableRoute
+  PermissionsMatrixTableRoute: typeof PermissionsMatrixTableRoute
   PivotTableRoute: typeof PivotTableRoute
   ProductionDashboardTableRoute: typeof ProductionDashboardTableRoute
   ReorderTableRoute: typeof ReorderTableRoute
@@ -1093,6 +1132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuilderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/change-review-table': {
+      id: '/change-review-table'
+      path: '/change-review-table'
+      fullPath: '/change-review-table'
+      preLoaderRoute: typeof ChangeReviewTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/column-pinning-table': {
       id: '/column-pinning-table'
       path: '/column-pinning-table'
@@ -1119,6 +1165,13 @@ declare module '@tanstack/react-router' {
       path: '/crm-employees-table'
       fullPath: '/crm-employees-table'
       preLoaderRoute: typeof CrmEmployeesTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/csv-import-table': {
+      id: '/csv-import-table'
+      path: '/csv-import-table'
+      fullPath: '/csv-import-table'
+      preLoaderRoute: typeof CsvImportTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/data-table': {
@@ -1266,6 +1319,13 @@ declare module '@tanstack/react-router' {
       path: '/params-filter-table'
       fullPath: '/params-filter-table'
       preLoaderRoute: typeof ParamsFilterTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/permissions-matrix-table': {
+      id: '/permissions-matrix-table'
+      path: '/permissions-matrix-table'
+      fullPath: '/permissions-matrix-table'
+      preLoaderRoute: typeof PermissionsMatrixTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pivot-table': {
@@ -1626,10 +1686,12 @@ const rootRouteChildren: RootRouteChildren = {
   AnimatedIconsTableRoute: AnimatedIconsTableRoute,
   AsyncActionsTableRoute: AsyncActionsTableRoute,
   BuilderRoute: BuilderRoute,
+  ChangeReviewTableRoute: ChangeReviewTableRoute,
   ColumnPinningTableRoute: ColumnPinningTableRoute,
   ComparisonTableRoute: ComparisonTableRoute,
   ConditionalFormattingTableRoute: ConditionalFormattingTableRoute,
   CrmEmployeesTableRoute: CrmEmployeesTableRoute,
+  CsvImportTableRoute: CsvImportTableRoute,
   DataTableRoute: DataTableRoute,
   DeploymentsTableRoute: DeploymentsTableRoute,
   EditableTableRoute: EditableTableRoute,
@@ -1651,6 +1713,7 @@ const rootRouteChildren: RootRouteChildren = {
   MigrateV9Route: MigrateV9Route,
   MobileCardsTableRoute: MobileCardsTableRoute,
   ParamsFilterTableRoute: ParamsFilterTableRoute,
+  PermissionsMatrixTableRoute: PermissionsMatrixTableRoute,
   PivotTableRoute: PivotTableRoute,
   ProductionDashboardTableRoute: ProductionDashboardTableRoute,
   ReorderTableRoute: ReorderTableRoute,

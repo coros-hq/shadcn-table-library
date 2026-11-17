@@ -2,6 +2,7 @@ import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
+import { OpenInBuilder } from '#/components/builder/open-in-builder'
 import tableSource from './data-table.tsx?raw'
 import buttonsSource from './action-buttons.tsx?raw'
 import dataSource from './data.ts?raw'
@@ -242,6 +243,8 @@ export function AsyncActionsPage() {
             act as feedback, not decoration.
           </p>
         </div>
+
+        <OpenInBuilder href="/async-actions-table" />
 
         <InstallCommand name="async-actions-table" />
 

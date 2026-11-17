@@ -1434,6 +1434,168 @@
       ]
     },
     {
+      "name": "permissions-matrix-table",
+      "type": "registry:block",
+      "title": "Permissions Matrix Table",
+      "description": "Roles and access management grid: resources as rows, actions as columns, with inherited, required and unavailable checkbox states, tri-state group and column toggles, and unsaved-change tracking.",
+      "files": [
+        {
+          "path": "src/components/permissions-matrix/data.ts",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/data.ts"
+        },
+        {
+          "path": "src/components/permissions-matrix/permissions.ts",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/permissions.ts"
+        },
+        {
+          "path": "src/components/permissions-matrix/permission-checkbox.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/permission-checkbox.tsx"
+        },
+        {
+          "path": "src/components/permissions-matrix/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/columns.tsx"
+        },
+        {
+          "path": "src/components/permissions-matrix/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/data-table.tsx"
+        },
+        {
+          "path": "src/components/permissions-matrix/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/index.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "checkbox",
+        "tooltip",
+        "button"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^8.21.3",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "csv-import-table",
+      "type": "registry:block",
+      "title": "CSV Import Review Table",
+      "description": "Review a CSV before importing: map its columns to fields in the table header, highlight invalid cells, flag duplicate emails, fix rows inline or skip them, and import only the rows that are ready.",
+      "files": [
+        {
+          "path": "src/components/csv-import/schema.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/schema.ts"
+        },
+        {
+          "path": "src/components/csv-import/csv.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/csv.ts"
+        },
+        {
+          "path": "src/components/csv-import/review.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/review.ts"
+        },
+        {
+          "path": "src/components/csv-import/sample.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/sample.ts"
+        },
+        {
+          "path": "src/components/csv-import/review-cell.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/review-cell.tsx"
+        },
+        {
+          "path": "src/components/csv-import/mapping-select.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/mapping-select.tsx"
+        },
+        {
+          "path": "src/components/csv-import/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/columns.tsx"
+        },
+        {
+          "path": "src/components/csv-import/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/data-table.tsx"
+        },
+        {
+          "path": "src/components/csv-import/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/index.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "badge",
+        "button",
+        "checkbox",
+        "input",
+        "select",
+        "tooltip"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^8.21.3",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "change-review-table",
+      "type": "registry:block",
+      "title": "Diff / Change Review Table",
+      "description": "Review a bulk update: products with changes are highlighted in the catalog, and each opens in a panel that slides into the table as a git-style diff to accept or reject, field by field or all at once.",
+      "files": [
+        {
+          "path": "src/components/change-review/data.ts",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/data.ts"
+        },
+        {
+          "path": "src/components/change-review/diff.ts",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/diff.ts"
+        },
+        {
+          "path": "src/components/change-review/diff-panel.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/diff-panel.tsx"
+        },
+        {
+          "path": "src/components/change-review/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/columns.tsx"
+        },
+        {
+          "path": "src/components/change-review/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/data-table.tsx"
+        },
+        {
+          "path": "src/components/change-review/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/index.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "badge",
+        "button",
+        "checkbox"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^8.21.3",
+        "lucide-react"
+      ]
+    },
+    {
       "name": "density-export-table",
       "type": "registry:block",
       "title": "Density & Export",
@@ -3204,6 +3366,183 @@
         "badge",
         "button",
         "input"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^9.2.4",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "permissions-matrix-table-v9",
+      "type": "registry:block",
+      "title": "Permissions Matrix Table (v9)",
+      "description": "Roles and access management grid: resources as rows, actions as columns, with inherited, required and unavailable checkbox states, tri-state group and column toggles, and unsaved-change tracking.",
+      "files": [
+        {
+          "path": "registry-v9/permissions-matrix-table/data.ts",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/data.ts"
+        },
+        {
+          "path": "registry-v9/permissions-matrix-table/permissions.ts",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/permissions.ts"
+        },
+        {
+          "path": "registry-v9/permissions-matrix-table/permission-checkbox.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/permission-checkbox.tsx"
+        },
+        {
+          "path": "registry-v9/permissions-matrix-table/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/columns.tsx"
+        },
+        {
+          "path": "registry-v9/permissions-matrix-table/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/data-table.tsx"
+        },
+        {
+          "path": "registry-v9/permissions-matrix-table/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/index.tsx"
+        },
+        {
+          "path": "registry-v9/permissions-matrix-table/features.ts",
+          "type": "registry:component",
+          "target": "@components/tables/permissions-matrix-table/features.ts"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "checkbox",
+        "tooltip",
+        "button"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^9.2.4",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "csv-import-table-v9",
+      "type": "registry:block",
+      "title": "CSV Import Review Table (v9)",
+      "description": "Review a CSV before importing: map its columns to fields in the table header, highlight invalid cells, flag duplicate emails, fix rows inline or skip them, and import only the rows that are ready.",
+      "files": [
+        {
+          "path": "registry-v9/csv-import-table/schema.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/schema.ts"
+        },
+        {
+          "path": "registry-v9/csv-import-table/csv.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/csv.ts"
+        },
+        {
+          "path": "registry-v9/csv-import-table/review.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/review.ts"
+        },
+        {
+          "path": "registry-v9/csv-import-table/sample.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/sample.ts"
+        },
+        {
+          "path": "registry-v9/csv-import-table/review-cell.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/review-cell.tsx"
+        },
+        {
+          "path": "registry-v9/csv-import-table/mapping-select.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/mapping-select.tsx"
+        },
+        {
+          "path": "registry-v9/csv-import-table/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/columns.tsx"
+        },
+        {
+          "path": "registry-v9/csv-import-table/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/data-table.tsx"
+        },
+        {
+          "path": "registry-v9/csv-import-table/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/index.tsx"
+        },
+        {
+          "path": "registry-v9/csv-import-table/features.ts",
+          "type": "registry:component",
+          "target": "@components/tables/csv-import-table/features.ts"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "badge",
+        "button",
+        "checkbox",
+        "input",
+        "select",
+        "tooltip"
+      ],
+      "dependencies": [
+        "@tanstack/react-table@^9.2.4",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "change-review-table-v9",
+      "type": "registry:block",
+      "title": "Diff / Change Review Table (v9)",
+      "description": "Review a bulk update: products with changes are highlighted in the catalog, and each opens in a panel that slides into the table as a git-style diff to accept or reject, field by field or all at once.",
+      "files": [
+        {
+          "path": "registry-v9/change-review-table/data.ts",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/data.ts"
+        },
+        {
+          "path": "registry-v9/change-review-table/diff.ts",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/diff.ts"
+        },
+        {
+          "path": "registry-v9/change-review-table/diff-panel.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/diff-panel.tsx"
+        },
+        {
+          "path": "registry-v9/change-review-table/columns.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/columns.tsx"
+        },
+        {
+          "path": "registry-v9/change-review-table/data-table.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/data-table.tsx"
+        },
+        {
+          "path": "registry-v9/change-review-table/index.tsx",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/index.tsx"
+        },
+        {
+          "path": "registry-v9/change-review-table/features.ts",
+          "type": "registry:component",
+          "target": "@components/tables/change-review-table/features.ts"
+        }
+      ],
+      "registryDependencies": [
+        "table",
+        "badge",
+        "button",
+        "checkbox"
       ],
       "dependencies": [
         "@tanstack/react-table@^9.2.4",

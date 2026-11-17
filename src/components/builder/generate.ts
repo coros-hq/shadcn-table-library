@@ -1,8 +1,13 @@
-import { columnCode, str } from './column-types'
+import { columnCode, isEditable, str } from './column-types'
+import columnControlsSource from './column-controls.tsx?raw'
+import editableCellSource from './editable-cell.tsx?raw'
+import exportMenuSource from './export-menu.tsx?raw'
 import filterBarSource from './filter-bar.tsx?raw'
 import filtersSource from './filters.ts?raw'
-import { PAGE_SIZES, buildRows, effectiveAlign } from './schema'
-import type { BuilderState, ColumnSpec } from './schema'
+import rowActionsSource from './row-actions.tsx?raw'
+import { MAX_EMBEDDED_ROWS } from './import'
+import { PAGE_SIZES, buildRows, effectiveAlign, exportFilename } from './schema'
+import type { BuilderState, ColumnSpec, Row } from './schema'
 
 export interface GeneratedFile {
   path: string
@@ -18,7 +23,7 @@ const tsType = (column: ColumnSpec) =>
       ? 'boolean'
       : 'string'
 
-const literal = (value: string | number | boolean) =>
+const literal = (value: string | number | boolean | null) =>
   typeof value === 'string' ? str(value) : String(value)
 
 const ALIGN_HELPERS = `
@@ -27,16 +32,19 @@ const alignClass = {
   center: 'text-center',
   right: 'text-right',
 } as const
-const justifyClass = {
-  left: 'justify-start',
-  center: 'justify-center',
-  right: 'justify-end',
-} as const
 type Align = keyof typeof alignClass
 
 // Alignment is set per column in \`meta: { align }\`
 const alignOf = (def: { meta?: unknown }): Align =>
   (def.meta as { align?: Align } | undefined)?.align ?? 'left'
+`
+const JUSTIFY_ALIGN = `
+// Sort buttons fill the header, so their content is aligned with flex
+const justifyClass = {
+  left: 'justify-start',
+  center: 'justify-center',
+  right: 'justify-end',
+} as const
 `
 const SKELETON_ALIGN = `
 const skeletonClass = {
@@ -46,16 +54,83 @@ const skeletonClass = {
 } as const
 `
 
-export function generate(state: BuilderState): GeneratedFile[] {
+/** Which optional pieces a state needs. The generator, the preview and the
+ * dependency list all read this, so they agree on what is in the table. */
+export function capabilities(state: BuilderState) {
   const has = (feature: BuilderState['features'][number]) =>
     state.features.includes(feature)
   const { columns } = state
+  const editableColumns = columns.filter((c) => isEditable(c, has('editing')))
+  const rowActions = has('rowActions') && state.actions.length > 0
+  return {
+    has,
+    filters: has('filters') && columns.length > 0,
+    editableColumns,
+    editing: editableColumns.length > 0,
+    rowActions,
+    /** The table keeps its own copy of the rows because cells or actions change them */
+    mutating:
+      editableColumns.length > 0 ||
+      (rowActions &&
+        (state.actions.includes('duplicate') ||
+          state.actions.includes('delete'))),
+    visibility: has('columnVisibility') && columns.length > 0,
+    pinning: has('pinning') && columns.length > 0,
+    exporting: has('export') && columns.length > 0,
+  }
+}
+
+/** The pinning a table starts with: the builder's pins, plus the checkbox and
+ * action columns riding along at the edges they sit on */
+export function initialPinning(state: BuilderState) {
+  const { has, rowActions } = capabilities(state)
+  const left = state.columns.filter((c) => c.pin === 'left').map((c) => c.id)
+  const right = state.columns.filter((c) => c.pin === 'right').map((c) => c.id)
+  return {
+    left: has('selection') && left.length ? ['select', ...left] : left,
+    right: rowActions ? [...right, 'actions'] : right,
+  }
+}
+
+export interface GenerateOptions {
+  /** The user's imported rows for data.ts. Without them it gets sample rows. */
+  rows?: Row[]
+}
+
+export function generate(
+  state: BuilderState,
+  options: GenerateOptions = {},
+): GeneratedFile[] {
+  const caps = capabilities(state)
+  const { has, filters, editing, rowActions, mutating, visibility, pinning } =
+    caps
+  const exporting = caps.exporting
+  const { columns } = state
   const hasType = (type: ColumnSpec['type']) =>
     columns.some((c) => c.type === type)
-  const filters = has('filters') && columns.length > 0
+  const displays = (type: ColumnSpec['type']) =>
+    columns.some(
+      (c) =>
+        c.type === type &&
+        // An editable checkbox is a Checkbox, not a Check icon
+        !(type === 'checkbox' && caps.editableColumns.includes(c)),
+    )
   const aligned = columns.some((c) => effectiveAlign(c) !== 'left')
+  const imported = options.rows !== undefined
+  // Only part of a large import is written out; the type follows that part
+  const dataRows = imported
+    ? (options.rows ?? []).slice(0, MAX_EMBEDDED_ROWS)
+    : buildRows(columns)
+  // Number columns with empty cells in the data are typed `number | null`
+  const nullable = new Set(
+    columns
+      .filter((c) => dataRows.some((row) => row[c.id] === null))
+      .map((c) => c.id),
+  )
   const { states } = state
   const skeleton = states.loadingStyle === 'skeleton'
+  const pins = initialPinning(state)
+  const pinned = pinning && (pins.left.length > 0 || pins.right.length > 0)
 
   const files: GeneratedFile[] = [
     { path: `${DIR}/columns.tsx`, code: columnsFile() },
@@ -69,23 +144,51 @@ export function generate(state: BuilderState): GeneratedFile[] {
       { path: `${DIR}/filter-bar.tsx`, code: filterBarSource },
     )
   }
+  if (editing) {
+    files.push({ path: `${DIR}/editable-cell.tsx`, code: editableCellSource })
+  }
+  if (rowActions) {
+    files.push({ path: `${DIR}/row-actions.tsx`, code: rowActionsSource })
+  }
+  if (visibility || pinning) {
+    files.push({
+      path: `${DIR}/column-controls.tsx`,
+      code: columnControlsSource,
+    })
+  }
+  if (exporting) {
+    files.push({ path: `${DIR}/export-menu.tsx`, code: exportMenuSource })
+  }
   return files
 
   function columnsFile() {
     const imports = [
       `import type { ColumnDef } from '@tanstack/react-table'`,
-      hasType('checkbox') && `import { Check } from 'lucide-react'`,
+      displays('checkbox') && `import { Check } from 'lucide-react'`,
       hasType('select') && `import { Badge } from '#/components/ui/badge'`,
       has('selection') && `import { Checkbox } from '#/components/ui/checkbox'`,
+      editing && `import { EditableCell } from './editable-cell'`,
       filters && `import type { FacetDef, Field, Preset } from './filters'`,
+      rowActions && `import { RowActions } from './row-actions'`,
       `import type { Row } from './data'`,
     ].filter(Boolean)
+    // Pinned tables are laid out from TanStack's column sizes
+    const fixed = pinning
+      ? `
+    enablePinning: false,`
+      : ''
 
     const entries = [
       has('selection') &&
         `  {
     id: 'select',
     enableSorting: false,
+    enableHiding: false,${fixed}${
+      pinning
+        ? `
+    size: 40,`
+        : ''
+    }
     header: ({ table }) => (
       <Checkbox
         checked={
@@ -104,7 +207,32 @@ export function generate(state: BuilderState): GeneratedFile[] {
       />
     ),
   },`,
-      ...columns.map(columnCode),
+      ...columns.map((c) =>
+        columnCode(c, {
+          editable: caps.editableColumns.includes(c),
+          sized: pinning,
+          nullable: nullable.has(c.id),
+        }),
+      ),
+      rowActions &&
+        `  {
+    id: 'actions',
+    enableSorting: false,
+    enableHiding: false,${fixed}${
+      pinning
+        ? `
+    size: 56,`
+        : ''
+    }
+    header: () => <span className="sr-only">Actions</span>,
+    cell: ({ row, table }) => (
+      <RowActions
+        row={row}
+        table={table}
+        actions={[${state.actions.map(str).join(', ')}]}
+      />
+    ),
+  },`,
     ].filter(Boolean)
 
     const fields = filters
@@ -153,7 +281,7 @@ export const presets: Preset[] = [${
 
 ${imports.join('\n')}
 ${
-  hasType('date')
+  displays('date')
     ? `
 // Dates are stored as ISO strings; formatting in UTC keeps the server and the
 // browser from disagreeing about which day it is.
@@ -173,12 +301,17 @@ ${entries.join('\n')}
   }
 
   function dataFile() {
-    const rows = buildRows(columns)
     const type = `export type Row = {
   id: string
-${columns.map((c) => `  ${c.id}: ${tsType(c)}`).join('\n')}
+${columns.map((c) => `  ${c.id}: ${tsType(c)}${nullable.has(c.id) ? ' | null' : ''}`).join('\n')}
 }`
-    const body = rows
+    const total = options.rows?.length ?? 0
+    const note = !imported
+      ? '// Sample data. Replace it with your own rows (or a fetch) of the same shape.'
+      : total > dataRows.length
+        ? `// The first ${dataRows.length} of your ${total} imported rows. Load the rest\n// from your API (or a fetch) in the same shape.`
+        : '// Your imported rows. Swap them for a fetch from your API when you are ready.'
+    const body = dataRows
       .map(
         (row) =>
           `  {\n${Object.entries(row)
@@ -188,7 +321,7 @@ ${columns.map((c) => `  ${c.id}: ${tsType(c)}`).join('\n')}
       .join('\n')
     return `${type}
 
-// Sample data. Replace it with your own rows (or a fetch) of the same shape.
+${note}
 export const rows: Row[] = [
 ${body}
 ]
@@ -232,13 +365,47 @@ export function MyTable() {
     const tanstack = ['flexRender', ...rowModels, 'useReactTable'].sort(
       (a, b) => a.localeCompare(b),
     )
-    const stateful = has('search') || has('sorting')
+    const stateful = has('search') || has('sorting') || mutating
     const react = [
       (stateful || filters) && 'useState',
       filters && 'useMemo',
     ].filter(Boolean)
     const footer = has('pagination') || has('selection')
-    const toolbar = has('search') || filters
+    const tools = visibility || exporting
+    const toolbar = has('search') || filters || tools
+    // Rows in local state, when cells or actions change them
+    const source = mutating ? 'tableData' : 'data'
+    const constraint = [
+      filters && 'Record<string, unknown>',
+      mutating && '{ id: string }',
+    ]
+      .filter(Boolean)
+      .join(' & ')
+    const generic = constraint ? `TData extends ${constraint}` : 'TData'
+    const initialState = [
+      has('pagination') && 'pagination: { pageSize: 5 }',
+      pinned &&
+        `columnPinning: {${
+          pins.left.length
+            ? ` left: [${pins.left.map(str).join(', ')}]${pins.right.length ? ',' : ''}`
+            : ''
+        }${pins.right.length ? ` right: [${pins.right.map(str).join(', ')}]` : ''} }`,
+    ].filter(Boolean)
+    const controls = [
+      visibility && 'ColumnsMenu',
+      pinning && 'PinControls',
+      pinning && 'pinClass',
+      pinning && 'pinStyles',
+    ].filter(Boolean)
+    // Pinned cells need an opaque background; `pinClass` adds it
+    const cellClass = (target: string) =>
+      aligned && pinning
+        ? ` className={\`\${alignClass[alignOf(${target}.columnDef)]} \${pinClass(${target})}\`}`
+        : aligned
+          ? ` className={alignClass[alignOf(${target}.columnDef)]}`
+          : pinning
+            ? ` className={pinClass(${target})}`
+            : ''
     const arrows = has('pagination') && state.pager.style === 'arrows'
     const sizeSelect = has('pagination') && state.pager.sizeSelect
     const icons = [
@@ -278,8 +445,8 @@ ${has('pagination') ? `import { Button } from '#/components/ui/button'\n` : ''}$
   TableHeader,
   TableRow,
 } from '#/components/ui/table'
-${aligned ? ALIGN_HELPERS : ''}${aligned && skeleton ? SKELETON_ALIGN : ''}${filters ? `import { FilterBar } from './filter-bar'\nimport { applyFacets, applyRules } from './filters'\nimport type { FacetDef, FacetValue, Field, Preset } from './filters'\n` : ''}
-interface DataTableProps<TData${filters ? ' extends Record<string, unknown>' : ''}, TValue> {
+${controls.length ? `import { ${controls.join(', ')} } from './column-controls'\n` : ''}${exporting ? `import { ExportMenu } from './export-menu'\n` : ''}${aligned ? ALIGN_HELPERS : ''}${aligned && has('sorting') ? JUSTIFY_ALIGN : ''}${aligned && skeleton ? SKELETON_ALIGN : ''}${filters ? `import { FilterBar } from './filter-bar'\nimport { applyFacets, applyRules } from './filters'\nimport type { FacetDef, FacetValue, Field, Preset } from './filters'\n` : ''}
+interface DataTableProps<${generic}, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   /** Shows the loading state instead of rows */
@@ -293,12 +460,12 @@ interface DataTableProps<TData${filters ? ' extends Record<string, unknown>' : '
   }
 }
 
-export function DataTable<TData${filters ? ' extends Record<string, unknown>' : ''}, TValue>({
+export function DataTable<${generic}, TValue>({
   columns,
   data,
   isLoading = false,${filters ? '\n  fields,\n  facets,\n  presets,' : ''}
 }: DataTableProps<TData, TValue>) {
-${has('sorting') ? `  const [sorting, setSorting] = useState<SortingState>([])\n` : ''}${has('search') ? `  const [globalFilter, setGlobalFilter] = useState('')\n` : ''}${
+${has('sorting') ? `  const [sorting, setSorting] = useState<SortingState>([])\n` : ''}${has('search') ? `  const [globalFilter, setGlobalFilter] = useState('')\n` : ''}${mutating ? mutationCode() : ''}${
       filters
         ? `  const [facetValues, setFacetValues] = useState<Record<string, FacetValue>>({})
   const [activePresets, setActivePresets] = useState<string[]>([])
@@ -308,16 +475,16 @@ ${has('sorting') ? `  const [sorting, setSorting] = useState<SortingState>([])\n
     const rules = presets
       .filter((p) => activePresets.includes(p.id))
       .map((p) => p.rule)
-    return applyRules(applyFacets(data, facets, facetValues), fields, rules)
-  }, [data, fields, facets, presets, facetValues, activePresets])
+    return applyRules(applyFacets(${source}, facets, facetValues), fields, rules)
+  }, [${source}, fields, facets, presets, facetValues, activePresets])
 `
         : ''
     }
   const table = useReactTable({
-    data: ${filters ? 'rows' : 'data'},
+    data: ${filters ? 'rows' : source},
     columns,
 ${rowModels.map((n) => `    ${n}: ${n}(),`).join('\n')}
-${has('pagination') ? `    initialState: { pagination: { pageSize: 5 } },\n` : ''}${has('sorting') ? `    onSortingChange: setSorting,\n` : ''}${has('search') ? `    onGlobalFilterChange: setGlobalFilter,\n` : ''}${tableState.length ? `    state: { ${tableState.join(', ')} },\n` : ''}  })
+${mutating ? `    // Rows keep their identity through edits, sorting and deletes\n    getRowId: (row) => row.id,\n    meta,\n` : ''}${initialState.length ? `    initialState: { ${initialState.join(', ')} },\n` : ''}${has('sorting') ? `    onSortingChange: setSorting,\n` : ''}${has('search') ? `    onGlobalFilterChange: setGlobalFilter,\n` : ''}${tableState.length ? `    state: { ${tableState.join(', ')} },\n` : ''}  })
 
   return (
     <div>
@@ -340,24 +507,60 @@ ${
           fields={fields}
           facets={facets}
           presets={presets}
-          data={data}
+          data={${source}}
           values={facetValues}
           onValuesChange={setFacetValues}
           activePresets={activePresets}
           onActivePresetsChange={setActivePresets}
         />\n`
           : ''
+      }${
+        tools
+          ? `        <div className="ml-auto flex items-center gap-2">
+${visibility ? `          <ColumnsMenu table={table} />\n` : ''}${
+              exporting
+                ? `          <ExportMenu
+            table={table}
+            formats={[${state.exporting.formats.map(str).join(', ')}]}
+            filename={${str(exportFilename(state.exporting))}}
+          />\n`
+                : ''
+            }        </div>\n`
+          : ''
       }      </div>
 `
     : ''
 }      <div className="overflow-x-auto rounded-md border" aria-busy={isLoading}>
-        <Table>
+        <Table${
+          pinning
+            ? `
+          // Fixed widths keep the pinned offsets exact once the table scrolls
+          className="table-fixed"
+          style={{ minWidth: table.getTotalSize() }}
+        `
+            : ''
+        }>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}${aligned ? ' className={alignClass[alignOf(header.column.columnDef)]}' : ''}>
-${headerBody()}
+                  <TableHead
+                    key={header.id}${
+                      pinning
+                        ? aligned
+                          ? `
+                    className={\`group/head \${alignClass[alignOf(header.column.columnDef)]} \${pinClass(header.column)}\`}
+                    style={pinStyles(header.column)}`
+                          : `
+                    className={\`group/head \${pinClass(header.column)}\`}
+                    style={pinStyles(header.column)}`
+                        : aligned
+                          ? `
+                    className={alignClass[alignOf(header.column.columnDef)]}`
+                          : ''
+                    }
+                  >
+${pinning ? pinnedHeaderBody() : headerBody()}
                   </TableHead>
                 ))}
               </TableRow>
@@ -372,7 +575,9 @@ ${loadingBody()}
                   data-state={row.getIsSelected() ? 'selected' : undefined}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}${aligned ? ' className={alignClass[alignOf(cell.column.columnDef)]}' : ''}>
+                    <TableCell
+                      key={cell.id}${cellClass('cell.column')}${pinning ? `\n                      style={pinStyles(cell.column)}` : ''}
+                    >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -380,7 +585,10 @@ ${loadingBody()}
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={table.getVisibleLeafColumns().length}
+                  className="h-24 text-center"
+                >
 ${emptyBody()}
                 </TableCell>
               </TableRow>
@@ -392,6 +600,51 @@ ${footer ? footerBody() : ''}    </div>
   )
 }
 `
+  }
+
+  function mutationCode() {
+    const dup = rowActions && state.actions.includes('duplicate')
+    const del = rowActions && state.actions.includes('delete')
+    const fns = [
+      editing &&
+        `    updateCell: (rowId: string, columnId: string, value: unknown) =>
+      setTableData((prev) =>
+        prev.map((row) =>
+          row.id === rowId ? { ...row, [columnId]: value } : row,
+        ),
+      ),`,
+      dup &&
+        `    duplicateRow: (rowId: string) =>
+      setTableData((prev) => {
+        const index = prev.findIndex((row) => row.id === rowId)
+        if (index < 0) return prev
+        const copy = { ...prev[index], id: \`\${rowId}-\${Date.now().toString(36)}\` }
+        return [...prev.slice(0, index + 1), copy, ...prev.slice(index + 1)]
+      }),`,
+      del &&
+        `    deleteRow: (rowId: string) =>
+      setTableData((prev) => prev.filter((row) => row.id !== rowId)),`,
+    ].filter(Boolean)
+    return `  // The table keeps its own copy of the rows so changes show up right
+  // away. Send them to your backend here too.
+  const [tableData, setTableData] = useState(data)
+  const meta = {
+${fns.join('\n')}
+  }
+`
+  }
+
+  function pinnedHeaderBody() {
+    const inner = headerBody()
+      .split('\n')
+      .map((line) => `    ${line}`)
+      .join('\n')
+    return `                    <div className="flex items-center gap-1">
+                      <div className="min-w-0 flex-1">
+${inner}
+                      </div>
+                      <PinControls column={header.column} />
+                    </div>`
   }
 
   function emptyBody() {
@@ -565,11 +818,29 @@ ${summary}${pager}      </div>
 /** The shadcn components the generated code imports */
 export function registryDependencies(state: BuilderState) {
   const parts = ['table']
-  const filters = state.features.includes('filters') && state.columns.length > 0
-  if (state.features.includes('pagination') || filters) parts.push('button')
-  if (state.features.includes('search') || filters) parts.push('input')
-  if (state.features.includes('selection') || filters) parts.push('checkbox')
+  const caps = capabilities(state)
+  const { filters, rowActions, visibility, pinning, exporting } = caps
+  const edits = (type: ColumnSpec['type']) =>
+    caps.editableColumns.some((c) => c.type === type)
+  const menus = rowActions || visibility || exporting
+  if (state.features.includes('pagination') || filters || menus || pinning) {
+    parts.push('button')
+  }
+  if (
+    state.features.includes('search') ||
+    filters ||
+    edits('text') ||
+    edits('number') ||
+    edits('date')
+  ) {
+    parts.push('input')
+  }
+  if (state.features.includes('selection') || filters || edits('checkbox')) {
+    parts.push('checkbox')
+  }
   if (filters) parts.push('popover')
+  if (menus) parts.push('dropdown-menu')
+  if (edits('select')) parts.push('select')
   if (state.features.includes('pagination') && state.pager.sizeSelect) {
     parts.push('select')
   }

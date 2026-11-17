@@ -31,7 +31,7 @@ export function StatesEditor({
 
   return (
     <fieldset className="space-y-3">
-      <legend className="mb-2 text-sm font-medium">Empty & loading</legend>
+      <legend className="sr-only">Empty & loading</legend>
 
       <div className="space-y-1.5">
         <Label htmlFor="empty-title" className="text-xs font-normal">

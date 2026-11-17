@@ -78,6 +78,17 @@ export const navGroups: NavGroup[] = [
       { title: 'Inventory Allocation', to: '/inventory-allocation-table' },
       { title: 'Infinite Scroll', to: '/infinite-scroll-table', isNew: true },
       { title: 'Excel-like Table', to: '/spreadsheet-table', isNew: true },
+      {
+        title: 'Permissions Matrix',
+        to: '/permissions-matrix-table',
+        isNew: true,
+      },
+      { title: 'CSV Import Review', to: '/csv-import-table', isNew: true },
+      {
+        title: 'Diff / Change Review',
+        to: '/change-review-table',
+        isNew: true,
+      },
     ],
   },
   {
@@ -202,7 +213,7 @@ export function NavContent({
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === prefix(link.to)}
-                      className="w-full rounded-md font-normal text-muted-foreground hover:bg-transparent hover:text-foreground data-[active=true]:bg-transparent data-[active=true]:font-normal data-[active=true]:text-foreground"
+                      className="w-full rounded-md font-normal text-muted-foreground hover:bg-transparent hover:text-foreground data-[active=true]:bg-transparent data-[active=true]:font-medium data-[active=true]:text-foreground"
                     >
                       <Link to={prefix(link.to)} onClick={onNavigate}>
                         {link.title}
@@ -255,7 +266,7 @@ export function NavContent({
                               asChild
                               isActive={isActive}
                               className={cn(
-                                'relative w-full rounded-md font-normal text-muted-foreground hover:bg-transparent hover:text-foreground data-[active=true]:bg-transparent data-[active=true]:font-normal data-[active=true]:text-foreground before:absolute before:top-1/2 before:-left-[13px] before:h-4 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-transparent before:transition-colors before:content-[""]',
+                                'relative w-full rounded-md font-normal text-muted-foreground hover:bg-transparent hover:text-foreground data-[active=true]:bg-transparent data-[active=true]:font-medium data-[active=true]:text-foreground before:absolute before:top-1/2 before:-left-[13px] before:h-4 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:bg-transparent before:transition-colors before:content-[""]',
                                 isActive && 'before:bg-primary',
                               )}
                             >

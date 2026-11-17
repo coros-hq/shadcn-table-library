@@ -40,11 +40,22 @@ import {
   TableHeader,
   TableRow,
 } from '#/components/ui/table'
-import { columnDef } from './column-types'
+import { columnDef, isEditable } from './column-types'
+import {
+  ColumnsMenu,
+  PinControls,
+  pinClass,
+  pinStyles,
+} from './column-controls'
+import type { EditMeta } from './editable-cell'
+import { ExportMenu } from './export-menu'
 import { FilterBar } from './filter-bar'
 import { applyFacets, applyRules } from './filters'
 import type { FacetValue } from './filters'
-import { PAGE_SIZES, buildRows } from './schema'
+import { capabilities, initialPinning } from './generate'
+import { RowActions } from './row-actions'
+import type { RowActionsMeta } from './row-actions'
+import { PAGE_SIZES, buildRows, exportFilename } from './schema'
 import type { BuilderState, Row } from './schema'
 import { alignClass, alignOf, justifyClass } from './align'
 import type { PreviewView } from './states-editor'
@@ -54,6 +65,9 @@ const skeletonClass = { left: '', center: 'mx-auto', right: 'ml-auto' } as const
 const selectColumn: ColumnDef<Row> = {
   id: 'select',
   enableSorting: false,
+  enableHiding: false,
+  enablePinning: false,
+  size: 40,
   header: ({ table }) => (
     <Checkbox
       checked={
@@ -77,43 +91,100 @@ const selectColumn: ColumnDef<Row> = {
 export function PreviewTable({
   state,
   view = 'data',
+  rows,
 }: {
   state: BuilderState
+  /** The user's imported rows, already typed by the columns; sample rows otherwise */
+  rows?: Row[]
   /** Forces the loading or empty state so it can be seen without real data */
   view?: PreviewView
 }) {
-  const has = (feature: BuilderState['features'][number]) =>
-    state.features.includes(feature)
-  const filters = has('filters') && state.columns.length > 0
+  const caps = capabilities(state)
+  const { has, filters, rowActions, visibility, pinning, exporting } = caps
   const [sorting, setSorting] = useState<SortingState>([])
   const [globalFilter, setGlobalFilter] = useState('')
   const [facetValues, setFacetValues] = useState<Record<string, FacetValue>>({})
   const [activePresets, setActivePresets] = useState<string[]>([])
 
   const selection = has('selection')
+  const editing = has('editing')
+  const actions = state.actions
   const columns = useMemo(
     () => [
       ...(selection ? [selectColumn] : []),
-      ...state.columns.map(columnDef),
+      ...state.columns.map((c) =>
+        columnDef(c, {
+          editable: isEditable(c, editing),
+          sized: pinning,
+        }),
+      ),
+      ...(rowActions
+        ? [
+            {
+              id: 'actions',
+              enableSorting: false,
+              enableHiding: false,
+              enablePinning: false,
+              size: 56,
+              header: () => <span className="sr-only">Actions</span>,
+              cell: ({ row, table }) => (
+                <RowActions row={row} table={table} actions={actions} />
+              ),
+            } satisfies ColumnDef<Row>,
+          ]
+        : []),
     ],
-    [selection, state.columns],
+    [selection, state.columns, editing, pinning, rowActions, actions],
   )
-  const baseRows = useMemo(() => buildRows(state.columns), [state.columns])
+  const baseRows = useMemo(
+    () => rows ?? buildRows(state.columns),
+    [rows, state.columns],
+  )
+
+  // Edits and row actions change a local copy, like the generated table does.
+  // A schema change brings in fresh sample rows.
+  const [tableData, setTableData] = useState(baseRows)
+  const [prevBase, setPrevBase] = useState(baseRows)
+  if (prevBase !== baseRows) {
+    setPrevBase(baseRows)
+    setTableData(baseRows)
+  }
+  const meta: EditMeta & RowActionsMeta = {
+    updateCell: (rowId, columnId, value) =>
+      setTableData((prev) =>
+        prev.map((row) =>
+          row.id === rowId ? { ...row, [columnId]: value as Row[string] } : row,
+        ),
+      ),
+    duplicateRow: (rowId) =>
+      setTableData((prev) => {
+        const index = prev.findIndex((row) => row.id === rowId)
+        if (index < 0) return prev
+        const copy = {
+          ...prev[index],
+          id: `${rowId}-${Date.now().toString(36)}`,
+        }
+        return [...prev.slice(0, index + 1), copy, ...prev.slice(index + 1)]
+      }),
+    deleteRow: (rowId) =>
+      setTableData((prev) => prev.filter((row) => row.id !== rowId)),
+  }
+
   const data = useMemo(() => {
     if (view === 'empty') return []
-    if (!filters) return baseRows
+    if (!filters) return tableData
     const rules = state.presets
       .filter((p) => activePresets.includes(p.id))
       .map((p) => p.rule)
     return applyRules(
-      applyFacets(baseRows, state.facets, facetValues),
+      applyFacets(tableData, state.facets, facetValues),
       state.columns,
       rules,
     )
   }, [
     view,
     filters,
-    baseRows,
+    tableData,
     state.columns,
     state.facets,
     state.presets,
@@ -130,7 +201,12 @@ export function PreviewTable({
       getPaginationRowModel: getPaginationRowModel(),
     }),
     ...(has('sorting') && { getSortedRowModel: getSortedRowModel() }),
-    initialState: { pagination: { pageSize: has('pagination') ? 5 : 1000 } },
+    getRowId: (row) => String(row.id),
+    meta,
+    initialState: {
+      pagination: { pageSize: has('pagination') ? 5 : 1000 },
+      ...(pinning && { columnPinning: initialPinning(state) }),
+    },
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
     state: {
@@ -154,7 +230,7 @@ export function PreviewTable({
 
   return (
     <div>
-      {has('search') || filters ? (
+      {has('search') || filters || visibility || exporting ? (
         <div className="mb-3 flex flex-wrap items-center gap-2">
           {has('search') ? (
             <Input
@@ -169,17 +245,32 @@ export function PreviewTable({
               fields={state.columns}
               facets={state.facets}
               presets={state.presets}
-              data={baseRows}
+              data={tableData}
               values={facetValues}
               onValuesChange={setFacetValues}
               activePresets={activePresets}
               onActivePresetsChange={setActivePresets}
             />
           ) : null}
+          {visibility || exporting ? (
+            <div className="ml-auto flex items-center gap-2">
+              {visibility ? <ColumnsMenu table={table} /> : null}
+              {exporting ? (
+                <ExportMenu
+                  table={table}
+                  formats={state.exporting.formats}
+                  filename={exportFilename(state.exporting)}
+                />
+              ) : null}
+            </div>
+          ) : null}
         </div>
       ) : null}
       <div className="overflow-x-auto rounded-md border" aria-busy={isLoading}>
-        <Table>
+        <Table
+          className={pinning ? 'table-fixed' : undefined}
+          style={pinning ? { minWidth: table.getTotalSize() } : undefined}
+        >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -188,29 +279,40 @@ export function PreviewTable({
                     header.column.columnDef.header,
                     header.getContext(),
                   )
+                  const body = header.isPlaceholder ? null : has('sorting') &&
+                    header.column.getCanSort() ? (
+                    <button
+                      type="button"
+                      onClick={header.column.getToggleSortingHandler()}
+                      className={`flex w-full cursor-pointer items-center gap-2 select-none ${justifyClass[alignOf(header.column.columnDef)]}`}
+                    >
+                      {content}
+                      {header.column.getIsSorted() === 'asc' ? (
+                        <ArrowUp className="h-3 w-3" />
+                      ) : header.column.getIsSorted() === 'desc' ? (
+                        <ArrowDown className="h-3 w-3" />
+                      ) : (
+                        <ArrowUpDown className="h-3 w-3 opacity-50" />
+                      )}
+                    </button>
+                  ) : (
+                    content
+                  )
                   return (
                     <TableHead
                       key={header.id}
-                      className={alignClass[alignOf(header.column.columnDef)]}
+                      className={`${alignClass[alignOf(header.column.columnDef)]} ${
+                        pinning ? `group/head ${pinClass(header.column)}` : ''
+                      }`}
+                      style={pinning ? pinStyles(header.column) : undefined}
                     >
-                      {header.isPlaceholder ? null : has('sorting') &&
-                        header.column.getCanSort() ? (
-                        <button
-                          type="button"
-                          onClick={header.column.getToggleSortingHandler()}
-                          className={`flex w-full cursor-pointer items-center gap-2 select-none ${justifyClass[alignOf(header.column.columnDef)]}`}
-                        >
-                          {content}
-                          {header.column.getIsSorted() === 'asc' ? (
-                            <ArrowUp className="h-3 w-3" />
-                          ) : header.column.getIsSorted() === 'desc' ? (
-                            <ArrowDown className="h-3 w-3" />
-                          ) : (
-                            <ArrowUpDown className="h-3 w-3 opacity-50" />
-                          )}
-                        </button>
+                      {pinning ? (
+                        <div className="flex items-center gap-1">
+                          <div className="min-w-0 flex-1">{body}</div>
+                          <PinControls column={header.column} />
+                        </div>
                       ) : (
-                        content
+                        body
                       )}
                     </TableHead>
                   )
@@ -264,7 +366,10 @@ export function PreviewTable({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={alignClass[alignOf(cell.column.columnDef)]}
+                      className={`${alignClass[alignOf(cell.column.columnDef)]} ${
+                        pinning ? pinClass(cell.column) : ''
+                      }`}
+                      style={pinning ? pinStyles(cell.column) : undefined}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -277,7 +382,7 @@ export function PreviewTable({
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={Math.max(columns.length, 1)}
+                  colSpan={Math.max(table.getVisibleLeafColumns().length, 1)}
                   className="h-24 text-center"
                 >
                   {states.emptyTitle.trim() ||

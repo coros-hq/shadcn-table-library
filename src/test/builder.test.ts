@@ -12,6 +12,10 @@ import {
   operators,
 } from '#/components/builder/filters'
 import { emptyFacet } from '#/components/builder/filters'
+import { parse, validate } from '#/components/builder/editable-cell'
+import type { EditField } from '#/components/builder/editable-cell'
+import { toCsv, toExcelHtml } from '#/components/builder/export-menu'
+import { templates } from '#/components/builder/templates'
 import type {
   FacetDef,
   FacetValue,
@@ -36,13 +40,44 @@ import {
   removePreset,
   renameColumn,
   setColumnOptions,
+  setColumnPin,
+  setColumnReadOnly,
+  setColumnRules,
+  setExport,
   setFacetColumn,
   setFacetKind,
+  toggleRowAction,
   updatePreset,
 } from '#/components/builder/schema'
 import type { BuilderState, ColumnSpec } from '#/components/builder/schema'
 
 const allFeatures = featureBlocks.map((f) => f.id)
+
+// Every new feature on, with rules, pins and a read-only column
+const richState: BuilderState = {
+  ...defaultState,
+  columns: [
+    {
+      id: 'name',
+      name: 'Name',
+      type: 'text',
+      pin: 'left',
+      rules: { required: true, max: 20 },
+    },
+    { id: 'status', name: 'Status', type: 'select', options: ['A', "B's"] },
+    {
+      id: 'budget',
+      name: 'Budget',
+      type: 'number',
+      align: 'right',
+      rules: { min: 0, integer: true },
+    },
+    { id: 'due', name: 'Due', type: 'date', pin: 'right' },
+    { id: 'done', name: 'Done', type: 'checkbox' },
+    { id: 'note', name: 'Note', type: 'text', readOnly: true },
+  ],
+  features: featureBlocks.map((f) => f.id),
+}
 
 const everyType: ColumnSpec[] = [
   { id: 'title', name: 'Owner\'s "title"', type: 'text' },
@@ -176,6 +211,105 @@ describe('editing', () => {
   })
 })
 
+describe('editing, pinning, actions and export settings', () => {
+  it('keeps only the rules a type supports, and drops them on a type change', () => {
+    let state = setColumnRules(defaultState, 'name', {
+      required: true,
+      min: 2.7,
+      integer: true,
+    })
+    expect(state.columns[0].rules).toEqual({ required: true, min: 2 })
+    state = setColumnRules(state, 'name', { min: -1, required: false })
+    expect(state.columns[0].rules).toBeUndefined()
+    state = setColumnRules(state, 'budget', { min: -5, integer: true })
+    expect(state.columns[2].rules).toEqual({ min: -5, integer: true })
+    expect(
+      changeColumnType(state, 'budget', 'text').columns[2].rules,
+    ).toBeUndefined()
+    expect(
+      setColumnRules(defaultState, 'done', { required: true }).columns[4],
+    ).not.toHaveProperty('rules')
+  })
+
+  it('sets and clears read-only and pins', () => {
+    let state = setColumnReadOnly(defaultState, 'name', true)
+    state = setColumnPin(state, 'name', 'left')
+    expect(state.columns[0]).toMatchObject({ readOnly: true, pin: 'left' })
+    state = setColumnPin(
+      setColumnReadOnly(state, 'name', false),
+      'name',
+      undefined,
+    )
+    expect(state.columns[0]).toEqual(defaultState.columns[0])
+  })
+
+  it('keeps row actions in menu order', () => {
+    let state: BuilderState = { ...defaultState, actions: [] }
+    state = toggleRowAction(state, 'delete')
+    state = toggleRowAction(state, 'copy')
+    expect(state.actions).toEqual(['copy', 'delete'])
+    expect(toggleRowAction(state, 'copy').actions).toEqual(['delete'])
+  })
+
+  it('never leaves export without a format, and cleans the file name', () => {
+    const one = setExport(defaultState, { formats: ['excel'] })
+    expect(one.exporting.formats).toEqual(['excel'])
+    expect(setExport(one, { formats: [] })).toBe(one)
+    expect(
+      setExport(defaultState, { filename: 'q3/<report>' }).exporting.filename,
+    ).toBe('q3report')
+  })
+
+  it('round-trips column settings through the URL', () => {
+    expect(decodeState(encodeState(richState))).toEqual(richState)
+  })
+
+  it('encodes a table without the new settings exactly as before', () => {
+    // Links shared before these features existed must keep working, and a
+    // table that doesn't use them keeps the same short link
+    const old = { c: [['a', 'A', 'text']], f: ['search'], fs: [], ps: [] }
+    const token = btoa(JSON.stringify(old))
+      .replace(/=+$/, '')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+    const state = decodeState(token)
+    expect(state.actions).toEqual(defaultState.actions)
+    expect(state.exporting).toEqual(defaultState.exporting)
+    expect(encodeState(state)).toBe(token)
+  })
+
+  it('ignores malformed column settings', () => {
+    const bad = btoa(
+      JSON.stringify({
+        c: [
+          ['a', 'A', 'text', [], 0, { ro: 'yes', p: 'top', mn: 'x', rq: 1 }],
+          ['b', 'B', 'checkbox', [], 'left', { mn: 3, in: 1 }],
+          ['c', 'C', 'number', [], 0, 'nope'],
+        ],
+        f: [],
+        a: ['delete', 'launch', 'copy'],
+        x: [['pdf'], 42],
+      }),
+    )
+    const state = decodeState(bad)
+    expect(state.columns[0]).toEqual({
+      id: 'a',
+      name: 'A',
+      type: 'text',
+      rules: { required: true },
+    })
+    expect(state.columns[1]).toEqual({
+      id: 'b',
+      name: 'B',
+      type: 'checkbox',
+      align: 'left',
+    })
+    expect(state.columns[2]).toEqual({ id: 'c', name: 'C', type: 'number' })
+    expect(state.actions).toEqual(['copy', 'delete'])
+    expect(state.exporting).toEqual(defaultState.exporting)
+  })
+})
+
 describe('URL state', () => {
   it('round-trips, including unicode names and rules', () => {
     const state: BuilderState = {
@@ -200,6 +334,8 @@ describe('URL state', () => {
         loadingRows: 8,
         loadingMessage: 'Chargement…',
       },
+      actions: ['delete'],
+      exporting: { formats: ['excel'], filename: 'rapport' },
     }
     expect(decodeState(encodeState(state))).toEqual(state)
     expect(decodeState(encodeState(defaultState))).toEqual(defaultState)
@@ -396,6 +532,8 @@ describe('generate', () => {
         ],
         pager: defaultState.pager,
         states: defaultState.states,
+        actions: defaultState.actions,
+        exporting: defaultState.exporting,
       },
     ],
     [
@@ -407,6 +545,8 @@ describe('generate', () => {
         presets: [],
         pager: { style: 'arrows', sizeSelect: true },
         states: defaultState.states,
+        actions: defaultState.actions,
+        exporting: defaultState.exporting,
       },
     ],
     [
@@ -418,6 +558,8 @@ describe('generate', () => {
         presets: [],
         pager: defaultState.pager,
         states: defaultState.states,
+        actions: defaultState.actions,
+        exporting: defaultState.exporting,
       },
     ],
     [
@@ -429,6 +571,8 @@ describe('generate', () => {
         presets: [],
         pager: defaultState.pager,
         states: defaultState.states,
+        actions: defaultState.actions,
+        exporting: defaultState.exporting,
       },
     ],
     [
@@ -451,6 +595,23 @@ describe('generate', () => {
         columns: everyType.map((c) => ({ ...c, align: 'center' as const })),
       },
     ],
+    ['every new feature, with rules and pins', richState],
+    [
+      'new features without filters, spinner loading',
+      {
+        ...richState,
+        features: allFeatures.filter((f) => f !== 'filters'),
+        states: { ...richState.states, loadingStyle: 'spinner' },
+      },
+    ],
+    [
+      'pinning without alignment or sorting',
+      {
+        ...richState,
+        columns: richState.columns.map(({ align: _a, ...c }) => c),
+        features: ['pinning', 'editing', 'export', 'columnVisibility'],
+      },
+    ],
     ...allFeatures.map((feature): [string, BuilderState] => [
       `only ${feature}`,
       {
@@ -460,6 +621,8 @@ describe('generate', () => {
         presets: [],
         pager: defaultState.pager,
         states: defaultState.states,
+        actions: defaultState.actions,
+        exporting: defaultState.exporting,
       },
     ]),
   ]
@@ -535,11 +698,156 @@ describe('generate', () => {
         presets: [],
         pager: defaultState.pager,
         states: defaultState.states,
+        actions: defaultState.actions,
+        exporting: defaultState.exporting,
       }),
     ).toBe('npx shadcn@latest add table skeleton')
     expect(installCommand(states[1][1])).toBe(
-      'npx shadcn@latest add table button input checkbox popover badge skeleton',
+      'npx shadcn@latest add table button input checkbox popover dropdown-menu select badge skeleton',
     )
+  })
+
+  const files = (state: BuilderState) =>
+    Object.fromEntries(
+      generate(state).map((f) => [f.path.split('/').pop()!, f.code]),
+    )
+
+  it('ships each feature module only when its feature is on', () => {
+    const extra = [
+      'editable-cell.tsx',
+      'row-actions.tsx',
+      'column-controls.tsx',
+      'export-menu.tsx',
+    ]
+    const plain = Object.keys(files(defaultState))
+    for (const name of extra) expect(plain).not.toContain(name)
+    expect(Object.keys(files(richState))).toEqual(expect.arrayContaining(extra))
+    // Row actions with nothing in the menu add no column
+    const empty = files({ ...richState, features: ['rowActions'], actions: [] })
+    expect(empty).not.toHaveProperty(['row-actions.tsx'])
+    expect(empty['columns.tsx']).not.toContain('RowActions')
+  })
+
+  it('writes validation rules, pins and actions into the code', () => {
+    const code = files(richState)
+    expect(code['columns.tsx']).toContain(
+      `field={{ type: 'text', rules: { required: true, max: 20 } }}`,
+    )
+    expect(code['columns.tsx']).toContain(
+      `field={{ type: 'number', rules: { min: 0, integer: true } }}`,
+    )
+    // A read-only column keeps its plain cell
+    expect(code['columns.tsx']).toMatch(
+      /accessorKey: 'note',\n\s+header: 'Note',\n\s+size: 180,\n\s+},/,
+    )
+    expect(code['columns.tsx']).toContain(
+      `actions={['copy', 'duplicate', 'delete']}`,
+    )
+    expect(code['data-table.tsx']).toContain(
+      `columnPinning: { left: ['select', 'name'], right: ['due', 'actions'] }`,
+    )
+    expect(code['data-table.tsx']).toContain('getRowId: (row) => row.id')
+    expect(code['data-table.tsx']).toContain(`filename={'table-export'}`)
+  })
+
+  it('keeps rows in local state only when something changes them', () => {
+    const copyOnly = files({
+      ...richState,
+      features: ['rowActions'],
+      actions: ['copy'],
+    })['data-table.tsx']
+    expect(copyOnly).not.toContain('tableData')
+    const readOnly = files({
+      ...richState,
+      features: ['editing'],
+      columns: richState.columns.map((c) => ({ ...c, readOnly: true })),
+    })
+    expect(readOnly['data-table.tsx']).not.toContain('updateCell')
+    expect(readOnly).not.toHaveProperty(['editable-cell.tsx'])
+    const deletes = files({
+      ...richState,
+      features: ['rowActions'],
+      actions: ['delete'],
+    })['data-table.tsx']
+    expect(deletes).toContain('deleteRow')
+    expect(deletes).not.toContain('duplicateRow')
+    expect(deletes).not.toContain('updateCell')
+  })
+
+  it.each(templates.map((t) => [t.id, t.state] as const))(
+    'template %s survives the URL and generates valid code',
+    (_id, state) => {
+      expect(decodeState(encodeState(state))).toEqual(state)
+      for (const file of generate(state)) {
+        expect(syntaxErrors(file.path, file.code), file.path).toEqual([])
+      }
+    },
+  )
+})
+
+describe('validate', () => {
+  const v = (raw: string, field: EditField) => validate(raw, field)
+
+  it('checks numbers, whole numbers and bounds', () => {
+    const field: EditField = {
+      type: 'number',
+      rules: { min: 0, max: 10, integer: true },
+    }
+    expect(v('5', field)).toBeNull()
+    expect(v('', field)).toBe('Enter a number')
+    expect(v('abc', field)).toBe('Enter a number')
+    expect(v('2.5', field)).toBe('Enter a whole number')
+    expect(v('-1', field)).toBe('Must be 0 or more')
+    expect(v('11', field)).toBe('Must be 10 or less')
+    expect(v('2.5', { type: 'number' })).toBeNull()
+  })
+
+  it('checks required text and its length, ignoring outer spaces', () => {
+    const field: EditField = {
+      type: 'text',
+      rules: { required: true, min: 2, max: 4 },
+    }
+    expect(v('   ', field)).toBe('Required')
+    expect(v(' a ', field)).toBe('At least 2 characters')
+    expect(v('abcde', field)).toBe('At most 4 characters')
+    expect(v(' abc ', field)).toBeNull()
+    expect(v('', { type: 'text', rules: { min: 2 } })).toBeNull()
+  })
+
+  it('checks dates', () => {
+    expect(v('', { type: 'date' })).toBeNull()
+    expect(v('', { type: 'date', rules: { required: true } })).toBe('Required')
+    expect(v('2025-13-45', { type: 'date' })).toBe('Enter a valid date')
+    expect(v('2025-02-03', { type: 'date' })).toBeNull()
+  })
+
+  it('stores numbers as numbers and trims text', () => {
+    expect(parse(' 42 ', { type: 'number' })).toBe(42)
+    expect(parse(' hi ', { type: 'text' })).toBe('hi')
+  })
+})
+
+describe('export files', () => {
+  it('quotes CSV cells and defuses spreadsheet formulas', () => {
+    expect(
+      toCsv(
+        ['Name', 'N'],
+        [
+          ['a,b', 1],
+          ['say "hi"', -2],
+          ['=SUM(A1)', 0],
+        ],
+      ),
+    ).toBe(['Name,N', '"a,b",1', '"say ""hi""",-2', "'=SUM(A1),0"].join('\r\n'))
+    expect(toCsv(['Done'], [[true], [false], [null]])).toBe(
+      ['Done', 'Yes', 'No', ''].join('\r\n'),
+    )
+  })
+
+  it('escapes HTML in the Excel table', () => {
+    const out = toExcelHtml(['<b>'], [['<script>&']])
+    expect(out).toContain('<th>&lt;b&gt;</th>')
+    expect(out).toContain('<td>&lt;script&gt;&amp;</td>')
   })
 })
 

@@ -5,6 +5,7 @@ import columnsSource from '#/components/column-pinning/columns.tsx?raw'
 import dataTableSource from '#/components/column-pinning/data-table.tsx?raw'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
+import { OpenInBuilder } from '#/components/builder/open-in-builder'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 import vueColumnPinningColumnPinningTableDemoSource from '#/components/vue/column-pinning/ColumnPinningTableDemo.vue?raw'
@@ -210,6 +211,8 @@ function ColumnPinningTablePage() {
             pin it left or right; hover a pinned header to unpin it.
           </p>
         </div>
+
+        <OpenInBuilder href="/column-pinning-table" />
 
         <InstallCommand name="column-pinning-table" />
 

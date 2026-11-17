@@ -2,6 +2,7 @@ import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
+import { OpenInBuilder } from '#/components/builder/open-in-builder'
 import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
@@ -144,6 +145,8 @@ export function EditableTablePage() {
             simulated failure, and can be undone one at a time.
           </p>
         </div>
+
+        <OpenInBuilder href="/editable-table" />
 
         <InstallCommand name="editable-table" />
 

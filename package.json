@@ -1,6 +1,7 @@
 {
   "name": "shadcn-table-library",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "imports": {
     "#/*": "./src/*"

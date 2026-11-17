@@ -1,21 +1,31 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearch } from '@tanstack/react-router'
-import { Check, Link2, Redo2, Undo2 } from 'lucide-react'
+import { Check, Database, Link2, Redo2, Undo2, X } from 'lucide-react'
 
 import { Button } from '#/components/ui/button'
-import { Checkbox } from '#/components/ui/checkbox'
-import { Label } from '#/components/ui/label'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '#/components/ui/tabs'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '#/components/ui/select'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
-import { decodeState, encodeState, featureBlocks, pagerStyles } from './schema'
-import type { BuilderState, FeatureId } from './schema'
+import { decodeState, encodeState, replaceColumns } from './schema'
+import type { BuilderState } from './schema'
 import { generate, registryCommand } from './generate'
 import { PreviewTable } from './preview-table'
-import { FiltersEditor } from './filters-editor'
+import { FeaturesPanel } from './features-panel'
 import { SchemaEditor } from './schema-editor'
 import { StatesEditor } from './states-editor'
 import type { PreviewView } from './states-editor'
+import { templates } from './templates'
+import { ImportDialog } from './import-dialog'
+import { coerceRows, matchesData, withDataOptions } from './import'
+import type { ImportedData } from './import'
 
 const previewViews: { value: PreviewView; label: string }[] = [
   { value: 'data', label: 'Data' },
@@ -23,39 +33,13 @@ const previewViews: { value: PreviewView; label: string }[] = [
   { value: 'empty', label: 'Empty' },
 ]
 
-function toggle<T>(list: T[], item: T) {
-  return list.includes(item) ? list.filter((x) => x !== item) : [...list, item]
-}
+type PanelTab = 'columns' | 'features' | 'states'
 
-function Block({
-  id,
-  label,
-  hint,
-  checked,
-  onChange,
-}: {
-  id: string
-  label: string
-  hint: string
-  checked: boolean
-  onChange: () => void
-}) {
+function Count({ children }: { children: number }) {
   return (
-    <Label
-      htmlFor={id}
-      className="flex cursor-pointer items-start gap-2.5 py-1 font-normal"
-    >
-      <Checkbox
-        id={id}
-        checked={checked}
-        onCheckedChange={onChange}
-        className="mt-0.5"
-      />
-      <span className="space-y-0">
-        <span className="block text-sm leading-tight">{label}</span>
-        <span className="block text-xs text-muted-foreground">{hint}</span>
-      </span>
-    </Label>
+    <span className="rounded-full bg-muted-foreground/15 px-1.5 text-xs tabular-nums text-muted-foreground">
+      {children}
+    </span>
   )
 }
 
@@ -140,6 +124,35 @@ export function BuilderPage() {
   } = useHistory(() => decodeState(search.t))
   const [copied, setCopied] = useState(false)
   const [view, setView] = useState<PreviewView>('data')
+  const [tab, setTab] = useState<PanelTab>('columns')
+
+  // ⌘Z / ⇧⌘Z (Ctrl on other systems), except while typing, where the field's
+  // own undo is what people expect
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (!(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== 'z') return
+      const target = e.target as HTMLElement | null
+      if (target?.closest('input, textarea, select, [contenteditable]')) return
+      e.preventDefault()
+      if (e.shiftKey) redo()
+      else undo()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [undo, redo])
+  // Imported rows live here and nowhere else: not in BuilderState, so never
+  // in the URL, the history or the registry command
+  const [imported, setImported] = useState<ImportedData | null>(null)
+  const importedRows = useMemo(
+    () =>
+      imported && matchesData(state.columns, imported)
+        ? coerceRows(state.columns, imported)
+        : undefined,
+    [imported, state.columns],
+  )
+  // A column switched to select takes its options from the data
+  const editSchema = (next: BuilderState) =>
+    setState(imported ? withDataOptions(state, next, imported) : next)
   const encoded = useMemo(() => encodeState(state), [state])
 
   const first = useRef(true)
@@ -164,7 +177,10 @@ export function BuilderPage() {
     setTimeout(() => setCopied(false), 1500)
   }
 
-  const files = useMemo(() => generate(state), [state])
+  const files = useMemo(
+    () => generate(state, { rows: importedRows }),
+    [state, importedRows],
+  )
 
   return (
     <DocsLayout hideSidebar>
@@ -174,134 +190,145 @@ export function BuilderPage() {
             Table Builder
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
-            Add your own columns, name them, pick a type, set up filters and
-            features, then copy the code. An early prototype: it generates the
-            table and filters, but not cell editing yet.
+            Set up your columns, switch on the features you need, and copy the
+            code. Start from scratch, from one of the examples, or from your own
+            data.
           </p>
+        </div>
+
+        {/* Everything that acts on the whole table, in one place */}
+        <div className="flex flex-wrap items-center gap-2">
+          <ImportDialog
+            onImport={(columns, data) => {
+              setState(replaceColumns(state, columns))
+              setImported(data)
+              setView('data')
+              setTab('columns')
+            }}
+          />
+          <Select
+            value=""
+            onValueChange={(id) => {
+              const template = templates.find((t) => t.id === id)
+              if (!template) return
+              // Goes through history, so Undo brings the old table back
+              setState(template.state)
+              // A template has its own columns, which the data won't fit
+              setImported(null)
+            }}
+          >
+            <SelectTrigger
+              size="sm"
+              className="w-full shadow-none sm:w-64"
+              aria-label="Start from an example"
+            >
+              <SelectValue placeholder="Start from an example…" />
+            </SelectTrigger>
+            <SelectContent>
+              {templates.map((t) => (
+                <SelectItem key={t.id} value={t.id}>
+                  <span className="flex flex-col items-start">
+                    <span>{t.title}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {t.description}
+                    </span>
+                  </span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <div className="ml-auto flex items-center gap-1">
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="size-8"
+              disabled={!canUndo}
+              onClick={undo}
+              aria-label="Undo"
+              title="Undo (⌘Z)"
+            >
+              <Undo2 className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="size-8"
+              disabled={!canRedo}
+              onClick={redo}
+              aria-label="Redo"
+              title="Redo (⇧⌘Z)"
+            >
+              <Redo2 className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="ml-1 shadow-none"
+              onClick={copyLink}
+              title={
+                imported
+                  ? 'The link saves your columns and settings, not your imported rows'
+                  : 'The link saves your columns and settings'
+              }
+            >
+              {copied ? (
+                <Check className="h-3.5 w-3.5" />
+              ) : (
+                <Link2 className="h-3.5 w-3.5" />
+              )}
+              {copied ? 'Copied' : 'Copy link'}
+            </Button>
+          </div>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
           {/* On desktop the card is pinned to the row height set by the preview, so it scrolls inside */}
-          <div className="relative lg:min-h-[32rem]">
-            <div className="space-y-4 rounded-xl border bg-card p-3 sm:p-4 lg:absolute lg:inset-0 lg:overflow-y-auto">
-              <div className="flex items-center justify-between gap-2">
-                <h2 className="text-sm font-medium">Schema</h2>
-                <div className="flex items-center gap-1">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    disabled={!canUndo}
-                    onClick={undo}
-                    aria-label="Undo"
-                  >
-                    <Undo2 className="h-3.5 w-3.5" />
-                    Undo
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    disabled={!canRedo}
-                    onClick={redo}
-                    aria-label="Redo"
-                  >
-                    <Redo2 className="h-3.5 w-3.5" />
-                    Redo
-                  </Button>
-                </div>
+          <div className="relative lg:min-h-[36rem]">
+            <Tabs
+              value={tab}
+              onValueChange={(value) => setTab(value as PanelTab)}
+              className="gap-0 overflow-hidden rounded-xl border bg-card lg:absolute lg:inset-0"
+            >
+              <div className="border-b p-2">
+                <TabsList className="w-full">
+                  <TabsTrigger value="columns">
+                    Columns
+                    <Count>{state.columns.length}</Count>
+                  </TabsTrigger>
+                  <TabsTrigger value="features">
+                    Features
+                    <Count>{state.features.length}</Count>
+                  </TabsTrigger>
+                  <TabsTrigger value="states">States</TabsTrigger>
+                </TabsList>
               </div>
-              <SchemaEditor state={state} onChange={setState} />
-              <fieldset className="space-y-2">
-                <legend className="mb-2 text-sm font-medium">Features</legend>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {featureBlocks.map((f) => (
-                    <Block
-                      key={f.id}
-                      id={`feat-${f.id}`}
-                      label={f.label}
-                      hint={f.hint}
-                      checked={state.features.includes(f.id)}
-                      onChange={() =>
-                        setState({
-                          ...state,
-                          features: toggle<FeatureId>(state.features, f.id),
-                        })
-                      }
-                    />
-                  ))}
-                </div>
-              </fieldset>
-              <StatesEditor
-                state={state}
-                onChange={setState}
-                onPreview={setView}
-              />
-              {state.features.includes('filters') ? (
-                <FiltersEditor state={state} onChange={setState} />
-              ) : null}
-              {state.features.includes('pagination') ? (
-                <fieldset className="space-y-2">
-                  <legend className="mb-2 text-sm font-medium">
-                    Pagination
-                  </legend>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm">Buttons</span>
-                    <div className="inline-flex rounded-md border p-0.5">
-                      {pagerStyles.map((p) => (
-                        <button
-                          key={p.value}
-                          type="button"
-                          aria-pressed={state.pager.style === p.value}
-                          onClick={() =>
-                            setState({
-                              ...state,
-                              pager: { ...state.pager, style: p.value },
-                            })
-                          }
-                          className="h-7 rounded px-3 text-xs text-muted-foreground aria-pressed:bg-muted aria-pressed:text-foreground"
-                        >
-                          {p.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <Block
-                    id="pager-size"
-                    label="Rows per page"
-                    hint="Select to change the page size"
-                    checked={state.pager.sizeSelect}
-                    onChange={() =>
-                      setState({
-                        ...state,
-                        pager: {
-                          ...state.pager,
-                          sizeSelect: !state.pager.sizeSelect,
-                        },
-                      })
-                    }
+              <div className="p-3 sm:p-4 lg:min-h-0 lg:flex-1 lg:overflow-y-auto">
+                <TabsContent value="columns">
+                  <SchemaEditor state={state} onChange={editSchema} />
+                </TabsContent>
+                <TabsContent value="features">
+                  <FeaturesPanel
+                    state={state}
+                    onChange={setState}
+                    onOpenColumns={() => setTab('columns')}
                   />
-                </fieldset>
-              ) : null}
-              <div className="flex flex-col gap-2 border-t pt-3">
-                <p className="text-xs text-muted-foreground">
-                  Your table lives in the URL, so you can share it.
-                </p>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={copyLink}
-                >
-                  {copied ? (
-                    <Check className="h-3.5 w-3.5" />
-                  ) : (
-                    <Link2 className="h-3.5 w-3.5" />
-                  )}
-                  {copied ? 'Copied' : 'Copy link'}
-                </Button>
+                </TabsContent>
+                <TabsContent value="states" className="space-y-3">
+                  <p className="text-xs text-muted-foreground">
+                    What the table shows with no rows, and while rows load.
+                    Editing a message switches the preview to it.
+                  </p>
+                  <StatesEditor
+                    state={state}
+                    onChange={setState}
+                    onPreview={setView}
+                  />
+                </TabsContent>
               </div>
-            </div>
+            </Tabs>
           </div>
 
           <div className="min-w-0 space-y-4">
@@ -313,6 +340,29 @@ export function BuilderPage() {
               // feature set needs a fresh table rather than an updated one
               preview={
                 <div className="space-y-3">
+                  {importedRows && imported ? (
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border bg-muted/40 px-3 py-2 text-sm">
+                      <Database className="size-4 shrink-0 text-muted-foreground" />
+                      <span className="min-w-0 flex-1">
+                        Previewing{' '}
+                        <span className="font-medium">
+                          {importedRows.length.toLocaleString('en-US')} rows
+                        </span>{' '}
+                        from {imported.source}. They stay in this tab and are
+                        left out of the link and the install command.
+                      </span>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="h-7"
+                        onClick={() => setImported(null)}
+                      >
+                        <X className="h-3.5 w-3.5" />
+                        Use sample data
+                      </Button>
+                    </div>
+                  ) : null}
                   <div className="inline-flex rounded-md border p-0.5">
                     {previewViews.map((v) => (
                       <button
@@ -327,9 +377,14 @@ export function BuilderPage() {
                     ))}
                   </div>
                   <PreviewTable
-                    key={state.features.join()}
+                    // Pins only seed the table's initial state, so a new
+                    // pin layout needs a fresh table too
+                    key={`${state.features.join()}|${state.columns
+                      .map((c) => c.pin ?? '')
+                      .join()}`}
                     state={state}
                     view={view}
+                    rows={importedRows}
                   />
                 </div>
               }

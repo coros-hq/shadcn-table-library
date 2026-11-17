@@ -128,3 +128,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to add a new table example.
 - [@dnd-kit](https://dndkit.com) for drag-and-drop examples (row/column reordering, resizing)
 - [Iconimate](https://iconimate.app) ([source](https://github.com/smammar100/Iconimate)) for the animated icon set, installed via its own `shadcn` registry
 - [Vitest](https://vitest.dev) and [Testing Library](https://testing-library.com) for tests
+
+## License
+
+[MIT](./LICENSE) © coros-hq. You can copy, change and ship these components in your own projects, commercial or not, as long as the license notice stays with them.

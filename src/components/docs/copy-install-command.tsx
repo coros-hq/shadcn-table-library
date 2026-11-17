@@ -28,16 +28,24 @@ export function InstallCommand({
     `npx shadcn add ${REGISTRY_BASE_URL}/${name}${isV9 ? '-v9' : ''}.json`
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(command)
+    try {
+      await navigator.clipboard.writeText(command)
+    } catch {
+      // clipboard blocked (insecure context or denied); don't claim success
+      return
+    }
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
   }
 
   return (
     <div className="flex items-center justify-between gap-3 rounded-lg border px-3 py-1.5">
-      <code className="overflow-x-auto font-mono text-xs whitespace-nowrap text-foreground">
+      <code
+        tabIndex={0}
+        className="min-w-0 overflow-x-auto rounded-sm font-mono text-xs whitespace-nowrap text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+      >
         <span className="text-muted-foreground select-none">$ </span>
-        {command}
+        <span className="select-all">{command}</span>
       </code>
       <Button
         type="button"

@@ -2,6 +2,7 @@ import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
+import { OpenInBuilder } from '#/components/builder/open-in-builder'
 import columnsSource from './columns.tsx?raw'
 import dataSource from './data.ts?raw'
 import tableSource from './data-table.tsx?raw'
@@ -155,6 +156,8 @@ export function ExportSelectedPage() {
             selected.
           </p>
         </div>
+
+        <OpenInBuilder href="/export-selected-table" />
 
         <InstallCommand name="export-selected-table" />
 

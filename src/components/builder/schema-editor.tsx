@@ -38,7 +38,9 @@ import { CSS } from '@dnd-kit/utilities'
 import type { LucideIcon } from 'lucide-react'
 
 import { Button } from '#/components/ui/button'
+import { Checkbox } from '#/components/ui/checkbox'
 import { Input } from '#/components/ui/input'
+import { Label } from '#/components/ui/label'
 import {
   Select,
   SelectContent,
@@ -59,9 +61,20 @@ import {
   setColumnAlign,
   alignments,
   reorderColumn,
+  ruleKeys,
   setColumnOptions,
+  setColumnPin,
+  setColumnReadOnly,
+  setColumnRules,
 } from './schema'
-import type { Align, BuilderState, ColumnSpec, ColumnType } from './schema'
+import type {
+  Align,
+  BuilderState,
+  ColumnSpec,
+  ColumnType,
+  Pin,
+  ValidationSpec,
+} from './schema'
 
 const typeIcon: Record<ColumnType, LucideIcon> = {
   text: Type,
@@ -100,7 +113,7 @@ export function SchemaEditor({
 
   return (
     <fieldset className="space-y-2">
-      <legend className="mb-2 text-sm font-medium">Columns</legend>
+      <legend className="sr-only">Columns</legend>
       {columns.length === 0 ? (
         <p className="rounded-md border border-dashed px-3 py-6 text-center text-sm text-muted-foreground">
           No columns yet. Add one to start building.
@@ -169,6 +182,19 @@ function ColumnRow({
   const AlignIcon = alignIcon[align]
   const [open, setOpen] = useState(false)
 
+  // Settings only show for what's switched on, so a plain table stays plain
+  const hasOptions = column.type === 'select'
+  const editing = state.features.includes('editing')
+  const pinning = state.features.includes('pinning')
+  const hasSettings = hasOptions || editing || pinning
+  const summary = [
+    hasOptions && `${column.options?.length ?? 0} options`,
+    editing && (column.readOnly ? 'read-only' : 'editable'),
+    pinning && column.pin && `pinned ${column.pin}`,
+  ]
+    .filter(Boolean)
+    .join(' · ')
+
   return (
     <li
       ref={setNodeRef}
@@ -198,12 +224,15 @@ function ColumnRow({
         >
           <SelectTrigger
             size="sm"
-            className="w-36 shrink-0 gap-2 px-2.5 text-sm shadow-none"
+            // On phones the type shows as its icon, leaving room for the name
+            className="w-auto shrink-0 gap-1.5 px-2 text-sm shadow-none sm:w-36 sm:gap-2 sm:px-2.5"
             aria-label={`Type of ${column.name}`}
           >
             <span className="flex items-center gap-2">
               <Icon className="h-3.5 w-3.5 text-muted-foreground" />
-              <SelectValue />
+              <span className="max-sm:sr-only">
+                <SelectValue />
+              </span>
             </span>
           </SelectTrigger>
           <SelectContent>
@@ -264,7 +293,7 @@ function ColumnRow({
           <Trash2 className="h-4 w-4" />
         </Button>
       </div>
-      {column.type === 'select' ? (
+      {hasSettings ? (
         <div className="pl-6">
           <button
             type="button"
@@ -275,23 +304,180 @@ function ColumnRow({
             <ChevronRight
               className={`h-3.5 w-3.5 transition-transform ${open ? 'rotate-90' : ''}`}
             />
-            Options
-            <span className="ml-auto rounded-full bg-muted px-1.5 tabular-nums">
-              {column.options?.length ?? 0}
-            </span>
+            {editing || pinning ? 'Settings' : 'Options'}
+            <span className="ml-auto truncate pl-2">{summary}</span>
           </button>
           {open ? (
-            <OptionsList
-              value={column.options ?? []}
-              label={`Options for ${column.name}`}
-              onCommit={(options) =>
-                onChange(setColumnOptions(state, column.id, options))
-              }
-            />
+            <div className="space-y-3 pt-1 pb-1.5">
+              {hasOptions ? (
+                <OptionsList
+                  value={column.options ?? []}
+                  label={`Options for ${column.name}`}
+                  onCommit={(options) =>
+                    onChange(setColumnOptions(state, column.id, options))
+                  }
+                />
+              ) : null}
+              {editing ? (
+                <EditSettings
+                  column={column}
+                  onReadOnly={(readOnly) =>
+                    onChange(setColumnReadOnly(state, column.id, readOnly))
+                  }
+                  onRules={(patch) =>
+                    onChange(setColumnRules(state, column.id, patch))
+                  }
+                />
+              ) : null}
+              {pinning ? (
+                <div className="flex items-center justify-between gap-2 px-1">
+                  <span className="text-xs text-muted-foreground">Pin</span>
+                  <div
+                    className="inline-flex rounded-md border p-0.5"
+                    role="group"
+                    aria-label={`Pin ${column.name}`}
+                  >
+                    {pinChoices.map((choice) => (
+                      <button
+                        key={choice.label}
+                        type="button"
+                        aria-pressed={column.pin === choice.value}
+                        onClick={() =>
+                          onChange(setColumnPin(state, column.id, choice.value))
+                        }
+                        className="h-6 rounded px-2.5 text-xs text-muted-foreground aria-pressed:bg-muted aria-pressed:text-foreground"
+                      >
+                        {choice.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
           ) : null}
         </div>
       ) : null}
     </li>
+  )
+}
+
+const pinChoices: { value: Pin | undefined; label: string }[] = [
+  { value: undefined, label: 'None' },
+  { value: 'left', label: 'Left' },
+  { value: 'right', label: 'Right' },
+]
+
+const ruleLabels: Record<ColumnType, { min: string; max: string }> = {
+  text: { min: 'Min length', max: 'Max length' },
+  number: { min: 'Min', max: 'Max' },
+  date: { min: '', max: '' },
+  select: { min: '', max: '' },
+  checkbox: { min: '', max: '' },
+}
+
+function EditSettings({
+  column,
+  onReadOnly,
+  onRules,
+}: {
+  column: ColumnSpec
+  onReadOnly: (readOnly: boolean) => void
+  onRules: (patch: ValidationSpec) => void
+}) {
+  const keys = ruleKeys[column.type]
+  const rules = column.rules ?? {}
+  const id = `col-${column.id}`
+  const labels = ruleLabels[column.type]
+  const bound = (key: 'min' | 'max') => (
+    <div className="space-y-1">
+      <Label htmlFor={`${id}-${key}`} className="text-xs font-normal">
+        {labels[key]}
+      </Label>
+      <Input
+        id={`${id}-${key}`}
+        type="number"
+        min={column.type === 'text' ? 0 : undefined}
+        step={column.type === 'text' ? 1 : 'any'}
+        value={rules[key] ?? ''}
+        placeholder="None"
+        onChange={(e) =>
+          onRules({
+            [key]: e.target.value === '' ? undefined : Number(e.target.value),
+          })
+        }
+        className="h-7 px-2 text-sm shadow-none"
+      />
+    </div>
+  )
+  const conflict =
+    rules.min !== undefined && rules.max !== undefined && rules.min > rules.max
+
+  return (
+    <div className="space-y-2 px-1">
+      <Label
+        htmlFor={`${id}-editable`}
+        className="flex cursor-pointer items-center gap-2 text-xs font-normal"
+      >
+        <Checkbox
+          id={`${id}-editable`}
+          checked={!column.readOnly}
+          onCheckedChange={(value) => onReadOnly(value !== true)}
+        />
+        Editable
+      </Label>
+      {!column.readOnly && keys.length ? (
+        <div className="space-y-2 rounded-md bg-muted/40 p-2">
+          <p className="text-xs text-muted-foreground">Validation</p>
+          {keys.includes('min') ? (
+            <div className="grid grid-cols-2 gap-2">
+              {bound('min')}
+              {bound('max')}
+            </div>
+          ) : null}
+          {conflict ? (
+            <p className="text-xs text-destructive">
+              {labels.min} is above {labels.max.toLowerCase()}, so no value can
+              pass.
+            </p>
+          ) : null}
+          {keys.includes('required') ? (
+            <Label
+              htmlFor={`${id}-required`}
+              className="flex cursor-pointer items-center gap-2 text-xs font-normal"
+            >
+              <Checkbox
+                id={`${id}-required`}
+                checked={rules.required === true}
+                onCheckedChange={(value) =>
+                  onRules({ required: value === true })
+                }
+              />
+              Required
+            </Label>
+          ) : null}
+          {keys.includes('integer') ? (
+            <Label
+              htmlFor={`${id}-integer`}
+              className="flex cursor-pointer items-center gap-2 text-xs font-normal"
+            >
+              <Checkbox
+                id={`${id}-integer`}
+                checked={rules.integer === true}
+                onCheckedChange={(value) =>
+                  onRules({ integer: value === true })
+                }
+              />
+              Whole numbers only
+            </Label>
+          ) : null}
+        </div>
+      ) : null}
+      {!column.readOnly && column.type === 'number' ? (
+        <p className="text-xs text-muted-foreground">
+          Numbers can't be left empty.
+        </p>
+      ) : null}
+    </div>
   )
 }
 

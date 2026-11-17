@@ -38,7 +38,7 @@ export function FiltersEditor({
 
   return (
     <fieldset className="space-y-3">
-      <legend className="mb-2 text-sm font-medium">Filters</legend>
+      <legend className="sr-only">Filters</legend>
 
       <div className="space-y-1.5">
         <p className="text-xs text-muted-foreground">

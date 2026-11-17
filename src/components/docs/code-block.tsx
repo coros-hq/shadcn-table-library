@@ -23,7 +23,12 @@ export function CodeBlock({
   const trimmed = code.trim()
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(trimmed)
+    try {
+      await navigator.clipboard.writeText(trimmed)
+    } catch {
+      // clipboard blocked (insecure context or denied); don't claim success
+      return
+    }
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
   }

@@ -13,10 +13,38 @@ export type ColumnType = FieldType
 export type Align = 'left' | 'center' | 'right'
 export const alignments: Align[] = ['left', 'center', 'right']
 
+export type Pin = 'left' | 'right'
+export const pins: Pin[] = ['left', 'right']
+
+/**
+ * What an edited value must satisfy before it is saved. `min`/`max` bound the
+ * value for numbers and the length for text. Only the rules a column's type
+ * supports are kept (see `ruleKeys`).
+ */
+export interface ValidationSpec {
+  required?: boolean
+  min?: number
+  max?: number
+  integer?: boolean
+}
+
+export const ruleKeys: Record<ColumnType, (keyof ValidationSpec)[]> = {
+  text: ['required', 'min', 'max'],
+  number: ['min', 'max', 'integer'],
+  date: ['required'],
+  select: [],
+  checkbox: [],
+}
+
 export interface ColumnSpec extends Field {
   type: ColumnType
   /** Only set when the user overrides the type's default */
   align?: Align
+  /** With editing on every column is editable unless it opts out */
+  readOnly?: boolean
+  rules?: ValidationSpec
+  /** Where the column sticks when pinning is on */
+  pin?: Pin
 }
 
 /** Numbers read best right-aligned; everything else starts left */
@@ -24,7 +52,36 @@ export const effectiveAlign = (column: ColumnSpec): Align =>
   column.align ?? (column.type === 'number' ? 'right' : 'left')
 
 export type FeatureId =
-  'search' | 'sorting' | 'pagination' | 'selection' | 'filters'
+  | 'search'
+  | 'sorting'
+  | 'pagination'
+  | 'selection'
+  | 'filters'
+  | 'editing'
+  | 'rowActions'
+  | 'columnVisibility'
+  | 'pinning'
+  | 'export'
+
+export type RowActionId = 'copy' | 'duplicate' | 'delete'
+export const rowActionOptions: { value: RowActionId; label: string }[] = [
+  { value: 'copy', label: 'Copy ID' },
+  { value: 'duplicate', label: 'Duplicate' },
+  { value: 'delete', label: 'Delete' },
+]
+
+export type ExportFormat = 'csv' | 'excel'
+export const exportFormats: { value: ExportFormat; label: string }[] = [
+  { value: 'csv', label: 'CSV' },
+  { value: 'excel', label: 'Excel' },
+]
+export const MAX_FILENAME_LENGTH = 40
+
+export interface ExportSpec {
+  formats: ExportFormat[]
+  /** Without the extension */
+  filename: string
+}
 
 export type PagerStyle = 'text' | 'arrows'
 export const pagerStyles: { value: PagerStyle; label: string }[] = [
@@ -67,6 +124,9 @@ export interface BuilderState {
   presets: Preset[]
   pager: PagerSpec
   states: StatesSpec
+  /** The row menu's items, in menu order */
+  actions: RowActionId[]
+  exporting: ExportSpec
 }
 
 export const MAX_COLUMNS = 20
@@ -92,6 +152,15 @@ export const featureBlocks: {
   { id: 'sorting', label: 'Sorting', hint: 'Click a header to sort' },
   { id: 'pagination', label: 'Pagination', hint: '5 rows per page' },
   { id: 'selection', label: 'Row selection', hint: 'Checkbox column' },
+  { id: 'editing', label: 'Editable cells', hint: 'Click a cell to edit' },
+  { id: 'rowActions', label: 'Row actions', hint: 'Menu on each row' },
+  {
+    id: 'columnVisibility',
+    label: 'Column visibility',
+    hint: 'Show or hide columns',
+  },
+  { id: 'pinning', label: 'Column pinning', hint: 'Sticky left or right' },
+  { id: 'export', label: 'Export', hint: 'Download CSV or Excel' },
 ]
 
 const featureIds = featureBlocks.map((f) => f.id)
@@ -124,6 +193,8 @@ export const defaultState: BuilderState = {
     loadingRows: 5,
     loadingMessage: 'Loading...',
   },
+  actions: ['copy', 'duplicate', 'delete'],
+  exporting: { formats: ['csv', 'excel'], filename: 'table-export' },
 }
 
 const defaultOptions = () => ['Option 1', 'Option 2', 'Option 3']
@@ -186,6 +257,14 @@ function withColumns(state: BuilderState, columns: ColumnSpec[]) {
   }
 }
 
+/** Swaps in a whole new set of columns, dropping filters that no longer fit */
+export function replaceColumns(
+  state: BuilderState,
+  columns: ColumnSpec[],
+): BuilderState {
+  return withColumns(state, columns.slice(0, MAX_COLUMNS))
+}
+
 export function addColumn(state: BuilderState): BuilderState {
   if (state.columns.length >= MAX_COLUMNS) return state
   let n = state.columns.length + 1
@@ -236,7 +315,9 @@ export function changeColumnType(
   if (!current || current.type === type) return state
   const columns = state.columns.map((c) => {
     if (c.id !== id) return c
-    const { options: _dropped, ...rest } = c
+    // Rules are written for one type ("min" is a length for text, a value
+    // for numbers), so they never carry over
+    const { options: _dropped, rules: _rules, ...rest } = c
     return type === 'select'
       ? { ...rest, type, options: defaultOptions() }
       : { ...rest, type }
@@ -268,6 +349,107 @@ export function setColumnOptions(
     ),
   )
 }
+
+export function setColumnReadOnly(
+  state: BuilderState,
+  id: string,
+  readOnly: boolean,
+): BuilderState {
+  return withColumns(
+    state,
+    state.columns.map((c) => {
+      if (c.id !== id) return c
+      const { readOnly: _dropped, ...rest } = c
+      return readOnly ? { ...rest, readOnly: true } : rest
+    }),
+  )
+}
+
+/** Keeps only the rules the type supports, with sane numbers */
+export function cleanRules(
+  type: ColumnType,
+  rules: ValidationSpec | undefined,
+): ValidationSpec | undefined {
+  if (!rules) return undefined
+  const allowed = ruleKeys[type]
+  const out: ValidationSpec = {}
+  if (allowed.includes('required') && rules.required) out.required = true
+  if (allowed.includes('integer') && rules.integer) out.integer = true
+  for (const key of ['min', 'max'] as const) {
+    const value = rules[key]
+    if (!allowed.includes(key) || typeof value !== 'number') continue
+    if (!Number.isFinite(value)) continue
+    // A length can't be negative or fractional
+    if (type === 'text') {
+      if (value >= 0) out[key] = Math.min(Math.floor(value), 10_000)
+    } else {
+      out[key] = value
+    }
+  }
+  return Object.keys(out).length ? out : undefined
+}
+
+export function setColumnRules(
+  state: BuilderState,
+  id: string,
+  patch: ValidationSpec,
+): BuilderState {
+  return withColumns(
+    state,
+    state.columns.map((c) => {
+      if (c.id !== id) return c
+      const { rules: _dropped, ...rest } = c
+      const rules = cleanRules(c.type, { ...c.rules, ...patch })
+      return rules ? { ...rest, rules } : rest
+    }),
+  )
+}
+
+export function setColumnPin(
+  state: BuilderState,
+  id: string,
+  pin: Pin | undefined,
+): BuilderState {
+  return withColumns(
+    state,
+    state.columns.map((c) => {
+      if (c.id !== id) return c
+      const { pin: _dropped, ...rest } = c
+      return pin ? { ...rest, pin } : rest
+    }),
+  )
+}
+
+export function toggleRowAction(
+  state: BuilderState,
+  action: RowActionId,
+): BuilderState {
+  const on = state.actions.includes(action)
+  // Keep menu order stable whatever order they were switched on in
+  const actions = rowActionOptions
+    .map((a) => a.value)
+    .filter((a) => (a === action ? !on : state.actions.includes(a)))
+  return { ...state, actions }
+}
+
+export function setExport(
+  state: BuilderState,
+  patch: Partial<ExportSpec>,
+): BuilderState {
+  const formats = exportFormats
+    .map((f) => f.value)
+    .filter((f) => (patch.formats ?? state.exporting.formats).includes(f))
+  // An export menu with nothing in it would be a dead button
+  if (formats.length === 0) return state
+  const filename = (patch.filename ?? state.exporting.filename)
+    .replace(/[^\w .-]/g, '')
+    .slice(0, MAX_FILENAME_LENGTH)
+  return { ...state, exporting: { formats, filename } }
+}
+
+/** What the generated code falls back to when the name is cleared */
+export const exportFilename = (spec: ExportSpec) =>
+  spec.filename.trim() || defaultState.exporting.filename
 
 export function setStates(
   state: BuilderState,
@@ -408,8 +590,18 @@ export function reorderColumn(
 // URL state. One base64url JSON blob keeps the link a single short param.
 // ---------------------------------------------------------------------------
 
+/** Per-column settings beyond the basics, only present when set */
+type CompactExtras = {
+  ro?: 1
+  rq?: 1
+  mn?: number
+  mx?: number
+  in?: 1
+  p?: Pin
+}
+
 type Compact = {
-  c: [string, string, string, string[]?, Align?][]
+  c: [string, string, string, string[]?, (Align | 0)?, CompactExtras?][]
   f: string[]
   fs: [string, FacetKind][]
   ps: [string, string, string, string, string][]
@@ -417,6 +609,21 @@ type Compact = {
   p?: [PagerStyle, 0 | 1]
   /** Only present when it differs from the default messages */
   s?: [string, string, LoadingStyle, number, string]
+  /** Row actions, only when they differ from the default */
+  a?: RowActionId[]
+  /** Export formats and filename, only when they differ from the default */
+  x?: [ExportFormat[], string]
+}
+
+function columnExtras(c: ColumnSpec): CompactExtras | undefined {
+  const extras: CompactExtras = {}
+  if (c.readOnly) extras.ro = 1
+  if (c.rules?.required) extras.rq = 1
+  if (c.rules?.min !== undefined) extras.mn = c.rules.min
+  if (c.rules?.max !== undefined) extras.mx = c.rules.max
+  if (c.rules?.integer) extras.in = 1
+  if (c.pin) extras.p = c.pin
+  return Object.keys(extras).length ? extras : undefined
 }
 
 function toBase64Url(text: string) {
@@ -436,6 +643,8 @@ export function encodeState(state: BuilderState): string {
   const compact: Compact = {
     c: state.columns.map((c) => {
       const options = c.type === 'select' ? (c.options ?? []) : []
+      const extras = columnExtras(c)
+      if (extras) return [c.id, c.name, c.type, options, c.align ?? 0, extras]
       if (c.align) return [c.id, c.name, c.type, options, c.align]
       return c.type === 'select'
         ? [c.id, c.name, c.type, options]
@@ -464,6 +673,13 @@ export function encodeState(state: BuilderState): string {
       t.loadingMessage,
     ]
   }
+  if (state.actions.join() !== defaultState.actions.join()) {
+    compact.a = state.actions
+  }
+  const x = state.exporting
+  if (JSON.stringify(x) !== JSON.stringify(defaultState.exporting)) {
+    compact.x = [x.formats, x.filename]
+  }
   return toBase64Url(JSON.stringify(compact))
 }
 
@@ -481,6 +697,8 @@ export function decodeState(value: string | undefined): BuilderState {
       ps?: unknown
       p?: unknown
       s?: unknown
+      a?: unknown
+      x?: unknown
     }
     if (!Array.isArray(raw.c) || !Array.isArray(raw.f)) {
       return defaultState
@@ -489,7 +707,7 @@ export function decodeState(value: string | undefined): BuilderState {
     const columns: ColumnSpec[] = []
     for (const entry of raw.c.slice(0, MAX_COLUMNS)) {
       if (!Array.isArray(entry)) continue
-      const [id, name, type, options, align] = entry as unknown[]
+      const [id, name, type, options, align, extras] = entry as unknown[]
       if (!isString(id) || !/^[a-z_][a-z0-9_]*$/.test(id) || id === 'id')
         continue
       if (columns.some((c) => c.id === id)) continue
@@ -504,6 +722,18 @@ export function decodeState(value: string | undefined): BuilderState {
       }
       if (isString(align) && alignments.includes(align as Align)) {
         column.align = align as Align
+      }
+      if (extras && typeof extras === 'object' && !Array.isArray(extras)) {
+        const e = extras as Record<string, unknown>
+        if (e.ro === 1) column.readOnly = true
+        if (e.p === 'left' || e.p === 'right') column.pin = e.p
+        const rules = cleanRules(column.type, {
+          required: e.rq === 1,
+          integer: e.in === 1,
+          min: typeof e.mn === 'number' ? e.mn : undefined,
+          max: typeof e.mx === 'number' ? e.mx : undefined,
+        })
+        if (rules) column.rules = rules
       }
       if (column.type === 'select') {
         const list = Array.isArray(options) ? options.filter(isString) : []
@@ -570,6 +800,25 @@ export function decodeState(value: string | undefined): BuilderState {
       if (isString(message)) states.loadingMessage = message
     }
 
+    const actions = Array.isArray(raw.a)
+      ? rowActionOptions
+          .map((a) => a.value)
+          .filter((a) => (raw.a as unknown[]).includes(a))
+      : defaultState.actions
+
+    let exporting = defaultState.exporting
+    if (Array.isArray(raw.x)) {
+      const [formats, filename] = raw.x as unknown[]
+      exporting = setExport(defaultState, {
+        formats: Array.isArray(formats)
+          ? exportFormats
+              .map((f) => f.value)
+              .filter((f) => (formats as unknown[]).includes(f))
+          : undefined,
+        filename: isString(filename) ? filename : undefined,
+      }).exporting
+    }
+
     return {
       columns,
       features,
@@ -577,6 +826,8 @@ export function decodeState(value: string | undefined): BuilderState {
       presets,
       pager,
       states: setStates({ ...defaultState, states }, {}).states,
+      actions,
+      exporting,
     }
   } catch {
     return defaultState
@@ -588,7 +839,8 @@ export function decodeState(value: string | undefined): BuilderState {
 // server render all agree.
 // ---------------------------------------------------------------------------
 
-export type Row = Record<string, string | number | boolean>
+/** `null` is an empty number cell in imported data */
+export type Row = Record<string, string | number | boolean | null>
 
 const words = [
   'Website redesign',
