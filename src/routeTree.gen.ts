@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnimatedIconsTableRouteImport } from './routes/animated-icons-table'
+import { Route as AnomalyInvestigationTableRouteImport } from './routes/anomaly-investigation-table'
 import { Route as AsyncActionsTableRouteImport } from './routes/async-actions-table'
 import { Route as BuilderRouteImport } from './routes/builder'
 import { Route as ChangeReviewTableRouteImport } from './routes/change-review-table'
+import { Route as CohortRetentionTableRouteImport } from './routes/cohort-retention-table'
 import { Route as ColumnPinningTableRouteImport } from './routes/column-pinning-table'
 import { Route as ComparisonTableRouteImport } from './routes/comparison-table'
 import { Route as ConditionalFormattingTableRouteImport } from './routes/conditional-formatting-table'
@@ -21,17 +23,20 @@ import { Route as CrmEmployeesTableRouteImport } from './routes/crm-employees-ta
 import { Route as CsvImportTableRouteImport } from './routes/csv-import-table'
 import { Route as DataTableRouteImport } from './routes/data-table'
 import { Route as DeploymentsTableRouteImport } from './routes/deployments-table'
+import { Route as DraftRowsTableRouteImport } from './routes/draft-rows-table'
 import { Route as EditableTableRouteImport } from './routes/editable-table'
 import { Route as EmptyStateTableRouteImport } from './routes/empty-state-table'
 import { Route as ErrorStateTableRouteImport } from './routes/error-state-table'
 import { Route as ExportConfigTableRouteImport } from './routes/export-config-table'
 import { Route as ExportSelectedTableRouteImport } from './routes/export-selected-table'
+import { Route as FileBrowserTableRouteImport } from './routes/file-browser-table'
 import { Route as FilterStateShapeTableRouteImport } from './routes/filter-state-shape-table'
 import { Route as FilterToolbarTableRouteImport } from './routes/filter-toolbar-table'
 import { Route as GroupedTableRouteImport } from './routes/grouped-table'
 import { Route as HeatmapTableRouteImport } from './routes/heatmap-table'
 import { Route as InfiniteScrollTableRouteImport } from './routes/infinite-scroll-table'
 import { Route as InventoryAllocationTableRouteImport } from './routes/inventory-allocation-table'
+import { Route as JobQueueTableRouteImport } from './routes/job-queue-table'
 import { Route as KpiTableRouteImport } from './routes/kpi-table'
 import { Route as LiveStatusTableRouteImport } from './routes/live-status-table'
 import { Route as LoadingStateTableRouteImport } from './routes/loading-state-table'
@@ -45,9 +50,11 @@ import { Route as PivotTableRouteImport } from './routes/pivot-table'
 import { Route as ProductionDashboardTableRouteImport } from './routes/production-dashboard-table'
 import { Route as ReorderTableRouteImport } from './routes/reorder-table'
 import { Route as ResizableTableRouteImport } from './routes/resizable-table'
+import { Route as ScheduleMatrixTableRouteImport } from './routes/schedule-matrix-table'
 import { Route as ServerCombinedTableRouteImport } from './routes/server-combined-table'
 import { Route as ServerFilterRouteImport } from './routes/server-filter'
 import { Route as ServerTableRouteImport } from './routes/server-table'
+import { Route as SplitDetailTableRouteImport } from './routes/split-detail-table'
 import { Route as SpreadsheetTableRouteImport } from './routes/spreadsheet-table'
 import { Route as ToolbarFilterTableRouteImport } from './routes/toolbar-filter-table'
 import { Route as TreeReorderRouteImport } from './routes/tree-reorder'
@@ -102,6 +109,12 @@ const AnimatedIconsTableRoute = AnimatedIconsTableRouteImport.update({
   path: '/animated-icons-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnomalyInvestigationTableRoute =
+  AnomalyInvestigationTableRouteImport.update({
+    id: '/anomaly-investigation-table',
+    path: '/anomaly-investigation-table',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AsyncActionsTableRoute = AsyncActionsTableRouteImport.update({
   id: '/async-actions-table',
   path: '/async-actions-table',
@@ -115,6 +128,11 @@ const BuilderRoute = BuilderRouteImport.update({
 const ChangeReviewTableRoute = ChangeReviewTableRouteImport.update({
   id: '/change-review-table',
   path: '/change-review-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CohortRetentionTableRoute = CohortRetentionTableRouteImport.update({
+  id: '/cohort-retention-table',
+  path: '/cohort-retention-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ColumnPinningTableRoute = ColumnPinningTableRouteImport.update({
@@ -153,6 +171,11 @@ const DeploymentsTableRoute = DeploymentsTableRouteImport.update({
   path: '/deployments-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DraftRowsTableRoute = DraftRowsTableRouteImport.update({
+  id: '/draft-rows-table',
+  path: '/draft-rows-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EditableTableRoute = EditableTableRouteImport.update({
   id: '/editable-table',
   path: '/editable-table',
@@ -176,6 +199,11 @@ const ExportConfigTableRoute = ExportConfigTableRouteImport.update({
 const ExportSelectedTableRoute = ExportSelectedTableRouteImport.update({
   id: '/export-selected-table',
   path: '/export-selected-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FileBrowserTableRoute = FileBrowserTableRouteImport.update({
+  id: '/file-browser-table',
+  path: '/file-browser-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FilterStateShapeTableRoute = FilterStateShapeTableRouteImport.update({
@@ -209,6 +237,11 @@ const InventoryAllocationTableRoute =
     path: '/inventory-allocation-table',
     getParentRoute: () => rootRouteImport,
   } as any)
+const JobQueueTableRoute = JobQueueTableRouteImport.update({
+  id: '/job-queue-table',
+  path: '/job-queue-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KpiTableRoute = KpiTableRouteImport.update({
   id: '/kpi-table',
   path: '/kpi-table',
@@ -275,6 +308,11 @@ const ResizableTableRoute = ResizableTableRouteImport.update({
   path: '/resizable-table',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ScheduleMatrixTableRoute = ScheduleMatrixTableRouteImport.update({
+  id: '/schedule-matrix-table',
+  path: '/schedule-matrix-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServerCombinedTableRoute = ServerCombinedTableRouteImport.update({
   id: '/server-combined-table',
   path: '/server-combined-table',
@@ -288,6 +326,11 @@ const ServerFilterRoute = ServerFilterRouteImport.update({
 const ServerTableRoute = ServerTableRouteImport.update({
   id: '/server-table',
   path: '/server-table',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplitDetailTableRoute = SplitDetailTableRouteImport.update({
+  id: '/split-detail-table',
+  path: '/split-detail-table',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpreadsheetTableRoute = SpreadsheetTableRouteImport.update({
@@ -512,9 +555,11 @@ const V9UtilityTableRoute = V9UtilityTableRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/anomaly-investigation-table': typeof AnomalyInvestigationTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
   '/builder': typeof BuilderRoute
   '/change-review-table': typeof ChangeReviewTableRoute
+  '/cohort-retention-table': typeof CohortRetentionTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
@@ -522,17 +567,20 @@ export interface FileRoutesByFullPath {
   '/csv-import-table': typeof CsvImportTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
+  '/draft-rows-table': typeof DraftRowsTableRoute
   '/editable-table': typeof EditableTableRoute
   '/empty-state-table': typeof EmptyStateTableRoute
   '/error-state-table': typeof ErrorStateTableRoute
   '/export-config-table': typeof ExportConfigTableRoute
   '/export-selected-table': typeof ExportSelectedTableRoute
+  '/file-browser-table': typeof FileBrowserTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/infinite-scroll-table': typeof InfiniteScrollTableRoute
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
+  '/job-queue-table': typeof JobQueueTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/loading-state-table': typeof LoadingStateTableRoute
@@ -546,9 +594,11 @@ export interface FileRoutesByFullPath {
   '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
   '/resizable-table': typeof ResizableTableRoute
+  '/schedule-matrix-table': typeof ScheduleMatrixTableRoute
   '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/split-detail-table': typeof SplitDetailTableRoute
   '/spreadsheet-table': typeof SpreadsheetTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
@@ -596,9 +646,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/anomaly-investigation-table': typeof AnomalyInvestigationTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
   '/builder': typeof BuilderRoute
   '/change-review-table': typeof ChangeReviewTableRoute
+  '/cohort-retention-table': typeof CohortRetentionTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
@@ -606,17 +658,20 @@ export interface FileRoutesByTo {
   '/csv-import-table': typeof CsvImportTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
+  '/draft-rows-table': typeof DraftRowsTableRoute
   '/editable-table': typeof EditableTableRoute
   '/empty-state-table': typeof EmptyStateTableRoute
   '/error-state-table': typeof ErrorStateTableRoute
   '/export-config-table': typeof ExportConfigTableRoute
   '/export-selected-table': typeof ExportSelectedTableRoute
+  '/file-browser-table': typeof FileBrowserTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/infinite-scroll-table': typeof InfiniteScrollTableRoute
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
+  '/job-queue-table': typeof JobQueueTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/loading-state-table': typeof LoadingStateTableRoute
@@ -630,9 +685,11 @@ export interface FileRoutesByTo {
   '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
   '/resizable-table': typeof ResizableTableRoute
+  '/schedule-matrix-table': typeof ScheduleMatrixTableRoute
   '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/split-detail-table': typeof SplitDetailTableRoute
   '/spreadsheet-table': typeof SpreadsheetTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
@@ -681,9 +738,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/animated-icons-table': typeof AnimatedIconsTableRoute
+  '/anomaly-investigation-table': typeof AnomalyInvestigationTableRoute
   '/async-actions-table': typeof AsyncActionsTableRoute
   '/builder': typeof BuilderRoute
   '/change-review-table': typeof ChangeReviewTableRoute
+  '/cohort-retention-table': typeof CohortRetentionTableRoute
   '/column-pinning-table': typeof ColumnPinningTableRoute
   '/comparison-table': typeof ComparisonTableRoute
   '/conditional-formatting-table': typeof ConditionalFormattingTableRoute
@@ -691,17 +750,20 @@ export interface FileRoutesById {
   '/csv-import-table': typeof CsvImportTableRoute
   '/data-table': typeof DataTableRoute
   '/deployments-table': typeof DeploymentsTableRoute
+  '/draft-rows-table': typeof DraftRowsTableRoute
   '/editable-table': typeof EditableTableRoute
   '/empty-state-table': typeof EmptyStateTableRoute
   '/error-state-table': typeof ErrorStateTableRoute
   '/export-config-table': typeof ExportConfigTableRoute
   '/export-selected-table': typeof ExportSelectedTableRoute
+  '/file-browser-table': typeof FileBrowserTableRoute
   '/filter-state-shape-table': typeof FilterStateShapeTableRoute
   '/filter-toolbar-table': typeof FilterToolbarTableRoute
   '/grouped-table': typeof GroupedTableRoute
   '/heatmap-table': typeof HeatmapTableRoute
   '/infinite-scroll-table': typeof InfiniteScrollTableRoute
   '/inventory-allocation-table': typeof InventoryAllocationTableRoute
+  '/job-queue-table': typeof JobQueueTableRoute
   '/kpi-table': typeof KpiTableRoute
   '/live-status-table': typeof LiveStatusTableRoute
   '/loading-state-table': typeof LoadingStateTableRoute
@@ -715,9 +777,11 @@ export interface FileRoutesById {
   '/production-dashboard-table': typeof ProductionDashboardTableRoute
   '/reorder-table': typeof ReorderTableRoute
   '/resizable-table': typeof ResizableTableRoute
+  '/schedule-matrix-table': typeof ScheduleMatrixTableRoute
   '/server-combined-table': typeof ServerCombinedTableRoute
   '/server-filter': typeof ServerFilterRoute
   '/server-table': typeof ServerTableRoute
+  '/split-detail-table': typeof SplitDetailTableRoute
   '/spreadsheet-table': typeof SpreadsheetTableRoute
   '/toolbar-filter-table': typeof ToolbarFilterTableRoute
   '/tree-reorder': typeof TreeReorderRoute
@@ -767,9 +831,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/animated-icons-table'
+    | '/anomaly-investigation-table'
     | '/async-actions-table'
     | '/builder'
     | '/change-review-table'
+    | '/cohort-retention-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
@@ -777,17 +843,20 @@ export interface FileRouteTypes {
     | '/csv-import-table'
     | '/data-table'
     | '/deployments-table'
+    | '/draft-rows-table'
     | '/editable-table'
     | '/empty-state-table'
     | '/error-state-table'
     | '/export-config-table'
     | '/export-selected-table'
+    | '/file-browser-table'
     | '/filter-state-shape-table'
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
     | '/infinite-scroll-table'
     | '/inventory-allocation-table'
+    | '/job-queue-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/loading-state-table'
@@ -801,9 +870,11 @@ export interface FileRouteTypes {
     | '/production-dashboard-table'
     | '/reorder-table'
     | '/resizable-table'
+    | '/schedule-matrix-table'
     | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
+    | '/split-detail-table'
     | '/spreadsheet-table'
     | '/toolbar-filter-table'
     | '/tree-reorder'
@@ -851,9 +922,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/animated-icons-table'
+    | '/anomaly-investigation-table'
     | '/async-actions-table'
     | '/builder'
     | '/change-review-table'
+    | '/cohort-retention-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
@@ -861,17 +934,20 @@ export interface FileRouteTypes {
     | '/csv-import-table'
     | '/data-table'
     | '/deployments-table'
+    | '/draft-rows-table'
     | '/editable-table'
     | '/empty-state-table'
     | '/error-state-table'
     | '/export-config-table'
     | '/export-selected-table'
+    | '/file-browser-table'
     | '/filter-state-shape-table'
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
     | '/infinite-scroll-table'
     | '/inventory-allocation-table'
+    | '/job-queue-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/loading-state-table'
@@ -885,9 +961,11 @@ export interface FileRouteTypes {
     | '/production-dashboard-table'
     | '/reorder-table'
     | '/resizable-table'
+    | '/schedule-matrix-table'
     | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
+    | '/split-detail-table'
     | '/spreadsheet-table'
     | '/toolbar-filter-table'
     | '/tree-reorder'
@@ -935,9 +1013,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/animated-icons-table'
+    | '/anomaly-investigation-table'
     | '/async-actions-table'
     | '/builder'
     | '/change-review-table'
+    | '/cohort-retention-table'
     | '/column-pinning-table'
     | '/comparison-table'
     | '/conditional-formatting-table'
@@ -945,17 +1025,20 @@ export interface FileRouteTypes {
     | '/csv-import-table'
     | '/data-table'
     | '/deployments-table'
+    | '/draft-rows-table'
     | '/editable-table'
     | '/empty-state-table'
     | '/error-state-table'
     | '/export-config-table'
     | '/export-selected-table'
+    | '/file-browser-table'
     | '/filter-state-shape-table'
     | '/filter-toolbar-table'
     | '/grouped-table'
     | '/heatmap-table'
     | '/infinite-scroll-table'
     | '/inventory-allocation-table'
+    | '/job-queue-table'
     | '/kpi-table'
     | '/live-status-table'
     | '/loading-state-table'
@@ -969,9 +1052,11 @@ export interface FileRouteTypes {
     | '/production-dashboard-table'
     | '/reorder-table'
     | '/resizable-table'
+    | '/schedule-matrix-table'
     | '/server-combined-table'
     | '/server-filter'
     | '/server-table'
+    | '/split-detail-table'
     | '/spreadsheet-table'
     | '/toolbar-filter-table'
     | '/tree-reorder'
@@ -1020,9 +1105,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnimatedIconsTableRoute: typeof AnimatedIconsTableRoute
+  AnomalyInvestigationTableRoute: typeof AnomalyInvestigationTableRoute
   AsyncActionsTableRoute: typeof AsyncActionsTableRoute
   BuilderRoute: typeof BuilderRoute
   ChangeReviewTableRoute: typeof ChangeReviewTableRoute
+  CohortRetentionTableRoute: typeof CohortRetentionTableRoute
   ColumnPinningTableRoute: typeof ColumnPinningTableRoute
   ComparisonTableRoute: typeof ComparisonTableRoute
   ConditionalFormattingTableRoute: typeof ConditionalFormattingTableRoute
@@ -1030,17 +1117,20 @@ export interface RootRouteChildren {
   CsvImportTableRoute: typeof CsvImportTableRoute
   DataTableRoute: typeof DataTableRoute
   DeploymentsTableRoute: typeof DeploymentsTableRoute
+  DraftRowsTableRoute: typeof DraftRowsTableRoute
   EditableTableRoute: typeof EditableTableRoute
   EmptyStateTableRoute: typeof EmptyStateTableRoute
   ErrorStateTableRoute: typeof ErrorStateTableRoute
   ExportConfigTableRoute: typeof ExportConfigTableRoute
   ExportSelectedTableRoute: typeof ExportSelectedTableRoute
+  FileBrowserTableRoute: typeof FileBrowserTableRoute
   FilterStateShapeTableRoute: typeof FilterStateShapeTableRoute
   FilterToolbarTableRoute: typeof FilterToolbarTableRoute
   GroupedTableRoute: typeof GroupedTableRoute
   HeatmapTableRoute: typeof HeatmapTableRoute
   InfiniteScrollTableRoute: typeof InfiniteScrollTableRoute
   InventoryAllocationTableRoute: typeof InventoryAllocationTableRoute
+  JobQueueTableRoute: typeof JobQueueTableRoute
   KpiTableRoute: typeof KpiTableRoute
   LiveStatusTableRoute: typeof LiveStatusTableRoute
   LoadingStateTableRoute: typeof LoadingStateTableRoute
@@ -1054,9 +1144,11 @@ export interface RootRouteChildren {
   ProductionDashboardTableRoute: typeof ProductionDashboardTableRoute
   ReorderTableRoute: typeof ReorderTableRoute
   ResizableTableRoute: typeof ResizableTableRoute
+  ScheduleMatrixTableRoute: typeof ScheduleMatrixTableRoute
   ServerCombinedTableRoute: typeof ServerCombinedTableRoute
   ServerFilterRoute: typeof ServerFilterRoute
   ServerTableRoute: typeof ServerTableRoute
+  SplitDetailTableRoute: typeof SplitDetailTableRoute
   SpreadsheetTableRoute: typeof SpreadsheetTableRoute
   ToolbarFilterTableRoute: typeof ToolbarFilterTableRoute
   TreeReorderRoute: typeof TreeReorderRoute
@@ -1118,6 +1210,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnimatedIconsTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anomaly-investigation-table': {
+      id: '/anomaly-investigation-table'
+      path: '/anomaly-investigation-table'
+      fullPath: '/anomaly-investigation-table'
+      preLoaderRoute: typeof AnomalyInvestigationTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/async-actions-table': {
       id: '/async-actions-table'
       path: '/async-actions-table'
@@ -1137,6 +1236,13 @@ declare module '@tanstack/react-router' {
       path: '/change-review-table'
       fullPath: '/change-review-table'
       preLoaderRoute: typeof ChangeReviewTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cohort-retention-table': {
+      id: '/cohort-retention-table'
+      path: '/cohort-retention-table'
+      fullPath: '/cohort-retention-table'
+      preLoaderRoute: typeof CohortRetentionTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/column-pinning-table': {
@@ -1188,6 +1294,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeploymentsTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/draft-rows-table': {
+      id: '/draft-rows-table'
+      path: '/draft-rows-table'
+      fullPath: '/draft-rows-table'
+      preLoaderRoute: typeof DraftRowsTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/editable-table': {
       id: '/editable-table'
       path: '/editable-table'
@@ -1221,6 +1334,13 @@ declare module '@tanstack/react-router' {
       path: '/export-selected-table'
       fullPath: '/export-selected-table'
       preLoaderRoute: typeof ExportSelectedTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/file-browser-table': {
+      id: '/file-browser-table'
+      path: '/file-browser-table'
+      fullPath: '/file-browser-table'
+      preLoaderRoute: typeof FileBrowserTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/filter-state-shape-table': {
@@ -1263,6 +1383,13 @@ declare module '@tanstack/react-router' {
       path: '/inventory-allocation-table'
       fullPath: '/inventory-allocation-table'
       preLoaderRoute: typeof InventoryAllocationTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/job-queue-table': {
+      id: '/job-queue-table'
+      path: '/job-queue-table'
+      fullPath: '/job-queue-table'
+      preLoaderRoute: typeof JobQueueTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kpi-table': {
@@ -1356,6 +1483,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResizableTableRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/schedule-matrix-table': {
+      id: '/schedule-matrix-table'
+      path: '/schedule-matrix-table'
+      fullPath: '/schedule-matrix-table'
+      preLoaderRoute: typeof ScheduleMatrixTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/server-combined-table': {
       id: '/server-combined-table'
       path: '/server-combined-table'
@@ -1375,6 +1509,13 @@ declare module '@tanstack/react-router' {
       path: '/server-table'
       fullPath: '/server-table'
       preLoaderRoute: typeof ServerTableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/split-detail-table': {
+      id: '/split-detail-table'
+      path: '/split-detail-table'
+      fullPath: '/split-detail-table'
+      preLoaderRoute: typeof SplitDetailTableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/spreadsheet-table': {
@@ -1684,9 +1825,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnimatedIconsTableRoute: AnimatedIconsTableRoute,
+  AnomalyInvestigationTableRoute: AnomalyInvestigationTableRoute,
   AsyncActionsTableRoute: AsyncActionsTableRoute,
   BuilderRoute: BuilderRoute,
   ChangeReviewTableRoute: ChangeReviewTableRoute,
+  CohortRetentionTableRoute: CohortRetentionTableRoute,
   ColumnPinningTableRoute: ColumnPinningTableRoute,
   ComparisonTableRoute: ComparisonTableRoute,
   ConditionalFormattingTableRoute: ConditionalFormattingTableRoute,
@@ -1694,17 +1837,20 @@ const rootRouteChildren: RootRouteChildren = {
   CsvImportTableRoute: CsvImportTableRoute,
   DataTableRoute: DataTableRoute,
   DeploymentsTableRoute: DeploymentsTableRoute,
+  DraftRowsTableRoute: DraftRowsTableRoute,
   EditableTableRoute: EditableTableRoute,
   EmptyStateTableRoute: EmptyStateTableRoute,
   ErrorStateTableRoute: ErrorStateTableRoute,
   ExportConfigTableRoute: ExportConfigTableRoute,
   ExportSelectedTableRoute: ExportSelectedTableRoute,
+  FileBrowserTableRoute: FileBrowserTableRoute,
   FilterStateShapeTableRoute: FilterStateShapeTableRoute,
   FilterToolbarTableRoute: FilterToolbarTableRoute,
   GroupedTableRoute: GroupedTableRoute,
   HeatmapTableRoute: HeatmapTableRoute,
   InfiniteScrollTableRoute: InfiniteScrollTableRoute,
   InventoryAllocationTableRoute: InventoryAllocationTableRoute,
+  JobQueueTableRoute: JobQueueTableRoute,
   KpiTableRoute: KpiTableRoute,
   LiveStatusTableRoute: LiveStatusTableRoute,
   LoadingStateTableRoute: LoadingStateTableRoute,
@@ -1718,9 +1864,11 @@ const rootRouteChildren: RootRouteChildren = {
   ProductionDashboardTableRoute: ProductionDashboardTableRoute,
   ReorderTableRoute: ReorderTableRoute,
   ResizableTableRoute: ResizableTableRoute,
+  ScheduleMatrixTableRoute: ScheduleMatrixTableRoute,
   ServerCombinedTableRoute: ServerCombinedTableRoute,
   ServerFilterRoute: ServerFilterRoute,
   ServerTableRoute: ServerTableRoute,
+  SplitDetailTableRoute: SplitDetailTableRoute,
   SpreadsheetTableRoute: SpreadsheetTableRoute,
   ToolbarFilterTableRoute: ToolbarFilterTableRoute,
   TreeReorderRoute: TreeReorderRoute,

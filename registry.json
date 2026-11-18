@@ -569,6 +569,136 @@
       "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
     },
     {
+      "name": "job-queue-table",
+      "type": "registry:block",
+      "title": "Job Queue Table",
+      "description": "Background job queue with live progress, attempts and duration, automatic retries with backoff, expandable error history with stack traces, and retry or cancel per job.",
+      "files": [
+        { "path": "src/components/job-queue/data.ts", "type": "registry:component", "target": "@components/tables/job-queue-table/data.ts" },
+        { "path": "src/components/job-queue/queue.ts", "type": "registry:component", "target": "@components/tables/job-queue-table/queue.ts" },
+        { "path": "src/components/job-queue/columns.tsx", "type": "registry:component", "target": "@components/tables/job-queue-table/columns.tsx" },
+        { "path": "src/components/job-queue/job-errors.tsx", "type": "registry:component", "target": "@components/tables/job-queue-table/job-errors.tsx" },
+        { "path": "src/components/job-queue/data-table.tsx", "type": "registry:component", "target": "@components/tables/job-queue-table/data-table.tsx" },
+        { "path": "src/components/job-queue/index.tsx", "type": "registry:component", "target": "@components/tables/job-queue-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "schedule-matrix-table",
+      "type": "registry:block",
+      "title": "Schedule Matrix Table",
+      "description": "Staff schedule with people as rows and days as columns: editable shift cells by click or keyboard, coverage per shift, rest-rule conflicts and hours against contract, with draft and publish.",
+      "files": [
+        { "path": "src/components/schedule-matrix/data.ts", "type": "registry:component", "target": "@components/tables/schedule-matrix-table/data.ts" },
+        { "path": "src/components/schedule-matrix/schedule.ts", "type": "registry:component", "target": "@components/tables/schedule-matrix-table/schedule.ts" },
+        { "path": "src/components/schedule-matrix/shift-cell.tsx", "type": "registry:component", "target": "@components/tables/schedule-matrix-table/shift-cell.tsx" },
+        { "path": "src/components/schedule-matrix/columns.tsx", "type": "registry:component", "target": "@components/tables/schedule-matrix-table/columns.tsx" },
+        { "path": "src/components/schedule-matrix/data-table.tsx", "type": "registry:component", "target": "@components/tables/schedule-matrix-table/data-table.tsx" },
+        { "path": "src/components/schedule-matrix/index.tsx", "type": "registry:component", "target": "@components/tables/schedule-matrix-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "popover"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "draft-rows-table",
+      "type": "registry:block",
+      "title": "Table with Draft Rows",
+      "description": "Add several rows inline as drafts, validate them as you type with errors shown once a field is left, flag likely duplicates, then save or discard the whole batch.",
+      "files": [
+        { "path": "src/components/draft-rows/data.ts", "type": "registry:component", "target": "@components/tables/draft-rows-table/data.ts" },
+        { "path": "src/components/draft-rows/drafts.ts", "type": "registry:component", "target": "@components/tables/draft-rows-table/drafts.ts" },
+        { "path": "src/components/draft-rows/pickers.tsx", "type": "registry:component", "target": "@components/tables/draft-rows-table/pickers.tsx" },
+        { "path": "src/components/draft-rows/columns.tsx", "type": "registry:component", "target": "@components/tables/draft-rows-table/columns.tsx" },
+        { "path": "src/components/draft-rows/data-table.tsx", "type": "registry:component", "target": "@components/tables/draft-rows-table/data-table.tsx" },
+        { "path": "src/components/draft-rows/index.tsx", "type": "registry:component", "target": "@components/tables/draft-rows-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "input", "select", "popover", "calendar"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "file-browser-table",
+      "type": "registry:block",
+      "title": "File Browser Table",
+      "description": "Folders and files in a table: breadcrumb navigation with focus kept in place, folders sorted first, file selection with total size and bulk download or delete, and expandable file details.",
+      "files": [
+        { "path": "src/components/file-browser/data.ts", "type": "registry:component", "target": "@components/tables/file-browser-table/data.ts" },
+        { "path": "src/components/file-browser/files.ts", "type": "registry:component", "target": "@components/tables/file-browser-table/files.ts" },
+        { "path": "src/components/file-browser/file-icon.tsx", "type": "registry:component", "target": "@components/tables/file-browser-table/file-icon.tsx" },
+        { "path": "src/components/file-browser/file-details.tsx", "type": "registry:component", "target": "@components/tables/file-browser-table/file-details.tsx" },
+        { "path": "src/components/file-browser/columns.tsx", "type": "registry:component", "target": "@components/tables/file-browser-table/columns.tsx" },
+        { "path": "src/components/file-browser/data-table.tsx", "type": "registry:component", "target": "@components/tables/file-browser-table/data-table.tsx" },
+        { "path": "src/components/file-browser/index.tsx", "type": "registry:component", "target": "@components/tables/file-browser-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button", "checkbox"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "split-detail-table",
+      "type": "registry:block",
+      "title": "Table with Split Detail Panel",
+      "description": "Support ticket queue where a ticket opens in a side panel that pushes the table aside: edit status, priority and assignee, reply, and step to the previous or next ticket while the table keeps its filter, sort, page and scroll.",
+      "files": [
+        { "path": "src/components/split-detail/data.ts", "type": "registry:component", "target": "@components/tables/split-detail-table/data.ts" },
+        { "path": "src/components/split-detail/tickets.ts", "type": "registry:component", "target": "@components/tables/split-detail-table/tickets.ts" },
+        { "path": "src/components/split-detail/columns.tsx", "type": "registry:component", "target": "@components/tables/split-detail-table/columns.tsx" },
+        { "path": "src/components/split-detail/data-table.tsx", "type": "registry:component", "target": "@components/tables/split-detail-table/data-table.tsx" },
+        { "path": "src/components/split-detail/ticket-panel.tsx", "type": "registry:component", "target": "@components/tables/split-detail-table/ticket-panel.tsx" },
+        { "path": "src/components/split-detail/index.tsx", "type": "registry:component", "target": "@components/tables/split-detail-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button", "label", "select"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "cohort-retention-table",
+      "type": "registry:block",
+      "title": "Cohort Retention Table",
+      "description": "Users grouped by signup month with retention for each month since: a one-hue heatmap, counts or percentages, a weighted average row, cohort highlighting, and months not reached yet kept distinct from real zeros.",
+      "files": [
+        { "path": "src/components/cohort-retention/data.ts", "type": "registry:component", "target": "@components/tables/cohort-retention-table/data.ts" },
+        { "path": "src/components/cohort-retention/cohorts.ts", "type": "registry:component", "target": "@components/tables/cohort-retention-table/cohorts.ts" },
+        { "path": "src/components/cohort-retention/columns.tsx", "type": "registry:component", "target": "@components/tables/cohort-retention-table/columns.tsx" },
+        { "path": "src/components/cohort-retention/data-table.tsx", "type": "registry:component", "target": "@components/tables/cohort-retention-table/data-table.tsx" },
+        { "path": "src/components/cohort-retention/index.tsx", "type": "registry:component", "target": "@components/tables/cohort-retention-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "button"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "anomaly-investigation-table",
+      "type": "registry:block",
+      "title": "Anomaly Investigation Table",
+      "description": "Metrics against their expected ranges with spikes and drops flagged by severity, a range bar per row, two weeks of history with a band chart on expand, spike/drop filters and a review queue.",
+      "files": [
+        { "path": "src/components/anomaly-investigation/data.ts", "type": "registry:component", "target": "@components/tables/anomaly-investigation-table/data.ts" },
+        { "path": "src/components/anomaly-investigation/anomalies.ts", "type": "registry:component", "target": "@components/tables/anomaly-investigation-table/anomalies.ts" },
+        { "path": "src/components/anomaly-investigation/history-chart.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-table/history-chart.tsx" },
+        { "path": "src/components/anomaly-investigation/columns.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-table/columns.tsx" },
+        { "path": "src/components/anomaly-investigation/data-table.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-table/data-table.tsx" },
+        { "path": "src/components/anomaly-investigation/index.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-table/index.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button", "label", "switch"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
+      "name": "anomaly-investigation-finance-table",
+      "type": "registry:block",
+      "title": "Anomaly Investigation Table (Finance)",
+      "description": "The anomaly investigation table over a company's daily money in and out: spend, refunds, chargebacks, fees, collections, revenue and cash against expected ranges, read as better or worse per line, with history on expand and a review queue.",
+      "files": [
+        { "path": "src/components/anomaly-investigation/data.ts", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/data.ts" },
+        { "path": "src/components/anomaly-investigation/finance.ts", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/finance.ts" },
+        { "path": "src/components/anomaly-investigation/anomalies.ts", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/anomalies.ts" },
+        { "path": "src/components/anomaly-investigation/history-chart.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/history-chart.tsx" },
+        { "path": "src/components/anomaly-investigation/columns.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/columns.tsx" },
+        { "path": "src/components/anomaly-investigation/data-table.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/data-table.tsx" },
+        { "path": "src/components/anomaly-investigation/index.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/index.tsx" },
+        { "path": "src/components/anomaly-investigation/finance-demo.tsx", "type": "registry:component", "target": "@components/tables/anomaly-investigation-finance-table/finance-demo.tsx" }
+      ],
+      "registryDependencies": ["table", "badge", "button", "label", "switch"],
+      "dependencies": ["@tanstack/react-table@^8.21.3", "lucide-react"]
+    },
+    {
       "name": "density-export-table",
       "type": "registry:block",
       "title": "Density & Export",

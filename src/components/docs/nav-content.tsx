@@ -89,6 +89,18 @@ export const navGroups: NavGroup[] = [
         to: '/change-review-table',
         isNew: true,
       },
+      {
+        title: 'Schedule Matrix',
+        to: '/schedule-matrix-table',
+        isNew: true,
+      },
+      { title: 'Draft Rows', to: '/draft-rows-table', isNew: true },
+      { title: 'File Browser', to: '/file-browser-table', isNew: true },
+      {
+        title: 'Split Detail Panel',
+        to: '/split-detail-table',
+        isNew: true,
+      },
     ],
   },
   {
@@ -97,6 +109,7 @@ export const navGroups: NavGroup[] = [
       { title: 'Animated Icons Table', to: '/animated-icons-table' },
       { title: 'Live Status Indicators', to: '/live-status-table' },
       { title: 'Async Row Actions', to: '/async-actions-table' },
+      { title: 'Job Queue', to: '/job-queue-table', isNew: true },
     ],
   },
   {
@@ -108,6 +121,16 @@ export const navGroups: NavGroup[] = [
       { title: 'Conditional Formatting', to: '/conditional-formatting-table' },
       { title: 'Production Dashboard', to: '/production-dashboard-table' },
       { title: 'CRM Employees', to: '/crm-employees-table', isNew: true },
+      {
+        title: 'Cohort Retention',
+        to: '/cohort-retention-table',
+        isNew: true,
+      },
+      {
+        title: 'Anomaly Investigation',
+        to: '/anomaly-investigation-table',
+        isNew: true,
+      },
     ],
   },
   {
