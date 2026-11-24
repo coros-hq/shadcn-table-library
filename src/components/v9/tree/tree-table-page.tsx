@@ -20,12 +20,68 @@ import detailCardSource from './detail/shipment-card.tsx?raw'
 import detailDataSource from './detail/data.ts?raw'
 import detailDemoSource from './detail/index.tsx?raw'
 import { DetailPanelTableDemo } from './detail/index'
+import svelteTreeTreeTableDemoSource from '#/components/svelte/v9/tree/TreeTableDemo.svelte?raw'
+import svelteTreeColumnsSource from '#/components/svelte/v9/tree/columns.ts?raw'
+import svelteTreeTreeDataTableSource from '#/components/svelte/v9/tree/TreeDataTable.svelte?raw'
+import svelteTreeNameCellSource from '#/components/svelte/v9/tree/NameCell.svelte?raw'
+import svelteTreeVariantsVariantsTableDemoSource from '#/components/svelte/v9/tree/variants/VariantsTableDemo.svelte?raw'
+import svelteTreeVariantsVariantsTableSource from '#/components/svelte/v9/tree/variants/VariantsTable.svelte?raw'
+import svelteTreeVariantsProductActionsSource from '#/components/svelte/v9/tree/variants/ProductActions.svelte?raw'
+import svelteTreeVariantsColumnsSource from '#/components/svelte/v9/tree/variants/columns.ts?raw'
+import svelteTreeVariantsDataSource from '#/components/svelte/v9/tree/variants/data.ts?raw'
+import svelteTreeVariantsThumbnailCellSource from '#/components/svelte/v9/tree/variants/ThumbnailCell.svelte?raw'
+import svelteTreeVariantsNameCellSource from '#/components/svelte/v9/tree/variants/NameCell.svelte?raw'
+import svelteTreeVariantsSkuCellSource from '#/components/svelte/v9/tree/variants/SkuCell.svelte?raw'
+import svelteTreeVariantsStockCellSource from '#/components/svelte/v9/tree/variants/StockCell.svelte?raw'
+import svelteTreeVariantsReservedCellSource from '#/components/svelte/v9/tree/variants/ReservedCell.svelte?raw'
+import svelteTreeVariantsUpdatedCellSource from '#/components/svelte/v9/tree/variants/UpdatedCell.svelte?raw'
+import svelteTreeVariantsSelectCheckboxSource from '#/components/svelte/v9/tree/variants/SelectCheckbox.svelte?raw'
+import svelteTreeDetailDetailPanelTableDemoSource from '#/components/svelte/v9/tree/detail/DetailPanelTableDemo.svelte?raw'
+import svelteTreeDetailDetailPanelTableSource from '#/components/svelte/v9/tree/detail/DetailPanelTable.svelte?raw'
+import svelteTreeDetailShipmentCardSource from '#/components/svelte/v9/tree/detail/ShipmentCard.svelte?raw'
+import svelteTreeDetailColumnsSource from '#/components/svelte/v9/tree/detail/columns.ts?raw'
+import svelteTreeDetailDataSource from '#/components/svelte/v9/tree/detail/data.ts?raw'
+import svelteTreeDetailItemCellSource from '#/components/svelte/v9/tree/detail/ItemCell.svelte?raw'
+import svelteTreeDetailDetailsCellSource from '#/components/svelte/v9/tree/detail/DetailsCell.svelte?raw'
+import svelteTreeDetailStatusBadgeSource from '#/components/svelte/v9/tree/detail/StatusBadge.svelte?raw'
+import svelteTreeDetailAmountCellSource from '#/components/svelte/v9/tree/detail/AmountCell.svelte?raw'
+import svelteTreeDetailDateCellSource from '#/components/svelte/v9/tree/detail/DateCell.svelte?raw'
+import svelteTreeDetailOpenChevronSource from '#/components/svelte/v9/tree/detail/OpenChevron.svelte?raw'
+
+// Svelte projects keep their shadcn files under src/lib
+const inLib = (files: { path: string; code: string }[]) =>
+  files.map((file) => ({
+    ...file,
+    path: file.path.replace('src/components/', 'src/lib/components/'),
+  }))
 
 const files = [
   { path: 'src/components/tree/columns.tsx', code: columnsSource },
   { path: 'src/components/tree/data-table.tsx', code: tableSource },
   { path: 'src/components/tree/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = inLib([
+  {
+    path: 'src/components/tree/TreeTableDemo.svelte',
+    code: svelteTreeTreeTableDemoSource,
+  },
+  { path: 'src/components/tree/columns.ts', code: svelteTreeColumnsSource },
+  {
+    path: 'src/components/tree/TreeDataTable.svelte',
+    code: svelteTreeTreeDataTableSource,
+  },
+  {
+    path: 'src/components/tree/NameCell.svelte',
+    code: svelteTreeNameCellSource,
+  },
+])
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['input', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -117,6 +173,116 @@ const detailFiles = [
   { path: 'src/components/tree/detail/data.ts', code: detailDataSource },
   { path: 'src/components/tree/detail/index.tsx', code: detailDemoSource },
 ]
+
+const variantsSvelteFiles = inLib([
+  {
+    path: 'src/components/tree/variants/VariantsTableDemo.svelte',
+    code: svelteTreeVariantsVariantsTableDemoSource,
+  },
+  {
+    path: 'src/components/tree/variants/VariantsTable.svelte',
+    code: svelteTreeVariantsVariantsTableSource,
+  },
+  {
+    path: 'src/components/tree/variants/ProductActions.svelte',
+    code: svelteTreeVariantsProductActionsSource,
+  },
+  {
+    path: 'src/components/tree/variants/columns.ts',
+    code: svelteTreeVariantsColumnsSource,
+  },
+  {
+    path: 'src/components/tree/variants/data.ts',
+    code: svelteTreeVariantsDataSource,
+  },
+  {
+    path: 'src/components/tree/variants/ThumbnailCell.svelte',
+    code: svelteTreeVariantsThumbnailCellSource,
+  },
+  {
+    path: 'src/components/tree/variants/NameCell.svelte',
+    code: svelteTreeVariantsNameCellSource,
+  },
+  {
+    path: 'src/components/tree/variants/SkuCell.svelte',
+    code: svelteTreeVariantsSkuCellSource,
+  },
+  {
+    path: 'src/components/tree/variants/StockCell.svelte',
+    code: svelteTreeVariantsStockCellSource,
+  },
+  {
+    path: 'src/components/tree/variants/ReservedCell.svelte',
+    code: svelteTreeVariantsReservedCellSource,
+  },
+  {
+    path: 'src/components/tree/variants/UpdatedCell.svelte',
+    code: svelteTreeVariantsUpdatedCellSource,
+  },
+  {
+    path: 'src/components/tree/variants/SelectCheckbox.svelte',
+    code: svelteTreeVariantsSelectCheckboxSource,
+  },
+])
+
+const variantsSvelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'checkbox', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
+
+const detailSvelteFiles = inLib([
+  {
+    path: 'src/components/tree/detail/DetailPanelTableDemo.svelte',
+    code: svelteTreeDetailDetailPanelTableDemoSource,
+  },
+  {
+    path: 'src/components/tree/detail/DetailPanelTable.svelte',
+    code: svelteTreeDetailDetailPanelTableSource,
+  },
+  {
+    path: 'src/components/tree/detail/ShipmentCard.svelte',
+    code: svelteTreeDetailShipmentCardSource,
+  },
+  {
+    path: 'src/components/tree/detail/columns.ts',
+    code: svelteTreeDetailColumnsSource,
+  },
+  {
+    path: 'src/components/tree/detail/data.ts',
+    code: svelteTreeDetailDataSource,
+  },
+  {
+    path: 'src/components/tree/detail/ItemCell.svelte',
+    code: svelteTreeDetailItemCellSource,
+  },
+  {
+    path: 'src/components/tree/detail/DetailsCell.svelte',
+    code: svelteTreeDetailDetailsCellSource,
+  },
+  {
+    path: 'src/components/tree/detail/StatusBadge.svelte',
+    code: svelteTreeDetailStatusBadgeSource,
+  },
+  {
+    path: 'src/components/tree/detail/AmountCell.svelte',
+    code: svelteTreeDetailAmountCellSource,
+  },
+  {
+    path: 'src/components/tree/detail/DateCell.svelte',
+    code: svelteTreeDetailDateCellSource,
+  },
+  {
+    path: 'src/components/tree/detail/OpenChevron.svelte',
+    code: svelteTreeDetailOpenChevronSource,
+  },
+])
+
+const detailSvelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const variantsSteps = [
   {
@@ -222,6 +388,8 @@ const examples = [
     install: 'tree-table',
     preview: <TreeTableDemo />,
     files,
+    svelteFiles,
+    svelteDeps,
     steps,
   },
   {
@@ -232,6 +400,8 @@ const examples = [
     install: 'tree-table-variants',
     preview: <VariantsTableDemo />,
     files: variantsFiles,
+    svelteFiles: variantsSvelteFiles,
+    svelteDeps: variantsSvelteDeps,
     steps: variantsSteps,
   },
   {
@@ -242,6 +412,8 @@ const examples = [
     install: 'tree-table-detail-card',
     preview: <DetailPanelTableDemo />,
     files: detailFiles,
+    svelteFiles: detailSvelteFiles,
+    svelteDeps: detailSvelteDeps,
     steps: detailSteps,
   },
 ]
@@ -298,7 +470,12 @@ export function TreeTablePage() {
                 {ex.description}
               </p>
               <InstallCommand name={ex.install} />
-              <ComponentPreview preview={ex.preview} files={ex.files} />
+              <ComponentPreview
+                preview={ex.preview}
+                files={ex.files}
+                svelteFiles={ex.svelteFiles}
+                svelteDeps={ex.svelteDeps}
+              />
               <div className="space-y-2">
                 <h2 className="text-sm font-medium">How it works</h2>
                 <div className="divide-y rounded-lg border">

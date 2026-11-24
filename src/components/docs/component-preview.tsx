@@ -29,7 +29,15 @@ interface ComponentPreviewProps {
   // Optional Svelte 5 port of the same example; adds Svelte to the framework toggle
   svelteFiles?: ComponentPreviewFile[]
   // Install commands shown under the Svelte code; `adapter` adds the table-core helper files
-  svelteDeps?: { npm: string[]; shadcn: string[]; adapter?: boolean }
+  svelteDeps?: {
+    npm: string[]
+    shadcn: string[]
+    adapter?: boolean
+    // TanStack package installed for this port. Defaults to the v8 pair
+    // (@tanstack/table-core + the helper files below); v9 ports pass
+    // '@tanstack/svelte-table@^9', the Svelte 5 native adapter, and drop `adapter`
+    tanstack?: string
+  }
   // Drops the card and control shadows for a flat look
   flat?: boolean
 }
@@ -50,8 +58,10 @@ export function valueUpdater<T extends Updater<any>>(
       : updaterOrValue
 }`
 
-// @tanstack/svelte-table v8 only supports Svelte 3/4, so Svelte 5 code drives
-// @tanstack/table-core through this adapter (the same one shadcn-svelte ships)
+// v8 ports can't use @tanstack/svelte-table (it only supported Svelte 3/4), so
+// they drive @tanstack/table-core through this adapter (the same one
+// shadcn-svelte ships). v9 ports use @tanstack/svelte-table instead and don't
+// need these files.
 const SVELTE_ADAPTER_FILES: ComponentPreviewFile[] = [
   {
     path: 'src/lib/components/ui/data-table/data-table.svelte.ts',
@@ -219,7 +229,10 @@ export function ComponentPreview({
             filename="Install (Svelte)"
             language="bash"
             code={[
-              `npm i ${['@tanstack/table-core@^8', ...svelteDeps.npm].join(' ')}`,
+              `npm i ${[
+                svelteDeps.tanstack ?? '@tanstack/table-core@^8',
+                ...svelteDeps.npm,
+              ].join(' ')}`,
               svelteDeps.shadcn.length
                 ? `npx shadcn-svelte@latest add ${svelteDeps.shadcn.join(' ')}`
                 : null,

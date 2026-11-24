@@ -6,6 +6,11 @@ import basicDataTableSource from '#/components/v9/basic/data-table.tsx?raw'
 import basicColumnsSource from '#/components/v9/basic/columns.tsx?raw'
 import dataTableFilterSource from '#/components/v9/basic/data-table-filter.tsx?raw'
 import tableV9FeaturesSource from '#/lib/table-v9-features.ts?raw'
+import svelteTableV9FeaturesSource from '#/components/svelte/v9/shared/table-v9-features.ts?raw'
+import svelteBasicTableSource from '#/components/svelte/v9/basic/BasicTable.svelte?raw'
+import svelteColumnsSource from '#/components/svelte/v9/basic/columns.ts?raw'
+import svelteDataTableSource from '#/components/svelte/v9/basic/DataTable.svelte?raw'
+import svelteDataTableFilterSource from '#/components/svelte/v9/basic/DataTableFilter.svelte?raw'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
@@ -20,7 +25,7 @@ export const Route = createFileRoute('/v9/data-table')({
       {
         name: 'description',
         content:
-          'Sortable, filterable, paginated data table for shadcn/ui and TanStack Table with a composable filter toolbar. React and Vue code. For TanStack Table v9.',
+          'Sortable, filterable, paginated data table for shadcn/ui and TanStack Table with a composable filter toolbar. React and Svelte code. For TanStack Table v9.',
       },
       {
         property: 'og:title',
@@ -73,6 +78,35 @@ const files = [
     code: dataTableFilterSource,
   },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/table-v9-features.ts',
+    code: svelteTableV9FeaturesSource,
+  },
+  {
+    path: 'src/lib/components/basic/BasicTable.svelte',
+    code: svelteBasicTableSource,
+  },
+  {
+    path: 'src/lib/components/basic/columns.ts',
+    code: svelteColumnsSource,
+  },
+  {
+    path: 'src/lib/components/basic/DataTable.svelte',
+    code: svelteDataTableSource,
+  },
+  {
+    path: 'src/lib/components/basic/DataTableFilter.svelte',
+    code: svelteDataTableFilterSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'input', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -161,7 +195,12 @@ function Home() {
 
         <InstallCommand name="data-table" />
 
-        <ComponentPreview preview={<BasicTableUsage />} files={files} />
+        <ComponentPreview
+          preview={<BasicTableUsage />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <p className="text-sm font-medium">What changed from v8</p>

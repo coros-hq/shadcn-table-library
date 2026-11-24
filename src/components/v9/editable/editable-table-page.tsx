@@ -6,12 +6,41 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { EditableTableDemo } from './index'
+import svelteEditableEditableTableDemoSource from '#/components/svelte/v9/editable/EditableTableDemo.svelte?raw'
+import svelteEditablecolumnsSource from '#/components/svelte/v9/editable/columns.ts?raw'
+import svelteEditableEditableTableSource from '#/components/svelte/v9/editable/EditableTable.svelte?raw'
+import svelteEditablecellSource from '#/components/svelte/v9/editable/EditableCell.svelte?raw'
 
 const files = [
   { path: 'src/components/editable/columns.tsx', code: columnsSource },
   { path: 'src/components/editable/data-table.tsx', code: tableSource },
   { path: 'src/components/editable/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/editable/EditableTableDemo.svelte',
+    code: svelteEditableEditableTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/editable/columns.ts',
+    code: svelteEditablecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/editable/EditableTable.svelte',
+    code: svelteEditableEditableTableSource,
+  },
+  {
+    path: 'src/lib/components/editable/EditableCell.svelte',
+    code: svelteEditablecellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'input', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -95,7 +124,12 @@ export function EditableTablePage() {
 
         <InstallCommand name="editable-table" />
 
-        <ComponentPreview preview={<EditableTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<EditableTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>
