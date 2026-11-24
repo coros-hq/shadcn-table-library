@@ -15,6 +15,10 @@ import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
+import {
+  FrameworkToggle,
+  useSnippetFramework,
+} from '#/components/docs/framework-toggle.tsx'
 
 export const Route = createFileRoute('/v9/data-table')({
   head: () => ({
@@ -108,13 +112,15 @@ const svelteDeps = {
   tanstack: '@tanstack/svelte-table@^9',
 }
 
-const steps = [
-  {
-    title: 'Row models come from a shared `features` object, not table options',
-    description:
-      "In v8 each getXRowModel() was passed directly to useReactTable. In v9 they're feature slots registered once in tableFeatures() and reused across every table — features is a stable module-scope object, not recreated per render.",
-    file: 'src/lib/table-v9-features.ts',
-    code: `export const v9Features = tableFeatures({
+const stepsByFramework = {
+  react: [
+    {
+      title:
+        'Row models come from a shared `features` object, not table options',
+      description:
+        "In v8 each getXRowModel() was passed directly to useReactTable. In v9 they're feature slots registered once in tableFeatures() and reused across every table — features is a stable module-scope object, not recreated per render.",
+      file: 'src/lib/table-v9-features.ts',
+      code: `export const v9Features = tableFeatures({
   ...stockFeatures,
   filteredRowModel: createFilteredRowModel(),
   sortedRowModel: createSortedRowModel(),
@@ -124,13 +130,13 @@ const steps = [
   sortFns,
   aggregationFns,
 })`,
-  },
-  {
-    title: '`useReactTable` becomes `useTable`, `features` is required',
-    description:
-      'The hook is renamed and now takes a features option built from tableFeatures(). getCoreRowModel is gone — the core row model is automatic.',
-    file: 'src/components/v9/basic/data-table.tsx',
-    code: `const table = useTable({
+    },
+    {
+      title: '`useReactTable` becomes `useTable`, `features` is required',
+      description:
+        'The hook is renamed and now takes a features option built from tableFeatures(). getCoreRowModel is gone — the core row model is automatic.',
+      file: 'src/components/v9/basic/data-table.tsx',
+      code: `const table = useTable({
   features: v9Features,
   data,
   columns,
@@ -140,13 +146,13 @@ const steps = [
   onColumnFiltersChange: setColumnFilters,
   onGlobalFilterChange: setGlobalFilter,
 })`,
-  },
-  {
-    title: 'Columns are built with a features-aware column helper',
-    description:
-      'createColumnHelper now takes typeof features as its first type parameter so filterFn/sortFn string values are checked against the registries declared in features. sortingFn is renamed sortFn.',
-    file: 'src/components/v9/basic/columns.tsx',
-    code: `const columnHelper = createColumnHelper<typeof v9Features, User>()
+    },
+    {
+      title: 'Columns are built with a features-aware column helper',
+      description:
+        'createColumnHelper now takes typeof features as its first type parameter so filterFn/sortFn string values are checked against the registries declared in features. sortingFn is renamed sortFn.',
+      file: 'src/components/v9/basic/columns.tsx',
+      code: `const columnHelper = createColumnHelper<typeof v9Features, User>()
 
 export const columns = columnHelper.columns([
   columnHelper.accessor('role', {
@@ -155,28 +161,119 @@ export const columns = columnHelper.columns([
     filterFn: 'equalsString',
   }),
 ])`,
-  },
-  {
-    title: '`flexRender` becomes `table.FlexRender`',
-    description:
-      "The standalone flexRender(def, context) call still exists, but v9's idiomatic form is the table.FlexRender component, bound to the table instance.",
-    file: 'src/components/v9/basic/data-table.tsx',
-    code: `{header.isPlaceholder ? null : <table.FlexRender header={header} />}
+    },
+    {
+      title: '`flexRender` becomes `table.FlexRender`',
+      description:
+        "The standalone flexRender(def, context) call still exists, but v9's idiomatic form is the table.FlexRender component, bound to the table instance.",
+      file: 'src/components/v9/basic/data-table.tsx',
+      code: `{header.isPlaceholder ? null : <table.FlexRender header={header} />}
 // ...
 <table.FlexRender cell={cell} />`,
-  },
-  {
-    title: '`table.getState()` becomes `table.state`',
-    description:
-      'State is a direct property instead of a method call. Per-slice state and onXChange callbacks work exactly like v8 — this table still owns pagination/sorting/filters as controlled React state.',
-    file: 'src/components/v9/basic/data-table.tsx',
-    code: `{table.state.columnFilters.length > 0 ? (
+    },
+    {
+      title: '`table.getState()` becomes `table.state`',
+      description:
+        'State is a direct property instead of a method call. Per-slice state and onXChange callbacks work exactly like v8 — this table still owns pagination/sorting/filters as controlled React state.',
+      file: 'src/components/v9/basic/data-table.tsx',
+      code: `{table.state.columnFilters.length > 0 ? (
   <Button onClick={() => table.resetColumnFilters()}>Clear Filters</Button>
 ) : null}`,
+    },
+  ],
+  svelte: [
+    {
+      title:
+        'Row models come from a shared `features` object, not table options',
+      description:
+        "The v8 Svelte ports drove @tanstack/table-core through the custom adapter in this repo. v9's native adapter registers row models once in tableFeatures() and reuses that object across every table — features is a stable module-scope object, not recreated per render.",
+      file: 'src/lib/table-v9-features.ts',
+      code: `export const v9Features = tableFeatures({
+  ...stockFeatures,
+  filteredRowModel: createFilteredRowModel(),
+  sortedRowModel: createSortedRowModel(),
+  paginatedRowModel: createPaginatedRowModel(),
+  // ...
+  filterFns,
+  sortFns,
+  aggregationFns,
+})`,
+    },
+    {
+      title:
+        '`createSvelteTable` becomes `createTable`, `features` is required',
+      description:
+        'The shadcn-svelte adapter is gone: createTable comes from @tanstack/svelte-table and takes a features option built from tableFeatures(). getCoreRowModel is gone — the core row model is automatic. Changing inputs stay live through getters, and per-slice onXChange callbacks resolve updates into runes.',
+      file: 'src/lib/components/basic/DataTable.svelte',
+      code: `import { createTable } from '@tanstack/svelte-table'
+
+const table = createTable({
+  features: v9Features,
+  get data() {
+    return data
   },
-]
+  get columns() {
+    return columns
+  },
+  onPaginationChange: (updater) => {
+    pagination =
+      typeof updater === 'function' ? updater(pagination) : updater
+  },
+  state: {
+    get pagination() {
+      return pagination
+    },
+  },
+})`,
+    },
+    {
+      title: 'Columns are built with a features-aware column helper',
+      description:
+        'createColumnHelper now takes typeof features as its first type parameter so filterFn/sortFn string values are checked against the registries declared in features. sortingFn is renamed sortFn.',
+      file: 'src/lib/components/basic/columns.ts',
+      code: `const columnHelper = createColumnHelper<typeof v9Features, User>()
+
+export const columns = columnHelper.columns([
+  columnHelper.accessor('role', {
+    header: 'Role',
+    sortFn: 'basic',
+    filterFn: 'equalsString',
+  }),
+])`,
+    },
+    {
+      title: '`FlexRender` takes the header or cell directly',
+      description:
+        "The v8 adapter's content/context props are gone. FlexRender is still the component to render headers, cells, and footers, but v9 hands it the whole header or cell.",
+      file: 'src/lib/components/basic/DataTable.svelte',
+      code: `{#if !header.isPlaceholder}
+  <FlexRender {header} />
+{/if}
+<!-- ... -->
+<FlexRender {cell} />`,
+    },
+    {
+      title: '`table.getState()` becomes `table.atoms.<slice>.get()`',
+      description:
+        'There is no state snapshot to call. Read a slice through its atom; inside a template, $derived or $effect that read participates in Svelte dependency tracking. Controlled slices still work exactly like v8 — a getter-backed state object plus the matching onXChange callback.',
+      file: 'src/lib/components/basic/DataTable.svelte',
+      code: `{#if table.atoms.columnFilters.get().length > 0}
+  <Button
+    variant="link"
+    class="underline"
+    onclick={() => table.resetColumnFilters()}
+  >
+    Clear Filters <X class="h-3 w-3" />
+  </Button>
+{/if}`,
+    },
+  ],
+}
 
 function Home() {
+  const [framework, changeFramework] = useSnippetFramework()
+  const steps = stepsByFramework[framework]
+
   return (
     <DocsLayout>
       <section className="space-y-4">
@@ -187,9 +284,9 @@ function Home() {
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
             The same sortable, filterable, paginated table as the v8 version,
-            ported to TanStack Table v9's useTable and tableFeatures API.
-            Behavior is unchanged — sorting, filtering, and pagination still run
-            entirely in the browser.
+            ported to TanStack Table v9's tableFeatures API — useTable in React,
+            createTable in Svelte. Behavior is unchanged: sorting, filtering,
+            and pagination still run entirely in the browser.
           </p>
         </div>
 
@@ -203,7 +300,10 @@ function Home() {
         />
 
         <div className="space-y-2">
-          <p className="text-sm font-medium">What changed from v8</p>
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm font-medium">What changed from v8</p>
+            <FrameworkToggle value={framework} onChange={changeFramework} />
+          </div>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">

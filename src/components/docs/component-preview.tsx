@@ -82,6 +82,7 @@ const SVELTE_ADAPTER_FILES: ComponentPreviewFile[] = [
 ]
 
 const FRAMEWORK_KEY = 'shad-table:framework'
+const FRAMEWORK_EVENT = 'shad-table:framework-change'
 
 function readFramework(): Framework {
   try {
@@ -106,7 +107,17 @@ export function ComponentPreview({
 }: ComponentPreviewProps) {
   // Start on React so server and client markup match, then apply the saved choice
   const [framework, setFramework] = React.useState<Framework>('react')
-  React.useEffect(() => setFramework(readFramework()), [])
+  React.useEffect(() => {
+    setFramework(readFramework())
+    const sync = (event: Event) => {
+      const next = (event as CustomEvent<string>).detail
+      if (next === 'react' || next === 'vue' || next === 'svelte') {
+        setFramework(next)
+      }
+    }
+    window.addEventListener(FRAMEWORK_EVENT, sync)
+    return () => window.removeEventListener(FRAMEWORK_EVENT, sync)
+  }, [])
 
   function changeFramework(next: string) {
     setFramework(next as Framework)
@@ -115,6 +126,7 @@ export function ComponentPreview({
     } catch {
       // storage unavailable; the choice just won't persist
     }
+    window.dispatchEvent(new CustomEvent(FRAMEWORK_EVENT, { detail: next }))
   }
 
   // A saved choice may not exist on this page; fall back to React
