@@ -10,6 +10,15 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import svelteProductionDashboardProductionDashboardTableDemoSource from '#/components/svelte/v9/production-dashboard/ProductionDashboardTableDemo.svelte?raw'
+import svelteProductionDashboardcolumnsSource from '#/components/svelte/v9/production-dashboard/columns.ts?raw'
+import svelteProductionDashboardDataTableSource from '#/components/svelte/v9/production-dashboard/DataTable.svelte?raw'
+import svelteProductionDashboardProgressBarSource from '#/components/svelte/v9/production-dashboard/ProgressBar.svelte?raw'
+import svelteProductionDashboardSparklineSource from '#/components/svelte/v9/production-dashboard/Sparkline.svelte?raw'
+import svelteProductionDashboardrulesSource from '#/components/svelte/v9/production-dashboard/rules.ts?raw'
+import svelteLinecellSource from '#/components/svelte/v9/production-dashboard/LineCell.svelte?raw'
+import svelteProgresscellSource from '#/components/svelte/v9/production-dashboard/ProgressCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/v9/production-dashboard/StatusBadge.svelte?raw'
 
 const files = [
   {
@@ -37,6 +46,51 @@ const files = [
     code: sparklineSource,
   },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/production-dashboard/ProductionDashboardTableDemo.svelte',
+    code: svelteProductionDashboardProductionDashboardTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/columns.ts',
+    code: svelteProductionDashboardcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/DataTable.svelte',
+    code: svelteProductionDashboardDataTableSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/ProgressBar.svelte',
+    code: svelteProductionDashboardProgressBarSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/Sparkline.svelte',
+    code: svelteProductionDashboardSparklineSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/rules.ts',
+    code: svelteProductionDashboardrulesSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/LineCell.svelte',
+    code: svelteLinecellSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/ProgressCell.svelte',
+    code: svelteProgresscellSource,
+  },
+  {
+    path: 'src/lib/components/production-dashboard/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -156,6 +210,8 @@ function ProductionDashboardTablePage() {
         <ComponentPreview
           preview={<ProductionDashboardTableDemo />}
           files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
         />
 
         <div className="space-y-2">

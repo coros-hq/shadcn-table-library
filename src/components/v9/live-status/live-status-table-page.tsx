@@ -7,6 +7,13 @@ import statusIndicatorSource from './status-indicator.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { LiveStatusTableDemo } from './index'
+import svelteLiveStatusLiveStatusTableDemoSource from '#/components/svelte/v9/live-status/LiveStatusTableDemo.svelte?raw'
+import svelteLiveStatuscolumnsSource from '#/components/svelte/v9/live-status/columns.ts?raw'
+import svelteLiveStatusLiveStatusTableSource from '#/components/svelte/v9/live-status/LiveStatusTable.svelte?raw'
+import svelteLiveStatusStatusIndicatorSource from '#/components/svelte/v9/live-status/StatusIndicator.svelte?raw'
+import svelteLatencycellSource from '#/components/svelte/v9/live-status/LatencyCell.svelte?raw'
+import svelteServicecellSource from '#/components/svelte/v9/live-status/ServiceCell.svelte?raw'
+import svelteUptimecellSource from '#/components/svelte/v9/live-status/UptimeCell.svelte?raw'
 
 const files = [
   { path: 'src/components/live-status/columns.tsx', code: columnsSource },
@@ -17,6 +24,43 @@ const files = [
   { path: 'src/components/live-status/data-table.tsx', code: tableSource },
   { path: 'src/components/live-status/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/live-status/LiveStatusTableDemo.svelte',
+    code: svelteLiveStatusLiveStatusTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/live-status/columns.ts',
+    code: svelteLiveStatuscolumnsSource,
+  },
+  {
+    path: 'src/lib/components/live-status/LiveStatusTable.svelte',
+    code: svelteLiveStatusLiveStatusTableSource,
+  },
+  {
+    path: 'src/lib/components/live-status/StatusIndicator.svelte',
+    code: svelteLiveStatusStatusIndicatorSource,
+  },
+  {
+    path: 'src/lib/components/live-status/LatencyCell.svelte',
+    code: svelteLatencycellSource,
+  },
+  {
+    path: 'src/lib/components/live-status/ServiceCell.svelte',
+    code: svelteServicecellSource,
+  },
+  {
+    path: 'src/lib/components/live-status/UptimeCell.svelte',
+    code: svelteUptimecellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -85,7 +129,12 @@ export function LiveStatusTablePage() {
 
         <InstallCommand name="live-status-table" />
 
-        <ComponentPreview preview={<LiveStatusTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<LiveStatusTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

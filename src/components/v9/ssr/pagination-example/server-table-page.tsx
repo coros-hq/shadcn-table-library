@@ -8,6 +8,12 @@ import tableSource from './data-table.tsx?raw'
 import columnsSource from './columns.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ServerPaginationDemo } from './index'
+import svelteSsrPaginationExampleServerPaginationDemoSource from '#/components/svelte/v9/ssr/pagination-example/ServerPaginationDemo.svelte?raw'
+import svelteSsrPaginationExamplecolumnsSource from '#/components/svelte/v9/ssr/pagination-example/columns.ts?raw'
+import svelteSsrPaginationExampleDataTableSource from '#/components/svelte/v9/ssr/pagination-example/DataTable.svelte?raw'
+import svelteSsrPaginationExampledataSource from '#/components/svelte/v9/ssr/data.ts?raw'
+import svelteSsrPaginationExampleuseServerQuerySource from '#/components/svelte/v9/ssr/useServerQuery.svelte.ts?raw'
+import svelteSsrPaginationExampleuseUrlSearchSource from '#/components/svelte/v9/ssr/useUrlSearch.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -22,6 +28,39 @@ const files = [
   },
   { path: 'src/components/ssr/pagination-example/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/ssr/pagination-example/ServerPaginationDemo.svelte',
+    code: svelteSsrPaginationExampleServerPaginationDemoSource,
+  },
+  {
+    path: 'src/lib/components/ssr/pagination-example/columns.ts',
+    code: svelteSsrPaginationExamplecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/ssr/pagination-example/DataTable.svelte',
+    code: svelteSsrPaginationExampleDataTableSource,
+  },
+  {
+    path: 'src/lib/components/ssr/data.ts',
+    code: svelteSsrPaginationExampledataSource,
+  },
+  {
+    path: 'src/lib/components/ssr/useServerQuery.svelte.ts',
+    code: svelteSsrPaginationExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/lib/components/ssr/useUrlSearch.svelte.ts',
+    code: svelteSsrPaginationExampleuseUrlSearchSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -116,7 +155,12 @@ export function ServerTablePage() {
 
         <InstallCommand name="server-pagination-table" />
 
-        <ComponentPreview preview={<ServerPaginationDemo />} files={files} />
+        <ComponentPreview
+          preview={<ServerPaginationDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

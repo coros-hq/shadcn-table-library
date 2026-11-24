@@ -7,6 +7,23 @@ import buttonsSource from './action-buttons.tsx?raw'
 import dataSource from './data.ts?raw'
 import demoSource from './index.tsx?raw'
 import { AsyncActionsDemo } from './index'
+import svelteAsyncActionsAsyncActionsDemoSource from '#/components/svelte/v9/async-actions/AsyncActionsDemo.svelte?raw'
+import svelteAsyncActionsArchiveButtonSource from '#/components/svelte/v9/async-actions/ArchiveButton.svelte?raw'
+import svelteAsyncActionsAsyncActionsTableSource from '#/components/svelte/v9/async-actions/AsyncActionsTable.svelte?raw'
+import svelteAsyncActionsDeleteButtonSource from '#/components/svelte/v9/async-actions/DeleteButton.svelte?raw'
+import svelteAsyncActionsSyncButtonSource from '#/components/svelte/v9/async-actions/SyncButton.svelte?raw'
+import svelteAsyncActionsactionButtonStylesSource from '#/components/svelte/v9/async-actions/actionButtonStyles.ts?raw'
+import svelteAsyncActionsdataSource from '#/components/svelte/v9/async-actions/data.ts?raw'
+import svelteAsyncActionssharediconsArchiveIconSource from '#/components/svelte/shared/icons/ArchiveIcon.svelte?raw'
+import svelteAsyncActionssharediconsuseIconAnimationSource from '#/components/svelte/shared/icons/useIconAnimation.svelte.ts?raw'
+import svelteAsyncActionssharediconsTrashIconSource from '#/components/svelte/shared/icons/TrashIcon.svelte?raw'
+import svelteAsyncActionssharediconsArrowsClockwiseIconSource from '#/components/svelte/shared/icons/ArrowsClockwiseIcon.svelte?raw'
+import svelteLastsyncedcellSource from '#/components/svelte/v9/async-actions/LastSyncedCell.svelte?raw'
+import svelteRowactionsSource from '#/components/svelte/v9/async-actions/RowActions.svelte?raw'
+import svelteSourcecellSource from '#/components/svelte/v9/async-actions/SourceCell.svelte?raw'
+import svelteStatuscellSource from '#/components/svelte/v9/async-actions/StatusCell.svelte?raw'
+import svelteBellringingiconSource from '#/components/svelte/shared/icons/BellRingingIcon.svelte?raw'
+import svelteStariconSource from '#/components/svelte/shared/icons/StarIcon.svelte?raw'
 
 const files = [
   { path: 'src/components/async-actions/data-table.tsx', code: tableSource },
@@ -17,6 +34,83 @@ const files = [
   { path: 'src/components/async-actions/data.ts', code: dataSource },
   { path: 'src/components/async-actions/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/async-actions/AsyncActionsDemo.svelte',
+    code: svelteAsyncActionsAsyncActionsDemoSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/ArchiveButton.svelte',
+    code: svelteAsyncActionsArchiveButtonSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/AsyncActionsTable.svelte',
+    code: svelteAsyncActionsAsyncActionsTableSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/DeleteButton.svelte',
+    code: svelteAsyncActionsDeleteButtonSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/SyncButton.svelte',
+    code: svelteAsyncActionsSyncButtonSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/actionButtonStyles.ts',
+    code: svelteAsyncActionsactionButtonStylesSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/data.ts',
+    code: svelteAsyncActionsdataSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/ArchiveIcon.svelte',
+    code: svelteAsyncActionssharediconsArchiveIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/useIconAnimation.svelte.ts',
+    code: svelteAsyncActionssharediconsuseIconAnimationSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/TrashIcon.svelte',
+    code: svelteAsyncActionssharediconsTrashIconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/ArrowsClockwiseIcon.svelte',
+    code: svelteAsyncActionssharediconsArrowsClockwiseIconSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/LastSyncedCell.svelte',
+    code: svelteLastsyncedcellSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/RowActions.svelte',
+    code: svelteRowactionsSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/SourceCell.svelte',
+    code: svelteSourcecellSource,
+  },
+  {
+    path: 'src/lib/components/async-actions/StatusCell.svelte',
+    code: svelteStatuscellSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/BellRingingIcon.svelte',
+    code: svelteBellringingiconSource,
+  },
+  {
+    path: 'src/lib/components/ui/icons/StarIcon.svelte',
+    code: svelteStariconSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['button', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -88,7 +182,12 @@ export function AsyncActionsPage() {
 
         <InstallCommand name="async-actions-table" />
 
-        <ComponentPreview preview={<AsyncActionsDemo />} files={files} />
+        <ComponentPreview
+          preview={<AsyncActionsDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

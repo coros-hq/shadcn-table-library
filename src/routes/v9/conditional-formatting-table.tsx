@@ -8,6 +8,13 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import svelteConditionalFormattingConditionalFormattingTableDemoSource from '#/components/svelte/v9/conditional-formatting/ConditionalFormattingTableDemo.svelte?raw'
+import svelteConditionalFormattingcolumnsSource from '#/components/svelte/v9/conditional-formatting/columns.ts?raw'
+import svelteConditionalFormattingDataTableSource from '#/components/svelte/v9/conditional-formatting/DataTable.svelte?raw'
+import svelteConditionalFormattingrulesSource from '#/components/svelte/v9/conditional-formatting/rules.ts?raw'
+import svelteMargincellSource from '#/components/svelte/v9/conditional-formatting/MarginCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/v9/conditional-formatting/StatusBadge.svelte?raw'
+import svelteStockcellSource from '#/components/svelte/v9/conditional-formatting/StockCell.svelte?raw'
 
 const files = [
   {
@@ -27,6 +34,43 @@ const files = [
     code: rulesSource,
   },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/conditional-formatting/ConditionalFormattingTableDemo.svelte',
+    code: svelteConditionalFormattingConditionalFormattingTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/columns.ts',
+    code: svelteConditionalFormattingcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/DataTable.svelte',
+    code: svelteConditionalFormattingDataTableSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/rules.ts',
+    code: svelteConditionalFormattingrulesSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/MarginCell.svelte',
+    code: svelteMargincellSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+  {
+    path: 'src/lib/components/conditional-formatting/StockCell.svelte',
+    code: svelteStockcellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -163,6 +207,8 @@ function ConditionalFormattingTablePage() {
         <ComponentPreview
           preview={<ConditionalFormattingTableDemo />}
           files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
         />
 
         <div className="space-y-2">

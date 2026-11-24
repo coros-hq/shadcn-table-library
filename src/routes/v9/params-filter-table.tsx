@@ -9,6 +9,10 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import svelteParamsFilterParamsFilterTableDemoSource from '#/components/svelte/v9/params-filter/ParamsFilterTableDemo.svelte?raw'
+import svelteParamsFiltercolumnsSource from '#/components/svelte/v9/params-filter/columns.ts?raw'
+import svelteParamsFilterParamsDataTableSource from '#/components/svelte/v9/params-filter/ParamsDataTable.svelte?raw'
+import svelteParamsFilteruseUrlFiltersSource from '#/components/svelte/v9/params-filter/useUrlFilters.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/v9/params-filter/index.tsx', code: indexSource },
@@ -26,6 +30,31 @@ const files = [
     code: useNativeFiltersSource,
   },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/params-filter/ParamsFilterTableDemo.svelte',
+    code: svelteParamsFilterParamsFilterTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/params-filter/columns.ts',
+    code: svelteParamsFiltercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/params-filter/ParamsDataTable.svelte',
+    code: svelteParamsFilterParamsDataTableSource,
+  },
+  {
+    path: 'src/lib/components/params-filter/useUrlFilters.svelte.ts',
+    code: svelteParamsFilteruseUrlFiltersSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'input', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -178,7 +207,12 @@ function ParamsFilterTablePage() {
 
         <InstallCommand name="params-filter-table" />
 
-        <ComponentPreview preview={<ParamsFilterTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ParamsFilterTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

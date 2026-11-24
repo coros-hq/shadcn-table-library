@@ -6,12 +6,41 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ReorderableTableDemo } from './index'
+import svelteReorderReorderableTableDemoSource from '#/components/svelte/v9/reorder/ReorderableTableDemo.svelte?raw'
+import svelteReordercolumnsSource from '#/components/svelte/v9/reorder/columns.ts?raw'
+import svelteReorderReorderableTableSource from '#/components/svelte/v9/reorder/ReorderableTable.svelte?raw'
+import svelteSortableSource from '#/components/svelte/v9/reorder/sortable.ts?raw'
 
 const files = [
   { path: 'src/components/reorder/columns.tsx', code: columnsSource },
   { path: 'src/components/reorder/data-table.tsx', code: tableSource },
   { path: 'src/components/reorder/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/reorder/ReorderableTableDemo.svelte',
+    code: svelteReorderReorderableTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/reorder/columns.ts',
+    code: svelteReordercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/reorder/ReorderableTable.svelte',
+    code: svelteReorderReorderableTableSource,
+  },
+  {
+    path: 'src/lib/components/reorder/sortable.ts',
+    code: svelteSortableSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte', 'sortablejs', '@types/sortablejs'],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -92,7 +121,12 @@ export function ReorderableTablePage() {
 
         <InstallCommand name="reorderable-table" />
 
-        <ComponentPreview preview={<ReorderableTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ReorderableTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

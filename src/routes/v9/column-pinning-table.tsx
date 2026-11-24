@@ -7,6 +7,11 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import svelteColumnPinningColumnPinningTableDemoSource from '#/components/svelte/v9/column-pinning/ColumnPinningTableDemo.svelte?raw'
+import svelteColumnPinningcolumnsSource from '#/components/svelte/v9/column-pinning/columns.ts?raw'
+import svelteColumnPinningDataTableSource from '#/components/svelte/v9/column-pinning/DataTable.svelte?raw'
+import svelteColumnPinningPinControlsSource from '#/components/svelte/v9/column-pinning/PinControls.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/v9/column-pinning/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/v9/column-pinning/index.tsx', code: indexSource },
@@ -16,6 +21,35 @@ const files = [
     code: dataTableSource,
   },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/column-pinning/ColumnPinningTableDemo.svelte',
+    code: svelteColumnPinningColumnPinningTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/columns.ts',
+    code: svelteColumnPinningcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/DataTable.svelte',
+    code: svelteColumnPinningDataTableSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/PinControls.svelte',
+    code: svelteColumnPinningPinControlsSource,
+  },
+  {
+    path: 'src/lib/components/column-pinning/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -151,7 +185,12 @@ function ColumnPinningTablePage() {
 
         <InstallCommand name="column-pinning-table" />
 
-        <ComponentPreview preview={<ColumnPinningTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ColumnPinningTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

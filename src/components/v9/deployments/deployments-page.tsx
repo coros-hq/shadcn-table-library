@@ -8,6 +8,16 @@ import filterSource from './faceted-filter.tsx?raw'
 import dataSource from './data.ts?raw'
 import demoSource from './index.tsx?raw'
 import { DeploymentsDemo } from './index'
+import svelteDeploymentsDeploymentsDemoSource from '#/components/svelte/v9/deployments/DeploymentsDemo.svelte?raw'
+import svelteDeploymentscolumnsSource from '#/components/svelte/v9/deployments/columns.ts?raw'
+import svelteDeploymentsDeploymentsTableSource from '#/components/svelte/v9/deployments/DeploymentsTable.svelte?raw'
+import svelteDeploymentsFacetedFilterSource from '#/components/svelte/v9/deployments/FacetedFilter.svelte?raw'
+import svelteDeploymentsStatusIconSource from '#/components/svelte/v9/deployments/StatusIcon.svelte?raw'
+import svelteDeploymentsdataSource from '#/components/svelte/v9/deployments/data.ts?raw'
+import svelteCreatedcellSource from '#/components/svelte/v9/deployments/CreatedCell.svelte?raw'
+import svelteDeploymentcellSource from '#/components/svelte/v9/deployments/DeploymentCell.svelte?raw'
+import svelteSourcecellSource from '#/components/svelte/v9/deployments/SourceCell.svelte?raw'
+import svelteStatuscellSource from '#/components/svelte/v9/deployments/StatusCell.svelte?raw'
 
 const files = [
   { path: 'src/components/deployments/data-table.tsx', code: tableSource },
@@ -16,6 +26,55 @@ const files = [
   { path: 'src/components/deployments/data.ts', code: dataSource },
   { path: 'src/components/deployments/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/deployments/DeploymentsDemo.svelte',
+    code: svelteDeploymentsDeploymentsDemoSource,
+  },
+  {
+    path: 'src/lib/components/deployments/columns.ts',
+    code: svelteDeploymentscolumnsSource,
+  },
+  {
+    path: 'src/lib/components/deployments/DeploymentsTable.svelte',
+    code: svelteDeploymentsDeploymentsTableSource,
+  },
+  {
+    path: 'src/lib/components/deployments/FacetedFilter.svelte',
+    code: svelteDeploymentsFacetedFilterSource,
+  },
+  {
+    path: 'src/lib/components/deployments/StatusIcon.svelte',
+    code: svelteDeploymentsStatusIconSource,
+  },
+  {
+    path: 'src/lib/components/deployments/data.ts',
+    code: svelteDeploymentsdataSource,
+  },
+  {
+    path: 'src/lib/components/deployments/CreatedCell.svelte',
+    code: svelteCreatedcellSource,
+  },
+  {
+    path: 'src/lib/components/deployments/DeploymentCell.svelte',
+    code: svelteDeploymentcellSource,
+  },
+  {
+    path: 'src/lib/components/deployments/SourceCell.svelte',
+    code: svelteSourcecellSource,
+  },
+  {
+    path: 'src/lib/components/deployments/StatusCell.svelte',
+    code: svelteStatuscellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'command', 'input', 'popover', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -85,7 +144,12 @@ export function DeploymentsPage() {
 
         <InstallCommand name="deployments-table" />
 
-        <ComponentPreview preview={<DeploymentsDemo />} files={files} />
+        <ComponentPreview
+          preview={<DeploymentsDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>
