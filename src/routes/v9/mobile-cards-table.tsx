@@ -8,6 +8,11 @@ import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { InstallCommand } from '#/components/docs/copy-install-command.tsx'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
+import svelteMobileCardsMobileCardsTableDemoSource from '#/components/svelte/v9/mobile-cards/MobileCardsTableDemo.svelte?raw'
+import svelteMobileCardscolumnsSource from '#/components/svelte/v9/mobile-cards/columns.ts?raw'
+import svelteMobileCardsDataTableSource from '#/components/svelte/v9/mobile-cards/DataTable.svelte?raw'
+import svelteMobileCardsViewportToggleSource from '#/components/svelte/v9/mobile-cards/ViewportToggle.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/v9/mobile-cards/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/v9/mobile-cards/index.tsx', code: indexSource },
@@ -21,6 +26,35 @@ const files = [
     code: viewportToggleSource,
   },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/mobile-cards/MobileCardsTableDemo.svelte',
+    code: svelteMobileCardsMobileCardsTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/columns.ts',
+    code: svelteMobileCardscolumnsSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/DataTable.svelte',
+    code: svelteMobileCardsDataTableSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/ViewportToggle.svelte',
+    code: svelteMobileCardsViewportToggleSource,
+  },
+  {
+    path: 'src/lib/components/mobile-cards/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['badge', 'table', 'tabs'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -175,7 +209,12 @@ function MobileCardsTablePage() {
 
         <InstallCommand name="mobile-cards-table" />
 
-        <ComponentPreview preview={<MobileCardsTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<MobileCardsTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

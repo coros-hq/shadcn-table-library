@@ -8,6 +8,13 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { KpiTableDemo } from './index'
+import svelteKpiKpiTableDemoSource from '#/components/svelte/v9/kpi/KpiTableDemo.svelte?raw'
+import svelteKpicolumnsSource from '#/components/svelte/v9/kpi/columns.ts?raw'
+import svelteKpiKpiTableSource from '#/components/svelte/v9/kpi/KpiTable.svelte?raw'
+import svelteKpiSparklineSource from '#/components/svelte/v9/kpi/Sparkline.svelte?raw'
+import svelteKpikpiSource from '#/components/svelte/v9/kpi/kpi.ts?raw'
+import svelteChangecellSource from '#/components/svelte/v9/kpi/ChangeCell.svelte?raw'
+import svelteMetriclabelSource from '#/components/svelte/v9/kpi/MetricLabel.svelte?raw'
 
 const files = [
   { path: 'src/components/kpi/kpi.ts', code: kpiSource },
@@ -16,6 +23,43 @@ const files = [
   { path: 'src/components/kpi/data-table.tsx', code: tableSource },
   { path: 'src/components/kpi/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/kpi/KpiTableDemo.svelte',
+    code: svelteKpiKpiTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/kpi/columns.ts',
+    code: svelteKpicolumnsSource,
+  },
+  {
+    path: 'src/lib/components/kpi/KpiTable.svelte',
+    code: svelteKpiKpiTableSource,
+  },
+  {
+    path: 'src/lib/components/kpi/Sparkline.svelte',
+    code: svelteKpiSparklineSource,
+  },
+  {
+    path: 'src/lib/components/kpi/kpi.ts',
+    code: svelteKpikpiSource,
+  },
+  {
+    path: 'src/lib/components/kpi/ChangeCell.svelte',
+    code: svelteChangecellSource,
+  },
+  {
+    path: 'src/lib/components/kpi/MetricLabel.svelte',
+    code: svelteMetriclabelSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -108,7 +152,12 @@ export function KpiTablePage() {
 
         <InstallCommand name="kpi-table" />
 
-        <ComponentPreview preview={<KpiTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<KpiTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

@@ -7,6 +7,12 @@ import dataSource from './data.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ComparisonTableDemo } from './index'
+import svelteComparisonComparisonTableDemoSource from '#/components/svelte/v9/comparison/ComparisonTableDemo.svelte?raw'
+import svelteComparisonComparisonTableSource from '#/components/svelte/v9/comparison/ComparisonTable.svelte?raw'
+import svelteComparisoncomparisonSource from '#/components/svelte/v9/comparison/comparison.ts?raw'
+import svelteComparisondataSource from '#/components/svelte/v9/comparison/data.ts?raw'
+import svelteFeaturelabelSource from '#/components/svelte/v9/comparison/FeatureLabel.svelte?raw'
+import svelteFeaturevaluecellSource from '#/components/svelte/v9/comparison/FeatureValueCell.svelte?raw'
 
 const files = [
   { path: 'src/components/comparison/comparison.ts', code: comparisonSource },
@@ -14,6 +20,39 @@ const files = [
   { path: 'src/components/comparison/data-table.tsx', code: tableSource },
   { path: 'src/components/comparison/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/comparison/ComparisonTableDemo.svelte',
+    code: svelteComparisonComparisonTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/comparison/ComparisonTable.svelte',
+    code: svelteComparisonComparisonTableSource,
+  },
+  {
+    path: 'src/lib/components/comparison/comparison.ts',
+    code: svelteComparisoncomparisonSource,
+  },
+  {
+    path: 'src/lib/components/comparison/data.ts',
+    code: svelteComparisondataSource,
+  },
+  {
+    path: 'src/lib/components/comparison/FeatureLabel.svelte',
+    code: svelteFeaturelabelSource,
+  },
+  {
+    path: 'src/lib/components/comparison/FeatureValueCell.svelte',
+    code: svelteFeaturevaluecellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -112,7 +151,12 @@ export function ComparisonTablePage() {
 
         <InstallCommand name="comparison-table" />
 
-        <ComponentPreview preview={<ComparisonTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ComparisonTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>
