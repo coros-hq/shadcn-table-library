@@ -6,12 +6,41 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ToolbarFilterTableDemo } from './index'
+import svelteToolbarFilterToolbarFilterTableDemoSource from '#/components/svelte/v9/toolbar-filter/ToolbarFilterTableDemo.svelte?raw'
+import svelteToolbarFiltercolumnsSource from '#/components/svelte/v9/toolbar-filter/columns.ts?raw'
+import svelteToolbarFilterToolbarFilterDataTableSource from '#/components/svelte/v9/toolbar-filter/ToolbarFilterDataTable.svelte?raw'
+import svelteToolbarFilterToolbarSelectSource from '#/components/svelte/v9/toolbar-filter/ToolbarSelect.svelte?raw'
 
 const files = [
   { path: 'src/components/toolbar-filter/columns.tsx', code: columnsSource },
   { path: 'src/components/toolbar-filter/data-table.tsx', code: tableSource },
   { path: 'src/components/toolbar-filter/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/toolbar-filter/ToolbarFilterTableDemo.svelte',
+    code: svelteToolbarFilterToolbarFilterTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/toolbar-filter/columns.ts',
+    code: svelteToolbarFiltercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/toolbar-filter/ToolbarFilterDataTable.svelte',
+    code: svelteToolbarFilterToolbarFilterDataTableSource,
+  },
+  {
+    path: 'src/lib/components/toolbar-filter/ToolbarSelect.svelte',
+    code: svelteToolbarFilterToolbarSelectSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['input', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -79,7 +108,12 @@ export function ToolbarFilterTablePage() {
 
         <InstallCommand name="toolbar-filter-table" />
 
-        <ComponentPreview preview={<ToolbarFilterTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ToolbarFilterTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

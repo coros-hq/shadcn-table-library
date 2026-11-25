@@ -8,6 +8,11 @@ import columnsSource from './columns.tsx?raw'
 import dataSource from './data.ts?raw'
 import demoSource from './index.tsx?raw'
 import { SpreadsheetDemo } from './index'
+import svelteSpreadsheetDemoSource from '#/components/svelte/v9/spreadsheet/SpreadsheetDemo.svelte?raw'
+import svelteSpreadsheetTableSource from '#/components/svelte/v9/spreadsheet/SpreadsheetTable.svelte?raw'
+import svelteSpreadsheetColumnsSource from '#/components/svelte/v9/spreadsheet/columns.ts?raw'
+import svelteSpreadsheetFormulaSource from '#/components/svelte/v9/spreadsheet/formula.ts?raw'
+import svelteSpreadsheetDataSource from '#/components/svelte/v9/spreadsheet/data.ts?raw'
 
 const files = [
   { path: 'src/components/spreadsheet/data-table.tsx', code: tableSource },
@@ -16,6 +21,35 @@ const files = [
   { path: 'src/components/spreadsheet/data.ts', code: dataSource },
   { path: 'src/components/spreadsheet/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/spreadsheet/SpreadsheetDemo.svelte',
+    code: svelteSpreadsheetDemoSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/SpreadsheetTable.svelte',
+    code: svelteSpreadsheetTableSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/columns.ts',
+    code: svelteSpreadsheetColumnsSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/formula.ts',
+    code: svelteSpreadsheetFormulaSource,
+  },
+  {
+    path: 'src/lib/components/spreadsheet/data.ts',
+    code: svelteSpreadsheetDataSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -97,7 +131,12 @@ export function SpreadsheetPage() {
 
         <InstallCommand name="spreadsheet-table" />
 
-        <ComponentPreview preview={<SpreadsheetDemo />} files={files} />
+        <ComponentPreview
+          preview={<SpreadsheetDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

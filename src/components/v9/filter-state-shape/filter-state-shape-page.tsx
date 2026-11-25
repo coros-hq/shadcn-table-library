@@ -8,6 +8,12 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { FilterStateShapeTableDemo } from './index'
+import svelteFilterStateShapeFilterStateShapeTableDemoSource from '#/components/svelte/v9/filter-state-shape/FilterStateShapeTableDemo.svelte?raw'
+import svelteFilterStateShapecolumnsSource from '#/components/svelte/v9/filter-state-shape/columns.ts?raw'
+import svelteFilterStateShapeActiveFilterChipsSource from '#/components/svelte/v9/filter-state-shape/ActiveFilterChips.svelte?raw'
+import svelteFilterStateShapeFilterStateShapeDataTableSource from '#/components/svelte/v9/filter-state-shape/FilterStateShapeDataTable.svelte?raw'
+import svelteFilterStateShapetypeSource from '#/components/svelte/v9/filter-state-shape/type.ts?raw'
+import svelteFilterStateShapesharedmultiselectfilterMultiSelectFilterSource from '#/components/svelte/shared/multi-select-filter/MultiSelectFilter.svelte?raw'
 
 const files = [
   { path: 'src/components/filter-state-shape/type.ts', code: typeSource },
@@ -25,6 +31,48 @@ const files = [
   },
   { path: 'src/components/filter-state-shape/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/filter-state-shape/FilterStateShapeTableDemo.svelte',
+    code: svelteFilterStateShapeFilterStateShapeTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/filter-state-shape/columns.ts',
+    code: svelteFilterStateShapecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/filter-state-shape/ActiveFilterChips.svelte',
+    code: svelteFilterStateShapeActiveFilterChipsSource,
+  },
+  {
+    path: 'src/lib/components/filter-state-shape/FilterStateShapeDataTable.svelte',
+    code: svelteFilterStateShapeFilterStateShapeDataTableSource,
+  },
+  {
+    path: 'src/lib/components/filter-state-shape/type.ts',
+    code: svelteFilterStateShapetypeSource,
+  },
+  {
+    path: 'src/lib/components/ui/multi-select-filter/MultiSelectFilter.svelte',
+    code: svelteFilterStateShapesharedmultiselectfilterMultiSelectFilterSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@internationalized/date', '@lucide/svelte', 'date-fns'],
+  shadcn: [
+    'badge',
+    'button',
+    'checkbox',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'table',
+  ],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -101,6 +149,8 @@ export function FilterStateShapePage() {
         <ComponentPreview
           preview={<FilterStateShapeTableDemo />}
           files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
         />
 
         <div className="space-y-2">

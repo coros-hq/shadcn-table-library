@@ -6,12 +6,46 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { TreeSelectDemo } from './index'
+import svelteTreeSelectTreeSelectDemoSource from '#/components/svelte/v9/tree-select/TreeSelectDemo.svelte?raw'
+import svelteTreeSelectcolumnsSource from '#/components/svelte/v9/tree-select/columns.ts?raw'
+import svelteTreeSelectTreeSelectDataTableSource from '#/components/svelte/v9/tree-select/TreeSelectDataTable.svelte?raw'
+import svelteNamecellSource from '#/components/svelte/v9/tree-select/NameCell.svelte?raw'
+import svelteSelectcheckboxSource from '#/components/svelte/v9/tree-select/SelectCheckbox.svelte?raw'
 
 const files = [
   { path: 'src/components/tree-select/columns.tsx', code: columnsSource },
   { path: 'src/components/tree-select/data-table.tsx', code: tableSource },
   { path: 'src/components/tree-select/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/tree-select/TreeSelectDemo.svelte',
+    code: svelteTreeSelectTreeSelectDemoSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/columns.ts',
+    code: svelteTreeSelectcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/TreeSelectDataTable.svelte',
+    code: svelteTreeSelectTreeSelectDataTableSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/NameCell.svelte',
+    code: svelteNamecellSource,
+  },
+  {
+    path: 'src/lib/components/tree-select/SelectCheckbox.svelte',
+    code: svelteSelectcheckboxSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['checkbox', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -93,7 +127,12 @@ export function TreeSelectPage() {
 
         <InstallCommand name="tree-table-selection" />
 
-        <ComponentPreview preview={<TreeSelectDemo />} files={files} />
+        <ComponentPreview
+          preview={<TreeSelectDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

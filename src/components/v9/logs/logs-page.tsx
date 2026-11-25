@@ -17,6 +17,30 @@ import demoSource from './index.tsx?raw'
 import sidePanelDemoSource from './side-panel-demo.tsx?raw'
 import { LogsDemo } from './index'
 import { LogsSidePanelDemo } from './side-panel-demo'
+import svelteLogsColumnsSource from '#/components/svelte/v9/logs/columns.ts?raw'
+import svelteLogsToolbarSource from '#/components/svelte/v9/logs/toolbar.ts?raw'
+import svelteLogsUseLogsTableSource from '#/components/svelte/v9/logs/use-logs-table.ts?raw'
+import svelteLogsDateRangeSource from '#/components/svelte/v9/logs/date-range.ts?raw'
+import svelteLogsLevelStylesSource from '#/components/svelte/v9/logs/level-styles.ts?raw'
+import svelteLogsDataSource from '#/components/svelte/v9/logs/data.ts?raw'
+import svelteLogsLogstoolbarSource from '#/components/svelte/v9/logs/LogsToolbar.svelte?raw'
+import svelteLogsLoadoldereventsSource from '#/components/svelte/v9/logs/LoadOlderEvents.svelte?raw'
+import svelteLogsNoresultsSource from '#/components/svelte/v9/logs/NoResults.svelte?raw'
+import svelteLogsLogfieldsSource from '#/components/svelte/v9/logs/LogFields.svelte?raw'
+import svelteLogsFacetedfilterSource from '#/components/svelte/v9/logs/FacetedFilter.svelte?raw'
+import svelteLogsDaterangefilterSource from '#/components/svelte/v9/logs/DateRangeFilter.svelte?raw'
+import svelteLogsLeveldotSource from '#/components/svelte/v9/logs/LevelDot.svelte?raw'
+import svelteLogsLevellabelSource from '#/components/svelte/v9/logs/LevelLabel.svelte?raw'
+import svelteLogsHighlightSource from '#/components/svelte/v9/logs/Highlight.svelte?raw'
+import svelteLogsTimecellSource from '#/components/svelte/v9/logs/TimeCell.svelte?raw'
+import svelteLogsRequestcellSource from '#/components/svelte/v9/logs/RequestCell.svelte?raw'
+import svelteLogsMessagecellSource from '#/components/svelte/v9/logs/MessageCell.svelte?raw'
+import svelteLogsLogsdemoSource from '#/components/svelte/v9/logs/LogsDemo.svelte?raw'
+import svelteLogsLogstableSource from '#/components/svelte/v9/logs/LogsTable.svelte?raw'
+import svelteLogsExpandbuttonSource from '#/components/svelte/v9/logs/ExpandButton.svelte?raw'
+import svelteLogsLogssidepaneldemoSource from '#/components/svelte/v9/logs/LogsSidePanelDemo.svelte?raw'
+import svelteLogsLogssidepaneltableSource from '#/components/svelte/v9/logs/LogsSidePanelTable.svelte?raw'
+import svelteLogsLogpanelSource from '#/components/svelte/v9/logs/LogPanel.svelte?raw'
 
 const dir = 'src/components/logs'
 
@@ -187,6 +211,84 @@ useEffect(() => {
   },
 ]
 
+// Svelte projects keep their shadcn files under src/lib
+const inLib = (files: { path: string; code: string }[]) =>
+  files.map((file) => ({
+    ...file,
+    path: file.path.replace('src/components/', 'src/lib/components/'),
+  }))
+
+const svelteSharedFiles = inLib([
+  { path: `${dir}/columns.ts`, code: svelteLogsColumnsSource },
+  { path: `${dir}/toolbar.ts`, code: svelteLogsToolbarSource },
+  { path: `${dir}/use-logs-table.ts`, code: svelteLogsUseLogsTableSource },
+  { path: `${dir}/date-range.ts`, code: svelteLogsDateRangeSource },
+  { path: `${dir}/level-styles.ts`, code: svelteLogsLevelStylesSource },
+  { path: `${dir}/data.ts`, code: svelteLogsDataSource },
+  { path: `${dir}/LogsToolbar.svelte`, code: svelteLogsLogstoolbarSource },
+  {
+    path: `${dir}/LoadOlderEvents.svelte`,
+    code: svelteLogsLoadoldereventsSource,
+  },
+  { path: `${dir}/NoResults.svelte`, code: svelteLogsNoresultsSource },
+  { path: `${dir}/LogFields.svelte`, code: svelteLogsLogfieldsSource },
+  { path: `${dir}/FacetedFilter.svelte`, code: svelteLogsFacetedfilterSource },
+  {
+    path: `${dir}/DateRangeFilter.svelte`,
+    code: svelteLogsDaterangefilterSource,
+  },
+  { path: `${dir}/LevelDot.svelte`, code: svelteLogsLeveldotSource },
+  { path: `${dir}/LevelLabel.svelte`, code: svelteLogsLevellabelSource },
+  { path: `${dir}/Highlight.svelte`, code: svelteLogsHighlightSource },
+  { path: `${dir}/TimeCell.svelte`, code: svelteLogsTimecellSource },
+  { path: `${dir}/RequestCell.svelte`, code: svelteLogsRequestcellSource },
+  { path: `${dir}/MessageCell.svelte`, code: svelteLogsMessagecellSource },
+])
+const svelteExpandFiles = inLib([
+  { path: `${dir}/LogsDemo.svelte`, code: svelteLogsLogsdemoSource },
+  { path: `${dir}/LogsTable.svelte`, code: svelteLogsLogstableSource },
+  { path: `${dir}/ExpandButton.svelte`, code: svelteLogsExpandbuttonSource },
+  ...svelteSharedFiles,
+])
+const svelteExpandFilesDeps = {
+  npm: ['@internationalized/date', '@lucide/svelte'],
+  shadcn: [
+    'badge',
+    'button',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'table',
+  ],
+  tanstack: '@tanstack/svelte-table@^9',
+}
+const svelteSidePanelFiles = inLib([
+  {
+    path: `${dir}/LogsSidePanelDemo.svelte`,
+    code: svelteLogsLogssidepaneldemoSource,
+  },
+  {
+    path: `${dir}/LogsSidePanelTable.svelte`,
+    code: svelteLogsLogssidepaneltableSource,
+  },
+  { path: `${dir}/LogPanel.svelte`, code: svelteLogsLogpanelSource },
+  ...svelteSharedFiles,
+])
+const svelteSidePanelFilesDeps = {
+  npm: ['@internationalized/date', '@lucide/svelte'],
+  shadcn: [
+    'badge',
+    'button',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'table',
+  ],
+  tanstack: '@tanstack/svelte-table@^9',
+}
+
 const examples = [
   {
     value: 'expandable',
@@ -196,6 +298,8 @@ const examples = [
     install: 'logs-table',
     preview: <LogsDemo />,
     files: expandFiles,
+    svelteFiles: svelteExpandFiles,
+    svelteDeps: svelteExpandFilesDeps,
     steps: expandSteps,
   },
   {
@@ -206,6 +310,8 @@ const examples = [
     install: 'logs-table-side-panel',
     preview: <LogsSidePanelDemo />,
     files: sidePanelFiles,
+    svelteFiles: svelteSidePanelFiles,
+    svelteDeps: svelteSidePanelFilesDeps,
     steps: sidePanelSteps,
   },
 ] as const
@@ -285,7 +391,12 @@ export function LogsPage() {
                 {ex.description}
               </p>
               <InstallCommand name={ex.install} />
-              <ComponentPreview preview={ex.preview} files={ex.files} />
+              <ComponentPreview
+                preview={ex.preview}
+                files={ex.files}
+                svelteFiles={ex.svelteFiles}
+                svelteDeps={ex.svelteDeps}
+              />
               <HowItWorks steps={ex.steps} />
             </TabsContent>
           ))}

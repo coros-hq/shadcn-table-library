@@ -7,6 +7,10 @@ import exportSource from './export.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { UtilityTableDemo } from './index'
+import svelteUtilityUtilityTableDemoSource from '#/components/svelte/v9/utility/UtilityTableDemo.svelte?raw'
+import svelteUtilitycolumnsSource from '#/components/svelte/v9/utility/columns.ts?raw'
+import svelteUtilityUtilityTableSource from '#/components/svelte/v9/utility/UtilityTable.svelte?raw'
+import svelteUtilityexportSource from '#/components/svelte/v9/utility/export.ts?raw'
 
 const files = [
   { path: 'src/components/utility/columns.tsx', code: columnsSource },
@@ -14,6 +18,31 @@ const files = [
   { path: 'src/components/utility/data-table.tsx', code: tableSource },
   { path: 'src/components/utility/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/utility/UtilityTableDemo.svelte',
+    code: svelteUtilityUtilityTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/utility/columns.ts',
+    code: svelteUtilitycolumnsSource,
+  },
+  {
+    path: 'src/lib/components/utility/UtilityTable.svelte',
+    code: svelteUtilityUtilityTableSource,
+  },
+  {
+    path: 'src/lib/components/utility/export.ts',
+    code: svelteUtilityexportSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -94,7 +123,12 @@ export function UtilityTablePage() {
 
         <InstallCommand name="density-export-table" />
 
-        <ComponentPreview preview={<UtilityTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<UtilityTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

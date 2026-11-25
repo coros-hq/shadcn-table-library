@@ -7,6 +7,12 @@ import dataSource from './data.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { HeatmapTableDemo } from './index'
+import svelteHeatmapHeatmapTableDemoSource from '#/components/svelte/v9/heatmap/HeatmapTableDemo.svelte?raw'
+import svelteHeatmapHeatmapTableSource from '#/components/svelte/v9/heatmap/HeatmapTable.svelte?raw'
+import svelteHeatmapdataSource from '#/components/svelte/v9/heatmap/data.ts?raw'
+import svelteHeatmapheatmapSource from '#/components/svelte/v9/heatmap/heatmap.ts?raw'
+import svelteHeatcellSource from '#/components/svelte/v9/heatmap/HeatCell.svelte?raw'
+import svelteRowlabelSource from '#/components/svelte/v9/heatmap/RowLabel.svelte?raw'
 
 const files = [
   { path: 'src/components/heatmap/heatmap.ts', code: heatmapSource },
@@ -14,6 +20,39 @@ const files = [
   { path: 'src/components/heatmap/data-table.tsx', code: tableSource },
   { path: 'src/components/heatmap/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/heatmap/HeatmapTableDemo.svelte',
+    code: svelteHeatmapHeatmapTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/HeatmapTable.svelte',
+    code: svelteHeatmapHeatmapTableSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/data.ts',
+    code: svelteHeatmapdataSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/heatmap.ts',
+    code: svelteHeatmapheatmapSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/HeatCell.svelte',
+    code: svelteHeatcellSource,
+  },
+  {
+    path: 'src/lib/components/heatmap/RowLabel.svelte',
+    code: svelteRowlabelSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -99,7 +138,12 @@ export function HeatmapTablePage() {
 
         <InstallCommand name="heatmap-table" />
 
-        <ComponentPreview preview={<HeatmapTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<HeatmapTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

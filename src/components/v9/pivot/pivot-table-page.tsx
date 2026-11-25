@@ -7,6 +7,11 @@ import dataSource from './data.ts?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { PivotTableDemo } from './index'
+import sveltePivotPivotTableDemoSource from '#/components/svelte/v9/pivot/PivotTableDemo.svelte?raw'
+import sveltePivotPivotTableSource from '#/components/svelte/v9/pivot/PivotTable.svelte?raw'
+import sveltePivotdataSource from '#/components/svelte/v9/pivot/data.ts?raw'
+import sveltePivotpivotSource from '#/components/svelte/v9/pivot/pivot.ts?raw'
+import svelteBoldcellSource from '#/components/svelte/v9/pivot/BoldCell.svelte?raw'
 
 const files = [
   { path: 'src/components/pivot/pivot.ts', code: pivotSource },
@@ -14,6 +19,35 @@ const files = [
   { path: 'src/components/pivot/data-table.tsx', code: tableSource },
   { path: 'src/components/pivot/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/pivot/PivotTableDemo.svelte',
+    code: sveltePivotPivotTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/pivot/PivotTable.svelte',
+    code: sveltePivotPivotTableSource,
+  },
+  {
+    path: 'src/lib/components/pivot/data.ts',
+    code: sveltePivotdataSource,
+  },
+  {
+    path: 'src/lib/components/pivot/pivot.ts',
+    code: sveltePivotpivotSource,
+  },
+  {
+    path: 'src/lib/components/pivot/BoldCell.svelte',
+    code: svelteBoldcellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -115,7 +149,12 @@ export function PivotTablePage() {
 
         <InstallCommand name="pivot-table" />
 
-        <ComponentPreview preview={<PivotTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<PivotTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

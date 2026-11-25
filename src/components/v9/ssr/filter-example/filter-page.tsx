@@ -8,6 +8,12 @@ import tableSource from './data-table.tsx?raw'
 import columnsSource from './columns.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ServerFilterDemo } from './index'
+import svelteSsrFilterExampleServerFilterDemoSource from '#/components/svelte/v9/ssr/filter-example/ServerFilterDemo.svelte?raw'
+import svelteSsrFilterExamplecolumnsSource from '#/components/svelte/v9/ssr/filter-example/columns.ts?raw'
+import svelteSsrFilterExampleDataTableSource from '#/components/svelte/v9/ssr/filter-example/DataTable.svelte?raw'
+import svelteSsrFilterExampledataSource from '#/components/svelte/v9/ssr/data.ts?raw'
+import svelteSsrFilterExampleuseServerQuerySource from '#/components/svelte/v9/ssr/useServerQuery.svelte.ts?raw'
+import svelteSsrFilterExampleuseUrlSearchSource from '#/components/svelte/v9/ssr/useUrlSearch.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -22,6 +28,39 @@ const files = [
   },
   { path: 'src/components/ssr/filter-example/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/ssr/filter-example/ServerFilterDemo.svelte',
+    code: svelteSsrFilterExampleServerFilterDemoSource,
+  },
+  {
+    path: 'src/lib/components/ssr/filter-example/columns.ts',
+    code: svelteSsrFilterExamplecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/ssr/filter-example/DataTable.svelte',
+    code: svelteSsrFilterExampleDataTableSource,
+  },
+  {
+    path: 'src/lib/components/ssr/data.ts',
+    code: svelteSsrFilterExampledataSource,
+  },
+  {
+    path: 'src/lib/components/ssr/useServerQuery.svelte.ts',
+    code: svelteSsrFilterExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/lib/components/ssr/useUrlSearch.svelte.ts',
+    code: svelteSsrFilterExampleuseUrlSearchSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -122,7 +161,12 @@ export function ServerFilterPage() {
 
         <InstallCommand name="server-filter-table" />
 
-        <ComponentPreview preview={<ServerFilterDemo />} files={files} />
+        <ComponentPreview
+          preview={<ServerFilterDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

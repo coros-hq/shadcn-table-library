@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <a href="https://www.shad-table.dev/">
     <img src="./.github/assets/banner.svg" alt="ShadTable: table components for shadcn/ui" />
@@ -39,10 +37,10 @@ The full list of installable names is in [`registry.json`](./registry.json), and
 
 Every example ships for both major versions of `@tanstack/react-table`:
 
-| Version | Install                                                    | Docs pages            |
-| ------- | ---------------------------------------------------------- | --------------------- |
-| v8      | `npx shadcn add https://www.shad-table.dev/r/<name>.json`    | `/<page>`             |
-| v9      | `npx shadcn add https://www.shad-table.dev/r/<name>-v9.json` | `/v9/<page>`          |
+| Version | Install                                                      | Docs pages   |
+| ------- | ------------------------------------------------------------ | ------------ |
+| v8      | `npx shadcn add https://www.shad-table.dev/r/<name>.json`    | `/<page>`    |
+| v9      | `npx shadcn add https://www.shad-table.dev/r/<name>-v9.json` | `/v9/<page>` |
 
 The v8 items pin `@tanstack/react-table@^8.21.3` and the v9 items pin `^9`, so installing one never changes your major version by accident. Use the **v8 / v9** switch in the docs header to compare the same example in both. Moving an existing table over? Read the [v8 → v9 migration guide](https://www.shad-table.dev/migrate-v9).
 
@@ -52,7 +50,7 @@ The docs pages have a **React | Vue** toggle on the Code tab with a Vue port of 
 
 ## Svelte
 
-The same toggle also offers **Svelte**: a Svelte 5 port of each v8 example, written for [shadcn-svelte](https://www.shadcn-svelte.com) and `@tanstack/table-core@^8`. `@tanstack/svelte-table` v8 only supports Svelte 3 and 4, so the ports drive table-core through a small runes adapter (`createSvelteTable`, `FlexRender`, `renderComponent`) that each Code tab shows next to the install commands. The Svelte code is source only: there is no live Svelte preview and no Svelte registry items yet.
+The same toggle also offers **Svelte**: Svelte 5 ports of the examples, written for [shadcn-svelte](https://www.shadcn-svelte.com). The v8 ports use `@tanstack/table-core@^8`; `@tanstack/svelte-table` v8 only supports Svelte 3 and 4, so those ports drive table-core through a small runes adapter (`createSvelteTable`, `FlexRender`, `renderComponent`) that each Code tab shows next to the install commands. The v9 ports use the Svelte 5 native adapter (`@tanstack/svelte-table@^9`), so they install no helper files. The Svelte code is source only: there is no live Svelte preview and no Svelte registry items yet.
 
 ## What's included
 

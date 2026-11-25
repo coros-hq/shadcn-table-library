@@ -37,6 +37,8 @@ export function TreeDataTable<TData extends RowData & { children?: TData[] }>({
 
   const table = useTable({
     features: v9Features,
+    // v9Features registers pagination, which would cut open groups off at 10 rows
+    manualPagination: true,
     data,
     columns,
     getSubRows: (row) => row.children,

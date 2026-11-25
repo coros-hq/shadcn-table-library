@@ -8,6 +8,16 @@ import hookSource from './use-infinite-rows.ts?raw'
 import dataSource from './data.ts?raw'
 import demoSource from './index.tsx?raw'
 import { InfiniteScrollDemo } from './index'
+import svelteInfiniteScrollDemoSource from '#/components/svelte/v9/infinite-scroll/InfiniteScrollDemo.svelte?raw'
+import svelteInfiniteScrollTableSource from '#/components/svelte/v9/infinite-scroll/InfiniteScrollTable.svelte?raw'
+import svelteInfiniteScrollColumnsSource from '#/components/svelte/v9/infinite-scroll/columns.ts?raw'
+import svelteInfiniteScrollHookSource from '#/components/svelte/v9/infinite-scroll/use-infinite-rows.svelte.ts?raw'
+import svelteInfiniteScrollDataSource from '#/components/svelte/v9/infinite-scroll/data.ts?raw'
+import svelteCustomercellSource from '#/components/svelte/v9/infinite-scroll/CustomerCell.svelte?raw'
+import svelteDatecellSource from '#/components/svelte/v9/infinite-scroll/DateCell.svelte?raw'
+import svelteMoneycellSource from '#/components/svelte/v9/infinite-scroll/MoneyCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/v9/infinite-scroll/StatusBadge.svelte?raw'
+import svelteTransactionidSource from '#/components/svelte/v9/infinite-scroll/TransactionId.svelte?raw'
 
 const files = [
   { path: 'src/components/infinite-scroll/data-table.tsx', code: tableSource },
@@ -19,6 +29,55 @@ const files = [
   { path: 'src/components/infinite-scroll/data.ts', code: dataSource },
   { path: 'src/components/infinite-scroll/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/infinite-scroll/InfiniteScrollDemo.svelte',
+    code: svelteInfiniteScrollDemoSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/InfiniteScrollTable.svelte',
+    code: svelteInfiniteScrollTableSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/columns.ts',
+    code: svelteInfiniteScrollColumnsSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/use-infinite-rows.svelte.ts',
+    code: svelteInfiniteScrollHookSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/data.ts',
+    code: svelteInfiniteScrollDataSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/CustomerCell.svelte',
+    code: svelteCustomercellSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/DateCell.svelte',
+    code: svelteDatecellSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/MoneyCell.svelte',
+    code: svelteMoneycellSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+  {
+    path: 'src/lib/components/infinite-scroll/TransactionId.svelte',
+    code: svelteTransactionidSource,
+  },
+]
+
+const svelteDeps = {
+  npm: [],
+  shadcn: ['badge', 'button', 'skeleton', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -93,7 +152,12 @@ export function InfiniteScrollPage() {
 
         <InstallCommand name="infinite-scroll-table" />
 
-        <ComponentPreview preview={<InfiniteScrollDemo />} files={files} />
+        <ComponentPreview
+          preview={<InfiniteScrollDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

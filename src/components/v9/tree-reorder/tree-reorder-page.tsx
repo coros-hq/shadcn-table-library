@@ -6,12 +6,46 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { TreeReorderDemo } from './index'
+import svelteTreeReorderTreeReorderDemoSource from '#/components/svelte/v9/tree-reorder/TreeReorderDemo.svelte?raw'
+import svelteTreeReordercolumnsSource from '#/components/svelte/v9/tree-reorder/columns.ts?raw'
+import svelteTreeReorderTreeReorderDataTableSource from '#/components/svelte/v9/tree-reorder/TreeReorderDataTable.svelte?raw'
+import svelteNamecellSource from '#/components/svelte/v9/tree-reorder/NameCell.svelte?raw'
+import svelteSortableSource from '#/components/svelte/v9/tree-reorder/sortable.ts?raw'
 
 const files = [
   { path: 'src/components/tree-reorder/columns.tsx', code: columnsSource },
   { path: 'src/components/tree-reorder/data-table.tsx', code: tableSource },
   { path: 'src/components/tree-reorder/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/tree-reorder/TreeReorderDemo.svelte',
+    code: svelteTreeReorderTreeReorderDemoSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/columns.ts',
+    code: svelteTreeReordercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/TreeReorderDataTable.svelte',
+    code: svelteTreeReorderTreeReorderDataTableSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/NameCell.svelte',
+    code: svelteNamecellSource,
+  },
+  {
+    path: 'src/lib/components/tree-reorder/sortable.ts',
+    code: svelteSortableSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte', 'sortablejs', '@types/sortablejs'],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -92,7 +126,12 @@ export function TreeReorderPage() {
 
         <InstallCommand name="tree-table-reorder" />
 
-        <ComponentPreview preview={<TreeReorderDemo />} files={files} />
+        <ComponentPreview
+          preview={<TreeReorderDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

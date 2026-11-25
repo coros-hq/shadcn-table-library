@@ -6,6 +6,10 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ResizableTableDemo } from './index'
+import svelteResizableReorderResizableTableDemoSource from '#/components/svelte/v9/resizable-reorder/ResizableTableDemo.svelte?raw'
+import svelteResizableReordercolumnsSource from '#/components/svelte/v9/resizable-reorder/columns.ts?raw'
+import svelteResizableReorderResizableTableSource from '#/components/svelte/v9/resizable-reorder/ResizableTable.svelte?raw'
+import svelteSortableSource from '#/components/svelte/v9/resizable-reorder/sortable.ts?raw'
 
 const files = [
   { path: 'src/components/resizable-reorder/columns.tsx', code: columnsSource },
@@ -15,6 +19,31 @@ const files = [
   },
   { path: 'src/components/resizable-reorder/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/resizable-reorder/ResizableTableDemo.svelte',
+    code: svelteResizableReorderResizableTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/resizable-reorder/columns.ts',
+    code: svelteResizableReordercolumnsSource,
+  },
+  {
+    path: 'src/lib/components/resizable-reorder/ResizableTable.svelte',
+    code: svelteResizableReorderResizableTableSource,
+  },
+  {
+    path: 'src/lib/components/resizable-reorder/sortable.ts',
+    code: svelteSortableSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte', 'sortablejs', '@types/sortablejs'],
+  shadcn: ['button', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -104,7 +133,12 @@ export function ResizableTablePage() {
 
         <InstallCommand name="resizable-reorderable-columns-table" />
 
-        <ComponentPreview preview={<ResizableTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<ResizableTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

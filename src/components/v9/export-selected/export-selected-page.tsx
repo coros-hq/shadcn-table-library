@@ -8,6 +8,14 @@ import tableSource from './data-table.tsx?raw'
 import exportSource from './export.ts?raw'
 import demoSource from './index.tsx?raw'
 import { ExportSelectedDemo } from './index'
+import svelteExportSelectedExportSelectedDemoSource from '#/components/svelte/v9/export-selected/ExportSelectedDemo.svelte?raw'
+import svelteExportSelectedcolumnsSource from '#/components/svelte/v9/export-selected/columns.ts?raw'
+import svelteExportSelectedExportSelectedTableSource from '#/components/svelte/v9/export-selected/ExportSelectedTable.svelte?raw'
+import svelteExportSelecteddataSource from '#/components/svelte/v9/export-selected/data.ts?raw'
+import svelteExportSelectedexportSource from '#/components/svelte/v9/export-selected/export.ts?raw'
+import svelteMrrcellSource from '#/components/svelte/v9/export-selected/MrrCell.svelte?raw'
+import sveltePlanbadgeSource from '#/components/svelte/v9/export-selected/PlanBadge.svelte?raw'
+import svelteSelectcheckboxSource from '#/components/svelte/v9/export-selected/SelectCheckbox.svelte?raw'
 
 const files = [
   { path: 'src/components/export-selected/data-table.tsx', code: tableSource },
@@ -16,6 +24,47 @@ const files = [
   { path: 'src/components/export-selected/data.ts', code: dataSource },
   { path: 'src/components/export-selected/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/export-selected/ExportSelectedDemo.svelte',
+    code: svelteExportSelectedExportSelectedDemoSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/columns.ts',
+    code: svelteExportSelectedcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/ExportSelectedTable.svelte',
+    code: svelteExportSelectedExportSelectedTableSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/data.ts',
+    code: svelteExportSelecteddataSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/export.ts',
+    code: svelteExportSelectedexportSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/MrrCell.svelte',
+    code: svelteMrrcellSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/PlanBadge.svelte',
+    code: sveltePlanbadgeSource,
+  },
+  {
+    path: 'src/lib/components/export-selected/SelectCheckbox.svelte',
+    code: svelteSelectcheckboxSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'checkbox', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -76,7 +125,12 @@ export function ExportSelectedPage() {
 
         <InstallCommand name="export-selected-table" />
 
-        <ComponentPreview preview={<ExportSelectedDemo />} files={files} />
+        <ComponentPreview
+          preview={<ExportSelectedDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

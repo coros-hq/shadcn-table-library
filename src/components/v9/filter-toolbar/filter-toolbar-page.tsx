@@ -14,6 +14,20 @@ import useActiveFiltersSource from './use-active-filters.ts?raw'
 import chipsSource from './active-filter-chips.tsx?raw'
 import exampleSource from './example.tsx?raw'
 import { FilterToolbarDemo } from './example'
+import svelteFilterToolbarFilterToolbarDemoSource from '#/components/svelte/v9/filter-toolbar/FilterToolbarDemo.svelte?raw'
+import svelteFilterToolbarActiveFilterChipsSource from '#/components/svelte/v9/filter-toolbar/ActiveFilterChips.svelte?raw'
+import svelteFilterToolbarAddFilterTriggerSource from '#/components/svelte/v9/filter-toolbar/AddFilterTrigger.svelte?raw'
+import svelteFilterToolbarDateRangeFilterSource from '#/components/svelte/v9/filter-toolbar/DateRangeFilter.svelte?raw'
+import svelteFilterToolbarFilterConditionEditorSource from '#/components/svelte/v9/filter-toolbar/FilterConditionEditor.svelte?raw'
+import svelteFilterToolbarFilterConditionPillSource from '#/components/svelte/v9/filter-toolbar/FilterConditionPill.svelte?raw'
+import svelteFilterToolbarFilterToolbarSource from '#/components/svelte/v9/filter-toolbar/FilterToolbar.svelte?raw'
+import svelteFilterToolbarFilterValueInputSource from '#/components/svelte/v9/filter-toolbar/FilterValueInput.svelte?raw'
+import svelteFilterToolbarfilterfnsSource from '#/components/svelte/v9/filter-toolbar/filter-fns.ts?raw'
+import svelteFilterToolbaroperatorsSource from '#/components/svelte/v9/filter-toolbar/operators.ts?raw'
+import svelteFilterToolbartypesSource from '#/components/svelte/v9/filter-toolbar/types.ts?raw'
+import svelteFilterToolbaruseactivefiltersSource from '#/components/svelte/v9/filter-toolbar/use-active-filters.svelte.ts?raw'
+import svelteFilterToolbarusefilterconditionsSource from '#/components/svelte/v9/filter-toolbar/use-filter-conditions.svelte.ts?raw'
+import svelteFilterToolbarsharedmultiselectfilterMultiSelectFilterSource from '#/components/svelte/shared/multi-select-filter/MultiSelectFilter.svelte?raw'
 
 const files = [
   { path: 'src/components/filter-toolbar/types.ts', code: typesSource },
@@ -52,6 +66,81 @@ const files = [
   },
   { path: 'src/components/filter-toolbar/example.tsx', code: exampleSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/filter-toolbar/FilterToolbarDemo.svelte',
+    code: svelteFilterToolbarFilterToolbarDemoSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/ActiveFilterChips.svelte',
+    code: svelteFilterToolbarActiveFilterChipsSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/AddFilterTrigger.svelte',
+    code: svelteFilterToolbarAddFilterTriggerSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/DateRangeFilter.svelte',
+    code: svelteFilterToolbarDateRangeFilterSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/FilterConditionEditor.svelte',
+    code: svelteFilterToolbarFilterConditionEditorSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/FilterConditionPill.svelte',
+    code: svelteFilterToolbarFilterConditionPillSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/FilterToolbar.svelte',
+    code: svelteFilterToolbarFilterToolbarSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/FilterValueInput.svelte',
+    code: svelteFilterToolbarFilterValueInputSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/filter-fns.ts',
+    code: svelteFilterToolbarfilterfnsSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/operators.ts',
+    code: svelteFilterToolbaroperatorsSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/types.ts',
+    code: svelteFilterToolbartypesSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/use-active-filters.svelte.ts',
+    code: svelteFilterToolbaruseactivefiltersSource,
+  },
+  {
+    path: 'src/lib/components/filter-toolbar/use-filter-conditions.svelte.ts',
+    code: svelteFilterToolbarusefilterconditionsSource,
+  },
+  {
+    path: 'src/lib/components/ui/multi-select-filter/MultiSelectFilter.svelte',
+    code: svelteFilterToolbarsharedmultiselectfilterMultiSelectFilterSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@internationalized/date', '@lucide/svelte', 'date-fns'],
+  shadcn: [
+    'badge',
+    'button',
+    'checkbox',
+    'command',
+    'input',
+    'popover',
+    'range-calendar',
+    'select',
+    'table',
+  ],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -150,7 +239,12 @@ export function FilterToolbarPage() {
 
         <InstallCommand name="filter-toolbar-table" />
 
-        <ComponentPreview preview={<FilterToolbarDemo />} files={files} />
+        <ComponentPreview
+          preview={<FilterToolbarDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

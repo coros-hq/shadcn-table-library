@@ -10,6 +10,16 @@ import tableSource from './data-table.tsx?raw'
 import exportSource from './export.ts?raw'
 import demoSource from './index.tsx?raw'
 import { ExportConfigDemo } from './index'
+import svelteExportConfigExportConfigDemoSource from '#/components/svelte/v9/export-config/ExportConfigDemo.svelte?raw'
+import svelteExportConfigcolumnsSource from '#/components/svelte/v9/export-config/columns.ts?raw'
+import svelteExportConfigCheckboxGroupSource from '#/components/svelte/v9/export-config/CheckboxGroup.svelte?raw'
+import svelteExportConfigExportConfigTableSource from '#/components/svelte/v9/export-config/ExportConfigTable.svelte?raw'
+import svelteExportConfigExportDialogSource from '#/components/svelte/v9/export-config/ExportDialog.svelte?raw'
+import svelteExportConfigdataSource from '#/components/svelte/v9/export-config/data.ts?raw'
+import svelteExportConfigexportconfigSource from '#/components/svelte/v9/export-config/export-config.ts?raw'
+import svelteExportConfigexportSource from '#/components/svelte/v9/export-config/export.ts?raw'
+import svelteAmountcellSource from '#/components/svelte/v9/export-config/AmountCell.svelte?raw'
+import svelteStatusbadgeSource from '#/components/svelte/v9/export-config/StatusBadge.svelte?raw'
 
 const files = [
   { path: 'src/components/export-config/data-table.tsx', code: tableSource },
@@ -23,6 +33,55 @@ const files = [
   { path: 'src/components/export-config/data.ts', code: dataSource },
   { path: 'src/components/export-config/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/export-config/ExportConfigDemo.svelte',
+    code: svelteExportConfigExportConfigDemoSource,
+  },
+  {
+    path: 'src/lib/components/export-config/columns.ts',
+    code: svelteExportConfigcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/export-config/CheckboxGroup.svelte',
+    code: svelteExportConfigCheckboxGroupSource,
+  },
+  {
+    path: 'src/lib/components/export-config/ExportConfigTable.svelte',
+    code: svelteExportConfigExportConfigTableSource,
+  },
+  {
+    path: 'src/lib/components/export-config/ExportDialog.svelte',
+    code: svelteExportConfigExportDialogSource,
+  },
+  {
+    path: 'src/lib/components/export-config/data.ts',
+    code: svelteExportConfigdataSource,
+  },
+  {
+    path: 'src/lib/components/export-config/export-config.ts',
+    code: svelteExportConfigexportconfigSource,
+  },
+  {
+    path: 'src/lib/components/export-config/export.ts',
+    code: svelteExportConfigexportSource,
+  },
+  {
+    path: 'src/lib/components/export-config/AmountCell.svelte',
+    code: svelteAmountcellSource,
+  },
+  {
+    path: 'src/lib/components/export-config/StatusBadge.svelte',
+    code: svelteStatusbadgeSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['badge', 'button', 'checkbox', 'dialog', 'label', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -88,7 +147,12 @@ export function ExportConfigPage() {
 
         <InstallCommand name="export-config-table" />
 
-        <ComponentPreview preview={<ExportConfigDemo />} files={files} />
+        <ComponentPreview
+          preview={<ExportConfigDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

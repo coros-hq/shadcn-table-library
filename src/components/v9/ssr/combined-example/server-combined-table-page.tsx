@@ -8,6 +8,12 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { ServerCombinedDemo } from './index'
+import svelteSsrCombinedExampleServerCombinedDemoSource from '#/components/svelte/v9/ssr/combined-example/ServerCombinedDemo.svelte?raw'
+import svelteSsrCombinedExamplecolumnsSource from '#/components/svelte/v9/ssr/combined-example/columns.ts?raw'
+import svelteSsrCombinedExampleDataTableSource from '#/components/svelte/v9/ssr/combined-example/DataTable.svelte?raw'
+import svelteSsrCombinedExampledataSource from '#/components/svelte/v9/ssr/data.ts?raw'
+import svelteSsrCombinedExampleuseServerQuerySource from '#/components/svelte/v9/ssr/useServerQuery.svelte.ts?raw'
+import svelteSsrCombinedExampleuseUrlSearchSource from '#/components/svelte/v9/ssr/useUrlSearch.svelte.ts?raw'
 
 const files = [
   { path: 'src/components/ssr/data.ts', code: dataSource },
@@ -22,6 +28,39 @@ const files = [
   },
   { path: 'src/components/ssr/combined-example/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/ssr/combined-example/ServerCombinedDemo.svelte',
+    code: svelteSsrCombinedExampleServerCombinedDemoSource,
+  },
+  {
+    path: 'src/lib/components/ssr/combined-example/columns.ts',
+    code: svelteSsrCombinedExamplecolumnsSource,
+  },
+  {
+    path: 'src/lib/components/ssr/combined-example/DataTable.svelte',
+    code: svelteSsrCombinedExampleDataTableSource,
+  },
+  {
+    path: 'src/lib/components/ssr/data.ts',
+    code: svelteSsrCombinedExampledataSource,
+  },
+  {
+    path: 'src/lib/components/ssr/useServerQuery.svelte.ts',
+    code: svelteSsrCombinedExampleuseServerQuerySource,
+  },
+  {
+    path: 'src/lib/components/ssr/useUrlSearch.svelte.ts',
+    code: svelteSsrCombinedExampleuseUrlSearchSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['button', 'select', 'table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -132,7 +171,12 @@ export function ServerCombinedTablePage() {
 
         <InstallCommand name="server-combined-table" />
 
-        <ComponentPreview preview={<ServerCombinedDemo />} files={files} />
+        <ComponentPreview
+          preview={<ServerCombinedDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

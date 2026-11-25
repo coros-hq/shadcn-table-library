@@ -6,12 +6,46 @@ import columnsSource from './columns.tsx?raw'
 import tableSource from './data-table.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { GroupedTableDemo } from './index'
+import svelteGroupedGroupedTableDemoSource from '#/components/svelte/v9/grouped/GroupedTableDemo.svelte?raw'
+import svelteGroupedcolumnsSource from '#/components/svelte/v9/grouped/columns.ts?raw'
+import svelteGroupedGroupedDataTableSource from '#/components/svelte/v9/grouped/GroupedDataTable.svelte?raw'
+import svelteAmountcellSource from '#/components/svelte/v9/grouped/AmountCell.svelte?raw'
+import svelteCategorytoggleSource from '#/components/svelte/v9/grouped/CategoryToggle.svelte?raw'
 
 const files = [
   { path: 'src/components/grouped/columns.tsx', code: columnsSource },
   { path: 'src/components/grouped/data-table.tsx', code: tableSource },
   { path: 'src/components/grouped/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/grouped/GroupedTableDemo.svelte',
+    code: svelteGroupedGroupedTableDemoSource,
+  },
+  {
+    path: 'src/lib/components/grouped/columns.ts',
+    code: svelteGroupedcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/grouped/GroupedDataTable.svelte',
+    code: svelteGroupedGroupedDataTableSource,
+  },
+  {
+    path: 'src/lib/components/grouped/AmountCell.svelte',
+    code: svelteAmountcellSource,
+  },
+  {
+    path: 'src/lib/components/grouped/CategoryToggle.svelte',
+    code: svelteCategorytoggleSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -96,7 +130,12 @@ export function GroupedTablePage() {
 
         <InstallCommand name="grouped-table" />
 
-        <ComponentPreview preview={<GroupedTableDemo />} files={files} />
+        <ComponentPreview
+          preview={<GroupedTableDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>

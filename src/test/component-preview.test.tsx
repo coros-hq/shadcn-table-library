@@ -54,6 +54,26 @@ describe('ComponentPreview framework toggle', () => {
     expect(localStorage.getItem('shad-table:framework')).toBe('svelte')
   })
 
+  it('installs the v9 Svelte adapter instead of table-core for v9 pages', () => {
+    renderPreview({
+      svelteFiles,
+      svelteDeps: {
+        npm: ['@lucide/svelte'],
+        shadcn: [],
+        tanstack: '@tanstack/svelte-table@^9',
+      },
+    })
+    choose('Code')
+    choose('Svelte')
+    expect(document.body.textContent).toContain(
+      'npm i @tanstack/svelte-table@^9 @lucide/svelte',
+    )
+    expect(document.body.textContent).not.toContain('@tanstack/table-core')
+    expect(
+      screen.queryByRole('tab', { name: 'data-table.svelte.ts' }),
+    ).toBeNull()
+  })
+
   it('falls back to React when the saved framework has no code on this page', () => {
     localStorage.setItem('shad-table:framework', 'svelte')
     renderPreview({ vueFiles })

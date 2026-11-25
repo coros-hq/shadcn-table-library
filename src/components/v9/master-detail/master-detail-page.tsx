@@ -7,6 +7,11 @@ import tableSource from './data-table.tsx?raw'
 import detailSource from './order-detail.tsx?raw'
 import demoSource from './index.tsx?raw'
 import { MasterDetailDemo } from './index'
+import svelteMasterDetailMasterDetailDemoSource from '#/components/svelte/v9/master-detail/MasterDetailDemo.svelte?raw'
+import svelteMasterDetailcolumnsSource from '#/components/svelte/v9/master-detail/columns.ts?raw'
+import svelteMasterDetailMasterDetailTableSource from '#/components/svelte/v9/master-detail/MasterDetailTable.svelte?raw'
+import svelteMasterDetailOrderDetailSource from '#/components/svelte/v9/master-detail/OrderDetail.svelte?raw'
+import svelteExpandercellSource from '#/components/svelte/v9/master-detail/ExpanderCell.svelte?raw'
 
 const files = [
   { path: 'src/components/master-detail/columns.tsx', code: columnsSource },
@@ -17,6 +22,35 @@ const files = [
   },
   { path: 'src/components/master-detail/index.tsx', code: demoSource },
 ]
+
+const svelteFiles = [
+  {
+    path: 'src/lib/components/master-detail/MasterDetailDemo.svelte',
+    code: svelteMasterDetailMasterDetailDemoSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/columns.ts',
+    code: svelteMasterDetailcolumnsSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/MasterDetailTable.svelte',
+    code: svelteMasterDetailMasterDetailTableSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/OrderDetail.svelte',
+    code: svelteMasterDetailOrderDetailSource,
+  },
+  {
+    path: 'src/lib/components/master-detail/ExpanderCell.svelte',
+    code: svelteExpandercellSource,
+  },
+]
+
+const svelteDeps = {
+  npm: ['@lucide/svelte'],
+  shadcn: ['table'],
+  tanstack: '@tanstack/svelte-table@^9',
+}
 
 const steps = [
   {
@@ -103,7 +137,12 @@ export function MasterDetailPage() {
 
         <InstallCommand name="master-detail-table" />
 
-        <ComponentPreview preview={<MasterDetailDemo />} files={files} />
+        <ComponentPreview
+          preview={<MasterDetailDemo />}
+          files={files}
+          svelteFiles={svelteFiles}
+          svelteDeps={svelteDeps}
+        />
 
         <div className="space-y-2">
           <h2 className="text-sm font-medium">How it works</h2>
