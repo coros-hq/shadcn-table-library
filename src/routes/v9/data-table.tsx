@@ -11,6 +11,7 @@ import svelteBasicTableSource from '#/components/svelte/v9/basic/BasicTable.svel
 import svelteColumnsSource from '#/components/svelte/v9/basic/columns.ts?raw'
 import svelteDataTableSource from '#/components/svelte/v9/basic/DataTable.svelte?raw'
 import svelteDataTableFilterSource from '#/components/svelte/v9/basic/DataTableFilter.svelte?raw'
+import svelteStatusPillSource from '#/components/svelte/v9/basic/StatusPill.svelte?raw'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
@@ -103,6 +104,10 @@ const svelteFiles = [
   {
     path: 'src/lib/components/basic/DataTableFilter.svelte',
     code: svelteDataTableFilterSource,
+  },
+  {
+    path: 'src/lib/components/basic/StatusPill.svelte',
+    code: svelteStatusPillSource,
   },
 ]
 
@@ -278,7 +283,7 @@ function Home() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Shadcn Data Table{' '}
             <span className="text-muted-foreground">— TanStack Table v9</span>
           </h1>

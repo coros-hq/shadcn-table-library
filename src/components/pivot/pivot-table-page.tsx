@@ -158,7 +158,7 @@ export function PivotTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Shadcn Pivot Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
@@ -180,8 +180,8 @@ export function PivotTablePage() {
           vueDeps={vueDeps}
         />
 
-        <div className="space-y-2">
-          <h2 className="text-sm font-medium">How it works</h2>
+        <div className="space-y-4">
+          <h2 className="text-xl font-medium tracking-tight">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">

@@ -77,8 +77,9 @@ export interface HoverController {
  */
 export function useHover(): HoverController {
   const controls = useAnimation()
-  const reduced = false
-  const ambient = !(useReducedMotion() ?? false)
+  // Under reduced motion the icons drop their variants and render the static glyph
+  const reduced = useReducedMotion() ?? false
+  const ambient = !reduced
 
   const looping = useRef(false)
   const replayTimer = useRef<number | undefined>(undefined)

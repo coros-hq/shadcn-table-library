@@ -78,7 +78,7 @@
             <Table.Cell colspan={columns.length} class="p-0">
               {#if error}
                 <ErrorState
-                  title="Something went wrong"
+                  title="Couldn't load invoices"
                   description="{error.message}. Check your connection and try again."
                   {isRetrying}
                   {onretry}

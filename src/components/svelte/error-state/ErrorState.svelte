@@ -32,8 +32,8 @@
       disabled={isRetrying}
       onclick={() => onretry?.()}
     >
-      <RotateCw class={cn(isRetrying && 'animate-spin')} />
-      {isRetrying ? 'Retrying...' : 'Try again'}
+      <RotateCw class={cn(isRetrying && 'motion-safe:animate-spin')} />
+      {isRetrying ? 'Retrying…' : 'Retry'}
     </Button>
   {/if}
 {/snippet}

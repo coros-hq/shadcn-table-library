@@ -62,7 +62,7 @@ const roleNote = computed(() => {
         :key="r.id"
         type="button"
         :aria-pressed="r.id === roleId"
-        class="flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm"
+        class="flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-xs"
         @click="roleId = r.id"
       >
         <Lock v-if="r.locked" class="size-3.5" />

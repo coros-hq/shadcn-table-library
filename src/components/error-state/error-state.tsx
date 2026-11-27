@@ -21,8 +21,8 @@ export function ErrorState({
 }: ErrorStateProps) {
   const retry = onRetry && (
     <Button variant="outline" size="sm" onClick={onRetry} disabled={isRetrying}>
-      <RotateCw className={cn(isRetrying && 'animate-spin')} />
-      {isRetrying ? 'Retrying...' : 'Try again'}
+      <RotateCw className={cn(isRetrying && 'motion-safe:animate-spin')} />
+      {isRetrying ? 'Retrying…' : 'Retry'}
     </Button>
   )
 

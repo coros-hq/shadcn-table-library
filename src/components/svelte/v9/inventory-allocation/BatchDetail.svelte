@@ -88,7 +88,7 @@
                 {#if isExpired(batch)}
                   <Badge
                     variant="outline"
-                    class="border-transparent bg-destructive/15 text-destructive dark:text-red-300"
+                    class="border-transparent bg-red-500/10 text-red-700 dark:text-red-400"
                   >
                     Expired
                   </Badge>

@@ -120,7 +120,7 @@ export function FilterStateShapeDataTable<TData extends RowData>({
     <div>
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <Input
-          placeholder="Search tasks..."
+          placeholder="Search tasks…"
           value={globalFilter}
           onChange={(e) => table.setGlobalFilter(e.target.value)}
           className="w-full sm:w-64"

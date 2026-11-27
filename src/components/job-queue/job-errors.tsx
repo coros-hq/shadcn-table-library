@@ -24,7 +24,7 @@ export function JobErrors({ job }: { job: Job }) {
               {attempt.error ? (
                 <CircleAlert className="size-4 text-destructive" />
               ) : running ? (
-                <LoaderCircle className="size-4 text-blue-600 motion-safe:animate-spin" />
+                <LoaderCircle className="size-4 text-sky-600 motion-safe:animate-spin dark:text-sky-400" />
               ) : (
                 <CircleCheck className="size-4 text-muted-foreground" />
               )}

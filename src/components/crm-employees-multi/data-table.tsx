@@ -148,7 +148,7 @@ export function DataTable<TValue>({
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <Input
           type="search"
-          placeholder="Search name, email, role, location..."
+          placeholder="Search name, email, role, location…"
           aria-label="Search employees"
           value={globalFilter}
           onChange={(e) => table.setGlobalFilter(e.target.value)}

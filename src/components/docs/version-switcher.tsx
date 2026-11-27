@@ -35,7 +35,7 @@ export function VersionSwitcher() {
             key={version}
             to={withVersionPrefix(basePath, version)}
             className={cn(
-              'rounded-sm px-2 py-1 font-medium transition-colors',
+              'rounded-sm px-2 py-1 font-medium transition-colors outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50',
               active
                 ? 'bg-primary text-primary-foreground'
                 : 'text-muted-foreground hover:text-foreground',

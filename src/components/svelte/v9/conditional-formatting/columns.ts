@@ -22,13 +22,13 @@ const stockRules: FormatRule<InventoryItem>[] = [
   {
     test: (row) => row.stock === 0,
     className:
-      'bg-destructive/15 text-destructive dark:bg-destructive/25 dark:text-red-300 font-medium',
+      'bg-red-500/10 text-red-700 dark:text-red-400 font-medium',
     label: 'Out of stock',
   },
   {
     test: (row) => row.stock < row.reorderPoint,
     className:
-      'bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300 font-medium',
+      'bg-amber-500/10 text-amber-700 dark:text-amber-400 font-medium',
     label: 'Below reorder point',
   },
 ]
@@ -52,12 +52,12 @@ const statusRules: FormatRule<InventoryItem>[] = [
   {
     test: (row) => row.status === 'Backordered' || row.status === 'Low Stock',
     className:
-      'bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300',
+      'bg-amber-500/10 text-amber-700 dark:text-amber-400',
   },
   {
     test: (row) => row.status === 'In Stock',
     className:
-      'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300',
+      'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400',
   },
 ]
 

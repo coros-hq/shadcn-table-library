@@ -78,7 +78,7 @@ export function AnimatedIconsTable({ data, onDataChange, onReset }: AnimatedIcon
                 onClick={() => toggle(member.id, 'notify')}
                 className={cn(
                   'rounded-md p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground',
-                  member.notify && 'text-blue-500 hover:text-blue-500',
+                  member.notify && 'text-blue-600 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-400',
                 )}
               >
                 <BellRingingIcon size={18} />

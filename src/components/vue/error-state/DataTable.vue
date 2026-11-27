@@ -78,7 +78,7 @@ const hasStaleData = computed(() => table.getRowModel().rows.length > 0)
             <TableCell :colspan="columns.length" class="p-0">
               <ErrorState
                 v-if="error"
-                title="Something went wrong"
+                title="Couldn't load invoices"
                 :description="`${error.message}. Check your connection and try again.`"
                 :is-retrying="isRetrying"
                 @retry="emit('retry')"

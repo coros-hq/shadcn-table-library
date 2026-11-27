@@ -17,10 +17,11 @@ export type Employee = {
   salary: string
 }
 
-const statusVariant: Record<Employee['status'], 'default' | 'secondary' | 'outline'> = {
-  Active: 'default',
-  'On leave': 'secondary',
-  Inactive: 'outline',
+// Soft status pills: one hue per meaning, never the solid default badge
+const statusStyle: Record<Employee['status'], string> = {
+  Active: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400',
+  'On leave': 'bg-amber-500/10 text-amber-700 dark:text-amber-400',
+  Inactive: 'bg-muted text-muted-foreground',
 }
 
 export const columns: ColumnDef<V9Features, Employee>[] = [
@@ -37,7 +38,7 @@ export const columns: ColumnDef<V9Features, Employee>[] = [
     header: 'Status',
     size: 140,
     cell: ({ row }) => (
-      <Badge variant={statusVariant[row.original.status]}>
+      <Badge variant="secondary" className={statusStyle[row.original.status]}>
         {row.original.status}
       </Badge>
     ),

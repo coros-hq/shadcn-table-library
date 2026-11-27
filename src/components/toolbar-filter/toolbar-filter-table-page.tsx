@@ -107,7 +107,7 @@ const steps = [
       'globalFilter (the search box) and columnFilters (the two Selects) are independent pieces of table state, but TanStack Table narrows the row model through both — typing in the search box while a Category filter is active searches only within that category, with no extra code to keep the two in sync.',
     file: 'src/components/toolbar-filter/data-table.tsx',
     code: `<Input
-  placeholder="Search tasks..."
+  placeholder="Search tasks…"
   value={globalFilter}
   onChange={(e) => table.setGlobalFilter(e.target.value)}
 />
@@ -121,7 +121,7 @@ export function ToolbarFilterTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Shadcn Toolbar Filter Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
@@ -147,8 +147,8 @@ export function ToolbarFilterTablePage() {
           vueDeps={vueDeps}
         />
 
-        <div className="space-y-2">
-          <h2 className="text-sm font-medium">How it works</h2>
+        <div className="space-y-4">
+          <h2 className="text-xl font-medium tracking-tight">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">

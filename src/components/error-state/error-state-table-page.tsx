@@ -104,7 +104,7 @@ const steps = [
 
 {error && hasStaleData && <ErrorState variant="banner" ... />}
 // ...no rows:
-{error ? <ErrorState title="Something went wrong" ... /> : null}`,
+{error ? <ErrorState title="Couldn't load invoices" ... /> : null}`,
   },
   {
     title: 'One component, two variants',
@@ -119,11 +119,11 @@ const steps = [
   {
     title: 'Retry shows its own progress',
     description:
-      'While a retry is in flight the button is disabled, its icon spins, and its label changes to "Retrying...". That prevents duplicate requests and tells the user something is happening.',
+      'While a retry is in flight the button is disabled, its icon spins, and its label changes to "Retrying…". That prevents duplicate requests and tells the user something is happening.',
     file: 'src/components/error-state/error-state.tsx',
     code: `<Button variant="outline" size="sm" onClick={onRetry} disabled={isRetrying}>
-  <RotateCw className={cn(isRetrying && 'animate-spin')} />
-  {isRetrying ? 'Retrying...' : 'Try again'}
+  <RotateCw className={cn(isRetrying && 'motion-safe:animate-spin')} />
+  {isRetrying ? 'Retrying…' : 'Retry'}
 </Button>`,
   },
   {
@@ -140,7 +140,7 @@ export function ErrorStateTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Shadcn Error State Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
@@ -161,8 +161,8 @@ export function ErrorStateTablePage() {
           vueDeps={vueDeps}
         />
 
-        <div className="space-y-2">
-          <h2 className="text-sm font-medium">How it works</h2>
+        <div className="space-y-4">
+          <h2 className="text-xl font-medium tracking-tight">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">

@@ -69,7 +69,7 @@
 <div>
   <Input
     type="text"
-    placeholder="Search..."
+    placeholder="Search…"
     class="mb-3 w-64"
     oninput={(e) => table.setGlobalFilter(e.currentTarget.value)}
   />

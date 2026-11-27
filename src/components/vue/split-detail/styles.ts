@@ -5,7 +5,7 @@ export const statusStyle: Record<Status, { label: string; className: string }> =
   {
     open: {
       label: 'Open',
-      className: 'border-blue-500/40 text-blue-700 dark:text-blue-400',
+      className: 'border-sky-500/40 text-sky-700 dark:text-sky-400',
     },
     pending: {
       label: 'Pending',
@@ -16,7 +16,7 @@ export const statusStyle: Record<Status, { label: string; className: string }> =
 
 export const priorityStyle: Record<Priority, { label: string; dot: string }> = {
   urgent: { label: 'Urgent', dot: 'bg-red-500' },
-  high: { label: 'High', dot: 'bg-orange-400' },
+  high: { label: 'High', dot: 'bg-amber-500' },
   normal: { label: 'Normal', dot: 'bg-sky-500' },
   low: { label: 'Low', dot: 'bg-muted-foreground/40' },
 }

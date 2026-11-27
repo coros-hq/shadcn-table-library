@@ -13,6 +13,7 @@ import svelteBasicTableSource from '#/components/svelte/basic/BasicTable.svelte?
 import svelteColumnsSource from '#/components/svelte/basic/columns.ts?raw'
 import svelteDataTableSource from '#/components/svelte/basic/DataTable.svelte?raw'
 import svelteDataTableFilterSource from '#/components/svelte/basic/DataTableFilter.svelte?raw'
+import svelteStatusPillSource from '#/components/svelte/basic/StatusPill.svelte?raw'
 import { ComponentPreview } from '#/components/docs/component-preview.tsx'
 import { DocsLayout } from '#/components/docs/docs-layout.tsx'
 import { CodeBlock } from '#/components/docs/code-block.tsx'
@@ -110,6 +111,10 @@ const svelteFiles = [
     path: 'src/lib/components/basic/DataTableFilter.svelte',
     code: svelteDataTableFilterSource,
   },
+  {
+    path: 'src/lib/components/basic/StatusPill.svelte',
+    code: svelteStatusPillSource,
+  },
 ]
 
 const svelteDeps = {
@@ -141,7 +146,7 @@ const steps = [
     file: 'src/components/basic/data-table.tsx',
     code: `<Input
   type="text"
-  placeholder="Search..."
+  placeholder="Search…"
   onChange={(e) => table.setGlobalFilter(e.target.value)}
   className="filter-input w-64"
 />`,
@@ -192,7 +197,7 @@ function Home() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Shadcn Data Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
@@ -214,8 +219,8 @@ function Home() {
           vueDeps={vueDeps}
         />
 
-        <div className="space-y-2">
-          <h2 className="text-sm font-medium">How it works</h2>
+        <div className="space-y-4">
+          <h2 className="text-xl font-medium tracking-tight">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">

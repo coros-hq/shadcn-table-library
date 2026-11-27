@@ -132,7 +132,7 @@ export function DataTable({
                 <TableCell colSpan={columns.length} className="p-0">
                   {error ? (
                     <ErrorState
-                      title="Something went wrong"
+                      title="Couldn't load invoices"
                       description={`${error.message}. Check your connection and try again.`}
                       onRetry={onRetry}
                       isRetrying={isRetrying}

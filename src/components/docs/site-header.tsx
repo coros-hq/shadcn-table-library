@@ -72,7 +72,7 @@ export function SiteHeader({
               </span>
             </Link>
           </div>
-          <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-row items-center gap-2 sm:gap-3">
             <GlobalSearch />
             <VersionSwitcher />
             <ThemeToggle />
@@ -80,7 +80,7 @@ export function SiteHeader({
               href="https://discord.gg/4J6MVnnRY"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="rounded-sm text-muted-foreground transition-colors hover:text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
               aria-label="Join Discord"
             >
               <img

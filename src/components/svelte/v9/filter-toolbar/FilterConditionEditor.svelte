@@ -66,7 +66,7 @@
 {#if !lockedColumnId && !columnId}
   <!-- Step 1: no column locked and none picked yet — choose which column to filter. -->
   <Command.Root>
-    <Command.Input placeholder="Filter by..." />
+    <Command.Input placeholder="Filter by…" />
     <Command.List>
       <Command.Empty>No more columns to filter.</Command.Empty>
       <Command.Group>

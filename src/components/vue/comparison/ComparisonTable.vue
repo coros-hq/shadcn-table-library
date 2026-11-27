@@ -90,7 +90,7 @@ const isHighlighted = (columnId: string) =>
               <p class="text-sm font-semibold text-foreground">
                 {{ plan.name }}
               </p>
-              <p class="text-2xl font-bold text-foreground">
+              <p class="text-2xl font-semibold text-foreground">
                 {{ plan.price }}
                 <span class="text-sm font-normal text-muted-foreground">
                   {{ plan.period }}

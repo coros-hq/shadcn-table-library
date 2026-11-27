@@ -1,5 +1,6 @@
-import { createColumnHelper } from '@tanstack/svelte-table'
+import { createColumnHelper, renderComponent } from '@tanstack/svelte-table'
 import { v9Features } from '$lib/table-v9-features'
+import StatusPill from './StatusPill.svelte'
 
 // This type is used to define the shape of our data.
 export type User = {
@@ -28,6 +29,7 @@ export const columns = columnHelper.columns([
   }),
   columnHelper.accessor('status', {
     header: 'Status',
+    cell: (info) => renderComponent(StatusPill, { status: info.getValue() }),
     sortFn: 'basic',
     filterFn: 'equalsString',
   }),

@@ -68,8 +68,8 @@
           class={cn(
             'transition-colors duration-1000',
             draft &&
-              'bg-blue-50/60 hover:bg-blue-50/60 dark:bg-blue-500/5 dark:hover:bg-blue-500/5',
-            fresh.has(row.id) && 'bg-emerald-50 dark:bg-emerald-500/10',
+              'bg-sky-500/10 hover:bg-sky-500/10',
+            fresh.has(row.id) && 'bg-emerald-500/10',
           )}
         >
           {#each row.getVisibleCells() as cell, i (cell.id)}

@@ -22,7 +22,7 @@ export function LiveStatusLabel() {
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
         <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500" />
       </span>
-      <span key={index} className="animate-in fade-in duration-300">
+      <span key={index} className="animate-in fade-in duration-300 motion-reduce:animate-none">
         {LABELS[index]}
       </span>
     </span>

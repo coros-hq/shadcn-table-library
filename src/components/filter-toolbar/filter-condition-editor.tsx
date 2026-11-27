@@ -69,7 +69,7 @@ export function FilterConditionEditor<TData>({
   if (!lockedColumnId && !columnId) {
     return (
       <Command>
-        <CommandInput placeholder="Filter by..." />
+        <CommandInput placeholder="Filter by…" />
         <CommandList>
           <CommandEmpty>No more columns to filter.</CommandEmpty>
           <CommandGroup>

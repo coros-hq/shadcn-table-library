@@ -24,7 +24,7 @@ import type { Source, SyncStatus } from './data'
 
 const statusStyle: Record<SyncStatus, { dot: string; label: string }> = {
   synced: { dot: 'bg-emerald-500', label: 'Synced' },
-  syncing: { dot: 'bg-sky-500 animate-pulse', label: 'Syncing…' },
+  syncing: { dot: 'bg-sky-500 motion-safe:animate-pulse', label: 'Syncing…' },
   failed: { dot: 'bg-red-500', label: 'Failed' },
 }
 

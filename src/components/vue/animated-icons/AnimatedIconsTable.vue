@@ -95,7 +95,7 @@ const columns = computed<ColumnDef<TeamMember>[]>(() => [
             onClick: () => toggle(member.id, 'notify'),
             class: cn(
               iconButton,
-              member.notify && 'text-blue-500 hover:text-blue-500',
+              member.notify && 'text-blue-600 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-400',
             ),
           },
           h(BellRingingIcon, { size: 18 }),

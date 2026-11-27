@@ -132,7 +132,7 @@
     <Input
       bind:value={globalFilter}
       type="search"
-      placeholder="Search name, email, role, location..."
+      placeholder="Search name, email, role, location…"
       aria-label="Search employees"
       class="w-full sm:w-72"
     />

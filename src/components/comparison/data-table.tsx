@@ -90,7 +90,7 @@ export function ComparisonTable({ plans, features }: ComparisonTableProps) {
                   <p className="text-sm font-semibold text-foreground">
                     {plan.name}
                   </p>
-                  <p className="text-2xl font-bold text-foreground">
+                  <p className="text-2xl font-semibold text-foreground">
                     {plan.price}
                     <span className="text-sm font-normal text-muted-foreground">
                       {plan.period}

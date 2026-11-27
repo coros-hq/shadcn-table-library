@@ -9,6 +9,11 @@ const searchParamRoutes = ['/server-table', '/server-filter', '/server-combined-
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 const config = defineConfig({
+  // Lets the nav expire "New" badges against the deploy date, so prerendered
+  // HTML and the client always agree on which badges show
+  define: {
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+  },
   resolve: {
     tsconfigPaths: true
   },

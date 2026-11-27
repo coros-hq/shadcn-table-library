@@ -21,6 +21,10 @@ import {
 } from 'lucide-react'
 import { cn } from '#/lib/utils.ts'
 import {
+  densityCellClass,
+  densityHeadClass,
+} from '#/components/docs/density.ts'
+import {
   Table,
   TableBody,
   TableCell,
@@ -192,13 +196,17 @@ const columns: ColumnDef<SpendNode>[] = [
           ) : (
             <span className="flex size-4 shrink-0 items-center justify-center">
               {node.status && (
-                <span
-                  title={node.status}
-                  className={cn(
-                    'size-1.5 rounded-full',
-                    statusDot[node.status],
-                  )}
-                />
+                <>
+                  <span
+                    aria-hidden
+                    title={node.status}
+                    className={cn(
+                      'size-1.5 rounded-full',
+                      statusDot[node.status],
+                    )}
+                  />
+                  <span className="sr-only">{node.status}</span>
+                </>
               )}
             </span>
           )}
@@ -291,8 +299,8 @@ export function HeroTable() {
   const rows = table.getRowModel().rows
 
   return (
-    <div className="rounded-xl border bg-card shadow-sm">
-      <div className="flex items-center justify-between gap-3 border-b px-3 py-2">
+    <div className="rounded-xl border bg-card">
+      <div className="flex items-center justify-between gap-3 border-b px-2 py-2">
         <label className="flex min-w-0 flex-1 items-center gap-2 text-muted-foreground">
           <Search className="size-3.5 shrink-0" />
           <input
@@ -323,7 +331,7 @@ export function HeroTable() {
                   <TableHead
                     key={header.id}
                     className={cn(
-                      'px-3',
+                      densityHeadClass.comfortable,
                       header.column.id !== 'name' && 'w-0 text-right',
                     )}
                   >
@@ -360,7 +368,7 @@ export function HeroTable() {
                   <TableCell
                     key={cell.id}
                     className={cn(
-                      'px-3 py-2.5',
+                      densityCellClass.comfortable,
                       cell.column.id === 'name'
                         ? 'w-full max-w-0'
                         : 'text-right',

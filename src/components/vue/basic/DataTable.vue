@@ -98,7 +98,7 @@ const table = useVueTable({
     <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
       <Input
         type="text"
-        placeholder="Search..."
+        placeholder="Search…"
         class="filter-input w-full sm:w-64"
         @input="(e: Event) => table.setGlobalFilter((e.target as HTMLInputElement).value)"
       />

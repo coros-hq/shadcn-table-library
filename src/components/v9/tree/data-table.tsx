@@ -57,7 +57,7 @@ export function TreeDataTable<TData extends RowData & { children?: TData[] }>({
     <div>
       <Input
         type="text"
-        placeholder="Search..."
+        placeholder="Search…"
         onChange={(e) => table.setGlobalFilter(e.target.value)}
         className="mb-3 w-64"
       />

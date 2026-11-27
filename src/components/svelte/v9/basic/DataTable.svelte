@@ -84,7 +84,7 @@
   <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
     <Input
       type="text"
-      placeholder="Search..."
+      placeholder="Search…"
       class="filter-input w-full sm:w-64"
       oninput={(e) => table.setGlobalFilter(e.currentTarget.value)}
     />

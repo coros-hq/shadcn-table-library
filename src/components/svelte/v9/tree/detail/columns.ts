@@ -19,7 +19,7 @@ export const statusStyle: Record<OrderStatus | ShipmentStatus, string> = {
   Delivered: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400',
   'Label created': 'bg-muted text-muted-foreground',
   'In transit': 'bg-sky-500/10 text-sky-700 dark:text-sky-400',
-  'Out for delivery': 'bg-violet-500/10 text-violet-700 dark:text-violet-400',
+  'Out for delivery': 'bg-sky-500/10 text-sky-700 dark:text-sky-400',
 }
 
 export const money = new Intl.NumberFormat('en-US', {

@@ -104,7 +104,7 @@ const steps = [
     code: `const hasNoData = data.length === 0 // source is empty
 const rows = table.getRowModel().rows // filtered result
 
-{hasNoData ? <EmptyState title="No invoices yet" ... /> : <EmptyState title="No results found" ... />}`,
+{hasNoData ? <EmptyState title="No invoices yet" ... /> : <EmptyState title="No results" ... />}`,
   },
   {
     title: 'The empty state lives inside the table body',
@@ -135,7 +135,7 @@ const rows = table.getRowModel().rows // filtered result
       'With no data, filtering can\'t produce anything, so the input is disabled rather than inviting a search that can only lead to a misleading "no results" message.',
     file: 'src/components/empty-state/data-table.tsx',
     code: `<Input
-  placeholder="Search invoices..."
+  placeholder="Search invoices…"
   disabled={hasNoData}
 />`,
   },
@@ -146,7 +146,7 @@ export function EmptyStateTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Shadcn Empty State Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
@@ -167,8 +167,8 @@ export function EmptyStateTablePage() {
           vueDeps={vueDeps}
         />
 
-        <div className="space-y-2">
-          <h2 className="text-sm font-medium">How it works</h2>
+        <div className="space-y-4">
+          <h2 className="text-xl font-medium tracking-tight">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">

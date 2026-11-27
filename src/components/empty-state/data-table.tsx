@@ -103,7 +103,7 @@ export function DataTable({ data, onCreate }: DataTableProps) {
       ) : (
         <EmptyState
           icon={<SearchX />}
-          title="No results found"
+          title="No results"
           description={`Nothing matches "${globalFilter}". Try a different search term.`}
           action={
             <Button
@@ -122,7 +122,7 @@ export function DataTable({ data, onCreate }: DataTableProps) {
   return (
     <div className="space-y-3">
       <Input
-        placeholder="Search invoices..."
+        placeholder="Search invoices…"
         value={globalFilter}
         onChange={(event) => setGlobalFilter(event.target.value)}
         disabled={hasNoData}

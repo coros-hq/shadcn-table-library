@@ -20,8 +20,8 @@ export const statusStyle: Record<
   running: {
     label: 'Running',
     icon: LoaderCircle,
-    badge: 'border-blue-500/40 text-blue-700 dark:text-blue-400',
-    bar: 'bg-blue-500',
+    badge: 'border-sky-500/40 text-sky-700 dark:text-sky-400',
+    bar: 'bg-sky-500',
   },
   retrying: {
     label: 'Retrying',

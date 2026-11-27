@@ -399,7 +399,7 @@ export function MigrateV9Page() {
     <DocsLayout>
       <section className="space-y-10">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Migrating from TanStack Table v8 to v9
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
@@ -469,7 +469,7 @@ export function MigrateV9Page() {
         <div className="space-y-8">
           {activeSections.map((section, i) => (
             <div key={section.title} className="space-y-3">
-              <h2 className="flex items-center gap-2 text-lg font-medium">
+              <h2 className="flex items-center gap-2 text-xl font-medium tracking-tight">
                 <span className="text-muted-foreground">{i + 1}.</span>
                 {section.title}
               </h2>
@@ -496,7 +496,7 @@ export function MigrateV9Page() {
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-lg font-medium">Quick reference</h2>
+          <h2 className="text-xl font-medium tracking-tight">Quick reference</h2>
           <div className="overflow-x-auto rounded-lg border">
             <table className="w-full text-sm">
               <thead>
@@ -518,7 +518,7 @@ export function MigrateV9Page() {
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-lg font-medium">
+          <h2 className="text-xl font-medium tracking-tight">
             How the examples here handle features
           </h2>
           <p className="max-w-2xl text-sm text-muted-foreground">
@@ -536,7 +536,7 @@ export function MigrateV9Page() {
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-lg font-medium">Migration checklist</h2>
+          <h2 className="text-xl font-medium tracking-tight">Migration checklist</h2>
           <ul className="space-y-2 rounded-lg border p-4 text-sm text-muted-foreground">
             {activeChecklist.map((item) => (
               <li key={item} className="flex gap-2">

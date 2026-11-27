@@ -61,7 +61,7 @@ const table = useVueTable({
     <div class="mb-3 flex flex-wrap items-center gap-2">
       <Input
         v-model="globalFilter"
-        placeholder="Search tasks..."
+        placeholder="Search tasks…"
         class="w-full sm:w-64"
       />
       <ToolbarSelect

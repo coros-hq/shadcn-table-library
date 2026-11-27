@@ -41,7 +41,7 @@ export function PermissionsMatrixDemo() {
               type="button"
               aria-pressed={r.id === roleId}
               onClick={() => setRoleId(r.id)}
-              className="flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-sm"
+              className="flex shrink-0 items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-pressed:bg-background aria-pressed:text-foreground aria-pressed:shadow-xs"
             >
               {r.locked ? <Lock className="size-3.5" /> : null}
               {r.name}

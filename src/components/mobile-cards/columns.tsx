@@ -11,10 +11,11 @@ export type Order = {
   total: string
 }
 
-const statusVariant: Record<Order['status'], 'default' | 'secondary' | 'outline'> = {
-  Paid: 'default',
-  Pending: 'secondary',
-  Refunded: 'outline',
+// Soft status pills: one hue per meaning, never the solid default badge
+const statusStyle: Record<Order['status'], string> = {
+  Paid: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400',
+  Pending: 'bg-amber-500/10 text-amber-700 dark:text-amber-400',
+  Refunded: 'bg-muted text-muted-foreground',
 }
 
 export const columns: ColumnDef<Order>[] = [
@@ -25,7 +26,7 @@ export const columns: ColumnDef<Order>[] = [
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) => (
-      <Badge variant={statusVariant[row.original.status]}>
+      <Badge variant="secondary" className={statusStyle[row.original.status]}>
         {row.original.status}
       </Badge>
     ),

@@ -105,7 +105,7 @@ export function DataTable<TData extends RowData>({
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <Input
           type="text"
-          placeholder={'Search...'}
+          placeholder={'Search…'}
           onChange={(e) => table.setGlobalFilter(e.target.value)}
           className="filter-input w-full sm:w-64"
         />

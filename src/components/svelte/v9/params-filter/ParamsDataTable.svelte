@@ -68,7 +68,7 @@
     <Input
       bind:value={search}
       type="text"
-      placeholder="Search..."
+      placeholder="Search…"
       class="w-full sm:w-64"
     />
     <div class="flex flex-wrap items-center gap-2">

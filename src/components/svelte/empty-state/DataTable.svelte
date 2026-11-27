@@ -43,7 +43,7 @@
 <div class="space-y-3">
   <Input
     bind:value={globalFilter}
-    placeholder="Search invoices..."
+    placeholder="Search invoices…"
     disabled={data.length === 0}
     class="max-w-xs"
   />
@@ -95,7 +95,7 @@
                 </EmptyState>
               {:else}
                 <EmptyState
-                  title="No results found"
+                  title="No results"
                   description={`Nothing matches "${globalFilter}". Try a different search term.`}
                 >
                   {#snippet icon()}<SearchX />{/snippet}

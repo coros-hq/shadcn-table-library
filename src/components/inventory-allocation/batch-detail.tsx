@@ -93,7 +93,7 @@ export function BatchDetail({ row, meta }: BatchDetailProps) {
                     <span className="flex items-center gap-2 whitespace-nowrap">
                       {formatDate(batch.expiresOn)}
                       {expired ? (
-                        <Badge variant="outline" className="border-transparent bg-destructive/15 text-destructive dark:text-red-300">
+                        <Badge variant="outline" className="border-transparent bg-red-500/10 text-red-700 dark:text-red-400">
                           Expired
                         </Badge>
                       ) : batch.id === earliestUsable ? (

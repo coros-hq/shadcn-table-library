@@ -50,7 +50,7 @@ const table = useVueTable({
   <div class="space-y-3">
     <Input
       v-model="globalFilter"
-      placeholder="Search invoices..."
+      placeholder="Search invoices…"
       :disabled="data.length === 0"
       class="max-w-xs"
     />
@@ -98,7 +98,7 @@ const table = useVueTable({
               </EmptyState>
               <EmptyState
                 v-else
-                title="No results found"
+                title="No results"
                 :description="`Nothing matches &quot;${globalFilter}&quot;. Try a different search term.`"
               >
                 <template #icon><SearchX /></template>

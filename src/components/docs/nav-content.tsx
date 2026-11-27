@@ -2,6 +2,7 @@ import type * as React from 'react'
 import { Link } from '@tanstack/react-router'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '#/lib/utils.ts'
+import { Badge } from '#/components/ui/badge.tsx'
 import {
   Collapsible,
   CollapsibleContent,
@@ -22,8 +23,23 @@ import {
 export interface NavLink {
   title: string
   to: string
-  /** Shows a "New" pill; remove the flag once a page is no longer fresh */
-  isNew?: boolean
+  /**
+   * Shows a "New" badge until this date (ISO yyyy-mm-dd, exclusive), so the
+   * badge keeps its meaning without anyone remembering to remove it. Convention:
+   * the day the page shipped + 45 days.
+   */
+  newUntil?: string
+}
+
+declare const __BUILD_DATE__: string | undefined
+
+// Pages are prerendered, so compare against the build date rather than the
+// visitor's clock; badges drop off on the first deploy after newUntil.
+const BUILD_DATE =
+  typeof __BUILD_DATE__ === 'string' ? new Date(__BUILD_DATE__) : new Date()
+
+export function isNew(link: NavLink, now: Date = BUILD_DATE): boolean {
+  return link.newUntil ? now < new Date(link.newUntil) : false
 }
 
 export interface NavGroup {
@@ -33,8 +49,8 @@ export interface NavGroup {
 
 export const topLevelLinks: NavLink[] = [
   { title: 'Data Table', to: '/data-table' },
-  { title: 'v8 → v9 Migration', to: '/migrate-v9', isNew: true },
-  { title: 'Table Builder', to: '/builder', isNew: true },
+  { title: 'v8 → v9 migration', to: '/migrate-v9' },
+  { title: 'Table Builder', to: '/builder' },
 ]
 
 export const navGroups: NavGroup[] = [
@@ -47,7 +63,7 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
-    title: 'Advanced Filters',
+    title: 'Advanced filters',
     items: [
       { title: 'Toolbar Filter Table', to: '/toolbar-filter-table' },
       { title: 'Filter State Shape', to: '/filter-state-shape-table' },
@@ -58,9 +74,9 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
-    title: 'Structure / Hierarchy',
+    title: 'Structure / hierarchy',
     items: [
-      { title: 'Tree Table', to: '/tree-table', isNew: true },
+      { title: 'Tree Table', to: '/tree-table' },
       { title: 'Grouped Table', to: '/grouped-table' },
       { title: 'Pivot Table', to: '/pivot-table' },
       { title: 'Master-Detail Table', to: '/master-detail' },
@@ -76,30 +92,30 @@ export const navGroups: NavGroup[] = [
       { title: 'Resizable / Reorderable Columns', to: '/resizable-table' },
       { title: 'Column Pinning', to: '/column-pinning-table' },
       { title: 'Inventory Allocation', to: '/inventory-allocation-table' },
-      { title: 'Infinite Scroll', to: '/infinite-scroll-table', isNew: true },
-      { title: 'Excel-like Table', to: '/spreadsheet-table', isNew: true },
+      { title: 'Infinite Scroll', to: '/infinite-scroll-table' },
+      { title: 'Excel-like Table', to: '/spreadsheet-table' },
       {
         title: 'Permissions Matrix',
         to: '/permissions-matrix-table',
-        isNew: true,
+        newUntil: '2027-01-01',
       },
-      { title: 'CSV Import Review', to: '/csv-import-table', isNew: true },
+      { title: 'CSV Import Review', to: '/csv-import-table', newUntil: '2027-01-01' },
       {
         title: 'Diff / Change Review',
         to: '/change-review-table',
-        isNew: true,
+        newUntil: '2027-01-01',
       },
       {
         title: 'Schedule Matrix',
         to: '/schedule-matrix-table',
-        isNew: true,
+        newUntil: '2027-01-02',
       },
-      { title: 'Draft Rows', to: '/draft-rows-table', isNew: true },
-      { title: 'File Browser', to: '/file-browser-table', isNew: true },
+      { title: 'Draft Rows', to: '/draft-rows-table', newUntil: '2027-01-02' },
+      { title: 'File Browser', to: '/file-browser-table', newUntil: '2027-01-02' },
       {
         title: 'Split Detail Panel',
         to: '/split-detail-table',
-        isNew: true,
+        newUntil: '2027-01-02',
       },
     ],
   },
@@ -109,32 +125,32 @@ export const navGroups: NavGroup[] = [
       { title: 'Animated Icons Table', to: '/animated-icons-table' },
       { title: 'Live Status Indicators', to: '/live-status-table' },
       { title: 'Async Row Actions', to: '/async-actions-table' },
-      { title: 'Job Queue', to: '/job-queue-table', isNew: true },
+      { title: 'Job Queue', to: '/job-queue-table', newUntil: '2027-01-02' },
     ],
   },
   {
-    title: 'Dashboard / Analytics-specific',
+    title: 'Dashboard / analytics-specific',
     items: [
       { title: 'Summary / KPI Table', to: '/kpi-table' },
       { title: 'Comparison Table', to: '/comparison-table' },
       { title: 'Heatmap Table', to: '/heatmap-table' },
       { title: 'Conditional Formatting', to: '/conditional-formatting-table' },
       { title: 'Production Dashboard', to: '/production-dashboard-table' },
-      { title: 'CRM Employees', to: '/crm-employees-table', isNew: true },
+      { title: 'CRM Employees', to: '/crm-employees-table' },
       {
         title: 'Cohort Retention',
         to: '/cohort-retention-table',
-        isNew: true,
+        newUntil: '2027-01-02',
       },
       {
         title: 'Anomaly Investigation',
         to: '/anomaly-investigation-table',
-        isNew: true,
+        newUntil: '2027-01-02',
       },
     ],
   },
   {
-    title: 'Export / Density Variants',
+    title: 'Export / density variants',
     items: [
       { title: 'Density & Export', to: '/utility-table' },
       { title: 'Export Configuration', to: '/export-config-table' },
@@ -144,9 +160,9 @@ export const navGroups: NavGroup[] = [
   {
     title: 'States',
     items: [
-      { title: 'Loading State', to: '/loading-state-table', isNew: true },
-      { title: 'Empty State', to: '/empty-state-table', isNew: true },
-      { title: 'Error State', to: '/error-state-table', isNew: true },
+      { title: 'Loading State', to: '/loading-state-table', newUntil: '2026-12-01' },
+      { title: 'Empty State', to: '/empty-state-table', newUntil: '2026-12-01' },
+      { title: 'Error State', to: '/error-state-table', newUntil: '2026-12-01' },
     ],
   },
   {
@@ -199,14 +215,9 @@ export const V9_PORTED_ROUTES = new Set<string>([
 
 export function NewBadge({ className }: { className?: string }) {
   return (
-    <span
-      className={cn(
-        'rounded-full bg-primary/10 px-1.5 py-px text-[10px] leading-4 font-medium text-primary',
-        className,
-      )}
-    >
+    <Badge variant="secondary" className={className}>
       New
-    </span>
+    </Badge>
   )
 }
 
@@ -240,7 +251,7 @@ export function NavContent({
                     >
                       <Link to={prefix(link.to)} onClick={onNavigate}>
                         {link.title}
-                        {link.isNew ? <NewBadge className="ml-auto" /> : null}
+                        {isNew(link) ? <NewBadge className="ml-auto" /> : null}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -263,7 +274,7 @@ export function NavContent({
                   <CollapsibleTrigger>
                     {group.title}
                     <span className="ml-auto flex items-center gap-2">
-                      {group.items.some((l) => l.isNew) ? <NewBadge /> : null}
+                      {group.items.some((l) => isNew(l)) ? <NewBadge /> : null}
                       <ChevronRight className="size-3.5 text-muted-foreground/60 transition-transform duration-200 ease-out group-data-[state=open]/collapsible:rotate-90" />
                     </span>
                   </CollapsibleTrigger>
@@ -295,7 +306,7 @@ export function NavContent({
                             >
                               <Link to={to} onClick={onNavigate}>
                                 {link.title}
-                                {link.isNew ? (
+                                {isNew(link) ? (
                                   <NewBadge className="ml-auto" />
                                 ) : null}
                                 {unported ? (

@@ -78,7 +78,7 @@ export function ParamsDataTable<TData extends RowData & { role: string }>({
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <Input
           type="text"
-          placeholder="Search..."
+          placeholder="Search…"
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
           className="w-full sm:w-64"

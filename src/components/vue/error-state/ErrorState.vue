@@ -36,8 +36,8 @@ const emit = defineEmits<{ retry: [] }>()
       :disabled="isRetrying"
       @click="emit('retry')"
     >
-      <RotateCw :class="cn(isRetrying && 'animate-spin')" />
-      {{ isRetrying ? 'Retrying...' : 'Try again' }}
+      <RotateCw :class="cn(isRetrying && 'motion-safe:animate-spin')" />
+      {{ isRetrying ? 'Retrying…' : 'Retry' }}
     </Button>
   </div>
   <div
@@ -63,8 +63,8 @@ const emit = defineEmits<{ retry: [] }>()
       :disabled="isRetrying"
       @click="emit('retry')"
     >
-      <RotateCw :class="cn(isRetrying && 'animate-spin')" />
-      {{ isRetrying ? 'Retrying...' : 'Try again' }}
+      <RotateCw :class="cn(isRetrying && 'motion-safe:animate-spin')" />
+      {{ isRetrying ? 'Retrying…' : 'Retry' }}
     </Button>
   </div>
 </template>

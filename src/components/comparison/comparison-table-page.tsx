@@ -152,7 +152,7 @@ const steps = [
 >
   <div className="space-y-1">
     <p className="text-sm font-semibold">{plan.name}</p>
-    <p className="text-2xl font-bold">{plan.price}<span className="text-sm font-normal text-muted-foreground">{plan.period}</span></p>
+    <p className="text-2xl font-semibold">{plan.price}<span className="text-sm font-normal text-muted-foreground">{plan.period}</span></p>
     <Button className="mt-2 w-full">{plan.cta}</Button>
   </div>
 </TableHead>`,
@@ -164,7 +164,7 @@ export function ComparisonTablePage() {
     <DocsLayout>
       <section className="space-y-4">
         <div>
-          <h1 className="text-3xl font-normal tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-normal tracking-tight text-balance sm:text-4xl">
             Shadcn Comparison Table
           </h1>
           <p className="mt-3 max-w-2xl text-base text-muted-foreground text-balance">
@@ -185,8 +185,8 @@ export function ComparisonTablePage() {
           vueDeps={vueDeps}
         />
 
-        <div className="space-y-2">
-          <h2 className="text-sm font-medium">How it works</h2>
+        <div className="space-y-4">
+          <h2 className="text-xl font-medium tracking-tight">How it works</h2>
           <div className="divide-y rounded-lg border">
             {steps.map((step, i) => (
               <div key={step.title} className="p-4">

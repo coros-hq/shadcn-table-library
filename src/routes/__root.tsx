@@ -22,7 +22,7 @@ export const Route = createRootRoute({
       {
         name: 'description',
         content:
-          'A collection of composable table components built on shadcn/ui and TanStack Table — data tables, tree tables, pivot tables, and more, installable via npx shadcn add.',
+          'Copy-paste table components for shadcn/ui and TanStack Table: data tables, server-side pagination, trees, pivots and editable grids. Own the code.',
       },
       {
         property: 'og:site_name',

@@ -80,4 +80,17 @@ describe('ComponentPreview framework toggle', () => {
     choose('Code')
     expect(screen.getByRole('tab', { name: 'react.tsx' })).toBeTruthy()
   })
+
+  it('says a port is source only, and only for the selected port', () => {
+    renderPreview({ vueFiles, svelteFiles })
+    expect(screen.queryByText(/Source only/)).toBeNull()
+    choose('Vue')
+    expect(document.body.textContent).toContain(
+      "Source only. There's no live preview or registry item for Vue.",
+    )
+    choose('Svelte')
+    expect(document.body.textContent).toContain('registry item for Svelte.')
+    choose('React')
+    expect(screen.queryByText(/Source only/)).toBeNull()
+  })
 })

@@ -35,7 +35,7 @@ export function GithubStars() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Star ShadTable on GitHub"
-      className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground"
+      className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
     >
       <img src={GithubIcon} alt="" className="size-3.5 dark:invert" />
       <span className="hidden sm:inline">Star</span>

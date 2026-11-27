@@ -38,7 +38,7 @@ interface ComponentPreviewProps {
     // '@tanstack/svelte-table@^9', the Svelte 5 native adapter, and drop `adapter`
     tanstack?: string
   }
-  // Drops the card and control shadows for a flat look
+  // Also drops the shadows on controls inside the demo (the frame itself is always flat)
   flat?: boolean
 }
 
@@ -146,7 +146,7 @@ export function ComponentPreview({
     <Tabs
       defaultValue="preview"
       className={`gap-0 overflow-hidden rounded-xl border bg-card ${
-        flat ? 'shadow-none [&_*]:shadow-none' : 'shadow-sm'
+        flat ? '[&_*]:shadow-none' : ''
       }`}
     >
       <div className="flex items-center border-b px-2 py-1.5">
@@ -182,11 +182,17 @@ export function ComponentPreview({
           </Tabs>
         ) : null}
       </div>
+      {active !== 'react' ? (
+        <p className="border-b px-4 py-2 text-xs text-muted-foreground">
+          Source only. There&apos;s no live preview or registry item for{' '}
+          {active === 'vue' ? 'Vue' : 'Svelte'}.
+        </p>
+      ) : null}
       {/* Demos that paint bg-background (e.g. pinned columns) should match
           this surface, not the page, so redefine it here as an opaque tint */}
       <TabsContent
         value="preview"
-        className="bg-background p-4 [--background:color-mix(in_oklch,var(--muted)_20%,var(--card))] sm:p-6"
+        className="bg-background p-4 [--background:color-mix(in_oklch,var(--muted)_20%,var(--card))] focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:ring-inset sm:p-6"
       >
         {preview}
       </TabsContent>

@@ -78,7 +78,7 @@ function apply() {
 <template>
   <!-- Step 1: no column locked and none picked yet — choose which column to filter. -->
   <Command v-if="!props.columnId && !columnId">
-    <CommandInput placeholder="Filter by..." />
+    <CommandInput placeholder="Filter by…" />
     <CommandList>
       <CommandEmpty>No more columns to filter.</CommandEmpty>
       <CommandGroup>

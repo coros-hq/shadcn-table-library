@@ -129,7 +129,7 @@ function ariaSort(sorted: false | 'asc' | 'desc') {
       <Input
         v-model="globalFilter"
         type="search"
-        placeholder="Search name, email, role, location..."
+        placeholder="Search name, email, role, location…"
         aria-label="Search employees"
         class="w-full sm:w-72"
       />

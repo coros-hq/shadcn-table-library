@@ -26,7 +26,7 @@ export const Route = createFileRoute('/')({
       {
         property: 'og:description',
         content:
-          'Copy-paste table components for shadcn/ui and TanStack Table — from sortable data tables to server-side pagination, tree/pivot structures, inline editing, and dashboard-analytics variants.',
+          'Copy-paste table components for shadcn/ui and TanStack Table: data tables, server-side pagination, trees, pivots and editable grids. Own the code.',
       },
     ],
     links: [{ rel: 'canonical', href: 'https://www.shad-table.dev/' }],
@@ -99,9 +99,14 @@ function Home() {
                   </a>
                 </Button>
               </div>
+
+              <p className="mt-6 text-sm text-muted-foreground">
+                TanStack Table v8 and v9 · React live demos, Vue and Svelte
+                source · MIT licensed
+              </p>
             </div>
 
-            <div className="min-w-0 animate-in fade-in slide-in-from-bottom-2 duration-700 fill-mode-both">
+            <div className="min-w-0 animate-in fade-in slide-in-from-bottom-2 duration-700 fill-mode-both motion-reduce:animate-none">
               <HeroTable />
             </div>
           </div>

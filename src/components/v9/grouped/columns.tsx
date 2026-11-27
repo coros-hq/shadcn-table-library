@@ -15,6 +15,23 @@ export type Order = {
 const currency = (value: number) =>
   value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 
+// One hue per meaning, and the label always carries the status too
+const statusStyle: Record<string, string> = {
+  Paid: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400',
+  Pending: 'bg-amber-500/10 text-amber-700 dark:text-amber-400',
+  Refunded: 'bg-muted text-muted-foreground',
+}
+
+function StatusPill({ status }: { status: string }) {
+  return (
+    <span
+      className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${statusStyle[status] ?? 'bg-muted text-muted-foreground'}`}
+    >
+      {status}
+    </span>
+  )
+}
+
 export const columns: ColumnDef<V9Features, Order>[] = [
   {
     accessorKey: 'category',
@@ -53,7 +70,9 @@ export const columns: ColumnDef<V9Features, Order>[] = [
     accessorKey: 'status',
     header: 'Status',
     cell: ({ cell, getValue }) =>
-      cell.getIsAggregated() ? null : (getValue() as string),
+      cell.getIsAggregated() ? null : (
+        <StatusPill status={getValue() as string} />
+      ),
   },
   {
     accessorKey: 'amount',

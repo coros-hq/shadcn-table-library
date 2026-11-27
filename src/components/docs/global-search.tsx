@@ -13,6 +13,7 @@ import {
   topLevelLinks,
   navGroups,
   NewBadge,
+  isNew,
 } from '#/components/docs/nav-content.tsx'
 
 export function GlobalSearch() {
@@ -42,10 +43,10 @@ export function GlobalSearch() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search docs"
-        className="flex h-8 items-center gap-2 rounded-md border bg-background px-2.5 text-xs text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground sm:w-48"
+        className="flex h-8 items-center gap-2 rounded-md border bg-background px-2.5 text-xs text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground sm:w-48 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
       >
         <Search className="size-3.5 shrink-0" />
-        <span className="hidden sm:inline">Search docs...</span>
+        <span className="hidden sm:inline">Search docs…</span>
         <kbd className="ml-auto hidden items-center gap-0.5 rounded border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground sm:flex">
           <span>⌘</span>K
         </kbd>
@@ -57,9 +58,9 @@ export function GlobalSearch() {
         title="Search docs"
         description="Jump to any table example"
       >
-        <CommandInput placeholder="Search examples..." />
+        <CommandInput placeholder="Search examples…" />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>No results.</CommandEmpty>
           <CommandGroup heading="General">
             {topLevelLinks.map((link) => (
               <CommandItem
@@ -68,7 +69,7 @@ export function GlobalSearch() {
                 onSelect={() => goTo(link.to)}
               >
                 {link.title}
-                {link.isNew ? <NewBadge className="ml-auto" /> : null}
+                {isNew(link) ? <NewBadge className="ml-auto" /> : null}
               </CommandItem>
             ))}
           </CommandGroup>
@@ -81,7 +82,7 @@ export function GlobalSearch() {
                   onSelect={() => goTo(link.to)}
                 >
                   {link.title}
-                  {link.isNew ? <NewBadge className="ml-auto" /> : null}
+                  {isNew(link) ? <NewBadge className="ml-auto" /> : null}
                 </CommandItem>
               ))}
             </CommandGroup>
